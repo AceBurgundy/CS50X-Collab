@@ -29,3 +29,20 @@ body {
     border-radius: 50%;
     transition: 1.5s ease-in-out;
 }
+
+
+/*------------------login-------------------*/
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login {
+    transition: 1s ease-in-out;
+    position: absolute;
+    left: 64%;
+    top: 35%;
+    width: 380px;
+}
