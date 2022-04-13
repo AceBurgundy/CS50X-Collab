@@ -130,3 +130,16 @@ i {
     opacity: 0.3;
     cursor: pointer;
 }
+
+
+/*----------Forgot-Password----------*/
+
+.forgot {
+    margin-top: -10px;
+    margin-left: 65%;
+    color: black;
+}
+
+.forgot:hover {
+    color: red;
+}
