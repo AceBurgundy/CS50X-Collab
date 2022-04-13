@@ -38,6 +38,47 @@
             </div>
         </form>
 
+        <button id="create" onclick="back()">Create An Account?</button>
+    </div>
+
+    <div class="register" id="show">
+        <p id="register-error"></p>
+        <form class="form-register" action="/register" method="post">
+            <h1 class="header">Create an account</h1>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <input type="text" class="first-name" required name="first-name" placeholder="First Name">
+            </div>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <input type="text" class="last-name" required name="last-name" placeholder="Last Name">
+            </div>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-phone"></i></div>
+                <input type="tel" class="telephone" required name="telephone" placeholder="Contact Number">
+            </div>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <input type="email" class="email" required name="email" placeholder="Email">
+            </div>
+            <div class="input-field-password">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" id="regpassword" required name="password" placeholder="Password">
+                <div class="icon"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
+            </div>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" required name="confirm-password" placeholder="Confirm Password">
+            </div>
+            <div class="wrapper">
+                <button class="button">Create Account</button>
+            </div>
+        </form>
+        <button id="already" onclick="run()">Already Have An Account?</button>
+    </div>
+
+    <div id="cover">
+    </div>
 </body>
 
 </html>
