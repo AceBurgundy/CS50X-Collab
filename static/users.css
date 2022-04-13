@@ -61,3 +61,13 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+
+/*--------------Form Header Message--------------*/
+
+.header {
+    margin-bottom: 3px;
+    font-size: 2.2rem;
+    font-family: 'Poppins';
+    color: #444;
+}
