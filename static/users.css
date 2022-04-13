@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+* {
+    outline: 0px;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+p {
+    color: red;
+}
+
+body {
+    height: 100vh;
+}
+
+
+/* Circle Animated Div*/
+
+#cover {
+    width: 200vw;
+    height: 300vh;
+    position: absolute;
+    left: -150%;
+    top: -95%;
+    background-color: #F6CFCA;
+    border-radius: 50%;
+    transition: 1.5s ease-in-out;
+}
