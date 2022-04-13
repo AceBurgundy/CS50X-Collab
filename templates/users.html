@@ -18,6 +18,25 @@
 </head>
 
 <body>
+    <!-- Login -->
+    <div class="login" id="first">
+        <p id="login-error"></p>
+        <form class="form-login" action="/login" method="post">
+            <h1 class="header">Welcome</h1>
+            <div class="input-field">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <input type="text" class="userName" name="username" placeholder="Username">
+            </div>
+            <div class="input-field-password">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" id="logpassword" required name="password" placeholder="Password">
+                <div class="icon"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
+            </div>
+            <a class="forgot" action="/forgot" href="/forgot.html">Forgot Password?</a>
+            <div class="wrapper">
+                <button class="button">Login</button>
+            </div>
+        </form>
 
 </body>
 
