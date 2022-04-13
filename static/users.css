@@ -46,3 +46,18 @@ body {
     top: 35%;
     width: 380px;
 }
+
+
+/*-------------- Registration --------------*/
+
+.register {
+    width: 380px;
+    margin-top: 8%;
+    transition: 1.7s ease-in-out;
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
