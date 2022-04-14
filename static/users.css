@@ -80,6 +80,18 @@ body {
     align-items: center;
 }
 
+.email {
+    color: #333;
+}
+
+.email:valid {
+    color: rgb(53, 203, 153);
+}
+
+.email:invalid {
+    color: rgb(244, 61, 61)
+}
+
 
 /*--------------Form Header Message--------------*/
 
@@ -115,6 +127,7 @@ input::placeholder {
     display: grid;
     grid-template-columns: 15% 85%;
     border-radius: 55px;
+    transition: .5s;
 }
 
 .input-field:hover>input::placeholder,
