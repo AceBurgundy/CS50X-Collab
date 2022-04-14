@@ -18,3 +18,15 @@ function hideRegister() {
     register.style.visibility = "hidden";
     login.style.marginRight = "13.2%";
 }
+
+function coverToRight() {
+    let register = document.getElementById('register');
+    let cover = document.getElementById('cover');
+    let login = document.getElementById('login');
+
+    cover.style.transform = "translateX(100%)";
+    register.style.marginLeft = "13%";
+    register.style.visibility = "visible";
+    login.style.marginRight = "7%";
+    login.style.transition = "0.9s";
+}
