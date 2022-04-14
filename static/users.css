@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 * {
+    -moz-font-size: 60px;
+    -webkit-font-size: 30px;
+    font-size: 14px;
     outline: 0px;
     padding: 0px;
     margin: 0px;
@@ -51,11 +54,6 @@ body {
     flex-direction: column;
     transition: 1s ease;
     margin-right: 10%;
-    /*
-    position: absolute;
-    left: 64%;
-    top: 35%;
-*/
     width: 425px;
 }
 
@@ -63,11 +61,6 @@ body {
 /*-------------- Registration --------------*/
 
 .register {
-    /*
-    position: absolute;
-    left: -0.4%;
-    top: 15.5%;
-*/
     width: 425px;
     transition: 1.7s ease;
     display: flex;
@@ -111,12 +104,12 @@ input {
     border: none;
     font-size: 1.1rem;
     font-family: 'Poppins';
-    transition: 0.7s;
+    transition: .5s ease;
 }
 
 input::placeholder {
     font-weight: 600;
-    transition: .5s;
+    transition: .5s ease;
 }
 
 .input-field {
@@ -127,7 +120,7 @@ input::placeholder {
     display: grid;
     grid-template-columns: 15% 85%;
     border-radius: 55px;
-    transition: .5s;
+    transition: .5s ease;
 }
 
 .input-field:hover>input::placeholder,
@@ -144,6 +137,7 @@ input::placeholder {
     border-radius: 55px;
     display: grid;
     grid-template-columns: 15% 70% 15%;
+    transition: .5s ease;
 }
 
 
@@ -184,8 +178,7 @@ i {
     background: #F6CFCA;
     width: 150px;
     height: 38px;
-    margin-top: 10px;
-    margin-bottom: 17px;
+    margin-bottom: 10px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -194,7 +187,6 @@ i {
 
 .button:hover {
     background-color: #523b35;
-    transition: .5s ease;
     color: white;
 }
 
@@ -211,6 +203,7 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .5s ease;
 }
 
 
@@ -227,4 +220,11 @@ i {
 #create:hover,
 #already:hover {
     color: blue;
+}
+
+.password-validate {
+    width: 100%;
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
