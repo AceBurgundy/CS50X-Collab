@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 * {
-    -moz-font-size: 60px;
-    -webkit-font-size: 30px;
     font-size: 14px;
     outline: 0px;
     padding: 0px;
@@ -73,10 +71,6 @@ body {
     align-items: center;
 }
 
-.email {
-    color: #333;
-}
-
 .email:valid {
     color: rgb(53, 203, 153);
 }
@@ -102,13 +96,14 @@ input {
     margin: 10px;
     background: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-family: 'Poppins';
     transition: .5s ease;
 }
 
 input::placeholder {
-    font-weight: 600;
+    font-weight: 450;
+    color: #333;
     transition: .5s ease;
 }
 
@@ -125,7 +120,7 @@ input::placeholder {
 
 .input-field:hover>input::placeholder,
 .input-field-password:hover>input::placeholder {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     opacity: 1;
 }
 
@@ -222,9 +217,13 @@ i {
     color: blue;
 }
 
-.password-validate {
+#password-validate {
     width: 100%;
     color: #333;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+}
+
+li {
+    margin-left: 20px;
 }
