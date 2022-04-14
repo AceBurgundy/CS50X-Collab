@@ -50,6 +50,16 @@
                     <div class="icon"><i class="fas fa-lock"></i></div>
                     <input type="password" required name="confirm-password" placeholder="Confirm Password">
                 </div>
+
+                <div class="password-validate">
+                    <ul>
+                        <li> must be atleast 5 characters </li>
+                        <li> must contain a capital letter </li>
+                        <li> must contain a number </li>
+                        <li> must contain one of $&+,;:=?@#</li>
+                    </ul>
+                </div>
+
                 <div class="wrapper">
                     <button class="button">Create Account</button>
                 </div>
@@ -68,7 +78,7 @@
                 </div>
                 <div class="input-field-password">
                     <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" id="logpassword" required name="password" placeholder="Password">
+                    <input type="password" id="logpassword" required name="password" placeholder="Password" onkeyup="validate(this)">
                     <div class="icon"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
                 </div>
                 <div class="wrapper">
