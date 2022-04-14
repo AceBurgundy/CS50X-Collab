@@ -11,10 +11,11 @@ function showHide(jpassword, jeye) {
     }
 }
 
-function hideRegister() {
+function loading() {
     let login = document.getElementById('login');
     let register = document.getElementById('register');
 
+    document.getElementsByTagName("input").value = "";
     register.style.visibility = "hidden";
     login.style.marginRight = "13.2%";
 }
@@ -46,4 +47,34 @@ function coverToLeft() {
     cover.style.transform = "translateX(-1%)";
     login.style.transition = "1.5s ease-in-out";
     register.style.transition = "1.7s ease-in-out";
+}
+
+function validate() {
+    let inner = document.getElementById("password-validate");
+    let password = document.getElementById("regpassword").value;
+    let pass = 0;
+
+    console.log(password);
+    if (password.length > 5) {
+        inner.children[0].style.color = "green";
+    } else {
+        inner.children[0].style.color = "red";
+    }
+
+    if (password.match(/[A-Z]/)) {
+        inner.children[1].style.color = "green";
+    } else {
+        inner.children[1].style.color = "red";
+    }
+    if (password.match(/[0-9]/)) {
+        inner.children[2].style.color = "green";
+    } else {
+        inner.children[2].style.color = "red";
+    }
+
+    if (password.match(/[$&+,.;:=?@#]/)) {
+        inner.children[3].style.color = "green";
+    } else {
+        inner.children[3].style.color = "red";
+    }
 }
