@@ -6,18 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style-form.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="~/lib/Font-Awesome/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Welcome</title>
     <script src="../static/form.js" type="text/javascript"></script>
 
 </head>
 
-<body onload="hideRegister()">
+<body onload="loading()">
     <div class="forms-container">
 
         <!--Register-->
@@ -43,7 +39,7 @@
                 </div>
                 <div class="input-field-password">
                     <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" id="regpassword" required name="password" placeholder="Password">
+                    <input type="password" id="regpassword" required name="password" placeholder="Password" onkeyup="validate()">
                     <div class="icon"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
                 </div>
                 <div class="input-field">
@@ -51,14 +47,12 @@
                     <input type="password" required name="confirm-password" placeholder="Confirm Password">
                 </div>
 
-                <div class="password-validate">
-                    <ul>
-                        <li> must be atleast 5 characters </li>
-                        <li> must contain a capital letter </li>
-                        <li> must contain a number </li>
-                        <li> must contain one of $&+,;:=?@#</li>
-                    </ul>
-                </div>
+                <ul id="password-validate">
+                    <li> must be atleast 5 characters </li>
+                    <li> must contain a capital letter </li>
+                    <li> must contain a number </li>
+                    <li> must contain one of $&+,;:=?@#</li>
+                </ul>
 
                 <div class="wrapper">
                     <button class="button">Create Account</button>
@@ -78,7 +72,7 @@
                 </div>
                 <div class="input-field-password">
                     <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" id="logpassword" required name="password" placeholder="Password" onkeyup="validate(this)">
+                    <input type="password" id="logpassword" required name="password" placeholder="Password">
                     <div class="icon"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
                 </div>
                 <div class="wrapper">
