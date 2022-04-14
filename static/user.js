@@ -30,3 +30,16 @@ function coverToRight() {
     login.style.marginRight = "7%";
     login.style.transition = "0.9s";
 }
+
+function coverToLeft() {
+    let register = document.getElementById('register');
+    let cover = document.getElementById('cover');
+    let login = document.getElementById('login');
+
+    register.style.transition = "0.8s";
+    register.style.marginLeft = "7%";
+    login.style.marginRight = "13.5%";
+    cover.style.transform = "translateX(-1%)";
+    login.style.transition = "1.5s ease-in-out";
+    register.style.transition = "1.7s ease-in-out";
+}
