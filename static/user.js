@@ -61,4 +61,12 @@ function validate() {
         (password.match(/[0-9]/) ? inner.children[2].style.color = "green" : inner.children[2].style.color = "red"),
         (password.match(/[$&+,.;:=?@#]/) ? inner.children[3].style.color = "green" : inner.children[3].style.color = "red"),
     ]
+
+    form.addEventListener('submit', (Event) => {
+        if (validations.includes('red')) {
+            Event.preventDefault();
+        } else {
+            return true;
+        }
+    })
 }
