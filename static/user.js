@@ -52,29 +52,13 @@ function coverToLeft() {
 function validate() {
     let inner = document.getElementById("password-validate");
     let password = document.getElementById("regpassword").value;
-    let pass = 0;
+    let form = document.getElementById('form-register');
 
-    console.log(password);
-    if (password.length > 5) {
-        inner.children[0].style.color = "green";
-    } else {
-        inner.children[0].style.color = "red";
-    }
-
-    if (password.match(/[A-Z]/)) {
-        inner.children[1].style.color = "green";
-    } else {
-        inner.children[1].style.color = "red";
-    }
-    if (password.match(/[0-9]/)) {
-        inner.children[2].style.color = "green";
-    } else {
-        inner.children[2].style.color = "red";
-    }
-
-    if (password.match(/[$&+,.;:=?@#]/)) {
-        inner.children[3].style.color = "green";
-    } else {
-        inner.children[3].style.color = "red";
-    }
+    /* Mao ni magcheck sa input */
+    validations = [
+        (password.length > 5 ? inner.children[0].style.color = "green" : inner.children[0].style.color = "red"),
+        (password.match(/[A-Z]/) ? inner.children[1].style.color = "green" : inner.children[1].style.color = "red"),
+        (password.match(/[0-9]/) ? inner.children[2].style.color = "green" : inner.children[2].style.color = "red"),
+        (password.match(/[$&+,.;:=?@#]/) ? inner.children[3].style.color = "green" : inner.children[3].style.color = "red"),
+    ]
 }
