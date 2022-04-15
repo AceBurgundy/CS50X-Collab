@@ -54,7 +54,6 @@ function validate() {
     let password = document.getElementById("regpassword").value;
     let form = document.getElementById('form-register');
 
-    /* Mao ni magcheck sa input */
     validations = [
         (password.length > 5 ? inner.children[0].style.color = "green" : inner.children[0].style.color = "red"),
         (password.match(/[A-Z]/) ? inner.children[1].style.color = "green" : inner.children[1].style.color = "red"),
