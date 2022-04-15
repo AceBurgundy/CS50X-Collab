@@ -53,16 +53,26 @@ body {
     transition: 1s ease;
     margin-right: 10%;
     width: 425px;
+    visibility: hidden;
+}
+
+.login.active {
+    visibility: visible;
 }
 
 
 /*-------------- Registration --------------*/
 
 .register {
+    visibility: hidden;
     width: 425px;
     transition: 1.7s ease;
     display: flex;
     flex-direction: column;
+}
+
+.register.active {
+    visibility: visible;
 }
 
 .form-register {
@@ -102,7 +112,7 @@ input {
 }
 
 input::placeholder {
-    font-weight: 450;
+    font-weight: 600;
     color: #333;
     transition: .5s ease;
 }
@@ -147,11 +157,12 @@ input::placeholder {
 i {
     font-size: 1.2rem;
     cursor: pointer;
+    color: #333;
 }
 
 input::placeholder,
 i {
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 
@@ -220,10 +231,11 @@ i {
 #password-validate {
     width: 100%;
     color: #333;
+    font-weight: 450;
     font-size: 1.25rem;
     padding-bottom: 10px;
 }
 
 li {
-    margin-left: 20px;
+    margin-left: 30px;
 }
