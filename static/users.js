@@ -1,3 +1,18 @@
+const toRegister = document.querySelector("#to-register");
+const toLogin = document.querySelector("#to-login");
+const formsContainer = document.querySelector(".forms-container");
+const cover = document.querySelector(".cover");
+
+toRegister.addEventListener('click', () => {
+    formsContainer.classList.add("to-register");
+    cover.classList.add("to-register");
+})
+
+toLogin.addEventListener('click', () => {
+    formsContainer.classList.remove("to-register");
+    cover.classList.remove("to-register");
+})
+
 function showHide(jpassword, jeye) {
     let eye = document.getElementById(jeye);
     let password = document.getElementById(jpassword);
@@ -13,7 +28,6 @@ function showHide(jpassword, jeye) {
 
 function loading() {
     let form = document.getElementById('form-register');
-
     form.reset();
 }
 
