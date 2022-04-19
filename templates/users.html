@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style-form.css">
+    <link rel="stylesheet" href="../static/user-styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <title>Welcome</title>
-    <script src="../static/form.js" type="text/javascript"></script>
+    <script src="../static/users.js" type="text/javascript"></script>
 
 </head>
 
@@ -19,32 +19,37 @@
         <!--Register-->
         <div class="register" id="register">
             <p id="register-error"></p>
-            <form class="form-register" id="form-register" action="/register" method="post">
+            <form class="form-register" id="form-register" action="/register" method="post" onkeyup="validate()">
                 <h1 class="header">Create an account</h1>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-user"></i></div>
-                    <input type="text" class="first-name" required name="first-name" placeholder="First Name">
+                    <input type="text" id="first-name" class="first-name" required name="first-name" placeholder="First Name" min="1" max="30">
+                    <div class="icon"><i id="first-name-circle" class="fas fa-circle"></i></div>
                 </div>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-user"></i></div>
-                    <input type="text" class="last-name" required name="last-name" placeholder="Last Name">
+                    <input type="text" id="last-name" class="last-name" required name="last-name" placeholder="Last Name" min="1" max="30">
+                    <div class="icon"><i id="last-name-circle" class="fas fa-circle"></i></div>
                 </div>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-phone"></i></div>
-                    <input type="tel" class="telephone" required name="telephone" placeholder="Contact Number">
+                    <input type="tel" id="telephone" class="telephone" required name="telephone" placeholder="Contact Number" min="5" max="15">
+                    <div class="icon"><i id="telephone-circle" class="fas fa-circle"></i></div>
                 </div>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-envelope"></i></div>
-                    <input type="email" class="email" required name="email" placeholder="Email">
+                    <input type="email" id="email" class="email" required name="email" placeholder="Email">
+                    <div class="icon"><i id="email-circle" class="fas fa-circle"></i></div>
                 </div>
                 <div class="input-field-password">
                     <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" id="regpassword" required name="password" placeholder="Password" onkeyup="validate()">
+                    <input type="password" id="regpassword" required name="password" placeholder="Password" min="1" max="30">
                     <div class="icon"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
                 </div>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" required name="confirm-password" placeholder="Confirm Password">
+                    <input type="password" required id="confirm-password" class="confirm-password" name="confirm-password" placeholder="Confirm Password" min="1" max="30">
+                    <div class="icon"><i id="conpass-circle" class="fas fa-circle"></i></div>
                 </div>
 
                 <ul id="password-validate">
