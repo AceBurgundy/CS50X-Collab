@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/user-styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <title>Welcome</title>
-    <script src="../static/users.js" type="text/javascript"></script>
 
 </head>
 
@@ -24,7 +22,7 @@
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-user"></i></div>
                     <input type="text" id="first-name" class="first-name" required name="first-name" placeholder="First Name" min="1" max="30">
-                    <div class="icon"><i id="first-name-circle" class="fas fa-circle"></i></div>
+                    <div class="icon"><i id="first-name-circle" class="glow fas fa-circle"></i></div>
                 </div>
                 <div class="input-field">
                     <div class="icon"><i class="fas fa-user"></i></div>
@@ -63,7 +61,7 @@
                     <button class="button">Create Account</button>
                 </div>
             </form>
-            <button id="already" onclick="coverToLeft()">Already Have An Account?</button>
+            <button id="to-login">Already Have An Account?</button>
         </div>
 
         <!-- Login -->
@@ -84,11 +82,12 @@
                     <button class="button">Login</button>
                 </div>
             </form>
-            <button id="create" onclick="coverToRight()">Create An Account?</button>
+            <button id="to-register" class="login">Create An Account?</button>
         </div>
     </div>
-    <div id="cover">
+    <div class="cover">
     </div>
+    <script src="../static/users.js" type="text/javascript"></script>
 </body>
 
 </html>
