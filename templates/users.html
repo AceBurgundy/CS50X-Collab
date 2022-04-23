@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/user-styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <title>Welcome</title>
+    <script src="../static/users.js" type="text/javascript" defer></script>
 
 </head>
 
@@ -39,7 +40,7 @@
                     <input type="email" id="email" class="email" required name="email" placeholder="Email">
                     <div class="icon"><i id="email-circle" class="fas fa-circle"></i></div>
                 </div>
-                <div class="input-field-password">
+                <div class="input-field">
                     <div class="icon"><i class="fas fa-lock"></i></div>
                     <input type="password" id="regpassword" required name="password" placeholder="Password" min="1" max="30">
                     <div class="icon"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
@@ -73,7 +74,7 @@
                     <div class="icon"><i class="fas fa-user"></i></div>
                     <input type="text" class="userName" name="username" placeholder="Username">
                 </div>
-                <div class="input-field-password">
+                <div class="input-field">
                     <div class="icon"><i class="fas fa-lock"></i></div>
                     <input type="password" id="logpassword" required name="password" placeholder="Password">
                     <div class="icon"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
@@ -82,12 +83,12 @@
                     <button class="button">Login</button>
                 </div>
             </form>
-            <button id="to-register" class="login">Create An Account?</button>
+            <button id="to-register">Create An Account?</button>
         </div>
     </div>
     <div class="cover">
     </div>
-    <script src="../static/users.js" type="text/javascript"></script>
+
 </body>
 
 </html>
