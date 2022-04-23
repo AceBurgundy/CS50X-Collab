@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 * {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     outline: 0px;
     padding: 0px;
     margin: 0px;
@@ -27,8 +27,6 @@ p {
     width: 200vw;
     height: 300vh;
     position: absolute;
-    left: -150%;
-    top: -95%;
     background-color: #F6CFCA;
     border-radius: 50%;
     transition: 2s ease-in-out;
@@ -47,16 +45,12 @@ p {
     display: flex;
     flex-direction: column;
     transition: 2s;
-    margin-right: 13.2%;
-    min-width: 390px;
-    max-width: 425px;
 }
 
 
 /*-------------- Registration --------------*/
 
 .register {
-    width: 425px;
     transition: 2.2s ease;
     display: flex;
     flex-direction: column;
@@ -73,8 +67,6 @@ p {
 /*--------------Form Header Message--------------*/
 
 .header {
-    margin-bottom: 10px;
-    font-size: 3rem;
     font-family: 'Poppins';
     color: #444;
 }
@@ -87,7 +79,6 @@ input {
     margin-left: 0;
     background: none;
     border: none;
-    font-size: 1.15rem;
     font-family: 'Poppins';
     transition: .5s ease;
 }
@@ -99,33 +90,18 @@ input::placeholder {
 }
 
 .input-field {
-    width: 100%;
-    height: 55px;
     background-color: #f0f0f0;
     margin-bottom: 15px;
+    border-radius: 55px;
     display: grid;
     grid-template-columns: 15% 70% 15%;
-    border-radius: 55px;
     transition: .5s ease;
 }
 
 .input-field:hover>input::placeholder,
 .input-field-password:hover>input::placeholder {
-    font-size: 1.2rem;
     opacity: 1;
 }
-
-.input-field-password {
-    width: 100%;
-    height: 55px;
-    background-color: #f0f0f0;
-    margin-bottom: 15px;
-    border-radius: 55px;
-    display: grid;
-    grid-template-columns: 15% 70% 15%;
-    transition: .5s ease;
-}
-
 
 /*--------------Icons--------------*/
 
@@ -160,33 +136,17 @@ i {
 
 
 /*--------------Buttons--------------*/
-
-.wrapper {
-    background: #F6CFCA;
-    width: 150px;
-    height: 38px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .button:hover {
     background-color: #523b35;
     color: white;
 }
 
 .button {
-    width: 150px;
     border: none;
-    outline: none;
     border-radius: 49px;
     color: gray;
     font-weight: 600;
     background-color: #F6CFCA;
-    height: 50px;
-    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,7 +158,6 @@ i {
 
 #to-register,
 #to-login {
-    font-size: 1.1rem;
     border-top: -5px;
     background-color: white;
     border: none;
@@ -213,33 +172,84 @@ i {
 }
 
 #password-validate {
+    font-size: 0.8vw;
     width: 100%;
     color: #333;
     font-weight: 450;
-    font-size: 1.25rem;
     padding-bottom: 10px;
 }
 
 li {
-    margin-left: 30px;
+    margin-left: 40px;
 }
 
 
-/* Animations */
-
-.forms-container.to-register .login {
-    margin-right: -5%;
+@media screen and (min-width: 811px) {
+    .cover {
+        left: -150%;
+        top: -95%;
+    }
+    
+    .login {
+        margin-right: 13.2%;
+        width: 25vw;
+    }
+    
+    .register {
+        width: 25vw;
+    }
+    
+    .header {
+        margin-bottom: 10px;
+        font-size: 3.5rem;
+    }
+    
+    .input-field {
+        width: 23vw;
+        height: 6.50vh;
+    }
+    
+    .input-field>input {
+        font-size: 0.8vw;
+    }
+    .input-field:hover>input::placeholder,
+    .input-field-password:hover>input::placeholder {
+        font-size: 0.85vw;
+    }
+    
+    .button {
+        width: 8vw;
+        height: 4.8vh;
+        margin-bottom: 10px;
+        font-size: 0.7vw;
+    }
+    
+    #to-register,
+    #to-login {
+        font-size: 0.7vw;
+    }
+    
+    #password-validate {
+        font-size: 0.8vw;
+    }
+    
+    /* Animations */
+    
+    .forms-container.to-register .login {
+        margin-right: -5%;
+    }
+    
+    .forms-container.to-register .register {
+        margin-left: 12.5%;
+    }
+    
+    .cover.to-register {
+        transform: translateX(100%);
+    }
 }
 
-.forms-container.to-register .register {
-    margin-left: 12.5%;
-}
 
-.cover.to-register {
-    transform: translateX(100%);
-}
-
-@media screen and (max-width: 810px) {
+@media screen and (min-width: 0px) and (max-width: 810px) {
     .header {
         font-size: 2.1rem;
     }
@@ -248,8 +258,9 @@ li {
     }
     .login {
         margin-right: 0%;
-        max-width: 337px;
         margin-bottom: 1rem;
+        width: 45vw;
+        font-size: 10rem;
     }
     .register {
         margin-top: 0%;
@@ -264,11 +275,12 @@ li {
         border-radius: 50%;
     }
     .input {
-        font-size: 0.9rem;
+        font-size: 10vw;
     }
-    .input-field,
-    .input-field-password {
+
+    .input-field {
         height: 40px;
+        width: 100%;
         margin-bottom: 10px;
         border-radius: 10px;
     }
