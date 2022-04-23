@@ -27,6 +27,17 @@ function showHide(jpassword, jeye) {
 }
 
 function loading() {
+    var cover = document.querySelector('.cover');
+    var formsContainer = document.querySelector('.forms-container');
+    cover.addEventListener('touchmove', preventKeyBoardScroll, { passive: false });
+    formsContainer.addEventListener('touchmove', preventKeyBoardScroll, { passive: false });
+
+    function preventKeyBoardScroll(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+
     let form = document.getElementById('form-register');
     form.reset();
 }
@@ -77,7 +88,7 @@ function validate() {
         ),
 
         (
-            telephone.length > 2 &&
+            telephone.length > 5 &&
             !telephone.match(/[$&,.[;:=?@#]/) &&
             !telephone.match(/[A-Z]/) &&
             !telephone.match(/[a-z]/) ||
