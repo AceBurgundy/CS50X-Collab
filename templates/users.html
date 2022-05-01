@@ -19,71 +19,76 @@
         <div class="register" id="register">
             <p id="register-error"></p>
             <form class="form-register" id="form-register" action="/register" method="post" onkeyup="validate()">
-                <h1 class="header">Create an account</h1>
+                <h1 class="register-header">Create an account</h1>
                 <div class="input-field">
-                    <div class="icon"><i class="fas fa-user"></i></div>
-                    <input type="text" id="first-name" class="first-name" required name="first-name" placeholder="First Name" min="1" max="30">
-                    <div class="icon"><i id="first-name-circle" class="glow fas fa-circle"></i></div>
+                    <div class="icon-container"><i class="fas fa-user"></i></div>
+                    <input type="text" id="first-name" class="first-name" required name="first-name" placeholder="First Name" minlength="2" maxlength="30">
+                    <div class="icon-container"><i id="first-name-circle" class="glow fas fa-circle"></i></div>
+                </div>
+                <!--
+                <div class="input-field">
+                    <div class="icon-container"><i class="fas fa-user"></i></div>
+                    <input type="text" id="last-name" class="last-name" required name="last-name" placeholder="Last Name" minlength="2" maxlength="30">
+                    <div class="icon-container"><i id="last-name-circle" class="fas fa-circle"></i></div>
                 </div>
                 <div class="input-field">
-                    <div class="icon"><i class="fas fa-user"></i></div>
-                    <input type="text" id="last-name" class="last-name" required name="last-name" placeholder="Last Name" min="1" max="30">
-                    <div class="icon"><i id="last-name-circle" class="fas fa-circle"></i></div>
-                </div>
+                    <div class="icon-container"><i class="fas fa-phone"></i></div>
+                    <input type="tel" id="telephone" class="telephone" required name="telephone" placeholder="Contact Number" minlength="5" maxlength="15">
+                    <div class="icon-container"><i id="telephone-circle" class="fas fa-circle"></i></div>
+                
                 <div class="input-field">
-                    <div class="icon"><i class="fas fa-phone"></i></div>
-                    <input type="tel" id="telephone" class="telephone" required name="telephone" placeholder="Contact Number" min="5" max="15">
-                    <div class="icon"><i id="telephone-circle" class="fas fa-circle"></i></div>
-                </div>
-                <div class="input-field">
-                    <div class="icon"><i class="fas fa-envelope"></i></div>
-                    <input type="email" id="email" class="email" required name="email" placeholder="Email">
-                    <div class="icon"><i id="email-circle" class="fas fa-circle"></i></div>
-                </div>
-                <div class="input-field">
-                    <div class="icon"><i class="fas fa-lock"></i></div>
-                    <input type="password" id="regpassword" required name="password" placeholder="Password" min="1" max="30">
-                    <div class="icon"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
-                </div>
-                <div class="input-field">
-                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <div class="icon-container"><i class="fas fa-lock"></i></div>
                     <input type="password" required id="confirm-password" class="confirm-password" name="confirm-password" placeholder="Confirm Password" min="1" max="30">
-                    <div class="icon"><i id="conpass-circle" class="fas fa-circle"></i></div>
+                    <div class="icon-container"><i id="conpass-circle" class="fas fa-circle"></i></div>
                 </div>
 
-                <ul id="password-validate">
+                <ul class="password-validate">
                     <li> must be atleast 5 characters </li>
                     <li> must contain a capital letter </li>
                     <li> must contain a number </li>
                     <li> must contain one of $&+,;:=?@#</li>
                 </ul>
 
+                </div>
+                -->
+                <div class="input-field">
+                    <div class="icon-container"><i class="fas fa-envelope"></i></div>
+                    <input type="email" id="email" class="email" required name="email" placeholder="Email" >
+                    <div class="icon-container"><i id="email-circle" class="fas fa-circle"></i></div>
+                </div>
+                <div class="input-field">
+                    <div class="icon-container"><i class="fas fa-lock"></i></div>
+                    <input type="password" id="regpassword" required name="password" placeholder="Password" minlength="1" maxlength="40">
+                    <div class="icon-container"><i class="fas fa-eye-slash" id="regeye" onclick="showHide('regpassword','regeye')"></i></div>
+                </div>
                 <div class="wrapper">
-                    <button class="button">Create Account</button>
+                    <h3 class="form-tag">Sign-up</h3>
+                    <button class="button"><i class="fa fa-angle-right"></i></button>
                 </div>
             </form>
-            <button id="to-login">Already Have An Account?</button>
+            <button id="to-login"><p>Already Have An Account?</p></button>
         </div>
 
         <!-- Login -->
         <div class="login" id="login">
             <p id="login-error"></p>
             <form class="form-login" action="/login" method="post">
-                <h1 class="header">Welcome</h1>
+                <h1 class="login-header">Welcome</h1>
                 <div class="input-field">
-                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <div class="icon-container"><i class="fas fa-user"></i></div>
                     <input type="text" class="userName" name="username" placeholder="Username">
                 </div>
                 <div class="input-field">
-                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <div class="icon-container"><i class="fas fa-lock"></i></div>
                     <input type="password" id="logpassword" required name="password" placeholder="Password">
-                    <div class="icon"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
+                    <div class="icon-container"><i class="fas fa-eye-slash" id="logeye" onclick="showHide('logpassword','logeye')"></i></div>
                 </div>
                 <div class="wrapper">
-                    <button class="button">Login</button>
+                    <h3 class="form-tag">Sign-in</h3>
+                    <button class="button"><i class="fa fa-angle-right"></i></button>
                 </div>
             </form>
-            <button id="to-register">Create An Account?</button>
+            <button id="to-register"><p>Create An Account?</p></button>
         </div>
     </div>
     <div class="cover">
