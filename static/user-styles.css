@@ -1,57 +1,105 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
 * {
-    font-size: 0.9rem;
-    outline: 0px;
+    font-size: 13px;
+    outline: 0px !important;
     padding: 0px;
     margin: 0px;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
+    background-color: #F6CFCA;
     overflow: hidden;
 }
 
-p {
-    color: red;
-}
+    /*-----------------------------+ 
+    |   Container for both forms   |
+    +-----------------------------*/
+
+    /*---------------+---------------+ 
+    |               |               |
+    |               |               |
+    |               |               |
+    |               |               |
+    |               |               |
+    |               |               |
+    +---------------+---------------*/
 
 .forms-container {
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 
-/* Circle Animated Div*/
+    /*----------------------------+ 
+    |      Div for Transition     |
+    +-----------------------------*/
 
 .cover {
+    background-color: white;
     width: 200vw;
     height: 300vh;
-    position: absolute;
-    background-color: #F6CFCA;
+    position: fixed;
     border-radius: 50%;
     transition: 2s ease-in-out;
+    left: -150%;
+    top: -95%;
 }
 
+    /*-----------------------------+ 
+    |   For Both Forms Container   |
+    +------------------------------*/
 
-/*------------------login-------------------*/
+    /*---------------+---------------+ 
+    |               |               |
+    |   Register    |     Login     |
+    |    covers     |    covers     |
+    | full width of | full width of |
+    |   this side   |   this side   |
+    |               |               |
+    +---------------+---------------*/
 
-.form-login {
+.login , .register{
+    width: 100%;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    transition: 1s;
 }
 
 .login {
     display: flex;
     flex-direction: column;
-    transition: 2s;
 }
 
-
-/*-------------- Registration --------------*/
-
 .register {
-    transition: 2.2s ease;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+
+    /* for animation purposes on landscape and laptop screens*/
+    margin-left: -5%;
+}
+
+    /*----------------------------+ 
+    |     Form Header Message     |
+    +-----------------------------*/
+
+ .login-header, .register-header {
+    font-family: 'Poppins';
+    font-weight: 550;
+    cursor: default;
+    font-size: max(3rem, 4rem);
+    margin-bottom: 7.0vh;
+}
+
+    /*----------------------------+ 
+    |   Both Login and Register   |
+    +-----------------------------*/
+
+    /*      The actual form       */
+
+.form-login {
     display: flex;
     flex-direction: column;
 }
@@ -59,63 +107,69 @@ p {
 .form-register {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: 3s ease;
 }
 
-
-/*--------------Form Header Message--------------*/
-
-.header {
-    font-family: 'Poppins';
-    color: #444;
+.form-login, .form-register {
+    width: 90%;
+    max-width: 475px;
 }
 
+    /*----------------------------+ 
+    |           Inputs            |
+    +-----------------------------*/
 
-/*--------------Input--------------*/
+ .input-field {
+    background-color: #f0f0f0;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    width: 100%;
+    height: 4.5rem;
+    margin-bottom: 15px;
+    border-radius: 15px;
+}
+
+.input-field:first-of-type {
+    margin-bottom: 1.5em;
+}
 
 input {
-    margin: 10px;
-    margin-left: 0;
     background: none;
     border: none;
-    font-family: 'Poppins';
-    transition: .5s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    opacity: 0.7;
+    transition: 300ms ease;
 }
 
 input::placeholder {
     font-weight: 500;
-    color: #333;
-    transition: .5s ease;
 }
 
-.input-field {
-    background-color: #f0f0f0;
-    margin-bottom: 15px;
-    border-radius: 55px;
-    display: grid;
-    grid-template-columns: 15% 70% 15%;
-    transition: .5s ease;
-}
-
-.input-field:hover>input::placeholder,
-.input-field-password:hover>input::placeholder {
+input:hover {
+    color: #000;
     opacity: 1;
 }
 
-/*--------------Icons--------------*/
 
-.icon {
+    /*----------------------------+ 
+    |            Icons            |
+    +-----------------------------*/
+
+.icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f0f0f0;
 }
 
 i {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    color: rgba(51, 51, 51, 0.662);
+    background-color: #f0f0f0;
 }
+
+/*    Icons inside the input    */
 
 input::placeholder,
 i {
@@ -123,7 +177,9 @@ i {
 }
 
 
-/*----------Forgot-Password----------*/
+    /*----------------------------+ 
+    |   Forgot password message   |
+    +-----------------------------*/
 
 .forgot {
     font-size: 1rem;
@@ -135,164 +191,213 @@ i {
 }
 
 
-/*--------------Buttons--------------*/
-.button:hover {
-    background-color: #523b35;
-    color: white;
+    /*----------------------------+ 
+    |           Buttons           |
+    +-----------------------------*/
+
+ .wrapper {
+    width: 100%;
+    margin-top: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 1s ease;
+    width: 100%;
 }
 
-.button {
+ .button {
+    padding: 2em 2.8em;
+    background-color: #f0f0f0;
+    cursor: pointer;
     border: none;
     border-radius: 49px;
     color: gray;
     font-weight: 600;
-    background-color: #F6CFCA;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .5s ease;
+    transition: 500ms ease;
 }
 
+.button i {
+    background-color: inherit;
+    transition: 500ms ease;
+}
 
-/*--------------to-register and Alredy Have an Account Links--------------*/
+.button:hover{
+    background-color: #cfcfcf;
+}
+
+.form-tag {
+    cursor: default;
+    font-size: 1.50rem;
+    margin-left: 20px;
+}
+
+    /*----------------------------+ 
+    |  To Register and To Login   | 
+    +-----------------------------*/
 
 #to-register,
 #to-login {
-    border-top: -5px;
-    background-color: white;
+    position: absolute;
+    bottom: 3%;
+    cursor: pointer;
+    background-color: inherit;
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 1rem;
 }
 
-#to-register:hover,
-#to-login:hover {
+#to-register p:hover,
+#to-login p:hover {
     color: blue;
 }
 
-#password-validate {
-    font-size: 0.8vw;
-    width: 100%;
-    color: #333;
-    font-weight: 450;
-    padding-bottom: 10px;
+.forms-container.to-register .login {
+    margin-left: 5%;
+    visibility: hidden;
 }
 
-li {
-    margin-left: 40px;
+.forms-container.to-register .register {
+    margin-left: 5%;
+    visibility: visible;
 }
 
+.cover.to-register {
+    transform: translateX(100%);
+}
 
-@media screen and (min-width: 811px) {
+    /*----------------------------+ 
+    |            Phone            |
+    +-----------------------------*/
+
+@media screen and (max-width: 500px) {
+
     .cover {
-        left: -150%;
-        top: -95%;
+        width: 250vw;
+        height: 200vh;
+        left: -180vw;
+        top: -180vh;
+        transition: 2000ms;
     }
-    
-    .login {
-        margin-right: 13.2%;
-        width: 25vw;
+
+    .login-header, .register-header {
+        font-size: clamp(3rem, 4rem, 5rem);
     }
-    
-    .register {
-        width: 25vw;
+
+    .login, .register {
+        position: absolute;
+        transition: 400ms;
     }
-    
-    .header {
-        margin-bottom: 10px;
-        font-size: 3.5rem;
-    }
-    
+
     .input-field {
-        width: 23vw;
-        height: 6.50vh;
+        border-radius: 10px;
     }
     
-    .input-field>input {
-        font-size: 0.8vw;
+    .input-field i {
+        font-size: 1.1rem;
     }
-    .input-field:hover>input::placeholder,
-    .input-field-password:hover>input::placeholder {
-        font-size: 0.85vw;
+
+    .input-field input {
+        font-size: 1.1rem;
+    }
+
+    .button {
+        padding: 1.7em 2.7em;
+        margin-right: 1em;
+    }
+
+    .form-tag {
+        font-size: 1.2rem
     }
     
     .button {
-        width: 8vw;
-        height: 4.8vh;
-        margin-bottom: 10px;
-        font-size: 0.7vw;
+        color: black
     }
-    
-    #to-register,
-    #to-login {
-        font-size: 0.7vw;
+    #to-login, #to-register {
+        font-size: 1rem;
     }
-    
-    #password-validate {
-        font-size: 0.8vw;
-    }
-    
-    /* Animations */
-    
-    .forms-container.to-register .login {
-        margin-right: -5%;
-    }
-    
-    .forms-container.to-register .register {
-        margin-left: 12.5%;
-    }
-    
     .cover.to-register {
-        transform: translateX(100%);
+
+        top: 70vh;
+        left: -200vw;
     }
+    
 }
 
+@media screen and (width:320px) and (height: 568px) {
+    .input-field {
+        height: 3rem;
+        border-radius: 10px;
+    }   
+}
 
-@media screen and (min-width: 0px) and (max-width: 810px) {
-    .header {
-        font-size: 2.1rem;
+    /*----------------------------+ 
+    |      Ipad and Tablets       |
+    +-----------------------------*/
+
+    
+    @media screen and (min-width: 500px) and (max-width: 1024px) and (min-height: 930px) and (max-height: 1366px) {
+    .cover {
+        width: 200vw;
+        height: 100vh;
+        transform: translate(50%, 50%);
+    }
+
+    .login-header, .register-header {
+        font-size: 3rem;
+        margin-bottom: 3vh;
+    }
+
+    .wrapper {
+        margin-top: 2vh;
+    }
+
+    .form-login, .form-register {
+        max-width: 400px;
+    }
+
+    .login, .register {
+        height: 50vh;
+    }
+
+    .register {
+        visibility: visible;
     }
     .forms-container {
+        display: flex;
         flex-direction: column;
     }
-    .login {
-        margin-right: 0%;
-        margin-bottom: 1rem;
-        width: 45vw;
-        font-size: 10rem;
-    }
-    .register {
-        margin-top: 0%;
-        max-width: 337px;
-    }
-    .cover {
-        width: 500vw;
-        height: 300vh;
-        left: -200%;
-        top: -232%;
-        background-color: #F6CFCA;
-        border-radius: 50%;
-    }
-    .input {
-        font-size: 10vw;
+
+    .input-field i {
+        font-size: 1.25rem;
     }
 
-    .input-field {
-        height: 40px;
-        width: 100%;
-        margin-bottom: 10px;
-        border-radius: 10px;
+    .input-field input {
+        font-size: 1.3rem;
     }
-    .forms-container.to-register .login {
-        margin-bottom: 0%;
-        margin-right: 0%;
+
+    .button {
+        margin-right: 1em;
+        color: black;
     }
-    .forms-container.to-register .register {
-        margin-top: 10%;
-        margin-left: 0%;
+
+    .form-tag {
+        font-size: 1.6rem
     }
+    
+    #to-login, #to-register {
+        font-size: 1rem;
+    }
+
+    #to-register,
+    #to-login {
+    position: relative;
+    bottom: -3%;
+    }
+
     .cover.to-register {
         transform: translateY(100%);
     }
+
 }
