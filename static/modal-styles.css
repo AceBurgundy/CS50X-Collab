@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+    font-size: 16px;
+    outline: 0px !important;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+body {
+    background-color: #F6CFCA;
+}
+
+.backdrop {
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0000007e;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.show-modal-button {
+    position: fixed;
+    left: 0.8%;
+    top: 20%;
+    padding: 2.2em 2.2em;
+    border-radius: 20px;
+    border: none;
+    background-color: #fffcf3;
+    cursor: pointer;
+}
+
+.show-modal i {
+    opacity: 0.6;
+}
+
+i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.project-modal-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.project-modal-container.show .add-project-form {
+    visibility: visible;
+}
+
+.add-project-form {
+    width: 420px;
+    display: flex;
+    padding: 15px 15px 15px;
+    flex-direction: column;
+    background-color: #fcfcfc;
+    border-radius: 15px;
+}
+
+.input-field, .status {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field:first-of-type {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.project-label {
+    font-size: 1rem;
+}
+
+.x-button {
+    padding: 0px;
+    background-color: #fcfcfc;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.project-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #cacaca;
+    margin-bottom: 20px;
+}
+
+.project-title input {
+    margin-bottom: 0px;
+}
+
+.counter-container, .character-counter {
+    font-size: 0.8rem;
+    color: #737373;
+}
+
+.counter-container {
+    margin-right: 5px;
+}
+
+.project-input{
+    font-size: 0.9rem;
+    background-color: #fcfcfc;
+    border: none;
+    margin-bottom: 20px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+textarea {
+    font-size: 0.9rem;
+    resize: none;
+    border: 1px solid #cacaca;
+    padding: 0.5em;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    background-color: #fcfcfc
+}
+
+.deadline {
+    font-size: 0.9rem;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.project-deadline {
+    font-size: 0.8rem;
+    text-align: center;
+    display: block;
+    width: 150px;
+    padding: 0.8em 0.6em;
+    border-radius: 10px;
+    appearance: none;
+    font-weight: 400;
+    border: 1px solid #dddddd;
+    margin-bottom: 20px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.line {
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 20px;
+    width: 120%;
+    margin-left: -20px;
+}
+
+.status {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.add-button {
+    margin-left: 15px;
+    background-color: #F6CFCA;
+}
+
+.add-button, .close-button {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
