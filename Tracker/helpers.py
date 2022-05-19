@@ -2,7 +2,7 @@ import os
 import requests
 import urllib.parse
 
-from flask import render_template #, request, session, redirect
+from flask import render_template
 from functools import wraps
 
 def apology(message, code=400):
@@ -18,17 +18,3 @@ def apology(message, code=400):
             s = s.replace(old, new)
         return s
     return render_template("apology.html", top=code, bottom=escape(message)), code
-
-
-# def login_required(f):
-#     """
-#     Decorate routes to require login.
-
-#     https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
-#     """
-#     @wraps(f)
-#     def decorated_function(*args, **kwargs):
-#         if session.get("user_id") is None:
-#             return render_template("users.html")
-#         return f(*args, **kwargs)
-#     return decorated_function
