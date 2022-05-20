@@ -17,7 +17,7 @@ invalid = ["where","select","update","delete",".schema","from","drop"]
 def index():
     """Show all user projects"""
 
-    # projects = User.querry.all()
+    # projects = User.querry.all(projects)
 
     return render_template("index.html") #, projects=projects)
 
