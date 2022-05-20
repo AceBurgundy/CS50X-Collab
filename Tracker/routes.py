@@ -1,73 +1,72 @@
 
-from flask import flash, redirect, render_template #, request, session
+from flask import flash, redirect, render_template, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from Tracker import app
-# from Tracker import db
-# from Tracker.models import User, Project
-
-from Tracker import helpers 
+from Tracker import db
+from Tracker.models import User, Project
+from flask_login import login_user, current_user, login_required, logout_user
+from Tracker.helpers import apology
 
 invalid = ["where","select","update","delete",".schema","from","drop"]
 
 #!@$%^&*""_+}{":?></*+[;'./,]-/]
 
 #Show all projects
-
 @app.route("/")
-# @login_required
+@login_required
 def index():
     """Show all user projects"""
 
-    # user_id = session["user_id"]
+    # projects = User.querry.all(projects)
 
-    projects = db.execute("SELECT * FROM projects WHERE id = ?", user.id)
-
-    return render_template("index.html", projects=projects)
+    return render_template("index.html") #, projects=projects)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
 
-    # Forget any user_id
-    # session.clear()
+    logout_user()
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        username = request.form.get("username")
-      
-        password = request.form.get("password")
+        #ensure that there is no user that is currently logged in
+        if current_user.is_authenticated:
+            return redirect('/')
 
-        # Ensure username was submitted
-        if not username:
-            return apology("must provide username")
+        emailInput = request.form.get("email")
+        passwordInput = request.form.get("password")
 
-        if username in invalid:
-            return apology("username was not accepted")
+        # Ensure that the user placed their email
+        if not emailInput:
+            return apology("missing email")
 
-        # Ensure password was submitted
-        if not password:
-            return apology("must provide password")
+        # Ensure email has no invalid inputs
+        if emailInput.lower() in invalid:
+            return apology("email was not accepted")
 
-        if password in invalid:
-            return apology("must provide password")
+        # Ensure input is indeed an emailInput
+        if "@" not in emailInput and ".com" not in emailInput:
+            return apology("Not an email")
 
+        # Ensure passwordInput was submitted
+        if not passwordInput:
+            return apology("you must provide a password")
 
-        # Query database for username
-        current_user = db.execute("SELECT * FROM User WHERE username = ?", username)
+        # Ensure passwordInput has no invalid inputs
+        if passwordInput.lower() in invalid:
+            return apology("password was not accepted")
 
-        # Ensure username exists and password is correct
-        if len(current_user) != 1:
-            return apology("invalid username and/or password")
-
-        if not check_password_hash(current_user[0]["hash"], password):
-            return apology("invalid username and/or password")
-
-        # Remember which user has logged in
-        # session["user_id"] = current_user[0]["id"]
-
-        # Redirect user to home page
-        return redirect("/")
+        try:
+            user = User.query.filter_by(email=emailInput).first()
+            
+            if user and check_password_hash(user.password, passwordInput):
+                login_user(user) #, remember=form.remember.data)
+                next_page = request.args.get('next')
+            # Redirect user to home page
+            return redirect('/') if next_page else redirect("/")
+        except:
+            return apology("Login Unsucessful. Something was wrong on loging in user. line 71")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -78,56 +77,78 @@ def login():
 def logout():
     """Log user out"""
 
-    # Forget any user_id
-    # session.clear()
-
-    # Redirect user to login form
-    return redirect("/")
+    logout_user()
+    return render_template('users.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
 
-    # Forget any user_id
-    # session.clear()
+    logout_user()
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
+        #Check if there is a user currently logged in
+        if current_user.is_authenticated:
+            #if true, redirect them back to the homepage
+            return redirect('/')
 
-        if not username:
+        usernameInput = request.form.get("username")
+        emailInput = request.form.get("email")
+        passwordInput = request.form.get("password")
+
+        #ensure that the user placed their username
+        if not usernameInput:
             return apology("missing username")
 
-        if username in invalid:
+        # Ensure username has no invalid inputs
+        if usernameInput.lower() in invalid:
             return apology("username was not accepted")
 
+        #querries the database for similar usernames
+        #returns a value if found else none
+        has_similar_username = User.query.filter_by(username=usernameInput).first()
+        
+        if has_similar_username:
+            return apology("Username is already taken")
+
         # Ensure email was submitted
-        if not email:
+        if not emailInput:
             return apology("must provide an email")
 
-        if "@" not in email and ".com" not in email:
-            return apology("wrong email")
+        # Ensure input is indeed an email
+        if "@" not in emailInput and ".com" not in emailInput:
+            return apology("Not an email")
+
+        #querries the database for similar email
+        #returns a value if found else none
+        has_similar_email = User.query.filter_by(email=emailInput).first()
+        
+        if has_similar_email:
+            return apology("You can only use the same email once")
 
         # Ensure password was submitted
-        if not password:
+        if not passwordInput:
             return apology("must provide password")
 
-        if password in invalid:
-            return apology("must provide password")
+        # Ensure password has no invalid inputs
+        if passwordInput.lower() in invalid:
+            return apology("password was not accepted")
 
-        encrypted_password = generate_password_hash(password)
+        encrypted_password = generate_password_hash(passwordInput)
 
-        # Query database for username
+        # Add new user to the database
         try:
-            db.execute("INSERT INTO User (username, email, password) VALUES(?,?,?)", username, email, encrypted_password)
+            user = User(username=usernameInput, email=emailInput, password=encrypted_password)
+            db.session.add(user)
+            db.session.commit()
+            flash(f'Succesfully created account') #,success')
             return redirect("/")
-            # Redirect user to/ home page
+            # Redirect user to home page
         except:
-            return apology("Something is wrong with the registration")
+            return apology("Something went wrong when trying to push to the database")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:

@@ -1,6 +1,11 @@
 @font-face {
-    font-family: "Poppins";
+    font-family: "Poppins Medium";
     src: url(../static/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: "Poppins Regular";
+    src: url(../static/fonts/Poppins-Regular.ttf);
 }
 
 * {
@@ -9,7 +14,7 @@
     padding: 0px;
     margin: 0px;
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins Medium", sans-serif;
     background-color: #F6CFCA;
     overflow: hidden;
 }
@@ -90,7 +95,7 @@
     +-----------------------------*/
 
  .login-header, .register-header {
-    font-family: 'Poppins';
+    font-family: 'Poppins Regular';
     font-weight: 550;
     cursor: default;
     font-size: 4rem;
@@ -140,7 +145,7 @@
 input {
     background: none;
     border: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins Regular', sans-serif;
     font-size: 1.3rem;
     opacity: 0.7;
     transition: 300ms ease;
@@ -258,6 +263,7 @@ svg, i {
 .form-tag {
     cursor: default;
     font-size: 1.50rem;
+    font-weight: 500;
     margin-left: 20px;
 }
 
@@ -275,7 +281,7 @@ svg, i {
 }
 
 #to-register p:hover,
-#to-login p:hover {
+#to-login p:hover span{
     color: blue;
 }
 
