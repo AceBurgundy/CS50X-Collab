@@ -17,13 +17,15 @@ app.config['SECRET_KEY'] = 'Adrian2001.'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 db = SQLAlchemy(app)
 
+
+
 """
 The login manager contains the code that lets your application and Flask-Login work together, 
 such as how to load a user from an ID, where to send users when they need to log in, and the like.
 """
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'users.html'
+login_manager.login_view = 'login'
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
