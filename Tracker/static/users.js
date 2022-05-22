@@ -30,9 +30,9 @@ function showHide(password, eye, eyeSlash) {
 }
 
 window.onload = function() {
-    document.getElementById('username').value = "Sam";
-    document.getElementById('email').value = "Samadriansabalo99@gmail.com";
-    document.getElementById('regpassword').value = "Adrian2001.";
+    document.getElementById('username').value = "AACaps";
+    document.getElementById('email').value = "aacaps@gmail.com";
+    document.getElementById('regpassword').value = "aac12345";
 }
 
 function loading() {
