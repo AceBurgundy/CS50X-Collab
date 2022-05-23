@@ -27,7 +27,7 @@ def login():
 
     logout_user()
 
-    # User reached route via POST (as by submitting a form via POST)
+   # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         #ensure that there is no user that is currently logged in
@@ -36,8 +36,9 @@ def login():
 
         emailInput = request.form.get("email")
         passwordInput = request.form.get("password")
+        usernameInput = request.form.get("username")
 
-        # Ensure that the user placed their email
+         # Ensure that the user placed their email
         if not emailInput:
             return apology("missing email")
 
@@ -49,6 +50,13 @@ def login():
         if "@" not in emailInput and ".com" not in emailInput:
             return apology("Not an email")
 
+        # Ensure email has been already used 
+        has_similar_email = User.query.filter_by(email=emailInput).first()
+
+        if has_similar_email: 
+            return apology("You have already used this email. Try another one")
+
+
         # Ensure password was submitted
         if not passwordInput:
             return apology("you must provide a password")
@@ -57,14 +65,25 @@ def login():
         if passwordInput.lower() in invalid:
             return apology("password was not accepted")
 
+        # Ensure user inputs username
+        if not usernameInput: 
+            return apology("Please provide a username")
+        
+        # Ensure username has no invalid inputs
+        if usernameInput.lower() in invalid:
+            return apology("Invalid username, please try again")
+
+        encryptedPassword = generate_password_hash(passwordInput)
+
         try:
-            user = User.query.filter_by(email=emailInput).first()
+            user = User(username = usernameInput, email = emailInput, password = encryptedPassword)
             
-            if user and check_password_hash(user.password, passwordInput):
-                login_user(user) #, remember=form.remember.data)
-                next_page = request.args.get('next')
+            db.session.add(user)
+            db.session.commit()
+            flash(f"Successfully created account.") #, success 
+
             # Redirect user to home page
-            return redirect('/') if next_page else redirect("/")
+            return redirect('/')
         except:
             return apology("Login Unsucessful. Something was wrong on logging in user. line 71")
 
