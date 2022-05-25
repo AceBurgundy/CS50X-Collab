@@ -1,3 +1,5 @@
+@import "new-project-modal.css";
+@import "navigation-rail.css";
 
 * {
     font-size: 16px;
@@ -7,346 +9,56 @@
     text-decoration: none;
     font-family: "Poppins", sans-serif;
     overflow: hidden;
-    background-color: #F6CFCA;
 }
 
-.backdrop {
-    position: absolute;
-    z-index: 1;
-    height: 100vh;
+#background {
+    background-color: #F6CFCA;
     width: 100vw;
-    background-color: #0000007e;
-    pointer-events: none;
-    visibility: hidden;
-}
-
-.aside-container {
-    display: flex;
-    align-items: flex-start;
-    width: 5%;
     height: 100vh;
 }
 
-.nav-child {
-    /* background-color:darkgoldenrod; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.aside {
-    /* background-color: aqua; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 70%;
-}
-
-.nav-button {
-    background-color: none; 
-    border: none;
-    width: 80%;
-    height: 4.5rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 5px;
-}
-
-.nav-button svg {
-    width: 1.6rem;
-    transition: 250ms;
-}
-
-.nav-button:hover svg {
-    background-color: #faf2f2;
-}
-
-.nav-button:hover .icon-label {
-    display: block;
-}
-
-
-.icon-label {
-    font-size: 0.85rem;
-    margin-top: 3px;
-    display: none;
-    transition: 350ms;
-}
-
-.nav-button:nth-of-type(3) svg{
-    width: 1.4rem;
-    background-color: none;
-} 
-
-.aside-icon-container {
-    width: 90%;
-    margin-bottom: 1.5px;
-    border-radius: 20px;
-    height: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    background-color: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav-button:hover .aside-icon-container{
-    background-color: #faf2f2;
-    transition: 500ms;
-}
-
-.show-modal-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 20px;
-    border: none;
-    background-color: #fffcf3;
-    cursor: pointer;
-}
-
-.show-modal i {
-    opacity: 0.6;
-}
-
-.pencil-icon {
-    width: 1.5rem;
-    transition: 200ms ease;
-    background-color: #fffcf3;
-}
-
-.show-modal-button:hover .pencil-icon {
-    width: 1.6rem;
-}
-
-.project-modal-container {
-    background-color: #fffcf3;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    z-index: 2;
-    visibility: hidden;
-}
-
-.project-modal-container.show .add-project-form {
-    visibility: visible;
-}
-
-.add-project-form {
-    width: 420px;
-    display: flex;
-    padding: 25px 15px 15px;
-    flex-direction: column;
-    background-color: #fcfcfc;
-    border-radius: 15px;
-}
-
-.input-field, .status {
-    background-color: #fcfcfc;
-    display: flex;
-    flex-direction: column;
-}
-
-    /*--------------------------------------------------+ 
-    |  Container for "Create new Project and x button   | 
-    +---------------------------------------------------*/
-
-.input-field:first-of-type {
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: 500;
-    align-items: center;
-}
-    /*------------------------+ 
-    |  "Create new Project"   | 
-    +-------------------------*/
-
-.project-label {
-    background-color: #fcfcfc;
-    font-size: 1rem;
-}
-
-.x-button {
-    padding: 0px;
-    background-color: #fcfcfc;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-    /*---------------------------------------+ 
-    |  Div input-field for title and counter | 
-    +----------------------------------------*/
-
-.input-field:nth-of-type(3) {
-    margin-top: 5px;
-    background-color: #fcfcfc;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
-}
-
-    /*-------------------+ 
-    |  Input for title   | 
-    +--------------------*/
-
-.project-input {
-    font-size: 0.9rem;
-    background-color: #fcfcfc;
-    border: none;
-    padding-bottom: 3px;
-    padding-left: 5px;
-}
-
-    /*---------------------+ 
-    |  Character counter   | 
-    +----------------------*/
-
-.counter-container, .counter-for-title, .counter-for-description {
-    font-size: 0.8rem;
-    background-color: #fcfcfc;
-    color: #737373;
-}
-
-.counter-container {
-    background-color: #fcfcfc;
-    margin-right: 5px;
-}
-
-    /*-------------------------+ 
-    |  Input for description   | 
-    +--------------------------*/
-
-textarea {
-    font-size: 0.9rem;
-    resize: none;
-    border: none;
-    padding: 0.5em;
-    border-radius: 10px;
-    margin-bottom: 0.8rem;
-    background-color: #fcfcfc;
-}
-
-    /*----------------------------+ 
-    |  0/50 Counter for textarea  | 
-    +-----------------------------*/
-
-.input-field:nth-of-type(4) .counter-container {
-    display: flex;
-    justify-content: flex-end;
-}
-    /*--------------+ 
-    |  "Deadline"   | 
-    +---------------*/
-
-.deadline {
-    font-size: 0.9rem;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    font-weight: 400;
-    background-color: #fcfcfc;
-}
-
-    /*-----------------------+ 
-    |  Deadline input date   | 
-    +------------------------*/
-
-.project-deadline {
-    background-color: #fcfcfc;
-    font-size: 0.8rem;
-    text-align: center;
-    display: block;
-    width: 150px;
-    padding: 0.8em 0.6em;
-    border-radius: 10px;
-    appearance: none;
-    font-weight: 400;
-    border: 1px solid #dddddd;
-    margin-bottom: 20px;
-}
-
-    /*---------------------------------------+ 
-    |  To remove calendar logo from chrome   | 
-    +----------------------------------------*/
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
-
-    /*--------------------------+ 
-    |  Division line in modal   | 
-    +---------------------------*/
-
-.line {
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
-    width: 120%;
-    margin-left: -20px;
-}
-
-    /*----------------------------------------+ 
-    |  Container for cancel and add buttons   | 
-    +-----------------------------------------*/
-
-.status {
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.add-button {
-    margin-left: 15px;
-    background-color: #F6CFCA;
-}
-
-.close-button {
-    background-color: #fcfcfc;
-}
-.add-button, .close-button {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.9em 1.2em;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
+    /*-----------------+ 
+    |   Main Content   |
+    +------------------*/
+   /*---------------+---------------+ 
+    | +_____________________+       |
+    | |                     |       |
+    | |                     |       |
+    | |                     |       |
+    | |                     |       |
+    | |                     |       |
+    +---------------+---------------*/
 
 #main-content {
     position: fixed;
     bottom: 0%;
     right: 25%;
-    border-radius: 30px 30px 0 0;
-    background-color: #fffcf3cc;
     height: 85vh;
-    width: 70%;
+    width: 10%;
     transition: 500ms ease-out;
 }
 
+    /*----------------+ 
+    |   Top Content   |
+    +-----------------*/
+   /*---------------+---------------+ 
+    | |_____________________|       |
+    |                               |
+    |                               |
+    |                               |
+    |                               |
+    |                               |
+    +---------------+---------------*/
 .top-bar {
     position: fixed;
     top: 0%;
     right: 25%;
     height: 10%;
-    width: 70%;
+    width: 10%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    display: none;
 }
 
 .title {
@@ -409,19 +121,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #fffcf3;
 }
 
-#side-content {
-    background-color: #fffcf3cc;
-    position: absolute;
-    bottom: 0%;
-    right: 0%;
-    height: 100%;
-    width: 24.5%;
-}
-
-#notification-icon {
-    margin-left: 2em;
-    background-color: inherit;
-}
+    /*---------------------+ 
+    |   Top Side Content   |
+    +----------------------*/
+   /*---------------+---------------+ 
+    |                      |________|
+    |                               |
+    |                               |
+    |                               |
+    |                               |
+    |                               |
+    +---------------+---------------*/
 
 #top-side-content {
     position: relative;
@@ -433,6 +143,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     align-items: center;
     overflow: visible;
+}
+
+#notification-icon {
+    margin-left: 2em;
+    background-color: inherit;
 }
 
 .profile {
@@ -475,13 +190,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: none;
 }
 
-.profile.active > .profile-dropdown-button + .profile-dropdown {
+.profile-dropdown-button.active + .profile-dropdown {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-.profile.active > .profile-dropdown-button > .profile-arrow-icon {
+.profile-dropdown-button.active > .profile-arrow-icon {
     transform: rotate(180deg);
 }
 
@@ -497,4 +212,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .profile-dropdown-link:hover {
     font-size: 0.9rem;
+}
+
+    /*-----------------+ 
+    |   Side Content   |
+    +------------------*/
+    /*---------------+---------------+ 
+    |                        ________|
+    |                       |        |
+    |                       |        |
+    |                       |        |
+    |                       |        |
+    |                       |        |
+    +---------------+-------+-------*/
+
+#side-content {
+    background-color: #fffcf3cc;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    height: 100%;
+    width: 24.5%;
 }
