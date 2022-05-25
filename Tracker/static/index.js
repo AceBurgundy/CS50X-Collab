@@ -1,8 +1,9 @@
+// script to show and hide modal to add new project
 const showModal = document.querySelector(".show-modal-button");
 const projectModal = document.querySelector(".project-modal-container");
 const xButton = document.querySelector(".x-button");
 const cancelButton = document.querySelector(".close-button");
-const modalBackdrop = document.querySelector(".backdrop");
+const modalBackdrop = document.querySelector(".modal-backdrop");
 
 showModal.addEventListener("click", () => {
     modalBackdrop.style.visibility = "visible";
@@ -19,16 +20,24 @@ cancelButton.addEventListener("click", () => {
     projectModal.style.visibility = "hidden";
 })
 
+// script to show and hide profile dropdown
 let profileDropdownButton = document.querySelector(".profile-dropdown-button");
-let profile = document.querySelector(".profile");
 
 profileDropdownButton.addEventListener("click", () => {
 
-    profile.classList.toggle("active");
+    profileDropdownButton.classList.toggle("active");
 }) 
 
+// script to extend and unextend navigation rail
+navigationSwitch = document.querySelector(".nav-switch")
 
+navigationSwitch.addEventListener( "click", () => {
+    navigationDrawer = document.querySelector(".navigation-rail")
 
+    navigationDrawer.classList.toggle("active");
+})
+
+// script to validate inputs in add project modal
 const modalForm = document.querySelector(".add-project-form");
 
 function validate() {
