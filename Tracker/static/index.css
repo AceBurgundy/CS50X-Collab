@@ -1,5 +1,6 @@
 @import "new-project-modal.css";
 @import "navigation-rail.css";
+@import "user-profile.css";
 
 * {
     font-size: 16px;
@@ -163,6 +164,7 @@
     width: 3rem;
     border-radius: 50px;
     background-color: aqua;
+    cursor: pointer;
 }
 
 #profile-arrow-icon {
