@@ -1,0 +1,40 @@
+#user-profile {
+    width:auto;
+    height: 12rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 1em 2em;
+}
+
+.profile-picture-container {
+    width: 6rem;
+    height: 6rem;
+}
+
+#user-profile-picture {
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+}
+/* 
+.camera {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+} 
+*/
+
+.contact-number-container {
+    display: flex;
+}
+
+.profile-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
