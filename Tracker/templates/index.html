@@ -14,17 +14,37 @@
     <div id="background">
     
     <!-- User Profile Modal  -->
-    <div class="user-profile">
-        <label for="first-name">First Name</label>
-        <input type="text" class="first-name">
+    <div id="user-profile">
 
-        <label for="last-name">Last Name</label>
-        <input type="text" class="last-name">
+        <button type="button" class="x-button">&times;</button>
+
+        <div class="profile-picture-container">
+            <div id="user-profile-picture">
+                <!-- svg for camera -->
+            </div>
+        </div>
+        
+        <div class="line"></div>
+
+        <label class="name-label" for="first-name">First Name</label>
+        <input class="name" type="text" class="first-name">
+
+        <label class="name-label" for="last-name">Last Name</label>
+        <input class="name" type="text" class="last-name">
 
         <label for="number"></label>
-        <input type="tel" class="contact-number">
+        <div class="contact-number-container">
+            <div class="number-box"></div>
+            <input type="tel" class="contact-number first-set" maxlength="4">-
+            <input type="tel" class="contact-number second-set" maxlength="3">-
+            <input type="tel" class="contact-number third-set" maxlength="4">
+        </div>
 
-        <label for=""></label>
+        <div class="profile-bottom">
+            <button action="/change-password" class="change-password">Change Password</button>
+            <div class="close-button">Cancel</div>
+        </div>
+
     </div>
 
     <!-- Add New Project -->
@@ -64,7 +84,7 @@
     <div class="modal-backdrop"></div>
 
     <main>
-        <!-- Navigation Bar -->
+        <!-- Navigation Rail -->
         <section class="navigation-rail">
             <div class="nav-switch">
                 <div class="arrow-container">
@@ -129,8 +149,8 @@
                         <div id="profile-picture"></div>
                         <button class="profile-dropdown-button"><svg id="profile-arrow-icon" class="profile-arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="208 96 128 176 48 96"/></svg></button>
                         <div id="profile-dropdown" class="profile-dropdown">
-                            <button class="profile-dropdown-link" >Profile</button>
-                            <button class="profile-dropdown-link" >Logout</button>
+                            <button class="profile-dropdown-link">Profile</button>
+                            <button class="profile-dropdown-link">Logout</button>
                         </div>
                     </div>
             </section>
