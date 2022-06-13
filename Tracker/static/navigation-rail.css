@@ -1,76 +1,82 @@
+/*-------------------+ 
+|  Navigation rail   |
++--------------------*/
 
-    /*-------------------+ 
-    |  Navigation rail   |
-    +--------------------*/
-   /*---------------+---------------+ 
-    | |                             |
-    | |                             |
-    | |                             |
-    | |                             |
-    | |                             |
-    | |                             |
-    +---------------+---------------*/
+
+/*---------------+---------------+ 
+| |                              |
+| |                              |
+| |                              |
+| |                              |
+| |                              |
+| |                              |
++----------------+---------------*/
 
 .navigation-rail {
+    background-color: var(--primary);
     position: absolute;
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 5%;
+    width: 6rem;
     height: 100vh;
     transition: 500ms ease;
     overflow: visible;
 }
+
 
 /* Extend and minimaize nav bar */
 
 .nav-switch {
     position: relative;
     top: 2%;
-    margin-left: 15%;
+    margin-left: 19%;
     overflow: visible;
     transition: 500ms ease;
 }
 
 .arrow-container {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--defaultShadow);
     display: flex;
+    background-color: #fedbd0;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
+    height: 4em;
+    width: 4em;
     border-radius: 50px;
 }
 
 .arrow-container svg {
-    width: 2.3rem;
+    width: 2rem;
     margin-left: 4px;
     transition: 500ms ease;
 }
 
-.navigation-rail > .nav-switch > .arrow-container:hover svg {
-    margin-left: 0;
+.navigation-rail>.nav-switch>.arrow-container:hover svg {
     transform: rotate(360deg);
 }
 
+
 /* arrow will turn to face left when active */
 
-.navigation-rail.active > .nav-switch > .arrow-container svg {
+.navigation-rail>.nav-switch>.arrow-container svg {
     margin-left: 0;
     transform: rotate(180deg);
 }
 
-.navigation-rail.active > .nav-switch > .arrow-container:hover svg {
+.navigation-rail>.nav-switch>.arrow-container:hover svg {
     margin-left: 0;
     transform: rotate(420deg);
 }
 
-    /*------------------------+ 
-    |   Unextended Nav Rail   |
-    +-------------------------*/
+
+/*------------------------+ 
+|   Unextended Nav Rail   |
++-------------------------*/
 
 .aside {
     display: flex;
+    overflow: visible;
     flex-direction: column;
     justify-content: space-evenly;
     position: relative;
@@ -83,6 +89,10 @@
 .nav-child:first-of-type {
     position: absolute;
     top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-child:first-of-type .label-container {
@@ -98,12 +108,13 @@
 }
 
 .nav-button {
-    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: inherit;
     width: 100%;
     border: none;
-    justify-content: flex-start;
-    align-items: center;
     height: 5rem;
     margin-bottom: 0.7rem;
 }
@@ -120,39 +131,93 @@
 }
 
 .aside-icon-container svg {
-    width: 1.7rem;
+    width: 1.6rem;
 }
 
-.nav-button label {
-    visibility: hidden;
-    font-size: 0.8rem;
+.label-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 100ms ease;
 }
 
-.nav-button:hover label {
+.icon-label {
     visibility: visible;
+    font-size: 0.8rem;
+    transition: 100ms ease;
 }
 
-.nav-button:hover .aside-icon-container
-{
-    background-color: #ffffffcc;
+.nav-button:hover .aside-icon-container {
+    background-color: var(--secondary);
 }
 
-    /*----------------------+ 
-    |   Extended Nav Rail   |
-    +-----------------------*/
-   /*---------------+---------------+ 
-    |       |                       |
-    |       |                       |
-    |       |                       |
-    |       |                       |
-    |       |                       |
-    |       |                       |
-    +---------------+---------------*/
 
-.navigation-rail.active {
-    width: 16%;
-}
+/*----------------------+ 
+|   Extended Nav Rail   |
++-----------------------*/
 
-.navigation-rail.active > .nav-switch {
-    margin-left: 78%;
+
+/*---------------+--------------+ 
+|       |                       |
+|       |                       |
+|       |                       |
+|       |                       |
+|       |                       |
+|       |                       |
++---------------+---------------*/
+
+@media screen and (min-width: 840px) {
+    .navigation-rail {
+        width: 256px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        overflow: visible;
+    }
+    .navigation-rail .aside {
+        height: 40%;
+        top: 10%;
+    }
+    .navigation-rail>.nav-switch {
+        margin-left: 72%;
+    }
+    .navigation-rail>.arrow-container svg {
+        margin-left: 4%;
+    }
+    .navigation-rail .nav-button {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 2rem;
+        height: 3.4rem;
+        border-radius: 20px;
+        overflow: visible;
+        width: 90%;
+        transition: 500ms ease;
+    }
+    .navigation-rail .show-modal-button {
+        justify-content: flex-start;
+        padding-left: 2rem;
+        height: 3.4rem;
+        width: 90%;
+        gap: 2rem;
+        border-radius: 20px;
+    }
+    .navigation-rail .nav-child:first-of-type .label-container {
+        display: flex;
+    }
+    .navigation-rail .nav-button:hover {
+        background-color: var(--secondary);
+    }
+    .navigation-rail .aside-icon-container {
+        height: auto;
+        width: auto;
+        border-radius: 0;
+        background-color: none;
+        margin-left: 2rem;
+    }
+    .navigation-rail .nav-button:hover .aside-icon-container {
+        background-color: inherit;
+        transition: none;
+    }
+    .navigation-rail label {
+        font-size: 1rem;
+    }
 }
