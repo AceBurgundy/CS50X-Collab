@@ -1,19 +1,17 @@
-
-    /*-----------------------+ 
-    |   Show modal Buttons   |
-    +------------------------*/
+/*-----------------------+ 
+|   Show modal Buttons   |
++------------------------*/
 
 .show-modal-button {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--defaultShadow);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 1rem;
     height: 4rem;
     width: 4rem;
     border-radius: 20px;
     border: none;
-    background-color: #fffcf3;
+    background-color: var(--secondary);
     cursor: pointer;
 }
 
@@ -23,24 +21,24 @@
 
 .pencil-icon {
     width: 1.5rem;
-    transition: 200ms ease;
-    background-color: #fffcf3;
+    transition: 500ms ease;
 }
 
 .show-modal-button:hover .pencil-icon {
     width: 1.6rem;
 }
 
-    /*--------------------------+ 
-    |  Project Modal Backdrop   | 
-    +---------------------------*/
+
+/*--------------------------+ 
+|  Project Modal Backdrop   | 
++---------------------------*/
 
 .modal-backdrop {
     position: absolute;
     z-index: 1;
     height: 100vh;
     width: 100vw;
-    background-color: #0000007e;
+    background-color: var(--backdrop);
     pointer-events: none;
     visibility: hidden;
 }
@@ -66,39 +64,42 @@
 .add-project-form {
     width: 420px;
     display: flex;
-    padding: 25px 15px 15px;
+    padding: 25px 20px 20px;
     flex-direction: column;
     background-color: #fcfcfc;
     border-radius: 15px;
 }
 
-.input-field, .status {
+.input-field,
+.status {
     background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
 }
 
-    /*--------------------------------------------------+ 
-    |  Container for "Create new Project and x button   | 
-    +---------------------------------------------------*/
+
+/*--------------------------------------------------+ 
+|  Container for "Create new Project and x button   | 
++---------------------------------------------------*/
 
 .input-field:first-of-type {
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: 500;
+    margin-bottom: 1em;
     align-items: center;
 }
-    /*------------------------+ 
-    |  "Create new Project"   | 
-    +-------------------------*/
+
+
+/*------------------------+ 
+|  "Create new Project"   | 
++-------------------------*/
 
 .project-label {
     background-color: #fcfcfc;
-    font-size: 1rem;
+    font-family: "Rubik Medium";
 }
 
-.x-button {
+.modal-x-button {
     padding: 0px;
     background-color: #fcfcfc;
     border: none;
@@ -107,38 +108,41 @@
     cursor: pointer;
 }
 
-    /*---------------------------------------+ 
-    |  Div input-field for title and counter | 
-    +----------------------------------------*/
+
+/*---------------------------------------+ 
+|  Div input-field for title and counter | 
++----------------------------------------*/
 
 .input-field:nth-of-type(3) {
-    margin-top: 5px;
+    margin-top: 1em;
     background-color: #fcfcfc;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
+    margin-bottom: 1.5em;
 }
 
-    /*-------------------+ 
-    |  Input for title   | 
-    +--------------------*/
+
+/*-------------------+ 
+|  Input for title   | 
++--------------------*/
 
 .project-input {
-    font-size: 0.9rem;
     background-color: #fcfcfc;
     border: none;
     padding-bottom: 3px;
     padding-left: 5px;
 }
 
-    /*---------------------+ 
-    |  Character counter   | 
-    +----------------------*/
 
-.counter-container, .counter-for-title, .counter-for-description {
-    font-size: 0.8rem;
+/*---------------------+ 
+|  Character counter   | 
++----------------------*/
+
+.counter-container,
+.counter-for-title,
+.counter-for-description {
     background-color: #fcfcfc;
     color: #737373;
 }
@@ -148,47 +152,48 @@
     margin-right: 5px;
 }
 
-    /*-------------------------+ 
-    |  Input for description   | 
-    +--------------------------*/
+
+/*-------------------------+ 
+|  Input for description   | 
++--------------------------*/
 
 textarea {
-    font-size: 0.9rem;
     resize: none;
     border: none;
     padding: 0.5em;
     border-radius: 10px;
-    margin-bottom: 0.8rem;
     background-color: #fcfcfc;
 }
 
-    /*----------------------------+ 
-    |  0/50 Counter for textarea  | 
-    +-----------------------------*/
+
+/*----------------------------+ 
+|  0/50 Counter for textarea  | 
++-----------------------------*/
 
 .input-field:nth-of-type(4) .counter-container {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 1em;
 }
-    /*--------------+ 
-    |  "Deadline"   | 
-    +---------------*/
+
+
+/*--------------+ 
+|  "Deadline"   | 
++---------------*/
 
 .deadline {
-    font-size: 0.9rem;
     margin-left: 5px;
     margin-bottom: 5px;
-    font-weight: 400;
     background-color: #fcfcfc;
 }
 
-    /*-----------------------+ 
-    |  Deadline input date   | 
-    +------------------------*/
+
+/*-----------------------+ 
+|  Deadline input date   | 
++------------------------*/
 
 .project-deadline {
     background-color: #fcfcfc;
-    font-size: 0.8rem;
     text-align: center;
     display: block;
     width: 150px;
@@ -197,21 +202,23 @@ textarea {
     appearance: none;
     font-weight: 400;
     border: 1px solid #dddddd;
-    margin-bottom: 20px;
+    margin-bottom: 1.5em;
 }
 
-    /*---------------------------------------+ 
-    |  To remove calendar logo from chrome   | 
-    +----------------------------------------*/
+
+/*---------------------------------------+ 
+|  To remove calendar logo from chrome   | 
++----------------------------------------*/
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
 
-    /*--------------------------+ 
-    |  Division line in modal   | 
-    +---------------------------*/
+
+/*--------------------------+ 
+|  Division line in modal   | 
++---------------------------*/
 
 .line {
     border-bottom: 1px solid #dddddd;
@@ -220,9 +227,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-left: -20px;
 }
 
-    /*----------------------------------------+ 
-    |  Container for cancel and add buttons   | 
-    +-----------------------------------------*/
+
+/*----------------------------------------+ 
+|  Container for cancel and add buttons   | 
++-----------------------------------------*/
 
 .status {
     flex-direction: row;
@@ -234,13 +242,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #F6CFCA;
 }
 
-.close-button {
+.modal-close-button {
     background-color: #fcfcfc;
 }
-.add-button, .close-button {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.9em 1.2em;
+
+.add-button,
+.modal-close-button {
+    font-size: 1rem;
+    padding: 1em 1.5em;
+    font-family: "Rubik Medium";
     border: none;
     border-radius: 15px;
     cursor: pointer;
