@@ -1,71 +1,86 @@
 @import "new-project-modal.css";
 @import "navigation-rail.css";
 @import "user-profile.css";
+@import "fonts.css";
+:root {
+    --primary: #FEDBD0;
+    --brown: #442C2E;
+    --secondary: #FEEAE6;
+    --backdrop: #feefe983;
+    --defaultShadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
 
 * {
-    font-size: 16px;
+    font-size: 15px;
     outline: 0px !important;
     padding: 0px;
     margin: 0px;
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
+    font-family: "Rubik Regular";
     overflow: hidden;
+    color: #442b2d;
 }
 
 #background {
-    background-color: #F6CFCA;
+    background-color: #fff0e8;
     width: 100vw;
     height: 100vh;
 }
 
-    /*-----------------+ 
-    |   Main Content   |
-    +------------------*/
-   /*---------------+---------------+ 
-    | +_____________________+       |
-    | |                     |       |
-    | |                     |       |
-    | |                     |       |
-    | |                     |       |
-    | |                     |       |
-    +---------------+---------------*/
+
+/*-----------------+ 
+|   Main Content   |
++------------------*/
+
+
+/*---------------+---------------+ 
+| +_____________________+        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
++---------------+----------------*/
 
 #main-content {
-    position: fixed;
     bottom: 0%;
     right: 25%;
     height: 85vh;
-    width: 10%;
+    width: 20%;
     transition: 500ms ease-out;
 }
 
-    /*----------------+ 
-    |   Top Content   |
-    +-----------------*/
-   /*---------------+---------------+ 
-    | |_____________________|       |
-    |                               |
-    |                               |
-    |                               |
-    |                               |
-    |                               |
-    +---------------+---------------*/
+
+/*----------------+ 
+|   Top Content   |
++-----------------*/
+
+
+/*---------------+--------------+ 
+| |_____________________|       |
+|                               |
+|                               |
+|                               |
+|                               |
+|                               |
++----------------+--------------*/
+
 .top-bar {
     position: fixed;
     top: 0%;
     right: 25%;
     height: 10%;
-    width: 10%;
+    background-color: var(--primary);
+    width: 40%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    display: none;
 }
 
 .title {
-    background-color: none;
     position: absolute;
     font-size: 1.5rem;
+    font-family: "Rubik Regular";
     left: 2%;
 }
 
@@ -84,7 +99,8 @@
 .filter-label {
     background-color: #fffcf3;
 }
-#filter-arrow{
+
+#filter-arrow {
     width: 1rem;
     background-color: #fffcf3;
 }
@@ -122,24 +138,26 @@
     background-color: #fffcf3;
 }
 
-    /*---------------------+ 
-    |   Top Side Content   |
-    +----------------------*/
-   /*---------------+---------------+ 
-    |                      |________|
-    |                               |
-    |                               |
-    |                               |
-    |                               |
-    |                               |
-    +---------------+---------------*/
+
+/*---------------------+ 
+|   Top Side Content   |
++----------------------*/
+
+
+/*---------------+---------------+ 
+|                       |________|
+|                                |
+|                                |
+|                                |
+|                                |
+|                                |
++---------------+---------------*/
 
 #top-side-content {
     position: relative;
     top: 0%;
     height: 10%;
     width: 100%;
-    background-color: #fdf2ea;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -152,14 +170,13 @@
 }
 
 .profile {
-    background-color: #fdf2ea;
     display: flex;
     justify-content: space-evenly;
     width: 6rem;
     margin-right: 1em;
 }
 
-#profile-picture {
+#profile-picture-main {
     height: 3rem;
     width: 3rem;
     border-radius: 50px;
@@ -168,7 +185,7 @@
 }
 
 #profile-arrow-icon {
-    width: 1rem;
+    width: 1.1rem;
     background-color: inherit;
     cursor: pointer;
     transition: 150ms ease-in-out;
@@ -188,48 +205,51 @@
 }
 
 .profile-dropdown-button {
-    background-color: #fdf2ea;
+    background-color: var(--primary);
     border: none;
 }
 
-.profile-dropdown-button.active + .profile-dropdown {
+.profile-dropdown-button.active+.profile-dropdown {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-.profile-dropdown-button.active > .profile-arrow-icon {
+.profile-dropdown-button.active>.profile-arrow-icon {
     transform: rotate(180deg);
 }
 
 .profile-dropdown-link {
     border: none;
-    padding-right: 2em; 
     height: 4rem;
     width: 9rem;
     transition: 500ms ease;
-    background-color: #fdf2ea;
-    font-size: 0.8rem;
+    background-color: var(--secondary);
+    font-size: 1rem;
 }
 
 .profile-dropdown-link:hover {
     font-size: 0.9rem;
 }
 
-    /*-----------------+ 
-    |   Side Content   |
-    +------------------*/
-    /*---------------+---------------+ 
-    |                        ________|
-    |                       |        |
-    |                       |        |
-    |                       |        |
-    |                       |        |
-    |                       |        |
-    +---------------+-------+-------*/
+
+/*-----------------+ 
+|   Side Content   |
++------------------*/
+
+
+/*---------------+---------------+ 
+|                        ________|
+|                       |        |
+|                       |        |
+|                       |        |
+|                       |        |
+|                       |        |
++---------------+-------+-------*/
 
 #side-content {
-    background-color: #fffcf3cc;
+    background-color: var(--primary);
+    box-shadow: var(--defaultShadow);
     position: absolute;
     bottom: 0%;
     right: 0%;
