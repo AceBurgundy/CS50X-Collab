@@ -1,0 +1,257 @@
+/*-----------------------+ 
+|   Show modal Buttons   |
++------------------------*/
+
+.show-modal-button {
+    box-shadow: var(--defaultShadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--secondary);
+    cursor: pointer;
+}
+
+.show-modal i {
+    opacity: 0.6;
+}
+
+.pencil-icon {
+    width: 1.5rem;
+    transition: 500ms ease;
+}
+
+.show-modal-button:hover .pencil-icon {
+    width: 1.6rem;
+}
+
+
+/*--------------------------+ 
+|  Project Modal Backdrop   | 
++---------------------------*/
+
+.modal-backdrop {
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--backdrop);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.project-modal-container {
+    background-color: #fffcf3;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.project-modal-container.show .add-project-form {
+    visibility: visible;
+}
+
+.add-project-form {
+    width: 420px;
+    display: flex;
+    padding: 25px 20px 20px;
+    flex-direction: column;
+    background-color: #fcfcfc;
+    border-radius: 15px;
+}
+
+.input-field,
+.status {
+    background-color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*--------------------------------------------------+ 
+|  Container for "Create new Project and x button   | 
++---------------------------------------------------*/
+
+.input-field:first-of-type {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+
+/*------------------------+ 
+|  "Create new Project"   | 
++-------------------------*/
+
+.project-label {
+    background-color: #fcfcfc;
+    font-family: "Rubik Medium";
+}
+
+.modal-x-button {
+    padding: 0px;
+    background-color: #fcfcfc;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+
+/*---------------------------------------+ 
+|  Div input-field for title and counter | 
++----------------------------------------*/
+
+.input-field:nth-of-type(3) {
+    margin-top: 1em;
+    background-color: #fcfcfc;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 1.5em;
+}
+
+
+/*-------------------+ 
+|  Input for title   | 
++--------------------*/
+
+.project-input {
+    background-color: #fcfcfc;
+    border: none;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+
+/*---------------------+ 
+|  Character counter   | 
++----------------------*/
+
+.counter-container,
+.counter-for-title,
+.counter-for-description {
+    background-color: #fcfcfc;
+    color: #737373;
+}
+
+.counter-container {
+    background-color: #fcfcfc;
+    margin-right: 5px;
+}
+
+
+/*-------------------------+ 
+|  Input for description   | 
++--------------------------*/
+
+textarea {
+    resize: none;
+    border: none;
+    padding: 0.5em;
+    border-radius: 10px;
+    background-color: #fcfcfc;
+}
+
+
+/*----------------------------+ 
+|  0/50 Counter for textarea  | 
++-----------------------------*/
+
+.input-field:nth-of-type(4) .counter-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1em;
+}
+
+
+/*--------------+ 
+|  "Deadline"   | 
++---------------*/
+
+.deadline {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    background-color: #fcfcfc;
+}
+
+
+/*-----------------------+ 
+|  Deadline input date   | 
++------------------------*/
+
+.project-deadline {
+    background-color: #fcfcfc;
+    text-align: center;
+    display: block;
+    width: 150px;
+    padding: 0.8em 0.6em;
+    border-radius: 10px;
+    appearance: none;
+    font-weight: 400;
+    border: 1px solid #dddddd;
+    margin-bottom: 1.5em;
+}
+
+
+/*---------------------------------------+ 
+|  To remove calendar logo from chrome   | 
++----------------------------------------*/
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+
+/*--------------------------+ 
+|  Division line in modal   | 
++---------------------------*/
+
+.line {
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 20px;
+    width: 120%;
+    margin-left: -20px;
+}
+
+
+/*----------------------------------------+ 
+|  Container for cancel and add buttons   | 
++-----------------------------------------*/
+
+.status {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.add-button {
+    margin-left: 15px;
+    background-color: #F6CFCA;
+}
+
+.modal-close-button {
+    background-color: #fcfcfc;
+}
+
+.add-button,
+.modal-close-button {
+    font-size: 1rem;
+    padding: 1em 1.5em;
+    font-family: "Rubik Medium";
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}

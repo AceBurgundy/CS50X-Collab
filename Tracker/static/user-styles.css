@@ -1,13 +1,4 @@
-@font-face {
-    font-family: "Poppins Medium";
-    src: url(../static/fonts/Poppins-Medium.ttf);
-}
-
-@font-face {
-    font-family: "Poppins Regular";
-    src: url(../static/fonts/Poppins-Regular.ttf);
-}
-
+@import "fonts.css";
 * {
     font-size: 13px;
     outline: 0px !important;
@@ -15,22 +6,24 @@
     margin: 0px;
     text-decoration: none;
     font-family: "Poppins Medium", sans-serif;
-    background-color: #F6CFCA;
+    background-color: var(--primary);
     overflow: hidden;
 }
 
-    /*-----------------------------+ 
-    |   Container for both forms   |
-    +-----------------------------*/
 
-   /*---------------+---------------+ 
-    |               |               |
-    |               |               |
-    |               |               |
-    |               |               |
-    |               |               |
-    |               |               |
-    +---------------+---------------*/
+/*-----------------------------+ 
+|   Container for both forms   |
++-----------------------------*/
+
+
+/*---------------+---------------+ 
+|           |           |
+|           |           |
+|           |           |
+|           |           |
+|           |           |
+|           |           |
++---------------+---------------*/
 
 .forms-container {
     display: grid;
@@ -38,9 +31,9 @@
 }
 
 
-    /*----------------------------+ 
-    |      Div for Transition     |
-    +-----------------------------*/
+/*----------------------------+ 
+|      Div for Transition     |
++-----------------------------*/
 
 .cover {
     background-color: white;
@@ -53,20 +46,23 @@
     top: -95%;
 }
 
-    /*-----------------------------+ 
-    |   For Both Forms Container   |
-    +------------------------------*/
 
-    /*---------------+---------------+ 
-    |               |               |
-    |   Register    |     Login     |
-    |    covers     |    covers     |
-    | full width of | full width of |
-    |   this side   |   this side   |
-    |               |               |
-    +---------------+---------------*/
+/*-----------------------------+ 
+|   For Both Forms Container   |
++------------------------------*/
 
-.login , .register{
+
+/*---------------+---------------+ 
+|                |               |
+|   Register     |     Login     |
+|    covers      |    covers     |
+| full width of  | full width of |
+|   this side    |   this side   |
+|                |               |
++----------------+---------------*/
+
+.login,
+.register {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -84,17 +80,17 @@
     display: flex;
     flex-direction: column;
     visibility: hidden;
-
     /* for animation purposes on landscape and laptop screens*/
     margin-left: -5%;
-
 }
 
-    /*----------------------------+ 
-    |     Form Header Message     |
-    +-----------------------------*/
 
- .login-header, .register-header {
+/*----------------------------+ 
+|     Form Header Message     |
++-----------------------------*/
+
+.login-header,
+.register-header {
     font-family: 'Poppins Regular';
     font-weight: 550;
     cursor: default;
@@ -102,11 +98,13 @@
     margin-bottom: 7.0vh;
 }
 
-    /*----------------------------+ 
-    |   Both Login and Register   |
-    +-----------------------------*/
 
-    /*      The actual form       */
+/*----------------------------+ 
+|   Both Login and Register   |
++-----------------------------*/
+
+
+/*      The actual form       */
 
 .form-login {
     display: flex;
@@ -118,16 +116,18 @@
     flex-direction: column;
 }
 
-.form-login, .form-register {
+.form-login,
+.form-register {
     width: 90%;
     max-width: 475px;
 }
 
-    /*----------------------------+ 
-    |           Inputs            |
-    +-----------------------------*/
 
- .input-field {
+/*----------------------------+ 
+|           Inputs            |
++-----------------------------*/
+
+.input-field {
     background-color: #f0f0f0;
     margin-bottom: 1em;
     display: grid;
@@ -161,9 +161,9 @@ input:hover {
 }
 
 
-    /*----------------------------+ 
-    |            Icons            |
-    +-----------------------------*/
+/*----------------------------+ 
+|            Icons            |
++-----------------------------*/
 
 .icon-container {
     display: flex;
@@ -172,20 +172,24 @@ input:hover {
     background-color: #f0f0f0;
 }
 
-svg, i {
+svg,
+i {
     width: 1.9rem;
     cursor: pointer;
     background-color: inherit;
     overflow: visible;
 }
 
+
 /*    Icons inside the input    */
+
 input[type="password"] {
- overflow: visible;
+    overflow: visible;
 }
 
 input::placeholder,
-svg, i {
+svg,
+i {
     opacity: 0.5;
 }
 
@@ -197,7 +201,8 @@ svg, i {
     overflow: visible;
 }
 
-.eye-off, .circle-icon {
+.eye-off,
+.circle-icon {
     width: 1.3rem;
 }
 
@@ -207,15 +212,14 @@ svg, i {
     transition: 500ms;
 }
 
-.button:hover > #user-arrow {
+.button:hover>#user-arrow {
     width: 1.5rem;
 }
 
 
-
-    /*----------------------------+ 
-    |   Forgot password message   |
-    +-----------------------------*/
+/*----------------------------+ 
+|   Forgot password message   |
++-----------------------------*/
 
 .forgot {
     font-size: 1rem;
@@ -227,11 +231,11 @@ svg, i {
 }
 
 
-    /*----------------------------+ 
-    |           Buttons           |
-    +-----------------------------*/
+/*----------------------------+ 
+|           Buttons           |
++-----------------------------*/
 
- .wrapper {
+.wrapper {
     width: 100%;
     margin-top: 7vh;
     display: flex;
@@ -241,7 +245,7 @@ svg, i {
     width: 100%;
 }
 
- .button {
+.button {
     height: 6rem;
     width: 7rem;
     background-color: #f0f0f0;
@@ -255,8 +259,7 @@ svg, i {
     align-items: center;
 }
 
-
-.button:hover{
+.button:hover {
     background-color: #cfcfcf;
 }
 
@@ -267,9 +270,10 @@ svg, i {
     margin-left: 20px;
 }
 
-    /*----------------------------+ 
-    |  To Register and To Login   | 
-    +-----------------------------*/
+
+/*----------------------------+ 
+|  To Register and To Login   | 
++-----------------------------*/
 
 #to-register,
 #to-login {
@@ -281,7 +285,7 @@ svg, i {
 }
 
 #to-register p:hover,
-#to-login p:hover span{
+#to-login p:hover span {
     color: blue;
 }
 
@@ -299,12 +303,12 @@ svg, i {
     transform: translateX(100%);
 }
 
-    /*-----------------------------------------------+ 
-    |     Phone Portrait but with short screens     |
-    +------------------------------------------------*/
-    
-@media screen and (max-width: 500px) and (max-height: 668px) {
 
+/*-----------------------------------------------+ 
+|     Phone Portrait but with short screens      |
++------------------------------------------------*/
+
+@media screen and (max-width: 500px) and (max-height: 668px) {
     .cover {
         width: 250vw;
         height: 200vh;
@@ -312,70 +316,60 @@ svg, i {
         top: -180vh;
         transition: 2000ms;
     }
-
-    .login, .register {
+    .login,
+    .register {
         position: absolute;
         transition: 400ms;
     }
-
-    .login-header, .register-header {
+    .login-header,
+    .register-header {
         font-size: 2.5rem;
     }
-
     .register {
         margin-left: 0%;
     }
-
     .input-field {
         height: 3.5rem;
         border-radius: 10px;
     }
-    
     .input-field i {
         font-size: 1.1rem;
     }
-
     .input-field input {
         font-size: 1.1rem;
     }
-
     .button {
         padding: 1.7em 2.7em;
         margin-right: 1em;
     }
-
     .form-tag {
         font-size: 1.2rem
     }
-    
     .button {
         color: black
     }
-    #to-login p, #to-register p{
+    #to-login p,
+    #to-register p {
         font-size: 0.9rem;
     }
-
     .cover.to-register {
         top: 70vh;
         left: -200vw;
     }
-
     .forms-container.to-register .login {
         margin-left: 5%;
     }
-    
     .forms-container.to-register .register {
         margin-left: 0%;
     }
-    
 }
 
-    /*-----------------------------------------------+ 
-    |     Phone Portrait but with taller screens     |
-    +------------------------------------------------*/
+
+/*-----------------------------------------------+ 
+|     Phone Portrait but with taller screens     |
++------------------------------------------------*/
 
 @media screen and (max-width: 500px) and (min-height: 668px) {
-
     .cover {
         width: 250vw;
         height: 200vh;
@@ -383,226 +377,197 @@ svg, i {
         top: -180vh;
         transition: 2000ms;
     }
-
-    .login, .register {
+    .login,
+    .register {
         position: absolute;
         transition: 400ms;
     }
-
-    .login-header, .register-header {
+    .login-header,
+    .register-header {
         font-size: 2.5rem;
     }
-
     .register {
         margin-left: 0%;
     }
-
     .input-field {
         height: 5rem;
         border-radius: 10px;
     }
-    
     .input-field i {
         font-size: 1.35rem;
     }
-
     .input-field input {
         font-size: 1.4rem;
     }
-
     .button {
         padding: 1.9em 2.9em;
         margin-right: 1em;
     }
-
     .form-tag {
         font-size: 1.5rem
     }
-    
     .button {
         color: black
     }
-    #to-login p, #to-register p{
+    #to-login p,
+    #to-register p {
         font-size: 0.9rem;
     }
-
     .cover.to-register {
         top: 70vh;
         left: -200vw;
     }
-
     .forms-container.to-register .login {
         margin-left: 0%;
     }
-    
     .forms-container.to-register .register {
         margin-left: 0%;
     }
-
-    .login-header, .register-header {
+    .login-header,
+    .register-header {
         font-size: 4rem;
     }
-
     .input-field {
         height: 4rem;
     }
 }
-    /*----------------------------+ 
-    |      Ipad and Tablets       |
-    +-----------------------------*/
 
-    
-    @media screen and (min-width: 500px) and (max-width: 1024px) and (min-height: 930px) and (max-height: 1366px) {
+
+/*----------------------------+ 
+|      Ipad and Tablets       |
++-----------------------------*/
+
+@media screen and (min-width: 500px) and (max-width: 1024px) and (min-height: 930px) and (max-height: 1366px) {
     .cover {
         width: 200vw;
         height: 100vh;
         transform: translate(50%, 50%);
     }
-
-    .login-header, .register-header {
+    .login-header,
+    .register-header {
         font-size: 3rem;
         margin-bottom: 3vh;
     }
-
     .register-header {
         text-align: center;
     }
-
     .wrapper {
         margin-top: 2vh;
     }
-
-    .form-login, .form-register {
+    .form-login,
+    .form-register {
         max-width: 400px;
     }
-
-    .login, .register {
+    .login,
+    .register {
         height: 50vh;
         margin-top: 0%;
     }
-
     .login {
         margin-top: 5%;
     }
-
     .register {
         visibility: visible;
         margin-left: 0%;
         margin-top: -5%;
     }
-
     .forms-container {
         display: flex;
         flex-direction: column;
     }
-
     .input-field i {
         font-size: 1.25rem;
     }
-
     .input-field input {
         font-size: 1.3rem;
     }
-
     .button {
         margin-right: 1em;
         color: black;
     }
-
     .form-tag {
         font-size: 1.6rem
     }
-    
-    #to-login, #to-register {
+    #to-login,
+    #to-register {
         font-size: 1rem;
     }
-
     #to-register,
     #to-login {
-    position: relative;
-    bottom: -3%;
+        position: relative;
+        bottom: -3%;
     }
-
     .cover.to-register {
         transform: translate(50%, 152%);
     }
-
     .forms-container.to-register .login {
         margin-left: 0%;
-        margin-top: 5% ;
+        margin-top: 5%;
     }
-    
     .forms-container.to-register .register {
         margin-top: 5%;
         margin-left: 0%;
     }
-
 }
 
-    /*----------------------------------------------------+ 
-    |     Phone landscape but with less wider-screens     |
-    +-----------------------------------------------------*/
 
-    /*
+/*----------------------------------------------------+ 
+|     Phone landscape but with less wider-screens     |
++-----------------------------------------------------*/
+
+
+/*
         Ex.
 
         Iphone 5
         Samsung Galaxy S5
     */
 
-@media screen and (min-width: 500px) and (max-width: 667px) and (max-height: 360px){
+@media screen and (min-width: 500px) and (max-width: 667px) and (max-height: 360px) {
     .register {
         margin-left: 1%;
     }
-
-    .login-header{
+    .login-header {
         font-size: 3rem;
         margin-bottom: 0.5rem;
     }
-
-    .register-header{
+    .register-header {
         font-size: 2.3rem;
         margin: 0 0 1rem 0;
     }
-
     .input-field input {
         font-size: 1.1rem;
     }
-
     .input-field i {
         font-size: 1.1rem;
     }
-
     .button {
         padding: 1.3em 1.8em;
     }
-
     .input-field {
         height: 2.8rem;
         border-radius: 5px;
     }
-
     .input-field:first-of-type {
         margin-bottom: 1em;
     }
-
     .wrapper {
         margin-top: 0%;
     }
-
     .form-tag {
         font-size: 1rem;
         margin-left: 10px;
     }
-
-    #to-login p, #to-register p{
-        font-size: 0.7rem; 
+    #to-login p,
+    #to-register p {
+        font-size: 0.7rem;
     }
 }
 
-    /*-----------------------------------------------+ 
-    |     Phone landscape but with wider-screens     |
-    +------------------------------------------------*/
+
+/*-----------------------------------------------+ 
+|     Phone landscape but with wider-screens     |
++------------------------------------------------*/
 
 @media screen and (min-width: 668px) and (max-width: 900px) and (max-height: 414px) {
     .register {
@@ -614,20 +579,16 @@ svg, i {
         margin-left: 5px;
         margin-top: -3px;
     }
-
     .input-field:first-of-type {
         margin-bottom: 1em;
     }
-
     .login-header {
         font-size: 4rem;
         margin-bottom: 10px;
     }
-
     .wrapper {
         margin-top: 7px;
     }
-
     .input-field {
         height: 3.7rem;
     }
