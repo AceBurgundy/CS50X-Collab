@@ -3,7 +3,7 @@ from flask import flash, redirect, render_template, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from Tracker import app
 from Tracker import db
-from Tracker.models import User, Project
+from Tracker.models import User, Project, Conversations, Ticket
 from flask_login import login_user, current_user, login_required, logout_user
 from Tracker.helpers import apology
 
@@ -57,7 +57,7 @@ def login():
         if passwordInput.lower() in invalid:
             return apology("password was not accepted")
 
-        try:
+        try:           
             user = User.query.filter_by(email=emailInput).first()
             
             if user and check_password_hash(user.password, passwordInput):
@@ -93,7 +93,6 @@ def register():
         emailInput = request.form.get("email")
         passwordInput = request.form.get("password")
         usernameInput = request.form.get("username")
-
          # Ensure that the user placed their email
         if not emailInput:
             return apology("missing email")
@@ -146,6 +145,14 @@ def register():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("users.html")
+
+# @app.route("/profile", methods=["GET", "POST"])
+# @login_required
+# def profile():
+    
+    # if request.method == "POST":
+    #     #do
+    # else
 
 
 # #Add project

@@ -12,3 +12,8 @@
     font-family: "Rubik Light";
     src: url(../static/fonts/Rubik-Light.ttf);
 }
+
+@font-face {
+    font-family: "Poppins Medium";
+    src: url(../static/fonts/Poppins-Medium.ttf);
+}

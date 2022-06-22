@@ -14,7 +14,9 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 app.config['SECRET_KEY'] = 'Adrian2001.'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///collab.db'
 db = SQLAlchemy(app)
 
 

@@ -7,9 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 20px;
+    padding: 1.6rem 1.6rem;
+    border-radius: 26px;
     border: none;
     background-color: var(--secondary);
     cursor: pointer;
@@ -20,12 +19,8 @@
 }
 
 .pencil-icon {
-    width: 1.5rem;
+    width: 1.2rem;
     transition: 500ms ease;
-}
-
-.show-modal-button:hover .pencil-icon {
-    width: 1.6rem;
 }
 
 
@@ -157,7 +152,7 @@
 |  Input for description   | 
 +--------------------------*/
 
-textarea {
+.project-description {
     resize: none;
     border: none;
     padding: 0.5em;
