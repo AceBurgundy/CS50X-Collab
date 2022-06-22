@@ -68,7 +68,6 @@ modalForm.addEventListener("keyup", () => {
 
 
 const profileCancelButton = document.querySelector(".profile-x-button");
-let profileDropdown = document.querySelector(".profile-dropdown")
 let profile = document.getElementById("profile-picture-main")
 
 profile.addEventListener('click', () => {
@@ -93,11 +92,16 @@ const lastName = document.getElementById("last-name")
 const lastNameCounter = document.getElementById("last-name-counter")
 const address = document.getElementById("address")
 const addressCounter = document.getElementById("address-counter")
-counter(firstName, firstNameCounter, 30);
-counter(lastName, lastNameCounter, 30);
+const skills = document.getElementById("skills")
+const skillsCounter = document.getElementById("skills-counter")
+const motto = document.getElementById("motto")
+const mottoCounter = document.getElementById("motto-counter")
+counter(firstName, firstNameCounter, 60);
+counter(lastName, lastNameCounter, 60);
 counter(address, addressCounter, 100);
+counter(motto, mottoCounter, 200)
 
-/*                             hides and shows the dropdown                            */
+/*------------- hides and shows the dropdown-------------*/
 
 const countryDropdownSwitch = document.querySelector(".country-select-switch")
     // dropdown toggle
@@ -113,7 +117,7 @@ countryDropdownSwitch.addEventListener("click", () => {
 
 
 
-/*                             shows flag of each countries                            */
+/*------------- shows flag of each countries-------------*/
 
 let country = document.querySelectorAll(".country");
 // li class="country"
@@ -126,10 +130,11 @@ flag.forEach(flag => {
         /* To get the value of country, we have to use parentNode as it is
         the parent element of flag */
 
+        // flag.src = "./static/flags/".concat(countryVal, '.svg');
         flag.src = "https://flagcdn.com/16x12/".concat(countryVal, '.png');
     })
     /* 
-                flag.src = "./static/flags/".concat(countryVal, '.svg');
+        flag.src = "./static/flags/".concat(countryVal, '.svg');
         Since all flags are named after their 2 character country code,
              we will use concat to join the current value of countryVal and join it with .svg
              
@@ -144,7 +149,7 @@ flag.forEach(flag => {
 
 
 
-/*                             simulates select actions                            */
+/*-------------simulates select actions-------------*/
 
 const selectedCountry = document.getElementById("selected-country-span");
 // displays the country that you had select
@@ -176,7 +181,7 @@ countryName.forEach(country => {
 
 
 
-/*                             Simulates autocomplete                            */
+/*------------- Simulates autocomplete-------------*/
 
 const countrySearch = document.querySelector("#country-search");
 
@@ -207,5 +212,5 @@ countrySearch.addEventListener("input", () => {
              found = the indexOf() countries where "ph" occured in.
 
              found in index 19
-                all countries that are -1 will have a display of none.
+              all countries that are -1 will have a display of none.
          */
