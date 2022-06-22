@@ -5,7 +5,7 @@
     padding: 0px;
     margin: 0px;
     text-decoration: none;
-    font-family: "Poppins Medium", sans-serif;
+    font-family: "Poppins Medium";
     background-color: var(--primary);
     overflow: hidden;
 }
@@ -16,14 +16,14 @@
 +-----------------------------*/
 
 
-/*---------------+---------------+ 
-|           |           |
-|           |           |
-|           |           |
-|           |           |
-|           |           |
-|           |           |
-+---------------+---------------*/
+/*-------------+-------------+ 
+          |         |        |
+|         |         |        |
+|         |         |        |
+|         |         |        |
+|         |         |        |
+|         |         |        |
++--------------+-------------*/
 
 .forms-container {
     display: grid;
@@ -36,7 +36,7 @@
 +-----------------------------*/
 
 .cover {
-    background-color: white;
+    background-color: #FEDBD0;
     width: 200vw;
     height: 300vh;
     position: fixed;
@@ -91,7 +91,7 @@
 
 .login-header,
 .register-header {
-    font-family: 'Poppins Regular';
+    font-family: 'Poppins Medium';
     font-weight: 550;
     cursor: default;
     font-size: 4rem;
@@ -172,12 +172,19 @@ input:hover {
     background-color: #f0f0f0;
 }
 
-svg,
-i {
-    width: 1.9rem;
+.icons {
+    width: 1.6rem;
     cursor: pointer;
     background-color: inherit;
     overflow: visible;
+}
+
+.lock-icon {
+    width: 1.3rem;
+}
+
+.email-icon {
+    width: 1.55rem;
 }
 
 
