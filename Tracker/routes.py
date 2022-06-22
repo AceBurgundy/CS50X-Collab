@@ -3,7 +3,7 @@ from flask import flash, redirect, render_template, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from Tracker import app
 from Tracker import db
-from Tracker.models import User, Project
+from Tracker.models import User, Project, Conversations, Ticket
 from flask_login import login_user, current_user, login_required, logout_user
 from Tracker.helpers import apology
 
@@ -146,9 +146,9 @@ def register():
     else:
         return render_template("users.html")
 
-@app.route("/profile", methods=["GET", "POST"])
-@login_required
-def profile():
+# @app.route("/profile", methods=["GET", "POST"])
+# @login_required
+# def profile():
     
     # if request.method == "POST":
     #     #do
