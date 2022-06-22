@@ -24,8 +24,11 @@
                     <!-- Top Section Controls -->
                     <div class="profile-top-controls">
                         <button type="button" class="profile-x-button">&times;</button>
-                        <input type="submit" class="save-button" value="Save">
+                        <input type="submit" class="save-button" value="SAVE">
                     </div>
+
+                    <textarea name="motto" id="motto" cols="40" rows="5" required maxlength="200" placeholder="Write here what you're open to collaborate with"></textarea>
+                    <p class="counter" id="motto-counter"><span>0</span>/200</p>
 
                     <!-- Profile Picture Container -->
                     <div class="profile-picture-container">
@@ -41,323 +44,328 @@
 
                 </div>
 
-                <!-- Section Divider  -->
-                <div class="profile-line"></div>
+                <div class="profile-body">
+                    <!-- Name, Last Name, Address Container  -->
+                    <div class="name-fields-container">
 
-                <!-- Name, Last Name, Address Container  -->
-                <div class="name-fields-container">
-
-                    <div class="profile-input-field">
-                        <div class="input-field-placeholders">
-                            <label class="name-label" for="first-name">First Name</label>
-                            <p class="counter" id="first-name-counter"><span>0</span>/30</p>
+                        <div class="profile-input-field">
+                            <div class="input-field-placeholders">
+                                <label class="name-label" for="first-name">First Name</label>
+                                <p class="counter" id="first-name-counter"><span>0</span>/60</p>
+                            </div>
+                            <input class="name" type="text" class="first-name" id="first-name" maxlength="60">
                         </div>
-                        <input class="name" type="text" class="first-name" id="first-name" maxlength="30">
-                    </div>
 
-                    <div class="profile-input-field">
-                        <div class="input-field-placeholders">
-                            <label class="name-label" for="last-name">Last Name</label>
-                            <p class="counter" id="last-name-counter"><span>0</span>/30</p>
+                        <div class="profile-input-field">
+                            <div class="input-field-placeholders">
+                                <label class="name-label" for="last-name">Last Name</label>
+                                <p class="counter" id="last-name-counter"><span>0</span>/60</p>
+                            </div>
+                            <input class="name" type="text" class="last-name" id="last-name" maxlength="60">
                         </div>
-                        <input class="name" type="text" class="last-name" id="last-name" maxlength="30">
+
                     </div>
 
-                </div>
-
-                <!-- Address -->
-                <div class="profile-input-field">
-                    <div class="input-field-address">
-                        <label class="adress-label" for="address">Address</label>
-                        <p class="counter" id="address-counter"><span>0</span>/100</p>
+                    <!-- Address -->
+                    <div class="profile-input-field">
+                        <div class="input-field-address">
+                            <label class="adress-label" for="address">Address</label>
+                            <p class="counter" id="address-counter"><span>0</span>/100</p>
+                        </div>
+                        <input type="text" id="address" maxlength="100">
                     </div>
-                    <input class="address" type="text" id="address" class="address" maxlength="100">
-                </div>
 
-                <!-- Contact Number -->
-                <div class="number-country">
-                    <div class="number-country-child">
-                        <label class="number-country-label">Contact Number</label>
-                        <input type="tel" class="contact-number" maxlength="15">
+                    <!-- Skills -->
+                    <div class="profile-input-field">
+                        <div class="input-field-details">
+                            <label class="skills-label" for="skills">Skills</label>
+                            <p class="counter" id="skills-counter"><span>0</span>/100</p>
+                        </div>
+                        <input type="text" id="skills" placeholder="Insert your skills separated by commas" maxlength="100">
                     </div>
-                    <div class="number-country-child">
-                        <label class="number-country-label">Country</label>
-                        <div class="country-select-switch"><span id="selected-country-span">Select</span></div>
-                        <input type="hidden" name="country" value="country" id="country-input">
-                        <div id="country-dropdown">
-                            <div id="country" name="country" class="country-option-container">
-                                <div id="dropdown-header">
-                                    <div id="search-container">
-                                        <div id="dropdown-search-icon-container">
-                                            <svg id="dropdown-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+
+                    <!-- Contact Number -->
+                    <div class="number-country">
+                        <div class="number-country-child">
+                            <label class="number-country-label">Contact Number</label>
+                            <input type="tel" class="contact-number" maxlength="15">
+                        </div>
+                        <div class="number-country-child">
+                            <label class="number-country-label">Country</label>
+                            <div class="country-select-switch"><span id="selected-country-span">Select</span></div>
+                            <input type="hidden" name="country" value="country" id="country-input">
+                            <div id="country-dropdown">
+                                <div id="country" name="country" class="country-option-container">
+                                    <div id="dropdown-header">
+                                        <div id="search-container">
+                                            <div id="dropdown-search-icon-container">
+                                                <svg id="dropdown-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                                            </div>
+                                            <input type="text" placeholder="search" id="country-search">
                                         </div>
-                                        <input type="text" placeholder="search" id="country-search">
                                     </div>
-                                </div>
-                                <li class="country" value="AF"><img class="flag" src=""><span class="country-name">Afghanistan</span></li>
-                                <li class="country" value="AX"><img class="flag" src=""><span class="country-name">Aland Islands</span></li>
-                                <li class="country" value="AL"><img class="flag" src=""><span class="country-name">Albania</span></li>
-                                <li class="country" value="DZ"><img class="flag" src=""><span class="country-name">Algeria</span></li>
-                                <li class="country" value="AS"><img class="flag" src=""><span class="country-name">American Samoa</span></li>
-                                <li class="country" value="AD"><img class="flag" src=""><span class="country-name">Andorra</span></li>
-                                <li class="country" value="AO"><img class="flag" src=""><span class="country-name">Angola</span></li>
-                                <li class="country" value="AI"><img class="flag" src=""><span class="country-name">Anguilla</span></li>
-                                <li class="country" value="AQ"><img class="flag" src=""><span class="country-name">Antarctica</span></li>
-                                <li class="country" value="AG"><img class="flag" src=""><span class="country-name">Antigua and Barbuda</span></li>
-                                <li class="country" value="AR"><img class="flag" src=""><span class="country-name">Argentina</span></li>
-                                <li class="country" value="AM"><img class="flag" src=""><span class="country-name">Armenia</span></li>
-                                <li class="country" value="AW"><img class="flag" src=""><span class="country-name">Aruba</span></li>
-                                <li class="country" value="AU"><img class="flag" src=""><span class="country-name">Australia</span></li>
-                                <li class="country" value="AT"><img class="flag" src=""><span class="country-name">Austria</span></li>
-                                <li class="country" value="AZ"><img class="flag" src=""><span class="country-name">Azerbaijan</span></li>
-                                <li class="country" value="BS"><img class="flag" src=""><span class="country-name">Bahamas</span></li>
-                                <li class="country" value="BH"><img class="flag" src=""><span class="country-name">Bahrain</span></li>
-                                <li class="country" value="BD"><img class="flag" src=""><span class="country-name">Bangladesh</span></li>
-                                <li class="country" value="BB"><img class="flag" src=""><span class="country-name">Barbados</span></li>
-                                <li class="country" value="BY"><img class="flag" src=""><span class="country-name">Belarus</span></li>
-                                <li class="country" value="BE"><img class="flag" src=""><span class="country-name">Belgium</span></li>
-                                <li class="country" value="BZ"><img class="flag" src=""><span class="country-name">Belize</span></li>
-                                <li class="country" value="BJ"><img class="flag" src=""><span class="country-name">Benin</span></li>
-                                <li class="country" value="BM"><img class="flag" src=""><span class="country-name">Bermuda</span></li>
-                                <li class="country" value="BT"><img class="flag" src=""><span class="country-name">Bhutan</span></li>
-                                <li class="country" value="BO"><img class="flag" src=""><span class="country-name">Bolivia</span></li>
-                                <li class="country" value="BQ"><img class="flag" src=""><span class="country-name">Bonaire, Sint Eustatius and Saba</span></li>
-                                <li class="country" value="BA"><img class="flag" src=""><span class="country-name">Bosnia and Herzegovina</span></li>
-                                <li class="country" value="BW"><img class="flag" src=""><span class="country-name">Botswana</span></li>
-                                <li class="country" value="BV"><img class="flag" src=""><span class="country-name">Bouvet Island</span></li>
-                                <li class="country" value="BR"><img class="flag" src=""><span class="country-name">Brazil</span></li>
-                                <li class="country" value="IO"><img class="flag" src=""><span class="country-name">British Indian Ocean Territory</span></li>
-                                <li class="country" value="BN"><img class="flag" src=""><span class="country-name">Brunei Darussalam</span></li>
-                                <li class="country" value="BG"><img class="flag" src=""><span class="country-name">Bulgaria</span></li>
-                                <li class="country" value="BF"><img class="flag" src=""><span class="country-name">Burkina Faso</span></li>
-                                <li class="country" value="BI"><img class="flag" src=""><span class="country-name">Burundi</span></li>
-                                <li class="country" value="KH"><img class="flag" src=""><span class="country-name">Cambodia</span></li>
-                                <li class="country" value="CM"><img class="flag" src=""><span class="country-name">Cameroon</span></li>
-                                <li class="country" value="CA"><img class="flag" src=""><span class="country-name">Canada</span></li>
-                                <li class="country" value="CV"><img class="flag" src=""><span class="country-name">Cape Verde</span></li>
-                                <li class="country" value="KY"><img class="flag" src=""><span class="country-name">Cayman Islands</span></li>
-                                <li class="country" value="CF"><img class="flag" src=""><span class="country-name">Central African Republic</span></li>
-                                <li class="country" value="TD"><img class="flag" src=""><span class="country-name">Chad</span></li>
-                                <li class="country" value="CL"><img class="flag" src=""><span class="country-name">Chile</span></li>
-                                <li class="country" value="CN"><img class="flag" src=""><span class="country-name">China</span></li>
-                                <li class="country" value="CX"><img class="flag" src=""><span class="country-name">Christmas Island</span></li>
-                                <li class="country" value="CC"><img class="flag" src=""><span class="country-name">Cocos (Keeling) Islands</span></li>
-                                <li class="country" value="CO"><img class="flag" src=""><span class="country-name">Colombia</span></li>
-                                <li class="country" value="KM"><img class="flag" src=""><span class="country-name">Comoros</span></li>
-                                <li class="country" value="CG"><img class="flag" src=""><span class="country-name">Congo</span></li>
-                                <li class="country" value="CD"><img class="flag" src=""><span class="country-name">Congo, Democratic Republic of the Congo</span></li>
-                                <li class="country" value="CK"><img class="flag" src=""><span class="country-name">Cook Islands</span></li>
-                                <li class="country" value="CR"><img class="flag" src=""><span class="country-name">Costa Rica</span></li>
-                                <li class="country" value="CI"><img class="flag" src=""><span class="country-name">Cote D'Ivoire</span></li>
-                                <li class="country" value="HR"><img class="flag" src=""><span class="country-name">Croatia</span></li>
-                                <li class="country" value="CU"><img class="flag" src=""><span class="country-name">Cuba</span></li>
-                                <li class="country" value="CW"><img class="flag" src=""><span class="country-name">Curacao</span></li>
-                                <li class="country" value="CY"><img class="flag" src=""><span class="country-name">Cyprus</span></li>
-                                <li class="country" value="CZ"><img class="flag" src=""><span class="country-name">Czech Republic</span></li>
-                                <li class="country" value="DK"><img class="flag" src=""><span class="country-name">Denmark</span></li>
-                                <li class="country" value="DJ"><img class="flag" src=""><span class="country-name">Djibouti</span></li>
-                                <li class="country" value="DM"><img class="flag" src=""><span class="country-name">Dominica</span></li>
-                                <li class="country" value="DO"><img class="flag" src=""><span class="country-name">Dominican Republic</span></li>
-                                <li class="country" value="EC"><img class="flag" src=""><span class="country-name">Ecuador</span></li>
-                                <li class="country" value="EG"><img class="flag" src=""><span class="country-name">Egypt</span></li>
-                                <li class="country" value="SV"><img class="flag" src=""><span class="country-name">El Salvador</span></li>
-                                <li class="country" value="GQ"><img class="flag" src=""><span class="country-name">Equatorial Guinea</span></li>
-                                <li class="country" value="ER"><img class="flag" src=""><span class="country-name">Eritrea</span></li>
-                                <li class="country" value="EE"><img class="flag" src=""><span class="country-name">Estonia</span></li>
-                                <li class="country" value="ET"><img class="flag" src=""><span class="country-name">Ethiopia</span></li>
-                                <li class="country" value="FK"><img class="flag" src=""><span class="country-name">Falkland Islands (Malvinas)</span></li>
-                                <li class="country" value="FO"><img class="flag" src=""><span class="country-name">Faroe Islands</span></li>
-                                <li class="country" value="FJ"><img class="flag" src=""><span class="country-name">Fiji</span></li>
-                                <li class="country" value="FI"><img class="flag" src=""><span class="country-name">Finland</span></li>
-                                <li class="country" value="FR"><img class="flag" src=""><span class="country-name">France</span></li>
-                                <li class="country" value="GF"><img class="flag" src=""><span class="country-name">French Guiana</span></li>
-                                <li class="country" value="PF"><img class="flag" src=""><span class="country-name">French Polynesia</span></li>
-                                <li class="country" value="TF"><img class="flag" src=""><span class="country-name">French Southern Territories</span></li>
-                                <li class="country" value="GA"><img class="flag" src=""><span class="country-name">Gabon</span></li>
-                                <li class="country" value="GM"><img class="flag" src=""><span class="country-name">Gambia</span></li>
-                                <li class="country" value="GE"><img class="flag" src=""><span class="country-name">Georgia</span></li>
-                                <li class="country" value="DE"><img class="flag" src=""><span class="country-name">Germany</span></li>
-                                <li class="country" value="GH"><img class="flag" src=""><span class="country-name">Ghana</span></li>
-                                <li class="country" value="GI"><img class="flag" src=""><span class="country-name">Gibraltar</span></li>
-                                <li class="country" value="GR"><img class="flag" src=""><span class="country-name">Greece</span></li>
-                                <li class="country" value="GL"><img class="flag" src=""><span class="country-name">Greenland</span></li>
-                                <li class="country" value="GD"><img class="flag" src=""><span class="country-name">Grenada</span></li>
-                                <li class="country" value="GP"><img class="flag" src=""><span class="country-name">Guadeloupe</span></li>
-                                <li class="country" value="GU"><img class="flag" src=""><span class="country-name">Guam</span></li>
-                                <li class="country" value="GT"><img class="flag" src=""><span class="country-name">Guatemala</span></li>
-                                <li class="country" value="GG"><img class="flag" src=""><span class="country-name">Guernsey</span></li>
-                                <li class="country" value="GN"><img class="flag" src=""><span class="country-name">Guinea</span></li>
-                                <li class="country" value="GW"><img class="flag" src=""><span class="country-name">Guinea-Bissau</span></li>
-                                <li class="country" value="GY"><img class="flag" src=""><span class="country-name">Guyana</span></li>
-                                <li class="country" value="HT"><img class="flag" src=""><span class="country-name">Haiti</span></li>
-                                <li class="country" value="HM"><img class="flag" src=""><span class="country-name">Heard Island and Mcdonald Islands</span></li>
-                                <li class="country" value="VA"><img class="flag" src=""><span class="country-name">Holy See (Vatican City State)</span></li>
-                                <li class="country" value="HN"><img class="flag" src=""><span class="country-name">Honduras</span></li>
-                                <li class="country" value="HK"><img class="flag" src=""><span class="country-name">Hong Kong</span></li>
-                                <li class="country" value="HU"><img class="flag" src=""><span class="country-name">Hungary</span></li>
-                                <li class="country" value="IS"><img class="flag" src=""><span class="country-name">Iceland</span></li>
-                                <li class="country" value="IN"><img class="flag" src=""><span class="country-name">India</span></li>
-                                <li class="country" value="ID"><img class="flag" src=""><span class="country-name">Indonesia</span></li>
-                                <li class="country" value="IR"><img class="flag" src=""><span class="country-name">Islamic Republic of Iran</span></li>
-                                <li class="country" value="IQ"><img class="flag" src=""><span class="country-name">Iraq</span></li>
-                                <li class="country" value="IE"><img class="flag" src=""><span class="country-name">Ireland</span></li>
-                                <li class="country" value="IM"><img class="flag" src=""><span class="country-name">Isle of Man</span></li>
-                                <li class="country" value="IL"><img class="flag" src=""><span class="country-name">Israel</span></li>
-                                <li class="country" value="IT"><img class="flag" src=""><span class="country-name">Italy</span></li>
-                                <li class="country" value="JM"><img class="flag" src=""><span class="country-name">Jamaica</span></li>
-                                <li class="country" value="JP"><img class="flag" src=""><span class="country-name">Japan</span></li>
-                                <li class="country" value="JE"><img class="flag" src=""><span class="country-name">Jersey</span></li>
-                                <li class="country" value="JO"><img class="flag" src=""><span class="country-name">Jordan</span></li>
-                                <li class="country" value="KZ"><img class="flag" src=""><span class="country-name">Kazakhstan</span></li>
-                                <li class="country" value="KE"><img class="flag" src=""><span class="country-name">Kenya</span></li>
-                                <li class="country" value="KI"><img class="flag" src=""><span class="country-name">Kiribati</span></li>
-                                <li class="country" value="KP"><img class="flag" src=""><span class="country-name">Korea, Democratic People's Republic of</span></li>
-                                <li class="country" value="KR"><img class="flag" src=""><span class="country-name">Korea, Republic of</span></li>
-                                <li class="country" value="XK"><img class="flag" src=""><span class="country-name">Kosovo</span></li>
-                                <li class="country" value="KW"><img class="flag" src=""><span class="country-name">Kuwait</span></li>
-                                <li class="country" value="KG"><img class="flag" src=""><span class="country-name">Kyrgyzstan</span></li>
-                                <li class="country" value="LA"><img class="flag" src=""><span class="country-name">Lao People's Democratic Republic</span></li>
-                                <li class="country" value="LV"><img class="flag" src=""><span class="country-name">Latvia</span></li>
-                                <li class="country" value="LB"><img class="flag" src=""><span class="country-name">Lebanon</span></li>
-                                <li class="country" value="LS"><img class="flag" src=""><span class="country-name">Lesotho</span></li>
-                                <li class="country" value="LR"><img class="flag" src=""><span class="country-name">Liberia</span></li>
-                                <li class="country" value="LY"><img class="flag" src=""><span class="country-name">Libyan Arab Jamahiriya</span></li>
-                                <li class="country" value="LI"><img class="flag" src=""><span class="country-name">Liechtenstein</span></li>
-                                <li class="country" value="LT"><img class="flag" src=""><span class="country-name">Lithuania</span></li>
-                                <li class="country" value="LU"><img class="flag" src=""><span class="country-name">Luxembourg</span></li>
-                                <li class="country" value="MO"><img class="flag" src=""><span class="country-name">Macao</span></li>
-                                <li class="country" value="MK"><img class="flag" src=""><span class="country-name">Macedonia, the Former Yugoslav Republic of</span></li>
-                                <li class="country" value="MG"><img class="flag" src=""><span class="country-name">Madagascar</span></li>
-                                <li class="country" value="MW"><img class="flag" src=""><span class="country-name">Malawi</span></li>
-                                <li class="country" value="MY"><img class="flag" src=""><span class="country-name">Malaysia</span></li>
-                                <li class="country" value="MV"><img class="flag" src=""><span class="country-name">Maldives</span></li>
-                                <li class="country" value="ML"><img class="flag" src=""><span class="country-name">Mali</span></li>
-                                <li class="country" value="MT"><img class="flag" src=""><span class="country-name">Malta</span></li>
-                                <li class="country" value="MH"><img class="flag" src=""><span class="country-name">Marshall Islands</span></li>
-                                <li class="country" value="MQ"><img class="flag" src=""><span class="country-name">Martinique</span></li>
-                                <li class="country" value="MR"><img class="flag" src=""><span class="country-name">Mauritania</span></li>
-                                <li class="country" value="MU"><img class="flag" src=""><span class="country-name">Mauritius</span></li>
-                                <li class="country" value="YT"><img class="flag" src=""><span class="country-name">Mayotte</span></li>
-                                <li class="country" value="MX"><img class="flag" src=""><span class="country-name">Mexico</span></li>
-                                <li class="country" value="FM"><img class="flag" src=""><span class="country-name">Micronesia, Federated States of</span></li>
-                                <li class="country" value="MD"><img class="flag" src=""><span class="country-name">Moldova, Republic of</span></li>
-                                <li class="country" value="MC"><img class="flag" src=""><span class="country-name">Monaco</span></li>
-                                <li class="country" value="MN"><img class="flag" src=""><span class="country-name">Mongolia</span></li>
-                                <li class="country" value="ME"><img class="flag" src=""><span class="country-name">Montenegro</span></li>
-                                <li class="country" value="MS"><img class="flag" src=""><span class="country-name">Montserrat</span></li>
-                                <li class="country" value="MA"><img class="flag" src=""><span class="country-name">Morocco</span></li>
-                                <li class="country" value="MZ"><img class="flag" src=""><span class="country-name">Mozambique</span></li>
-                                <li class="country" value="MM"><img class="flag" src=""><span class="country-name">Myanmar</span></li>
-                                <li class="country" value="NA"><img class="flag" src=""><span class="country-name">Namibia</span></li>
-                                <li class="country" value="NR"><img class="flag" src=""><span class="country-name">Nauru</span></li>
-                                <li class="country" value="NP"><img class="flag" src=""><span class="country-name">Nepal</span></li>
-                                <li class="country" value="NL"><img class="flag" src=""><span class="country-name">Netherlands</span></li>
-                                <li class="country" value="AN"><img class="flag" src=""><span class="country-name">Netherlands Antilles</span></li>
-                                <li class="country" value="NC"><img class="flag" src=""><span class="country-name">New Caledonia</span></li>
-                                <li class="country" value="NZ"><img class="flag" src=""><span class="country-name">New Zealand</span></li>
-                                <li class="country" value="NI"><img class="flag" src=""><span class="country-name">Nicaragua</span></li>
-                                <li class="country" value="NE"><img class="flag" src=""><span class="country-name">Niger</span></li>
-                                <li class="country" value="NG"><img class="flag" src=""><span class="country-name">Nigeria</span></li>
-                                <li class="country" value="NU"><img class="flag" src=""><span class="country-name">Niue</span></li>
-                                <li class="country" value="NF"><img class="flag" src=""><span class="country-name">Norfolk Island</span></li>
-                                <li class="country" value="MP"><img class="flag" src=""><span class="country-name">Northern Mariana Islands</span></li>
-                                <li class="country" value="NO"><img class="flag" src=""><span class="country-name">Norway</span></li>
-                                <li class="country" value="OM"><img class="flag" src=""><span class="country-name">Oman</span></li>
-                                <li class="country" value="PK"><img class="flag" src=""><span class="country-name">Pakistan</span></li>
-                                <li class="country" value="PW"><img class="flag" src=""><span class="country-name">Palau</span></li>
-                                <li class="country" value="PS"><img class="flag" src=""><span class="country-name">Palestinian Territory, Occupied</span></li>
-                                <li class="country" value="PA"><img class="flag" src=""><span class="country-name">Panama</span></li>
-                                <li class="country" value="PG"><img class="flag" src=""><span class="country-name">Papua New Guinea</span></li>
-                                <li class="country" value="PY"><img class="flag" src=""><span class="country-name">Paraguay</span></li>
-                                <li class="country" value="PE"><img class="flag" src=""><span class="country-name">Peru</span></li>
-                                <li class="country" value="PH"><img class="flag" src=""><span class="country-name">Philippines</span></li>
-                                <li class="country" value="PN"><img class="flag" src=""><span class="country-name">Pitcairn</span></li>
-                                <li class="country" value="PL"><img class="flag" src=""><span class="country-name">Poland</span></li>
-                                <li class="country" value="PT"><img class="flag" src=""><span class="country-name">Portugal</span></li>
-                                <li class="country" value="PR"><img class="flag" src=""><span class="country-name">Puerto Rico</span></li>
-                                <li class="country" value="QA"><img class="flag" src=""><span class="country-name">Qatar</span></li>
-                                <li class="country" value="RE"><img class="flag" src=""><span class="country-name">Reunion</span></li>
-                                <li class="country" value="RO"><img class="flag" src=""><span class="country-name">Romania</span></li>
-                                <li class="country" value="RU"><img class="flag" src=""><span class="country-name">Russian Federation</span></li>
-                                <li class="country" value="RW"><img class="flag" src=""><span class="country-name">Rwanda</span></li>
-                                <li class="country" value="BL"><img class="flag" src=""><span class="country-name">Saint Barthelemy</span></li>
-                                <li class="country" value="SH"><img class="flag" src=""><span class="country-name">Saint Helena</span></li>
-                                <li class="country" value="KN"><img class="flag" src=""><span class="country-name">Saint Kitts and Nevis</span></li>
-                                <li class="country" value="LC"><img class="flag" src=""><span class="country-name">Saint Lucia</span></li>
-                                <li class="country" value="MF"><img class="flag" src=""><span class="country-name">Saint Martin</span></li>
-                                <li class="country" value="PM"><img class="flag" src=""><span class="country-name">Saint Pierre and Miquelon</span></li>
-                                <li class="country" value="VC"><img class="flag" src=""><span class="country-name">Saint Vincent and the Grenadines</span></li>
-                                <li class="country" value="WS"><img class="flag" src=""><span class="country-name">Samoa</span></li>
-                                <li class="country" value="SM"><img class="flag" src=""><span class="country-name">San Marino</span></li>
-                                <li class="country" value="ST"><img class="flag" src=""><span class="country-name">Sao Tome and Principe</span></li>
-                                <li class="country" value="SA"><img class="flag" src=""><span class="country-name">Saudi Arabia</span></li>
-                                <li class="country" value="SN"><img class="flag" src=""><span class="country-name">Senegal</span></li>
-                                <li class="country" value="RS"><img class="flag" src=""><span class="country-name">Serbia</span></li>
-                                <li class="country" value="CS"><img class="flag" src=""><span class="country-name">Serbia and Montenegro</span></li>
-                                <li class="country" value="SC"><img class="flag" src=""><span class="country-name">Seychelles</span></li>
-                                <li class="country" value="SL"><img class="flag" src=""><span class="country-name">Sierra Leone</span></li>
-                                <li class="country" value="SG"><img class="flag" src=""><span class="country-name">Singapore</span></li>
-                                <li class="country" value="SX"><img class="flag" src=""><span class="country-name">Sint Maarten</span></li>
-                                <li class="country" value="SK"><img class="flag" src=""><span class="country-name">Slovakia</span></li>
-                                <li class="country" value="SI"><img class="flag" src=""><span class="country-name">Slovenia</span></li>
-                                <li class="country" value="SB"><img class="flag" src=""><span class="country-name">Solomon Islands</span></li>
-                                <li class="country" value="SO"><img class="flag" src=""><span class="country-name">Somalia</span></li>
-                                <li class="country" value="ZA"><img class="flag" src=""><span class="country-name">South Africa</span></li>
-                                <li class="country" value="GS"><img class="flag" src=""><span class="country-name">South Georgia and the South Sandwich Islands</span></li>
-                                <li class="country" value="SS"><img class="flag" src=""><span class="country-name">South Sudan</span></li>
-                                <li class="country" value="ES"><img class="flag" src=""><span class="country-name">Spain</span></li>
-                                <li class="country" value="LK"><img class="flag" src=""><span class="country-name">Sri Lanka</span></li>
-                                <li class="country" value="SD"><img class="flag" src=""><span class="country-name">Sudan</span></li>
-                                <li class="country" value="SR"><img class="flag" src=""><span class="country-name">Suriname</span></li>
-                                <li class="country" value="SJ"><img class="flag" src=""><span class="country-name">Svalbard and Jan Mayen</span></li>
-                                <li class="country" value="SZ"><img class="flag" src=""><span class="country-name">Swaziland</span></li>
-                                <li class="country" value="SE"><img class="flag" src=""><span class="country-name">Sweden</span></li>
-                                <li class="country" value="CH"><img class="flag" src=""><span class="country-name">Switzerland</span></li>
-                                <li class="country" value="SY"><img class="flag" src=""><span class="country-name">Syrian Arab Republic</span></li>
-                                <li class="country" value="TW"><img class="flag" src=""><span class="country-name">Taiwan, Province of China</span></li>
-                                <li class="country" value="TJ"><img class="flag" src=""><span class="country-name">Tajikistan</span></li>
-                                <li class="country" value="TZ"><img class="flag" src=""><span class="country-name">Tanzania, United Republic of</span></li>
-                                <li class="country" value="TH"><img class="flag" src=""><span class="country-name">Thailand</span></li>
-                                <li class="country" value="TL"><img class="flag" src=""><span class="country-name">Timor-Leste</span></li>
-                                <li class="country" value="TG"><img class="flag" src=""><span class="country-name">Togo</span></li>
-                                <li class="country" value="TK"><img class="flag" src=""><span class="country-name">Tokelau</span></li>
-                                <li class="country" value="TO"><img class="flag" src=""><span class="country-name">Tonga</span></li>
-                                <li class="country" value="TT"><img class="flag" src=""><span class="country-name">Trinidad and Tobago</span></li>
-                                <li class="country" value="TN"><img class="flag" src=""><span class="country-name">Tunisia</span></li>
-                                <li class="country" value="TR"><img class="flag" src=""><span class="country-name">Turkey</span></li>
-                                <li class="country" value="TM"><img class="flag" src=""><span class="country-name">Turkmenistan</span></li>
-                                <li class="country" value="TC"><img class="flag" src=""><span class="country-name">Turks and Caicos Islands</span></li>
-                                <li class="country" value="TV"><img class="flag" src=""><span class="country-name">Tuvalu</span></li>
-                                <li class="country" value="UG"><img class="flag" src=""><span class="country-name">Uganda</span></li>
-                                <li class="country" value="UA"><img class="flag" src=""><span class="country-name">Ukraine</span></li>
-                                <li class="country" value="AE"><img class="flag" src=""><span class="country-name">United Arab Emirates</span></li>
-                                <li class="country" value="GB"><img class="flag" src=""><span class="country-name">United Kingdom</span></li>
-                                <li class="country" value="US"><img class="flag" src=""><span class="country-name">United States</span></li>
-                                <li class="country" value="UM"><img class="flag" src=""><span class="country-name">United States Minor Outlying Islands</span></li>
-                                <li class="country" value="UY"><img class="flag" src=""><span class="country-name">Uruguay</span></li>
-                                <li class="country" value="UZ"><img class="flag" src=""><span class="country-name">Uzbekistan</span></li>
-                                <li class="country" value="VU"><img class="flag" src=""><span class="country-name">Vanuatu</span></li>
-                                <li class="country" value="VE"><img class="flag" src=""><span class="country-name">Venezuela</span></li>
-                                <li class="country" value="VN"><img class="flag" src=""><span class="country-name">Viet Nam</span></li>
-                                <li class="country" value="VG"><img class="flag" src=""><span class="country-name">Virgin Islands, British</span></li>
-                                <li class="country" value="VI"><img class="flag" src=""><span class="country-name">Virgin Islands, U.s.</span></li>
-                                <li class="country" value="WF"><img class="flag" src=""><span class="country-name">Wallis and Futuna</span></li>
-                                <li class="country" value="EH"><img class="flag" src=""><span class="country-name">Western Sahara</span></li>
-                                <li class="country" value="YE"><img class="flag" src=""><span class="country-name">Yemen</span></li>
-                                <li class="country" value="ZM"><img class="flag" src=""><span class="country-name">Zambia</span></li>
-                                <li class="country" value="ZW"><img class="flag" src=""><span class="country-name">Zimbabwe</span></li>
+                                    <li class="country" value="AF"><img class="flag" src=""><span class="country-name">Afghanistan</span></li>
+                                    <li class="country" value="AX"><img class="flag" src=""><span class="country-name">Aland Islands</span></li>
+                                    <li class="country" value="AL"><img class="flag" src=""><span class="country-name">Albania</span></li>
+                                    <li class="country" value="DZ"><img class="flag" src=""><span class="country-name">Algeria</span></li>
+                                    <li class="country" value="AS"><img class="flag" src=""><span class="country-name">American Samoa</span></li>
+                                    <li class="country" value="AD"><img class="flag" src=""><span class="country-name">Andorra</span></li>
+                                    <li class="country" value="AO"><img class="flag" src=""><span class="country-name">Angola</span></li>
+                                    <li class="country" value="AI"><img class="flag" src=""><span class="country-name">Anguilla</span></li>
+                                    <li class="country" value="AQ"><img class="flag" src=""><span class="country-name">Antarctica</span></li>
+                                    <li class="country" value="AG"><img class="flag" src=""><span class="country-name">Antigua and Barbuda</span></li>
+                                    <li class="country" value="AR"><img class="flag" src=""><span class="country-name">Argentina</span></li>
+                                    <li class="country" value="AM"><img class="flag" src=""><span class="country-name">Armenia</span></li>
+                                    <li class="country" value="AW"><img class="flag" src=""><span class="country-name">Aruba</span></li>
+                                    <li class="country" value="AU"><img class="flag" src=""><span class="country-name">Australia</span></li>
+                                    <li class="country" value="AT"><img class="flag" src=""><span class="country-name">Austria</span></li>
+                                    <li class="country" value="AZ"><img class="flag" src=""><span class="country-name">Azerbaijan</span></li>
+                                    <li class="country" value="BS"><img class="flag" src=""><span class="country-name">Bahamas</span></li>
+                                    <li class="country" value="BH"><img class="flag" src=""><span class="country-name">Bahrain</span></li>
+                                    <li class="country" value="BD"><img class="flag" src=""><span class="country-name">Bangladesh</span></li>
+                                    <li class="country" value="BB"><img class="flag" src=""><span class="country-name">Barbados</span></li>
+                                    <li class="country" value="BY"><img class="flag" src=""><span class="country-name">Belarus</span></li>
+                                    <li class="country" value="BE"><img class="flag" src=""><span class="country-name">Belgium</span></li>
+                                    <li class="country" value="BZ"><img class="flag" src=""><span class="country-name">Belize</span></li>
+                                    <li class="country" value="BJ"><img class="flag" src=""><span class="country-name">Benin</span></li>
+                                    <li class="country" value="BM"><img class="flag" src=""><span class="country-name">Bermuda</span></li>
+                                    <li class="country" value="BT"><img class="flag" src=""><span class="country-name">Bhutan</span></li>
+                                    <li class="country" value="BO"><img class="flag" src=""><span class="country-name">Bolivia</span></li>
+                                    <li class="country" value="BQ"><img class="flag" src=""><span class="country-name">Bonaire, Sint Eustatius and Saba</span></li>
+                                    <li class="country" value="BA"><img class="flag" src=""><span class="country-name">Bosnia and Herzegovina</span></li>
+                                    <li class="country" value="BW"><img class="flag" src=""><span class="country-name">Botswana</span></li>
+                                    <li class="country" value="BV"><img class="flag" src=""><span class="country-name">Bouvet Island</span></li>
+                                    <li class="country" value="BR"><img class="flag" src=""><span class="country-name">Brazil</span></li>
+                                    <li class="country" value="IO"><img class="flag" src=""><span class="country-name">British Indian Ocean Territory</span></li>
+                                    <li class="country" value="BN"><img class="flag" src=""><span class="country-name">Brunei Darussalam</span></li>
+                                    <li class="country" value="BG"><img class="flag" src=""><span class="country-name">Bulgaria</span></li>
+                                    <li class="country" value="BF"><img class="flag" src=""><span class="country-name">Burkina Faso</span></li>
+                                    <li class="country" value="BI"><img class="flag" src=""><span class="country-name">Burundi</span></li>
+                                    <li class="country" value="KH"><img class="flag" src=""><span class="country-name">Cambodia</span></li>
+                                    <li class="country" value="CM"><img class="flag" src=""><span class="country-name">Cameroon</span></li>
+                                    <li class="country" value="CA"><img class="flag" src=""><span class="country-name">Canada</span></li>
+                                    <li class="country" value="CV"><img class="flag" src=""><span class="country-name">Cape Verde</span></li>
+                                    <li class="country" value="KY"><img class="flag" src=""><span class="country-name">Cayman Islands</span></li>
+                                    <li class="country" value="CF"><img class="flag" src=""><span class="country-name">Central African Republic</span></li>
+                                    <li class="country" value="TD"><img class="flag" src=""><span class="country-name">Chad</span></li>
+                                    <li class="country" value="CL"><img class="flag" src=""><span class="country-name">Chile</span></li>
+                                    <li class="country" value="CN"><img class="flag" src=""><span class="country-name">China</span></li>
+                                    <li class="country" value="CX"><img class="flag" src=""><span class="country-name">Christmas Island</span></li>
+                                    <li class="country" value="CC"><img class="flag" src=""><span class="country-name">Cocos (Keeling) Islands</span></li>
+                                    <li class="country" value="CO"><img class="flag" src=""><span class="country-name">Colombia</span></li>
+                                    <li class="country" value="KM"><img class="flag" src=""><span class="country-name">Comoros</span></li>
+                                    <li class="country" value="CG"><img class="flag" src=""><span class="country-name">Congo</span></li>
+                                    <li class="country" value="CD"><img class="flag" src=""><span class="country-name">Congo, Democratic Republic of the Congo</span></li>
+                                    <li class="country" value="CK"><img class="flag" src=""><span class="country-name">Cook Islands</span></li>
+                                    <li class="country" value="CR"><img class="flag" src=""><span class="country-name">Costa Rica</span></li>
+                                    <li class="country" value="CI"><img class="flag" src=""><span class="country-name">Cote D'Ivoire</span></li>
+                                    <li class="country" value="HR"><img class="flag" src=""><span class="country-name">Croatia</span></li>
+                                    <li class="country" value="CU"><img class="flag" src=""><span class="country-name">Cuba</span></li>
+                                    <li class="country" value="CW"><img class="flag" src=""><span class="country-name">Curacao</span></li>
+                                    <li class="country" value="CY"><img class="flag" src=""><span class="country-name">Cyprus</span></li>
+                                    <li class="country" value="CZ"><img class="flag" src=""><span class="country-name">Czech Republic</span></li>
+                                    <li class="country" value="DK"><img class="flag" src=""><span class="country-name">Denmark</span></li>
+                                    <li class="country" value="DJ"><img class="flag" src=""><span class="country-name">Djibouti</span></li>
+                                    <li class="country" value="DM"><img class="flag" src=""><span class="country-name">Dominica</span></li>
+                                    <li class="country" value="DO"><img class="flag" src=""><span class="country-name">Dominican Republic</span></li>
+                                    <li class="country" value="EC"><img class="flag" src=""><span class="country-name">Ecuador</span></li>
+                                    <li class="country" value="EG"><img class="flag" src=""><span class="country-name">Egypt</span></li>
+                                    <li class="country" value="SV"><img class="flag" src=""><span class="country-name">El Salvador</span></li>
+                                    <li class="country" value="GQ"><img class="flag" src=""><span class="country-name">Equatorial Guinea</span></li>
+                                    <li class="country" value="ER"><img class="flag" src=""><span class="country-name">Eritrea</span></li>
+                                    <li class="country" value="EE"><img class="flag" src=""><span class="country-name">Estonia</span></li>
+                                    <li class="country" value="ET"><img class="flag" src=""><span class="country-name">Ethiopia</span></li>
+                                    <li class="country" value="FK"><img class="flag" src=""><span class="country-name">Falkland Islands (Malvinas)</span></li>
+                                    <li class="country" value="FO"><img class="flag" src=""><span class="country-name">Faroe Islands</span></li>
+                                    <li class="country" value="FJ"><img class="flag" src=""><span class="country-name">Fiji</span></li>
+                                    <li class="country" value="FI"><img class="flag" src=""><span class="country-name">Finland</span></li>
+                                    <li class="country" value="FR"><img class="flag" src=""><span class="country-name">France</span></li>
+                                    <li class="country" value="GF"><img class="flag" src=""><span class="country-name">French Guiana</span></li>
+                                    <li class="country" value="PF"><img class="flag" src=""><span class="country-name">French Polynesia</span></li>
+                                    <li class="country" value="TF"><img class="flag" src=""><span class="country-name">French Southern Territories</span></li>
+                                    <li class="country" value="GA"><img class="flag" src=""><span class="country-name">Gabon</span></li>
+                                    <li class="country" value="GM"><img class="flag" src=""><span class="country-name">Gambia</span></li>
+                                    <li class="country" value="GE"><img class="flag" src=""><span class="country-name">Georgia</span></li>
+                                    <li class="country" value="DE"><img class="flag" src=""><span class="country-name">Germany</span></li>
+                                    <li class="country" value="GH"><img class="flag" src=""><span class="country-name">Ghana</span></li>
+                                    <li class="country" value="GI"><img class="flag" src=""><span class="country-name">Gibraltar</span></li>
+                                    <li class="country" value="GR"><img class="flag" src=""><span class="country-name">Greece</span></li>
+                                    <li class="country" value="GL"><img class="flag" src=""><span class="country-name">Greenland</span></li>
+                                    <li class="country" value="GD"><img class="flag" src=""><span class="country-name">Grenada</span></li>
+                                    <li class="country" value="GP"><img class="flag" src=""><span class="country-name">Guadeloupe</span></li>
+                                    <li class="country" value="GU"><img class="flag" src=""><span class="country-name">Guam</span></li>
+                                    <li class="country" value="GT"><img class="flag" src=""><span class="country-name">Guatemala</span></li>
+                                    <li class="country" value="GG"><img class="flag" src=""><span class="country-name">Guernsey</span></li>
+                                    <li class="country" value="GN"><img class="flag" src=""><span class="country-name">Guinea</span></li>
+                                    <li class="country" value="GW"><img class="flag" src=""><span class="country-name">Guinea-Bissau</span></li>
+                                    <li class="country" value="GY"><img class="flag" src=""><span class="country-name">Guyana</span></li>
+                                    <li class="country" value="HT"><img class="flag" src=""><span class="country-name">Haiti</span></li>
+                                    <li class="country" value="HM"><img class="flag" src=""><span class="country-name">Heard Island and Mcdonald Islands</span></li>
+                                    <li class="country" value="VA"><img class="flag" src=""><span class="country-name">Holy See (Vatican City State)</span></li>
+                                    <li class="country" value="HN"><img class="flag" src=""><span class="country-name">Honduras</span></li>
+                                    <li class="country" value="HK"><img class="flag" src=""><span class="country-name">Hong Kong</span></li>
+                                    <li class="country" value="HU"><img class="flag" src=""><span class="country-name">Hungary</span></li>
+                                    <li class="country" value="IS"><img class="flag" src=""><span class="country-name">Iceland</span></li>
+                                    <li class="country" value="IN"><img class="flag" src=""><span class="country-name">India</span></li>
+                                    <li class="country" value="ID"><img class="flag" src=""><span class="country-name">Indonesia</span></li>
+                                    <li class="country" value="IR"><img class="flag" src=""><span class="country-name">Islamic Republic of Iran</span></li>
+                                    <li class="country" value="IQ"><img class="flag" src=""><span class="country-name">Iraq</span></li>
+                                    <li class="country" value="IE"><img class="flag" src=""><span class="country-name">Ireland</span></li>
+                                    <li class="country" value="IM"><img class="flag" src=""><span class="country-name">Isle of Man</span></li>
+                                    <li class="country" value="IL"><img class="flag" src=""><span class="country-name">Israel</span></li>
+                                    <li class="country" value="IT"><img class="flag" src=""><span class="country-name">Italy</span></li>
+                                    <li class="country" value="JM"><img class="flag" src=""><span class="country-name">Jamaica</span></li>
+                                    <li class="country" value="JP"><img class="flag" src=""><span class="country-name">Japan</span></li>
+                                    <li class="country" value="JE"><img class="flag" src=""><span class="country-name">Jersey</span></li>
+                                    <li class="country" value="JO"><img class="flag" src=""><span class="country-name">Jordan</span></li>
+                                    <li class="country" value="KZ"><img class="flag" src=""><span class="country-name">Kazakhstan</span></li>
+                                    <li class="country" value="KE"><img class="flag" src=""><span class="country-name">Kenya</span></li>
+                                    <li class="country" value="KI"><img class="flag" src=""><span class="country-name">Kiribati</span></li>
+                                    <li class="country" value="KP"><img class="flag" src=""><span class="country-name">Korea, Democratic People's Republic of</span></li>
+                                    <li class="country" value="KR"><img class="flag" src=""><span class="country-name">Korea, Republic of</span></li>
+                                    <li class="country" value="XK"><img class="flag" src=""><span class="country-name">Kosovo</span></li>
+                                    <li class="country" value="KW"><img class="flag" src=""><span class="country-name">Kuwait</span></li>
+                                    <li class="country" value="KG"><img class="flag" src=""><span class="country-name">Kyrgyzstan</span></li>
+                                    <li class="country" value="LA"><img class="flag" src=""><span class="country-name">Lao People's Democratic Republic</span></li>
+                                    <li class="country" value="LV"><img class="flag" src=""><span class="country-name">Latvia</span></li>
+                                    <li class="country" value="LB"><img class="flag" src=""><span class="country-name">Lebanon</span></li>
+                                    <li class="country" value="LS"><img class="flag" src=""><span class="country-name">Lesotho</span></li>
+                                    <li class="country" value="LR"><img class="flag" src=""><span class="country-name">Liberia</span></li>
+                                    <li class="country" value="LY"><img class="flag" src=""><span class="country-name">Libyan Arab Jamahiriya</span></li>
+                                    <li class="country" value="LI"><img class="flag" src=""><span class="country-name">Liechtenstein</span></li>
+                                    <li class="country" value="LT"><img class="flag" src=""><span class="country-name">Lithuania</span></li>
+                                    <li class="country" value="LU"><img class="flag" src=""><span class="country-name">Luxembourg</span></li>
+                                    <li class="country" value="MO"><img class="flag" src=""><span class="country-name">Macao</span></li>
+                                    <li class="country" value="MK"><img class="flag" src=""><span class="country-name">Macedonia, the Former Yugoslav Republic of</span></li>
+                                    <li class="country" value="MG"><img class="flag" src=""><span class="country-name">Madagascar</span></li>
+                                    <li class="country" value="MW"><img class="flag" src=""><span class="country-name">Malawi</span></li>
+                                    <li class="country" value="MY"><img class="flag" src=""><span class="country-name">Malaysia</span></li>
+                                    <li class="country" value="MV"><img class="flag" src=""><span class="country-name">Maldives</span></li>
+                                    <li class="country" value="ML"><img class="flag" src=""><span class="country-name">Mali</span></li>
+                                    <li class="country" value="MT"><img class="flag" src=""><span class="country-name">Malta</span></li>
+                                    <li class="country" value="MH"><img class="flag" src=""><span class="country-name">Marshall Islands</span></li>
+                                    <li class="country" value="MQ"><img class="flag" src=""><span class="country-name">Martinique</span></li>
+                                    <li class="country" value="MR"><img class="flag" src=""><span class="country-name">Mauritania</span></li>
+                                    <li class="country" value="MU"><img class="flag" src=""><span class="country-name">Mauritius</span></li>
+                                    <li class="country" value="YT"><img class="flag" src=""><span class="country-name">Mayotte</span></li>
+                                    <li class="country" value="MX"><img class="flag" src=""><span class="country-name">Mexico</span></li>
+                                    <li class="country" value="FM"><img class="flag" src=""><span class="country-name">Micronesia, Federated States of</span></li>
+                                    <li class="country" value="MD"><img class="flag" src=""><span class="country-name">Moldova, Republic of</span></li>
+                                    <li class="country" value="MC"><img class="flag" src=""><span class="country-name">Monaco</span></li>
+                                    <li class="country" value="MN"><img class="flag" src=""><span class="country-name">Mongolia</span></li>
+                                    <li class="country" value="ME"><img class="flag" src=""><span class="country-name">Montenegro</span></li>
+                                    <li class="country" value="MS"><img class="flag" src=""><span class="country-name">Montserrat</span></li>
+                                    <li class="country" value="MA"><img class="flag" src=""><span class="country-name">Morocco</span></li>
+                                    <li class="country" value="MZ"><img class="flag" src=""><span class="country-name">Mozambique</span></li>
+                                    <li class="country" value="MM"><img class="flag" src=""><span class="country-name">Myanmar</span></li>
+                                    <li class="country" value="NA"><img class="flag" src=""><span class="country-name">Namibia</span></li>
+                                    <li class="country" value="NR"><img class="flag" src=""><span class="country-name">Nauru</span></li>
+                                    <li class="country" value="NP"><img class="flag" src=""><span class="country-name">Nepal</span></li>
+                                    <li class="country" value="NL"><img class="flag" src=""><span class="country-name">Netherlands</span></li>
+                                    <li class="country" value="AN"><img class="flag" src=""><span class="country-name">Netherlands Antilles</span></li>
+                                    <li class="country" value="NC"><img class="flag" src=""><span class="country-name">New Caledonia</span></li>
+                                    <li class="country" value="NZ"><img class="flag" src=""><span class="country-name">New Zealand</span></li>
+                                    <li class="country" value="NI"><img class="flag" src=""><span class="country-name">Nicaragua</span></li>
+                                    <li class="country" value="NE"><img class="flag" src=""><span class="country-name">Niger</span></li>
+                                    <li class="country" value="NG"><img class="flag" src=""><span class="country-name">Nigeria</span></li>
+                                    <li class="country" value="NU"><img class="flag" src=""><span class="country-name">Niue</span></li>
+                                    <li class="country" value="NF"><img class="flag" src=""><span class="country-name">Norfolk Island</span></li>
+                                    <li class="country" value="MP"><img class="flag" src=""><span class="country-name">Northern Mariana Islands</span></li>
+                                    <li class="country" value="NO"><img class="flag" src=""><span class="country-name">Norway</span></li>
+                                    <li class="country" value="OM"><img class="flag" src=""><span class="country-name">Oman</span></li>
+                                    <li class="country" value="PK"><img class="flag" src=""><span class="country-name">Pakistan</span></li>
+                                    <li class="country" value="PW"><img class="flag" src=""><span class="country-name">Palau</span></li>
+                                    <li class="country" value="PS"><img class="flag" src=""><span class="country-name">Palestinian Territory, Occupied</span></li>
+                                    <li class="country" value="PA"><img class="flag" src=""><span class="country-name">Panama</span></li>
+                                    <li class="country" value="PG"><img class="flag" src=""><span class="country-name">Papua New Guinea</span></li>
+                                    <li class="country" value="PY"><img class="flag" src=""><span class="country-name">Paraguay</span></li>
+                                    <li class="country" value="PE"><img class="flag" src=""><span class="country-name">Peru</span></li>
+                                    <li class="country" value="PH"><img class="flag" src=""><span class="country-name">Philippines</span></li>
+                                    <li class="country" value="PN"><img class="flag" src=""><span class="country-name">Pitcairn</span></li>
+                                    <li class="country" value="PL"><img class="flag" src=""><span class="country-name">Poland</span></li>
+                                    <li class="country" value="PT"><img class="flag" src=""><span class="country-name">Portugal</span></li>
+                                    <li class="country" value="PR"><img class="flag" src=""><span class="country-name">Puerto Rico</span></li>
+                                    <li class="country" value="QA"><img class="flag" src=""><span class="country-name">Qatar</span></li>
+                                    <li class="country" value="RE"><img class="flag" src=""><span class="country-name">Reunion</span></li>
+                                    <li class="country" value="RO"><img class="flag" src=""><span class="country-name">Romania</span></li>
+                                    <li class="country" value="RU"><img class="flag" src=""><span class="country-name">Russian Federation</span></li>
+                                    <li class="country" value="RW"><img class="flag" src=""><span class="country-name">Rwanda</span></li>
+                                    <li class="country" value="BL"><img class="flag" src=""><span class="country-name">Saint Barthelemy</span></li>
+                                    <li class="country" value="SH"><img class="flag" src=""><span class="country-name">Saint Helena</span></li>
+                                    <li class="country" value="KN"><img class="flag" src=""><span class="country-name">Saint Kitts and Nevis</span></li>
+                                    <li class="country" value="LC"><img class="flag" src=""><span class="country-name">Saint Lucia</span></li>
+                                    <li class="country" value="MF"><img class="flag" src=""><span class="country-name">Saint Martin</span></li>
+                                    <li class="country" value="PM"><img class="flag" src=""><span class="country-name">Saint Pierre and Miquelon</span></li>
+                                    <li class="country" value="VC"><img class="flag" src=""><span class="country-name">Saint Vincent and the Grenadines</span></li>
+                                    <li class="country" value="WS"><img class="flag" src=""><span class="country-name">Samoa</span></li>
+                                    <li class="country" value="SM"><img class="flag" src=""><span class="country-name">San Marino</span></li>
+                                    <li class="country" value="ST"><img class="flag" src=""><span class="country-name">Sao Tome and Principe</span></li>
+                                    <li class="country" value="SA"><img class="flag" src=""><span class="country-name">Saudi Arabia</span></li>
+                                    <li class="country" value="SN"><img class="flag" src=""><span class="country-name">Senegal</span></li>
+                                    <li class="country" value="RS"><img class="flag" src=""><span class="country-name">Serbia</span></li>
+                                    <li class="country" value="CS"><img class="flag" src=""><span class="country-name">Serbia and Montenegro</span></li>
+                                    <li class="country" value="SC"><img class="flag" src=""><span class="country-name">Seychelles</span></li>
+                                    <li class="country" value="SL"><img class="flag" src=""><span class="country-name">Sierra Leone</span></li>
+                                    <li class="country" value="SG"><img class="flag" src=""><span class="country-name">Singapore</span></li>
+                                    <li class="country" value="SX"><img class="flag" src=""><span class="country-name">Sint Maarten</span></li>
+                                    <li class="country" value="SK"><img class="flag" src=""><span class="country-name">Slovakia</span></li>
+                                    <li class="country" value="SI"><img class="flag" src=""><span class="country-name">Slovenia</span></li>
+                                    <li class="country" value="SB"><img class="flag" src=""><span class="country-name">Solomon Islands</span></li>
+                                    <li class="country" value="SO"><img class="flag" src=""><span class="country-name">Somalia</span></li>
+                                    <li class="country" value="ZA"><img class="flag" src=""><span class="country-name">South Africa</span></li>
+                                    <li class="country" value="GS"><img class="flag" src=""><span class="country-name">South Georgia and the South Sandwich Islands</span></li>
+                                    <li class="country" value="SS"><img class="flag" src=""><span class="country-name">South Sudan</span></li>
+                                    <li class="country" value="ES"><img class="flag" src=""><span class="country-name">Spain</span></li>
+                                    <li class="country" value="LK"><img class="flag" src=""><span class="country-name">Sri Lanka</span></li>
+                                    <li class="country" value="SD"><img class="flag" src=""><span class="country-name">Sudan</span></li>
+                                    <li class="country" value="SR"><img class="flag" src=""><span class="country-name">Suriname</span></li>
+                                    <li class="country" value="SJ"><img class="flag" src=""><span class="country-name">Svalbard and Jan Mayen</span></li>
+                                    <li class="country" value="SZ"><img class="flag" src=""><span class="country-name">Swaziland</span></li>
+                                    <li class="country" value="SE"><img class="flag" src=""><span class="country-name">Sweden</span></li>
+                                    <li class="country" value="CH"><img class="flag" src=""><span class="country-name">Switzerland</span></li>
+                                    <li class="country" value="SY"><img class="flag" src=""><span class="country-name">Syrian Arab Republic</span></li>
+                                    <li class="country" value="TW"><img class="flag" src=""><span class="country-name">Taiwan, Province of China</span></li>
+                                    <li class="country" value="TJ"><img class="flag" src=""><span class="country-name">Tajikistan</span></li>
+                                    <li class="country" value="TZ"><img class="flag" src=""><span class="country-name">Tanzania, United Republic of</span></li>
+                                    <li class="country" value="TH"><img class="flag" src=""><span class="country-name">Thailand</span></li>
+                                    <li class="country" value="TL"><img class="flag" src=""><span class="country-name">Timor-Leste</span></li>
+                                    <li class="country" value="TG"><img class="flag" src=""><span class="country-name">Togo</span></li>
+                                    <li class="country" value="TK"><img class="flag" src=""><span class="country-name">Tokelau</span></li>
+                                    <li class="country" value="TO"><img class="flag" src=""><span class="country-name">Tonga</span></li>
+                                    <li class="country" value="TT"><img class="flag" src=""><span class="country-name">Trinidad and Tobago</span></li>
+                                    <li class="country" value="TN"><img class="flag" src=""><span class="country-name">Tunisia</span></li>
+                                    <li class="country" value="TR"><img class="flag" src=""><span class="country-name">Turkey</span></li>
+                                    <li class="country" value="TM"><img class="flag" src=""><span class="country-name">Turkmenistan</span></li>
+                                    <li class="country" value="TC"><img class="flag" src=""><span class="country-name">Turks and Caicos Islands</span></li>
+                                    <li class="country" value="TV"><img class="flag" src=""><span class="country-name">Tuvalu</span></li>
+                                    <li class="country" value="UG"><img class="flag" src=""><span class="country-name">Uganda</span></li>
+                                    <li class="country" value="UA"><img class="flag" src=""><span class="country-name">Ukraine</span></li>
+                                    <li class="country" value="AE"><img class="flag" src=""><span class="country-name">United Arab Emirates</span></li>
+                                    <li class="country" value="GB"><img class="flag" src=""><span class="country-name">United Kingdom</span></li>
+                                    <li class="country" value="US"><img class="flag" src=""><span class="country-name">United States</span></li>
+                                    <li class="country" value="UM"><img class="flag" src=""><span class="country-name">United States Minor Outlying Islands</span></li>
+                                    <li class="country" value="UY"><img class="flag" src=""><span class="country-name">Uruguay</span></li>
+                                    <li class="country" value="UZ"><img class="flag" src=""><span class="country-name">Uzbekistan</span></li>
+                                    <li class="country" value="VU"><img class="flag" src=""><span class="country-name">Vanuatu</span></li>
+                                    <li class="country" value="VE"><img class="flag" src=""><span class="country-name">Venezuela</span></li>
+                                    <li class="country" value="VN"><img class="flag" src=""><span class="country-name">Viet Nam</span></li>
+                                    <li class="country" value="VG"><img class="flag" src=""><span class="country-name">Virgin Islands, British</span></li>
+                                    <li class="country" value="VI"><img class="flag" src=""><span class="country-name">Virgin Islands, U.s.</span></li>
+                                    <li class="country" value="WF"><img class="flag" src=""><span class="country-name">Wallis and Futuna</span></li>
+                                    <li class="country" value="EH"><img class="flag" src=""><span class="country-name">Western Sahara</span></li>
+                                    <li class="country" value="YE"><img class="flag" src=""><span class="country-name">Yemen</span></li>
+                                    <li class="country" value="ZM"><img class="flag" src=""><span class="country-name">Zambia</span></li>
+                                    <li class="country" value="ZW"><img class="flag" src=""><span class="country-name">Zimbabwe</span></li>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section Divider  -->
-                <div class="profile-line"></div>
-
                 <!-- Bottom Section -->
                 <div class="profile-bottom">
-                    <button action="/change-password" class="change-password">CHANGE PASSWORD</button>
+                    <div class="change-password">CHANGE PASSWORD</div>
                     <div class="profile-close-button">CANCEL</div>
                 </div>
 
@@ -401,28 +409,31 @@
         </div>
         <div class="modal-backdrop"></div>
 
-        <main>
+        <main id="grid-container">
             <!-- Navigation Rail -->
-            <section class="navigation-rail">
-                <div class="nav-switch">
-                    <div class="arrow-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>
+            <nav id="navigation-rail">
+                <div class="nav-header">
+                    <div class="page-title">
+                        <p class="title">PROJECTS</p>
+                    </div>
+                    <div class="nav-switch">
+                        <div class="arrow-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/></svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="aside">
                     <div class="nav-child">
                         <button class="show-modal-button">
-                        <svg class="pencil-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z"/></svg>
-                        <div class="label-container">
-                            <label>CREATE</label>
-                        </div>
-                    </button>
-
+                            <svg class="pencil-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z"/></svg>
+                            <div class="label-container">
+                                <label class="icon-label">CREATE</label>
+                            </div>
+                        </button>
                     </div>
 
                     <div class="nav-child">
-
                         <button class="nav-button">
                             <div class="aside-icon-container">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="cube"><rect width="24" height="24" opacity="0"/><path d="M20.66 7.26c0-.07-.1-.14-.15-.21l-.09-.1a2.5 2.5 0 0 0-.86-.68l-6.4-3a2.7 2.7 0 0 0-2.26 0l-6.4 3a2.6 2.6 0 0 0-.86.68L3.52 7a1 1 0 0 0-.15.2A2.39 2.39 0 0 0 3 8.46v7.06a2.49 2.49 0 0 0 1.46 2.26l6.4 3a2.7 2.7 0 0 0 2.27 0l6.4-3A2.49 2.49 0 0 0 21 15.54V8.46a2.39 2.39 0 0 0-.34-1.2zm-8.95-2.2a.73.73 0 0 1 .58 0l5.33 2.48L12 10.15 6.38 7.54zM5.3 16a.47.47 0 0 1-.3-.43V9.1l6 2.79v6.72zm13.39 0L13 18.61v-6.72l6-2.79v6.44a.48.48 0 0 1-.31.46z"/></g></g></svg>
@@ -441,41 +452,45 @@
                             </div>
                         </button>
                     </div>
+
                 </div>
-            </section>
+            </nav>
 
             <!-- Top Bar -->
-            <section class="top-bar">
-                <p class="title">PROJECTS</p>
-                <div class="search-field">
-                    <input type="search" name="search" id="input-search">
-                    <div class="search-icon-container">
-                        <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+            <section id="top-bar">
+
+                <div class="tools">
+                    <div class="search-field">
+                        <input type="search" name="search" id="input-search" placeholder="search querry">
+                        <div class="search-icon-container">
+                            <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                        </div>
                     </div>
-                </div>
-                <div id="filter">
-                    <label class="filter-label" for="filter">Filters</label>
-                    <svg id="filter-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="208 96 128 176 48 96"/></svg>
+                    <div id="filter">
+                        <label class="filter-label" for="filter">Filters</label>
+                        <svg id="filter-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="208 96 128 176 48 96"/></svg>
+                    </div>
                 </div>
             </section>
 
             <!-- Main Content -->
             <section id="main-content"></section>
 
-            <!-- Side Content -->
-            <div id="side-content">
-                <section id="top-side-content">
-                    <svg id="notification-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" fill-rule="evenodd" stroke="#200E32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M.00082545485 11.7871203L.00082545485 11.568135C.0329512746 10.9202451.240598836 10.2924906.602355621 9.74960514 1.20450201 9.09746185 1.61670318 8.29830554 1.79571385 7.43597814 1.79571385 6.76950123 1.79571385 6.09350321 1.85392645 5.4270263 2.15469153 2.21841601 5.32727806 3.37507799e-14 8.46105618 3.37507799e-14L8.53867298 3.37507799e-14C11.6724511 3.37507799e-14 14.8450376 2.21841601 15.1555048 5.4270263 15.2137174 6.09350321 15.1555048 6.76950123 15.2040153 7.43597814 15.3854338 8.30030508 15.7972211 9.10194449 16.3973735 9.75912624 16.7618363 10.2972046 16.9698126 10.9226612 16.9989037 11.568135L16.9989037 11.7775992C17.0205591 12.6480449 16.720769 13.4968208 16.1548211 14.167395 15.4069586 14.9514753 14.392113 15.4392693 13.3024038 15.5384332 10.1069938 15.8812057 6.8830333 15.8812057 3.68762325 15.5384332 2.59914366 15.4349924 1.58575794 14.9479001.835206008 14.167395.278 13.496309-.0177593319 12.6525831.00082545485 11.7871203zM6.05493552 18.8517756C6.55421005 19.478449 7.28739599 19.8840184 8.09222803 19.978725 8.89706007 20.0734316 9.70716835 19.8494655 10.3432635 19.3563938 10.5389031 19.2105605 10.7149406 19.0410062 10.8671768 18.8517756" transform="translate(3.5 2)"/></svg>
-                    <div class="profile">
-                        <div id="profile-picture-main"></div>
-                        <button class="profile-dropdown-button"><svg id="profile-arrow-icon" class="profile-arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="208 96 128 176 48 96"/></svg></button>
-                        <div id="profile-dropdown" class="profile-dropdown">
-                            <button class="profile-dropdown-link">LOGOUT</button>
-                        </div>
+            <!-- Top Side Content -->
+            <section id="top-side-content">
+                <svg id="notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" fill-rule="evenodd" stroke="#200E32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M.00082545485 11.7871203L.00082545485 11.568135C.0329512746 10.9202451.240598836 10.2924906.602355621 9.74960514 1.20450201 9.09746185 1.61670318 8.29830554 1.79571385 7.43597814 1.79571385 6.76950123 1.79571385 6.09350321 1.85392645 5.4270263 2.15469153 2.21841601 5.32727806 3.37507799e-14 8.46105618 3.37507799e-14L8.53867298 3.37507799e-14C11.6724511 3.37507799e-14 14.8450376 2.21841601 15.1555048 5.4270263 15.2137174 6.09350321 15.1555048 6.76950123 15.2040153 7.43597814 15.3854338 8.30030508 15.7972211 9.10194449 16.3973735 9.75912624 16.7618363 10.2972046 16.9698126 10.9226612 16.9989037 11.568135L16.9989037 11.7775992C17.0205591 12.6480449 16.720769 13.4968208 16.1548211 14.167395 15.4069586 14.9514753 14.392113 15.4392693 13.3024038 15.5384332 10.1069938 15.8812057 6.8830333 15.8812057 3.68762325 15.5384332 2.59914366 15.4349924 1.58575794 14.9479001.835206008 14.167395.278 13.496309-.0177593319 12.6525831.00082545485 11.7871203zM6.05493552 18.8517756C6.55421005 19.478449 7.28739599 19.8840184 8.09222803 19.978725 8.89706007 20.0734316 9.70716835 19.8494655 10.3432635 19.3563938 10.5389031 19.2105605 10.7149406 19.0410062 10.8671768 18.8517756" transform="translate(3.5 2)"/></svg>
+                <div class="profile">
+                    <!-- <a href="/profile" id="profile-picture-main"></a> -->
+                    <div id="profile-picture-main"></div>
+                    <button class="profile-dropdown-button"><svg id="profile-arrow-icon" class="profile-arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" points="208 96 128 176 48 96"/></svg></button>
+                    <div id="profile-dropdown" class="profile-dropdown">
+                        <a href="/logout" class="profile-dropdown-link">LOGOUT</a>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
 
+            <!-- Side Content -->
+            <section id="side-content"></section>
         </main>
     </div>
 </body>
