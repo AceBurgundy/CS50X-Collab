@@ -16,7 +16,7 @@ invalid = ["where","select","update","delete",".schema","from","drop","query"]
 @login_required
 def index():
     """Show all user projects"""
-
+    
     # projects = User.query.all(projects)
 
     return render_template("index.html") #, projects=projects)
