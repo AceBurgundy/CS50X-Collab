@@ -79,6 +79,12 @@ profile.addEventListener('click', () => {
     profileSection.classList.toggle("active")
 })
 
+background.addEventListener('click', () => {
+    background.style.opacity = "0"
+    background.style.visibility = "hidden"
+    profileSection.classList.remove("active")
+    projectModal.classList.remove("active")
+})
 
 profileXButton.addEventListener('click', () => {
     background.style.opacity = "0"
