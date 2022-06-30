@@ -146,10 +146,40 @@ def register():
     else:
         return render_template("users.html")
 
-# @app.route("/profile", methods=["GET", "POST"])
-# @login_required
-# def profile():
+def save_picture(form_picture):
+    random_value = secrets.token_hex(8)
+    # fileName = "_"
+    _, fileExtension = os.path.splitext(form_picture.filename)
+    profilePictureFileName = random_value + fileExtension
+    picture_path = os.path.join(app.root_path, 'static/profile_pictures', profilePictureFileName)
+
+    outputSize = (125,125)
     
+    i = Image.open(form_picture)
+    i.thumbnail(outputSize)
+    i.save(picture_path)
+        
+    return profilePictureFileName
+
+@app.route("/profile", methods=["POST"])
+@login_required
+def profile():
+        
+        form = profileForm()
+        if request.method == "POST":
+            
+            if form.profilePicture.data:  
+                current_user.profile_picture = save_picture(form.profilePicture.data)    
+        
+            current_user.username = form.username.data
+            current_user.first_name = form.first_name.data
+            current_user.last_name = form.last_name.data
+            current_user.skills = form.skills.data
+            current_user.address = form.address.data            
+            current_user.banner = form.banner.data
+            current_user.country = form.country.data
+            current_user.phone = form.phone.data
+                
     # if request.method == "POST":
     #     #do
     # else
