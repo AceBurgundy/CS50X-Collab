@@ -31,3 +31,12 @@ class profileForm(FlaskForm):
 class changePassword(FlaskForm):
     password = PasswordField('Enter old Password', validators=[InputRequired()])
     newPassword = PasswordField('Enter new Password', validators=[InputRequired()])
+    
+class newProject(FlaskForm):
+    title = StringField(u'Add project title',InputRequired('Project name shouldnt be empty'), validators=[Length(max=50)])
+    
+    status = StringField(InputRequired(), default='pending', validators=[Length(max=10)])
+    
+    content = StringField(u'Add the description for you project', InputRequired('Missing description'))
+    
+    deadline = DateField(InputRequired())
