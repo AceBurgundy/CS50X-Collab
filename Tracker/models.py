@@ -26,15 +26,15 @@ class User(db.Model, UserMixin):
         
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
+    first_name = db.Column(db.String(60))
+    last_name = db.Column(db.String(60))
     skills = db.Column(db.String(200))
-    banner = db.Column(db.String(100))
+    banner = db.Column(db.String(200))
     email = db.Column(db.String(120), unique=True, nullable=False)
     country = db.Column(db.String(60))
     address = db.Column(db.String(300))
     phone = db.Column(db.String(15))
-    profile_picture = db.Column(db.String(20), nullable=False, default='default.jpg')
+    profile_picture = db.Column(db.String(100), nullable=False, default='default.jpg')
     password = db.Column(db.String(200), nullable=False)
     creation_date = db.Column(db.DateTime(), default=datetime.now)
     last_online = db.Column(db.DateTime(), default=datetime.now, onupdate=datetime.now)
@@ -47,12 +47,12 @@ class User(db.Model, UserMixin):
 
 
     def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.image_file}') "
+        return f"User('{self.username}','{self.email}','{self.profile_picture}') "
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), unique=True, nullable=False)
-    status = db.Column(db.String(10), nullable=False, default='queue')
+    status = db.Column(db.String(10), nullable=False, default="Queue")
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     content = db.Column(db.Text, nullable=False)
     deadline = db.Column(db.Date, nullable=False)
@@ -78,9 +78,10 @@ class Conversations(db.Model):
 
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    content = db.Column(db.String(200), nullable=False)
     comment = db.Column(db.Text)
-    status = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(10), nullable=False, default='pending')
     creation_date = db.Column(db.DateTime(), default=datetime.now)
     assigned_user = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
