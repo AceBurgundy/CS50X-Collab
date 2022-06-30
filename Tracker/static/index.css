@@ -15,6 +15,11 @@
     background-color: #fff0e8;
     width: 100vw;
     height: 100vh;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: 300ms ease;
+    filter: blur(40px);
 }
 
 
