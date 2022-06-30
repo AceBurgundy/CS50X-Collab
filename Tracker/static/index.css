@@ -12,8 +12,9 @@
     grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
 }
 
-#background {
-    background-color: #fff0e8;
+.background {
+    position: fixed;
+    background-color: var(--primary);
     width: 100vw;
     height: 100vh;
     z-index: 1;
