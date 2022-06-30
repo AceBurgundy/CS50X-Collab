@@ -14,7 +14,6 @@
 
 .background {
     position: fixed;
-    background-color: var(--primary);
     width: 100vw;
     height: 100vh;
     z-index: 1;
