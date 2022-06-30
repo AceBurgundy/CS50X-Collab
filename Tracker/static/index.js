@@ -73,7 +73,6 @@ const profileSection = document.getElementById('profile-section')
 const profileCancelButton = document.querySelector(".profile-close-button");
 const profileXButton = document.querySelector(".profile-x-button");
 
-const profileCancelButton = document.querySelector(".profile-x-button");
 let profile = document.getElementById("profile-picture-main")
 
 profile.addEventListener('click', () => {
@@ -142,9 +141,6 @@ countryDropdownSwitch.addEventListener("click", () => {
 
 
 /*------------- shows flag of each countries-------------*/
-
-let country = document.querySelectorAll(".country");
-// li class="country"
 
 const flag = document.querySelectorAll(".flag")
     // img class="flag"
@@ -238,3 +234,13 @@ countrySearch.addEventListener("input", () => {
              found in index 19
               all countries that are -1 will have a display of none.
          */
+
+document.querySelector("#save-button").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const profileSection = document.getElementById('profile-section')
+    const background = document.getElementById('projectBackround')
+
+    background.style.display = "block"
+    profileSection.classList.toggle("active")
+})
