@@ -69,6 +69,9 @@ modalForm.addEventListener("keyup", () => {
     })
 });
 
+const profileSection = document.getElementById('profile-section')
+const profileCancelButton = document.querySelector(".profile-close-button");
+const profileXButton = document.querySelector(".profile-x-button");
 
 const profileCancelButton = document.querySelector(".profile-x-button");
 let profile = document.getElementById("profile-picture-main")
