@@ -220,10 +220,6 @@ def increase():
             
             db.session.commit()
 
-#         try:
-#             pendingVal = int(request.form.get("add"))
-#         except:
-#             return apology("Please place a value")
 
         return render_template("/")
 
@@ -234,8 +230,6 @@ def increase():
 # def increase():
 
 #     if request.method == "POST":
-
-#         user_id = session["user_id"]
 
 #         try:
 #             pendingVal = int(request.form.get("add"))
