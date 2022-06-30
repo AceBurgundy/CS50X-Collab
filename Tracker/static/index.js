@@ -115,6 +115,15 @@ counter(firstName, firstNameCounter, 60);
 counter(lastName, lastNameCounter, 60);
 counter(address, addressCounter, 300);
 counter(motto, mottoCounter, 200)
+counter(skills, skillsCounter, 200)
+
+// script to dynamically resize the textarea height
+
+const profileTextarea = document.querySelector("#motto");
+
+profileTextarea.addEventListener("input", e => {
+    profileTextarea.style.height = `${e.target.scrollHeight}px`
+})
 
 /*------------- hides and shows the dropdown-------------*/
 
