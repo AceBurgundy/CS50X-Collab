@@ -27,3 +27,7 @@ class profileForm(FlaskForm):
     skills = StringField('Skills', id="skills", validators=[Length(max=200, message="150 character limit"),NoneOf(values=profanity, message="Vulgar word found")])
     
     phone = TelField(validators=[Length(max=15, message="Accepts 15 numbers only")])
+
+class changePassword(FlaskForm):
+    password = PasswordField('Enter old Password', validators=[InputRequired()])
+    newPassword = PasswordField('Enter new Password', validators=[InputRequired()])
