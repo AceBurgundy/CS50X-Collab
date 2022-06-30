@@ -5,7 +5,7 @@ const showModal = document.querySelector(".show-modal-button");
 const projectModal = document.querySelector(".project-modal-container");
 const modalXButton = document.querySelector(".modal-x-button");
 const modalCancelButton = document.querySelector(".modal-close-button");
-const modalBackdrop = document.querySelector(".modal-backdrop");
+const background = document.getElementById('backround')
 
 showModal.addEventListener("click", () => {
     modalBackdrop.style.visibility = "visible";
