@@ -74,8 +74,8 @@ const profileCancelButton = document.querySelector(".profile-x-button");
 let profile = document.getElementById("profile-picture-main")
 
 profile.addEventListener('click', () => {
-    const profileSection = document.getElementById('profile-section')
-
+    background.style.opacity = "60%"
+    background.style.visibility = "visible"
     profileSection.classList.toggle("active")
 })
 
