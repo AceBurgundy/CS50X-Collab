@@ -1,9 +1,5 @@
-import os
-import requests
-import urllib.parse
 
 from flask import render_template
-from functools import wraps
 
 def apology(message, code=400):
     """Render message as an apology to user."""
@@ -18,3 +14,4 @@ def apology(message, code=400):
             s = s.replace(old, new)
         return s
     return render_template("apology.html", top=code, bottom=escape(message)), code
+
