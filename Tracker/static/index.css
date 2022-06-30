@@ -3,6 +3,7 @@
 @import "user-profile.css";
 @import "fonts.css";
 @import "root.css";
+@import "errors.css";
 #grid-container {
     display: grid;
     height: 100vh;
