@@ -113,7 +113,7 @@ const motto = document.getElementById("motto")
 const mottoCounter = document.getElementById("motto-counter")
 counter(firstName, firstNameCounter, 60);
 counter(lastName, lastNameCounter, 60);
-counter(address, addressCounter, 100);
+counter(address, addressCounter, 300);
 counter(motto, mottoCounter, 200)
 
 /*------------- hides and shows the dropdown-------------*/
