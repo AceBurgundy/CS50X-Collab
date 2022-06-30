@@ -40,3 +40,12 @@ class newProject(FlaskForm):
     content = StringField(u'Add the description for you project', InputRequired('Missing description'))
     
     deadline = DateField(InputRequired())
+    
+class newTicket(FlaskForm):
+    name = StringField(InputRequired(), validators=[Length(max=50), NoneOf(values=profanity, message="Vulgar word found")])
+        
+    description = StringField(InputRequired(), validators=[Length(max=200), NoneOf(values=(profanity), message="Vulgar word found")])
+        
+    comment = StringField(InputRequired(), validators=[NoneOf(values=(profanity), message="Vulgar word found")])
+            
+    status = StringField(InputRequired(), default='pending', validators=[Length(max=10)])
