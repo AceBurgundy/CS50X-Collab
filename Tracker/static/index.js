@@ -14,13 +14,15 @@ showModal.addEventListener("click", () => {
 })
 
 modalXButton.addEventListener("click", () => {
-    modalBackdrop.style.visibility = "hidden";
-    projectModal.style.visibility = "hidden";
+    background.style.opacity = "0"
+    background.style.visibility = "hidden"
+    projectModal.classList.toggle("active")
 })
 
 modalCancelButton.addEventListener("click", () => {
-    modalBackdrop.style.visibility = "hidden";
-    projectModal.style.visibility = "hidden";
+    background.style.opacity = "0"
+    background.style.visibility = "hidden"
+    projectModal.classList.toggle("active")
 })
 
 // script to show and hide profile dropdown
@@ -78,13 +80,16 @@ profile.addEventListener('click', () => {
 })
 
 
-//     profileSection.classList.toggle("active")
-// })
+profileXButton.addEventListener('click', () => {
+    background.style.opacity = "0"
+    background.style.visibility = "hidden"
+    profileSection.classList.remove("active")
+})
 
 profileCancelButton.addEventListener('click', () => {
-    const profileSection = document.getElementById('profile-section')
-
-    profileSection.classList.toggle("active")
+    background.style.opacity = "0"
+    background.style.visibility = "hidden"
+    profileSection.classList.remove("active")
 })
 
 const firstName = document.getElementById("first-name")
