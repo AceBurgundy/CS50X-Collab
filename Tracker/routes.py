@@ -180,30 +180,37 @@ def profile():
             current_user.country = form.country.data
             current_user.phone = form.phone.data
                 
-    # if request.method == "POST":
-    #     #do
-    # else
-
+            db.session.commit()
+            flash('account has been updated')
+                
+        return redirect('/')
 
 # #Add project
 
-# @app.route("/add-project", methods=["GET", "POST"])
-# @login_required
-# def increase():
+@app.route("/add-project", methods=["GET", "POST"])
+@login_required
+def increase():
 
-#     if request.method == "POST":
+    form = newProject()
+    if request.method == "POST":
 
-#         user_id = session["user_id"]
+        if form.validate_on_submit():
+            
+            title = request.form.get("title")
+            description = request.form.get("content")
+            deadline = request.form.get("deadline")
+            
+        
+            project = Project(title = title, content = description, deadline = deadline)
+            
+            db.session.commit()
 
 #         try:
 #             pendingVal = int(request.form.get("add"))
 #         except:
 #             return apology("Please place a value")
 
-#         if pendingVal <= 0 or pendingVal > 10000:
-#             return apology("value must between 0 and 10000")
-#         db.execute("UPDATE users SET cash = ? WHERE id = ?", pendingVal, user_id)
-#         return render_template("/")
+        return render_template("/")
 
 # #Delete project
 
