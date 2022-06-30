@@ -8,8 +8,9 @@ const modalCancelButton = document.querySelector(".modal-close-button");
 const background = document.getElementById('backround')
 
 showModal.addEventListener("click", () => {
-    modalBackdrop.style.visibility = "visible";
-    projectModal.style.visibility = "visible";
+    background.style.opacity = "60%"
+    background.style.visibility = "visible"
+    projectModal.classList.toggle("active")
 })
 
 modalXButton.addEventListener("click", () => {
