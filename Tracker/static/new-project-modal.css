@@ -28,28 +28,26 @@
 |  Project Modal Backdrop   | 
 +---------------------------*/
 
-.modal-backdrop {
-    position: absolute;
-    z-index: 1;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--backdrop);
-    pointer-events: none;
-    visibility: hidden;
-}
-
 .project-modal-container {
-    background-color: #fffcf3;
+    background-color: white;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    z-index: 2;
+    z-index: 3;
+    opacity: 0;
     visibility: hidden;
+    transition: 300ms ease;
+}
+
+.project-modal-container.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%);
 }
 
 .project-modal-container.show .add-project-form {
@@ -61,13 +59,11 @@
     display: flex;
     padding: 25px 20px 20px;
     flex-direction: column;
-    background-color: #fcfcfc;
     border-radius: 15px;
 }
 
 .input-field,
 .status {
-    background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
 }
@@ -90,13 +86,11 @@
 +-------------------------*/
 
 .project-label {
-    background-color: #fcfcfc;
     font-family: "Rubik Medium";
 }
 
 .modal-x-button {
     padding: 0px;
-    background-color: #fcfcfc;
     border: none;
     font-size: 1.5rem;
     font-weight: 300;
@@ -110,7 +104,6 @@
 
 .input-field:nth-of-type(3) {
     margin-top: 1em;
-    background-color: #fcfcfc;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -124,7 +117,6 @@
 +--------------------*/
 
 .project-input {
-    background-color: #fcfcfc;
     border: none;
     padding-bottom: 3px;
     padding-left: 5px;
@@ -138,12 +130,10 @@
 .counter-container,
 .counter-for-title,
 .counter-for-description {
-    background-color: #fcfcfc;
     color: #737373;
 }
 
 .counter-container {
-    background-color: #fcfcfc;
     margin-right: 5px;
 }
 
@@ -157,7 +147,6 @@
     border: none;
     padding: 0.5em;
     border-radius: 10px;
-    background-color: #fcfcfc;
 }
 
 
@@ -179,7 +168,6 @@
 .deadline {
     margin-left: 5px;
     margin-bottom: 5px;
-    background-color: #fcfcfc;
 }
 
 
@@ -188,7 +176,6 @@
 +------------------------*/
 
 .project-deadline {
-    background-color: #fcfcfc;
     text-align: center;
     display: block;
     width: 150px;
@@ -237,8 +224,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #F6CFCA;
 }
 
-.modal-close-button {
-    background-color: #fcfcfc;
+.modal-x-button {
+    background-color: inherit;
 }
 
 .add-button,
