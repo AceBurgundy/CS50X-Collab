@@ -87,3 +87,20 @@ class Ticket(db.Model):
     created_by = db.Column(db.String(50), nullable=False)
     
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
+    
+    comment = db.relationship('TicketComment', backref='this_ticket', lazy=True)
+    
+    def __repr__(self):
+        return f"Ticket('{self.name}','{self.content}','{self.comment}','{self.status}','{self.assigned_user}','{self.created_by}')"
+
+class TicketComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text)
+    sender = db.Column(db.String(60), nullable=False)
+    deletion_date = db.Column(db.DateTime)
+    sent_date = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+
+    ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'), nullable=False)
+    
+    def __repr__(self):
+        return f"TicketComment('{self.comment}','{self.sender}')"
