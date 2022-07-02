@@ -1,7 +1,4 @@
-from dataclasses import dataclass
 from datetime import datetime
-from email.policy import default
-from enum import unique
 from Tracker import db, login_manager
 from flask_login import UserMixin
 
@@ -41,7 +38,8 @@ class User(db.Model, UserMixin):
 
     #this is not a column so we wont see a projects column in the User database. Instead,
     #it runs a additional querry in the backrground to match the projects that the user has created
-    # project = db.relationship('Project', backref='author', lazy=True)
+
+    project = db.relationship('Project', backref='author', lazy=True)
     
     collaborated_projects = db.relationship('Project', secondary=collaborators, backref='collaborators')
 
@@ -59,28 +57,28 @@ class Project(db.Model):
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    tickets = db.relationship('Ticket', backref='main_project', lazy=True)
+    tickets = db.relationship('Ticket', backref='this_project', lazy=True)
     
-    messages = db.relationship('Conversations', backref='main_project', lazy=True)
+    messages = db.relationship('Conversations', backref='this_project', lazy=True)
     
     def __repr__(self):
-        return f"Project('{self.title}','{self.creation_date}') "
+        return f"Project('{self.title}','{self.status}','{self.content}','{self.deadline}')"
 
 class Conversations(db.Model):
     id = db.Column(db.Integer, primary_key =True)
-    sender = db.Column(db.String(50), nullable=False)
-    messages = db.Column(db.Text)
+    sender = db.Column(db.String(60), nullable=False)
+    message = db.Column(db.Text)
     deletion_date = db.Column(db.DateTime)
     sent_date = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
     
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
 
-
+    def __repr__(self):
+        return f"Conversations('{self.sender}','{self.message}')"
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(200), nullable=False)
-    comment = db.Column(db.Text)
     status = db.Column(db.String(10), nullable=False, default='pending')
     creation_date = db.Column(db.DateTime(), default=datetime.now)
     assigned_user = db.Column(db.String(50), nullable=False)
