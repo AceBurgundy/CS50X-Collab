@@ -49,3 +49,8 @@ class newTicket(FlaskForm):
     comment = StringField(InputRequired(), validators=[NoneOf(values=(profanity), message="Vulgar word found")])
             
     status = StringField(InputRequired(), default='pending', validators=[Length(max=10)])
+    
+class addMessage(FlaskForm):
+    message = StringField(InputRequired(), validators=[Length(max=50), NoneOf(values=profanity, message="Vulgar word found")])
+    
+    delete = HiddenField()
