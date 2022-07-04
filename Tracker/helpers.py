@@ -15,3 +15,10 @@ def apology(message, code=400):
         return s
     return render_template("apology.html", top=code, bottom=escape(message)), code
 
+def Search(list,search):   
+    try:        
+        index = indexOf(list, search)
+        if index:
+            return True
+    except:
+            return False
