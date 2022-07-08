@@ -7,7 +7,7 @@
 #profile-section {
     box-shadow: var(--defaultShadow);
     max-width: 580px;
-    width: 90%;
+    width: 100%;
     position: fixed;
     z-index: 2;
     left: 50%;
@@ -113,7 +113,8 @@
 #profile-username-container {
     display: flex;
     position: relative;
-    width: max-content;
+    width: min-content;
+    overflow: visible;
 }
 
 
@@ -122,28 +123,25 @@
 +-----------------------------*/
 
 .profile-picture-container {
-    width: max-content;
     position: relative;
+    overflow: visible;
 }
 
-#profile-picture {
-    width: 6rem;
-    height: 6rem;
-    background-color: #aaaaaa;
-    border-radius: 50px;
+.profile-picture-big {
     cursor: pointer;
     display: flex;
     justify-content: center;
+    overflow: visible;
     align-items: center;
-    overflow: hidden;
 }
 
 
 /* profile picture */
 
-.profile-picture img {
-    width: 100%;
-    height: auto;
+#actual_picture {
+    width: 6rem;
+    clip-path: circle();
+    overflow: visible;
 }
 
 .camera-icon-container {
@@ -198,7 +196,6 @@
 }
 
 #username-container {
-    width: max-content;
     display: flex;
     align-items: flex-end;
 }
