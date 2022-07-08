@@ -6,9 +6,9 @@ from flask import flash, redirect, render_template, request, jsonify, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from Tracker import app
 from Tracker import db
-from Tracker.models import User, Project, Conversations, Ticket
+from Tracker.models import User, Project, Conversations, Ticket, TicketComment
 from flask_login import login_user, current_user, login_required, logout_user
-from Tracker.helpers import apology
+from Tracker.helpers import apology, save_picture
 from Tracker.forms import profileForm, newProject, newTicket, changePassword
 
 invalid = ["where","select","update","delete",".schema","from","drop","query"]
@@ -20,7 +20,7 @@ invalid = ["where","select","update","delete",".schema","from","drop","query"]
 @login_required
 def index():
     """Show all user projects"""
-    
+    pageTitle = "DASHBOARD"
     if request.method == "GET":
         form = profileForm()
         image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
@@ -34,7 +34,7 @@ def index():
         form.country.data = current_user.country
         form.phone.data = current_user.phone 
          
-    return render_template("index.html", form=form, image_file=image_file) #, projects=projects)
+    return render_template("index.html", form=form, image_file=image_file, pageTitle=pageTitle) #, projects=projects)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -72,8 +72,7 @@ def login():
         if passwordInput.lower() in invalid:
             return apology("password was not accepted")
 
-        try:           
-            user = User.query.filter_by(email=emailInput).first()
+        user = User.query.filter_by(email=emailInput).first()
 
         if check_password_hash(user.password, passwordInput) == False:
             return apology("wrong password")
@@ -86,7 +85,7 @@ def login():
             # Redirect user to home page
             return redirect('/') if next_page else redirect("/")
         except:
-            return apology("Login Unsucessful. Something was wrong on logging in user. line 71")
+            return apology("Login Unsucessful. User have yet to register")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -166,21 +165,6 @@ def register():
     else:
         return render_template("users.html")
 
-def save_picture(form_picture):
-    random_value = secrets.token_hex(8)
-    # fileName = "_"
-    _, fileExtension = os.path.splitext(form_picture.filename)
-    profilePictureFileName = random_value + fileExtension
-    picture_path = os.path.join(app.root_path, 'static/profile_pictures', profilePictureFileName)
-
-    outputSize = (125,125)
-    
-    i = Image.open(form_picture)
-    i.thumbnail(outputSize)
-    i.save(picture_path)
-        
-    return profilePictureFileName
-
 @app.route("/profile", methods=["POST"])
 @login_required
 def profile():
@@ -209,7 +193,7 @@ def profile():
 
 @app.route("/add-project", methods=["GET", "POST"])
 @login_required
-def increase():
+def add():
 
     form = newProject()
     if request.method == "POST":
@@ -217,18 +201,18 @@ def increase():
         if form.validate_on_submit():
             
             title = request.form.get("title")
+            key = generate_password_hash(title)
             description = request.form.get("content")
             deadline = request.form.get("deadline")
-            
         
-            project = Project(title = title, content = description, deadline = deadline)
-            
+            project = Project(key=key, title = title, content = description, deadline = deadline, author=current_user.id)
+            db.session.add(project)
             db.session.commit()
-
 
         return render_template("/")
 
-# #Delete project
+
+# Delete project
 
 # @app.route("/delete-project", methods=["GET", "POST"])
 # @login_required
