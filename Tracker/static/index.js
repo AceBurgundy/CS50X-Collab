@@ -244,5 +244,3 @@ document.querySelector("#save-button").addEventListener("submit", function(event
     background.style.display = "block"
     profileSection.classList.toggle("active")
 })
-
-console.log(document.getElementById("profilePicture").value)
