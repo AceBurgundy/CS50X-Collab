@@ -42,6 +42,7 @@
     opacity: 0;
     visibility: hidden;
     transition: 300ms ease;
+    box-shadow: var(--defaultShadow);
 }
 
 .project-modal-container.active {
