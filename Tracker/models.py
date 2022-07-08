@@ -49,6 +49,7 @@ class User(db.Model, UserMixin):
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    key = db.Column(db.String(200), unique=True, nullable=False)
     title = db.Column(db.String(50), unique=True, nullable=False)
     status = db.Column(db.String(10), nullable=False, default="Queue")
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
