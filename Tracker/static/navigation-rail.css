@@ -105,16 +105,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 0;
-    width: 4.4rem;
+    padding: 1.3rem 0;
+    width: 4.3rem;
     border-radius: 30px;
     background-color: var(--secondary);
     transition: 500ms ease;
     margin-bottom: 0.5rem;
+    box-shadow: var(--defaultShadow);
 }
 
-.aside-icon-container svg {
-    width: 1.2rem;
+.aside-icon-container svg,
+.pencil-icon {
+    width: 1.5rem;
 }
 
 .label-container {
@@ -125,7 +127,7 @@
 }
 
 .icon-label {
-    visibility: visible;
+    visibility: hidden;
     font-size: 0.7rem;
     transition: 100ms ease;
 }
@@ -194,11 +196,12 @@
     }
     .aside-icon-container {
         background-color: inherit;
-        height: auto;
+        padding: .6rem 0;
         width: auto;
         border-radius: 0;
         margin-left: 1.5rem;
         margin-bottom: 0%;
+        box-shadow: none;
     }
     .nav-button:hover .aside-icon-container {
         background-color: inherit;
@@ -206,6 +209,7 @@
     }
     .icon-label {
         font-size: 0.95rem;
+        visibility: visible;
     }
 }
 
@@ -218,6 +222,7 @@
     #navigation-rail,
     .aside,
     .nav-child {
+        padding: 0.1rem 0;
         flex-direction: row-reverse;
     }
     .nav-header {
@@ -234,14 +239,19 @@
     }
     .aside-icon-container {
         background-color: var(--primary);
-        padding: 0.8rem 0;
+        padding: 0.7rem 0;
         width: 5rem;
+        margin-bottom: 0.2rem;
+        box-shadow: none;
     }
-    .aside-icon-container.active {
+    .aside-icon-container:hover,
+    .aside-icon-container:focus {
+        box-shadow: var(--defaultShadow);
         background-color: var(--secondary);
     }
     .icon-label {
         font-size: 1rem;
+        visibility: visible;
     }
     .aside-icon-container svg {
         width: 1.5rem;
@@ -296,6 +306,7 @@
         padding: 0.3rem 0;
         width: 5rem;
         margin-bottom: 0.1rem;
+        box-shadow: none;
     }
     .aside-icon-container.active {
         background-color: var(--secondary);
@@ -355,6 +366,7 @@
         background-color: var(--primary);
         padding: 0.3rem 0;
         width: 5rem;
+        box-shadow: none;
     }
     .aside-icon-container {
         background-color: var(--secondary);
