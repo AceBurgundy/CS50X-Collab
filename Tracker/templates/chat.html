@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+<!-- Start of chat.html -->
+
+{% block main %}
+<div id="chat-container">
+    <ul>
+        <li class="message">
+            <div class="message-container">
+
+                <div class="message-container-left">
+                    <img class="messege-sender-photo" src="{{ senderProfile }}" alt="{{ senderName }}">
+                </div>
+
+                <div class="message-container-center">
+                    <p class="message-sender">{{ sender }}</p>
+                    <span class="message-content">{{ message }}</span>
+                </div>
+
+                <div class="message-container-right">
+                    <svg id="menu-icon" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
+                    <div class="message-options">
+                        <form action="/deleteMessage" method="post">
+                            {{ form.csrf_token }} {{ form.delete }}
+                            <!-- Delete button -->
+                            <input type="submit" value="Delete" class="delete-message">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div id="chat-bottom">
+        {{ form.message }}
+        <a href="/addMessage">
+            <svg id="send-message-icon" class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.34,9.32l-14-7a3,3,0,0,0-4.08,3.9l2.4,5.37h0a1.06,1.06,0,0,1,0,.82l-2.4,5.37A3,3,0,0,0,5,22a3.14,3.14,0,0,0,1.35-.32l14-7a3,3,0,0,0,0-5.36Zm-.89,3.57-14,7a1,1,0,0,1-1.35-1.3l2.39-5.37A2,2,0,0,0,6.57,13h6.89a1,1,0,0,0,0-2H6.57a2,2,0,0,0-.08-.22L4.1,5.41a1,1,0,0,1,1.35-1.3l14,7a1,1,0,0,1,0,1.78Z"/></svg>
+        </a>
+    </div>
+</div>
+{% end block %}
