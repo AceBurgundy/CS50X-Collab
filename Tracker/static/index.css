@@ -12,6 +12,14 @@
     grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
 }
 
+.filebackground {
+    background-color: #fdece6;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
 .background {
     position: fixed;
     width: 100vw;
@@ -22,7 +30,7 @@
     transition: 300ms ease;
     backdrop-filter: blur(25px) saturate(50%);
     -webkit-backdrop-filter: blur(23px) saturate(112%);
-    background-color: rgba(17, 25, 40, 0.6);
+    background-color: #f8b49b1a;
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
