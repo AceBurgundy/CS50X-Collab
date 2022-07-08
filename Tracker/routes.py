@@ -74,6 +74,11 @@ def login():
 
         try:           
             user = User.query.filter_by(email=emailInput).first()
+
+        if check_password_hash(user.password, passwordInput) == False:
+            return apology("wrong password")
+        
+        try:           
             
             if user and check_password_hash(user.password, passwordInput):
                 login_user(user) #, remember=form.remember.data)
