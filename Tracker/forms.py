@@ -1,3 +1,4 @@
+from email import message
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, TextAreaField, PasswordField, HiddenField, TelField, DateField
@@ -10,8 +11,6 @@ class profileForm(FlaskForm):
     
     banner = TextAreaField(u"Write here what you're open to collaborate with",id="motto", validators=[InputRequired(),Length(min=20, max=200), NoneOf(values=profanity, message="Vulgar word found")])
     
-    # <!-- <input type="file" accept="image/jpeg,image/png,image/webp" name="profile-picture" class="input-profile-picture"> -->
-
     profilePicture = FileField('Update Profile Picture', validators=[FileAllowed(['jpeg', 'png', 'jpg', 'webp'])])
     
     username = StringField(id='username', validators=[InputRequired(), Length(max=50)])
