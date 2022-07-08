@@ -8,7 +8,7 @@ const modalCancelButton = document.querySelector(".modal-close-button");
 const background = document.getElementById('backround')
 
 showModal.addEventListener("click", () => {
-    background.style.opacity = "60%"
+    background.style.opacity = "85%"
     background.style.visibility = "visible"
     projectModal.classList.toggle("active")
 })
@@ -76,7 +76,7 @@ const profileXButton = document.querySelector(".profile-x-button");
 let profile = document.getElementById("profile-picture-main")
 
 profile.addEventListener('click', () => {
-    background.style.opacity = "95%"
+    background.style.opacity = "85%"
     background.style.visibility = "visible"
     profileSection.classList.toggle("active")
 })
@@ -244,3 +244,5 @@ document.querySelector("#save-button").addEventListener("submit", function(event
     background.style.display = "block"
     profileSection.classList.toggle("active")
 })
+
+console.log(document.getElementById("profilePicture").value)
