@@ -26,6 +26,5 @@ export function counter(inputId, counterId, restrict) {
     inputId.addEventListener('keyup', () => {
 
         inputId.value.length <= limit ? counterId.children[0].textContent = inputId.value.length : counterId.style.color = "red";
-        console.log(inputId.value)
     })
 }
