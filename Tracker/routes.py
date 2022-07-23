@@ -23,18 +23,11 @@ def index():
     pageTitle = "DASHBOARD"
     if request.method == "GET":
         form = profileForm()
-        image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
+    image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
-        form.username.data = current_user.username
-        form.first_name.data = current_user.first_name
-        form.last_name.data = current_user.last_name
-        form.skills.data = current_user.skills
-        form.address.data = current_user.address
-        form.banner.data = current_user.banner
-        form.country.data = current_user.country
-        form.phone.data = current_user.phone 
-         
-    return render_template("index.html", form=form, image_file=image_file, pageTitle=pageTitle) #, projects=projects)
+    if request.method == "GET":
+        projects = Project.query.filter_by(user_id = current_user.id)  
+        return render_template("index.html", projects=projects, image_file=image_file, pageTitle=pageTitle) #, projects=projects)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
