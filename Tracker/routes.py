@@ -225,26 +225,26 @@ def profile():
 
 # #Add project
 
-@app.route("/add-project", methods=["GET", "POST"])
+@app.route("/add-project", methods=["POST","GET"])
 @login_required
-def add():
+def addProject():
 
     form = newProject()
     if request.method == "POST":
 
         if form.validate_on_submit():
+            input_title = form.title.data
+            input_description = form.description.data
+            input_deadline = form.deadline.data            
             
-            title = request.form.get("title")
-            key = generate_password_hash(title)
-            description = request.form.get("content")
-            deadline = request.form.get("deadline")
-        
-            project = Project(key=key, title = title, content = description, deadline = deadline, author=current_user.id)
+            project = Project(title = input_title, key=generate_password_hash(input_title), description = input_description, deadline = input_deadline, author=current_user)
             db.session.add(project)
             db.session.commit()
-
-        return render_template("/")
-
+            return redirect(url_for('index'))
+        else:
+            return render_template('new_project.html', form=form, error=form.errors)
+    else:
+        return render_template('new_project.html', form=form)
 
 # Delete project
 
