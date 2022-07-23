@@ -248,21 +248,18 @@ def addProject():
 
 # Delete project
 
-# @app.route("/delete-project", methods=["GET", "POST"])
-# @login_required
-# def increase():
+@app.route("/delete-project", methods=["POST"])
+@login_required
+def deleteProject():
+        
+    if request.method == "POST":
+        project_key = request.form['key']
+        
+        project = Project.query.filter_by(key=project_key).first()
 
-#     if request.method == "POST":
-
-#         try:
-#             pendingVal = int(request.form.get("add"))
-#         except:
-#             return apology("Please place a value")
-
-#         if pendingVal <= 0 or pendingVal > 10000:
-#             return apology("value must between 0 and 10000")
-#         db.execute("UPDATE users SET cash = ? WHERE id = ?", pendingVal, user_id)
-#         return render_template("/")
+        if project:
+            db.session.delete(project)
+        return redirect(url_for('index'))
 
 # #Add ticket
 
