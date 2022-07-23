@@ -1,7 +1,3 @@
-
-import os
-import secrets
-from PIL import Image
 from flask import flash, redirect, render_template, request, jsonify, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from Tracker import app
@@ -9,7 +5,7 @@ from Tracker import db
 from Tracker.models import User, Project, Conversations, Ticket, TicketComment
 from flask_login import login_user, current_user, login_required, logout_user
 from Tracker.helpers import apology, save_picture
-from Tracker.forms import profileForm, newProject, newTicket, changePassword
+from Tracker.forms import profileForm, newProject, ChangePassword, newTicket,  newMessage
 
 invalid = ["where","select","update","delete",".schema","from","drop","query"]
 
@@ -21,8 +17,6 @@ invalid = ["where","select","update","delete",".schema","from","drop","query"]
 def index():
     """Show all user projects"""
     pageTitle = "DASHBOARD"
-    if request.method == "GET":
-        form = profileForm()
     image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
     if request.method == "GET":
@@ -40,7 +34,7 @@ def login():
 
         #ensure that there is no user that is currently logged in
         if current_user.is_authenticated:
-            return redirect('/')
+            return redirect(url_for('index'))
 
         emailInput = request.form.get("email")
         passwordInput = request.form.get("password")
@@ -67,16 +61,19 @@ def login():
 
         user = User.query.filter_by(email=emailInput).first()
 
-        if check_password_hash(user.password, passwordInput) == False:
-            return apology("wrong password")
+        if not user:
+            return apology("wrong email or user not registered")
         
+        if check_password_hash(user.password, passwordInput) == False:
+            return apology("wrong password or user not registered")
+
         try:           
             
             if user and check_password_hash(user.password, passwordInput):
                 login_user(user) #, remember=form.remember.data)
                 next_page = request.args.get('next')
             # Redirect user to home page
-            return redirect('/') if next_page else redirect("/")
+            return redirect(url_for('index')) if next_page else redirect(url_for('index'))
         except:
             return apology("Login Unsucessful. User have yet to register")
 
@@ -100,7 +97,7 @@ def register():
 
         #ensure that there is no user that is currently logged in
         if current_user.is_authenticated:
-            return redirect('/')
+            return redirect(url_for('index'))
 
         emailInput = request.form.get("email")
         passwordInput = request.form.get("password")
@@ -150,7 +147,7 @@ def register():
             flash(f"Successfully created account.") #, success 
 
             # Redirect user to home page
-            return redirect('/')
+            return redirect(url_for('index'))
         except:
             return apology("Login Unsucessful. Something was wrong on logging in user. line 71")
 
@@ -214,7 +211,7 @@ def profile():
             form.country.data = current_user.country
             form.phone.data = current_user.phone
                 
-        return redirect('/')
+            return render_template("profile.html", form=form, image_file=image_file, passForm=passForm)
 
 # #Add project
 
@@ -224,7 +221,6 @@ def addProject():
 
     form = newProject()
     if request.method == "POST":
-
         if form.validate_on_submit():
             input_title = form.title.data
             input_description = form.description.data
@@ -254,7 +250,7 @@ def deleteProject():
             db.session.delete(project)
         return redirect(url_for('index'))
 
-# #Add ticket
+#Add ticket
 
 # @app.route("/add-ticket", methods=["GET", "POST"])
 # @login_required
