@@ -53,7 +53,7 @@ class Project(db.Model):
     title = db.Column(db.String(50), unique=True, nullable=False)
     status = db.Column(db.String(10), nullable=False, default="Queue")
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    content = db.Column(db.Text, nullable=False)
+    description = db.Column(db.String(200), nullable=False)
     deadline = db.Column(db.Date, nullable=False)
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -63,7 +63,7 @@ class Project(db.Model):
     messages = db.relationship('Conversations', backref='this_project', lazy=True)
     
     def __repr__(self):
-        return f"Project('{self.title}','{self.status}','{self.content}','{self.deadline}')"
+        return f"Project('{self.title}','{self.key}','{self.status}','{self.content}','{self.deadline}')"
 
 class Conversations(db.Model):
     id = db.Column(db.Integer, primary_key =True)
