@@ -165,7 +165,25 @@ def register():
     else:
         return render_template("users.html")
 
-@app.route("/profile", methods=["POST"])
+@app.route("/change-password", methods=["POST"])
+@login_required
+def changePassword():
+    form = ChangePassword()
+    
+    if form.validate_on_submit():
+        if check_password_hash(current_user.password, form.password.data):
+            current_user.password = generate_password_hash(form.newPassword.data)
+            db.session.commit()            
+            
+            return redirect(url_for('index'))
+        else:
+            return apology("error in checking user.forms and form.data")
+    else:
+        return apology(form.form_errors)
+        
+        
+        
+@app.route("/profile", methods=["POST","GET"])
 @login_required
 def profile():
         
