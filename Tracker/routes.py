@@ -170,22 +170,38 @@ def register():
 def profile():
         
         form = profileForm()
+        passForm = ChangePassword()
+        image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
+
         if request.method == "POST":
+            if form.validate_on_submit():
+                if form.profilePicture.data:  
+                    current_user.profile_picture = save_picture(form.profilePicture.data)    
             
-            if form.profilePicture.data:  
-                current_user.profile_picture = save_picture(form.profilePicture.data)    
-        
-            current_user.username = form.username.data
-            current_user.first_name = form.first_name.data
-            current_user.last_name = form.last_name.data
-            current_user.skills = form.skills.data
-            current_user.address = form.address.data            
-            current_user.banner = form.banner.data
-            current_user.country = form.country.data
-            current_user.phone = form.phone.data
-                
-            db.session.commit()
-            flash('account has been updated')
+                current_user.username = form.username.data
+                current_user.first_name = form.first_name.data
+                current_user.last_name = form.last_name.data
+                current_user.skills = form.skills.data
+                current_user.address = form.address.data            
+                current_user.banner = form.banner.data
+                current_user.country = form.country.data
+                current_user.phone = form.phone.data
+                flash('Profile ave')    
+                db.session.commit()
+                return redirect(url_for('profile'))
+            else:
+                return render_template('profile.html', form=form, image_file=image_file, passForm=passForm, error=form.errors)
+        else:      
+            image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
+
+            form.username.data = current_user.username
+            form.first_name.data = current_user.first_name
+            form.last_name.data = current_user.last_name
+            form.skills.data = current_user.skills
+            form.address.data = current_user.address
+            form.banner.data = current_user.banner
+            form.country.data = current_user.country
+            form.phone.data = current_user.phone
                 
         return redirect('/')
 
