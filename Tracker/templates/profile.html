@@ -18,7 +18,9 @@
 {% endif %}
 
 <div id="profile-section">
+
     {% include 'newPassword.html' %}
+
     <form action="{{ url_for('profile') }}" method="post" class="profile-main" enctype="multipart/form-data">
 
         {{ form.csrf_token }}
