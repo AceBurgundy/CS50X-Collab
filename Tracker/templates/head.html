@@ -5,16 +5,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/index.css">
-    <script src="../static/index.js" type="module"></script>
-    {% block script %}{% endblock script%}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for( 'static' , filename='head.css')  }}"> {% block script -%}{%- endblock script%} {% block style -%}{%- endblock style %}
+    <script src="{{ url_for( 'static' , filename='head.js')  }}"></script>
+    <!-- messages -->
+    {% with messages=get_flashed_messages() %} {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li class="message">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
 
 </head>
 
 <body>
-    {%block main%}{% endblock %}
+
+    {%block main -%}{%- endblock %} {% block profile -%}{%- endblock profile %} {% block new_project -%}{%- endblock new_project %}
 </body>
