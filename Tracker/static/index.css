@@ -1,9 +1,9 @@
-@import "new-project-modal.css";
 @import "navigation-rail.css";
-@import "user-profile.css";
+@import "profile.css";
+@import "background.css";
+@import "project.css";
 @import "fonts.css";
 @import "root.css";
-@import "errors.css";
 #grid-container {
     display: grid;
     height: 100vh;
@@ -13,25 +13,11 @@
 }
 
 .filebackground {
-    background-color: #fdece6;
+    background-color: #f1e1ddc5;
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: -1;
-}
-
-.background {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    visibility: hidden;
-    opacity: 0;
-    transition: 300ms ease;
-    backdrop-filter: blur(25px) saturate(50%);
-    -webkit-backdrop-filter: blur(23px) saturate(112%);
-    background-color: #f8b49b1a;
-    border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 
@@ -52,6 +38,7 @@
 #main-content {
     grid-area: main-content;
     transition: 500ms ease-out;
+    position: relative;
 }
 
 
@@ -188,12 +175,11 @@
     margin-right: 1em;
 }
 
-#profile-picture-main {
+.dashboard-profile-picture {
     height: 3rem;
     width: 3rem;
-    border-radius: 50px;
-    background-color: aqua;
     cursor: pointer;
+    clip-path: circle();
 }
 
 #profile-arrow-icon {
