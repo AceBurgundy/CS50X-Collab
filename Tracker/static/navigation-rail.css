@@ -19,7 +19,6 @@
     display: flex;
     flex-direction: column;
     transition: 500ms ease;
-    overflow: visible;
 }
 
 .nav-header {
@@ -27,8 +26,33 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    overflow: visible;
     margin-top: 0.5rem;
+}
+
+
+/*-----------------------+ 
+|   Show modal Buttons   |
++------------------------*/
+
+.show-modal-button {
+    box-shadow: var(--defaultShadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.6rem 1.6rem;
+    border-radius: 26px;
+    border: none;
+    background-color: var(--secondary);
+    cursor: pointer;
+}
+
+.show-modal i {
+    opacity: 0.6;
+}
+
+.pencil-icon {
+    width: 1.2rem;
+    transition: 500ms ease;
 }
 
 .title {
@@ -36,10 +60,6 @@
     margin-left: 2rem;
     display: none;
     font-family: "Rubik Regular";
-}
-
-.nav-switch {
-    overflow: visible;
 }
 
 .arrow-container {
@@ -61,7 +81,6 @@
 
 .aside {
     display: flex;
-    overflow: visible;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
@@ -83,7 +102,6 @@
 }
 
 .nav-child {
-    overflow: visible;
     display: flex;
     gap: 1rem;
     flex-direction: column;
@@ -150,7 +168,6 @@
 @media screen and (min-width: 1600px) {
     #navigation-rail {
         box-shadow: var(--defaultShadow);
-        overflow: visible;
     }
     .aside {
         height: 25%;
@@ -174,7 +191,6 @@
         gap: 2rem;
         padding: 0.5rem 0;
         border-radius: 20px;
-        overflow: visible;
         width: 85%;
         transition: 150ms ease;
     }
