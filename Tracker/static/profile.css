@@ -1,0 +1,344 @@
+@import "fonts.css";
+@import "background.css";
+@import "changePassword.css";
+@import "country-dropdown-styles.css";
+
+/*--------------------+
+|  Parent Container   | 
++---------------------*/
+
+#profile-section {
+    box-shadow: var(--defaultShadow);
+    max-width: 580px;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+    justify-content: center;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    opacity: 0;
+    transition: 500ms ease;
+}
+
+#profile-section.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.profile-main {
+    display: flex;
+    height: auto;
+    width: 95%;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+/*---------------+ 
+|  Top Section   | 
++----------------*/
+
+.profile-top {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+}
+
+#motto-counter {
+    position: absolute;
+    margin: 0.5rem;
+    bottom: 0%;
+    right: 0%;
+}
+
+
+/*-----------------------+ 
+|  Top Section Controls  | 
++------------------------*/
+
+.profile-top-controls {
+    position: relative;
+    display: flex;
+    margin-top: 1em;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-x-button {
+    position: relative;
+    padding: 0px;
+    background-color: #fcfcfc;
+    border: none;
+    height: max-content;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+#save-button {
+    border: none;
+    cursor: pointer;
+    background-color: #F6CFCA;
+    padding: 0.7em 1.1em;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
+
+
+/*-----------------+ 
+|  Motto / Banner  | 
++------------------*/
+
+#motto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    display: flex;
+    transform: translate(-50%, -50%);
+    resize: none;
+    border: none;
+}
+
+#motto::-webkit-scrollbar {
+    width: 0px;
+}
+
+#profile-username-container {
+    display: flex;
+    position: relative;
+    width: min-content;
+}
+
+
+/*----------------------------+ 
+|  Profile Picture Container  | 
++-----------------------------*/
+
+.profile-picture-container {
+    position: relative;
+}
+
+.profile-picture-big {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* profile picture */
+
+#actual_picture {
+    width: 6rem;
+    clip-path: circle();
+}
+
+.camera-icon-container {
+    position: absolute;
+    width: 2rem;
+    background-color: #807b7b;
+    border-radius: 50px;
+    height: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    transition: 150ms ease-out;
+    z-index: 2;
+    opacity: 0;
+}
+
+
+/* move container on hover */
+
+.profile-picture-container:hover .camera-icon-container {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+
+/* input field for profile picture placed behind camera icon */
+
+.input-profile-picture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.user-profile-picture:hover>.camera-icon-container {
+    opacity: 1;
+}
+
+.camera-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 1rem;
+    pointer-events: none;
+}
+
+#username-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+#username {
+    border: none;
+    margin-left: 5px;
+    font-size: 1.5rem;
+}
+
+
+/*------------------+ 
+|  Middle Section   | 
++-------------------*/
+
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+
+/*--------------------------------------+ 
+|  Name, Last Name, Address Container   | 
++---------------------------------------*/
+
+.name-fields-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.profile-input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7em 0.4em 0.4em;
+    border: 1px solid #d1cfcf;
+    height: 5rem;
+    border-radius: 5px;
+}
+
+
+/* Address */
+
+.input-field-placeholders,
+.input-field-address,
+.input-field-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 1.4rem;
+    opacity: 0.8;
+    margin-bottom: 0.9rem;
+    font-size: 0.8rem;
+}
+
+.input-field-placeholders {
+    width: 95%;
+}
+
+.input-field-address,
+.input-field-details {
+    width: 97.5%
+}
+
+
+/* input type["text"] */
+
+.profile-input-field input {
+    font-size: 1rem;
+    border: none;
+    width: 97.5%;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*------------------+ 
+|  Contact Number   | 
++-------------------*/
+
+.number-country {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.number-country-label {
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.contact-number {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid #d1cfcf;
+    padding: 0 0.5em;
+}
+
+.contact-grid input {
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.number-country-child {
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.number-country-child:last-of-type {
+    position: relative;
+}
+
+
+/*------------------+ 
+|  Bottom Section   | 
++-------------------*/
+
+.profile-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.change-password {
+    cursor: pointer;
+    padding: 1em 1.5em;
+    background-color: #896eff;
+    border: none;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.profile-close-button {
+    background-color: #F6CFCA;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
