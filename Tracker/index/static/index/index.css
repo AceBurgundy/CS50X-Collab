@@ -1,0 +1,380 @@
+@import "./navigation-rail.css";
+@import "./background.css";
+@import "./fonts.css";
+@import "./project.css";
+@import "./root.css";
+#grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 14% 61% 25%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
+}
+
+.filebackground {
+    background-color: #f1e1ddc5;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+
+/*-----------------+ 
+|   Main Content   |
++------------------*/
+
+
+/*---------------+---------------+ 
+| +_____________________+        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
+| |                     |        |
++---------------+----------------*/
+
+#main-content {
+    grid-area: main-content;
+    transition: 500ms ease-out;
+    position: relative;
+}
+
+
+/*----------------+ 
+|   Top Content   |
++-----------------*/
+
+
+/*---------------+--------------+ 
+| |_____________________|       |
+|                               |
+|                               |
+|                               |
+|                               |
+|                               |
++----------------+--------------*/
+
+#top-bar {
+    grid-area: top-bar;
+    width: 99%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tools {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 100%;
+    margin: 0 1em;
+}
+
+#filter {
+    margin-right: 1%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fffcf3;
+    align-items: center;
+    height: 3.2rem;
+    width: 9rem;
+}
+
+.filter-label {
+    background-color: #fffcf3;
+}
+
+#filter-arrow {
+    width: 1rem;
+    background-color: #fffcf3;
+}
+
+#filter,
+.search-field {
+    border-radius: 15px;
+}
+
+.search-field {
+    position: relative;
+    background-color: #fffcf3;
+    max-width: 170px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 3.2rem;
+    justify-content: space-around;
+    transition: 150ms ease;
+}
+
+.search-field:hover,
+.search-field:focus {
+    max-width: 350px;
+}
+
+#input-search {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    border: none;
+    background-color: inherit;
+    height: 90%;
+}
+
+.search-icon-container {
+    position: absolute;
+    right: 1%;
+    border-radius: 50px;
+    background-color: inherit;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.7rem;
+}
+
+#search-icon {
+    width: 1.5rem;
+    background-color: #fffcf3;
+}
+
+
+/*---------------------+ 
+|   Top Side Content   |
++----------------------*/
+
+
+/*---------------+---------------+ 
+|                       |________|
+|                                |
+|                                |
+|                                |
+|                                |
+|                                |
++---------------+---------------*/
+
+#top-side-content {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: visible;
+}
+
+#notification-icon {
+    margin-left: 2em;
+    width: 1.5rem;
+    background-color: inherit;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-evenly;
+    width: 6rem;
+    margin-right: 1em;
+}
+
+.dashboard-profile-picture {
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    clip-path: circle();
+}
+
+#profile-arrow-icon {
+    width: 1.1rem;
+    background-color: inherit;
+    cursor: pointer;
+    transition: 150ms ease-in-out;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 1%;
+    top: 8.5%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.profile-dropdown-button {
+    background-color: var(--primary);
+    border: none;
+}
+
+.profile-dropdown-button.active+.profile-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.profile-dropdown-button .active>.profile-arrow-icon {
+    transform: rotate(180deg);
+}
+
+.profile-dropdown-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    height: 4rem;
+    width: 9rem;
+    transition: 500ms ease;
+    background-color: var(--secondary);
+    font-size: 1rem;
+}
+
+.profile-dropdown-link:hover {
+    font-size: 0.9rem;
+}
+
+
+/*-----------------+ 
+|   Side Content   |
++------------------*/
+
+
+/*---------------+---------------+ 
+|                        ________|
+|                       |        |
+|                       |        |
+|                       |        |
+|                       |        |
+|                       |        |
++---------------+-------+-------*/
+
+#side-content {
+    grid-area: side-content;
+    background-color: var(--primary);
+}
+
+@media screen and (max-width: 1600px) {
+    #grid-container {
+        grid-template-columns: 8% 62% 30%;
+    }
+    #filter,
+    .search-field {
+        height: 2.5rem;
+        border-radius: 15px;
+    }
+    #search-icon {
+        width: 1rem;
+    }
+    .nav-child {
+        gap: 2rem;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1024px) and (min-height: 930px) and (max-height: 1366px) {
+    #grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr max-content 2.2fr 1.2fr;
+        grid-template-areas: "top-side-content" "top-bar" "main-content" "side-content" "navigation-rail";
+    }
+    #filter,
+    .search-field {
+        height: 4rem;
+    }
+    .search-field {
+        max-width: 400px;
+    }
+    #top-side-content {
+        background-color: inherit;
+    }
+    #notification-icon {
+        margin-left: 2.5rem;
+        width: 2rem;
+    }
+    .profile {
+        margin-right: 2rem;
+    }
+    .profile-dropdown-button {
+        background-color: inherit;
+    }
+    #side-content {
+        background-color: inherit;
+    }
+}
+
+
+/*-----------------------------------------------+ 
+|     Phone Portrait but with shorter screens     |
++------------------------------------------------*/
+
+@media screen and (max-width: 500px) and (max-height: 668px) {
+    #grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.6fr max-content 2.2fr 1.2fr;
+        grid-template-areas: "top-side-content" "top-bar" "main-content" "side-content" "navigation-rail";
+    }
+    #filter,
+    .search-field {
+        height: 2.5rem;
+        border-radius: 10px;
+    }
+    .search-field {
+        max-width: 400px;
+    }
+    #top-side-content {
+        background-color: inherit;
+    }
+    #search-icon {
+        width: 1rem;
+    }
+    .profile {
+        margin-right: 0%;
+    }
+    #notification-icon {
+        margin-left: 1.5rem;
+        width: 1.2rem;
+    }
+    .profile-dropdown-button {
+        background-color: inherit;
+    }
+    #side-content {
+        background-color: inherit;
+    }
+}
+
+
+/*-----------------------------------------------+ 
+|     Phone Portrait but with taller screens     |
++------------------------------------------------*/
+
+@media screen and (max-width: 500px) and (min-height: 668px) {
+    #grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 0.2fr 1.5fr 1fr;
+        grid-template-areas: "top-side-content" "top-bar" "main-content" "side-content" "navigation-rail";
+    }
+    #filter,
+    .search-field {
+        border-radius: 15px;
+    }
+    .search-field {
+        max-width: 400px;
+    }
+    #top-side-content {
+        background-color: inherit;
+    }
+    #search-icon {
+        width: 1rem;
+    }
+    .profile {
+        margin-right: 0%;
+    }
+    #notification-icon {
+        margin-left: 1.5rem;
+        width: 1.2rem;
+    }
+    .profile-dropdown-button {
+        background-color: inherit;
+    }
+    #side-content {
+        background-color: inherit;
+    }
+}
