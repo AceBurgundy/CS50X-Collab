@@ -1,4 +1,4 @@
-import { counter, eyeToggle } from "./helper.js"
+import { counter, eyeToggle } from "/static/helper.js"
 
 const profileSection = document.getElementById('profile-section')
 const profileCancelButton = document.querySelector(".profile-close-button");
