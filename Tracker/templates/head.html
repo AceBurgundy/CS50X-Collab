@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for( 'static' , filename='head.css')  }}"> {% block script -%}{%- endblock script%} {% block style -%}{%- endblock style %}
     <script src="{{ url_for( 'static' , filename='head.js')  }}"></script>
+
     <!-- messages -->
     {% with messages=get_flashed_messages() %} {% if messages %}
     <ul class=flashes>
