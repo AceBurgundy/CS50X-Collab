@@ -43,7 +43,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    overflow: visible;
     background-color: white;
     opacity: 0;
     transition: 250ms ease;

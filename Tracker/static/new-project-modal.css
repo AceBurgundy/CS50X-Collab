@@ -1,73 +1,40 @@
-/*-----------------------+ 
-|   Show modal Buttons   |
-+------------------------*/
-
-.show-modal-button {
-    box-shadow: var(--defaultShadow);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.6rem 1.6rem;
-    border-radius: 26px;
-    border: none;
-    background-color: var(--secondary);
-    cursor: pointer;
-}
-
-.show-modal i {
-    opacity: 0.6;
-}
-
-.pencil-icon {
-    width: 1.2rem;
-    transition: 500ms ease;
-}
-
-
-/*--------------------------+ 
-|  Project Modal Backdrop   | 
-+---------------------------*/
-
-.modal-backdrop {
-    position: absolute;
-    z-index: 1;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--backdrop);
-    pointer-events: none;
-    visibility: hidden;
-}
-
-.project-modal-container {
-    background-color: #fffcf3;
+@import "fonts.css";
+@import "root.css";
+@import "background.css";
+.add-project-modal-container {
+    background-color: white;
     position: absolute;
     left: 50%;
+    transform: translate(-50%, -40%);
     top: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    z-index: 2;
-    visibility: hidden;
+    z-index: 3;
+    opacity: 1;
+    transition: 500ms ease;
+    box-shadow: var(--defaultShadow);
 }
 
-.project-modal-container.show .add-project-form {
+.add-project-modal-container.active {
+    transform: translate(-50%, -50%);
+}
+
+.add-project-modal-container.show .add-project-form {
     visibility: visible;
 }
 
 .add-project-form {
     width: 420px;
     display: flex;
-    padding: 25px 20px 20px;
+    padding: 25px 20px 10px;
     flex-direction: column;
-    background-color: #fcfcfc;
     border-radius: 15px;
 }
 
 .input-field,
 .status {
-    background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
 }
@@ -80,7 +47,7 @@
 .input-field:first-of-type {
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     align-items: center;
 }
 
@@ -89,14 +56,12 @@
 |  "Create new Project"   | 
 +-------------------------*/
 
-.project-label {
-    background-color: #fcfcfc;
+.add-project-label {
     font-family: "Rubik Medium";
 }
 
 .modal-x-button {
     padding: 0px;
-    background-color: #fcfcfc;
     border: none;
     font-size: 1.5rem;
     font-weight: 300;
@@ -110,12 +75,11 @@
 
 .input-field:nth-of-type(3) {
     margin-top: 1em;
-    background-color: #fcfcfc;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #dddddd;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 }
 
 
@@ -123,10 +87,10 @@
 |  Input for title   | 
 +--------------------*/
 
-.project-input {
-    background-color: #fcfcfc;
+.add-project-input {
     border: none;
-    padding-bottom: 3px;
+    width: 80%;
+    padding-bottom: 10px;
     padding-left: 5px;
 }
 
@@ -138,12 +102,10 @@
 .counter-container,
 .counter-for-title,
 .counter-for-description {
-    background-color: #fcfcfc;
     color: #737373;
 }
 
 .counter-container {
-    background-color: #fcfcfc;
     margin-right: 5px;
 }
 
@@ -152,12 +114,11 @@
 |  Input for description   | 
 +--------------------------*/
 
-.project-description {
+.add-project-description {
     resize: none;
     border: none;
     padding: 0.5em;
-    border-radius: 10px;
-    background-color: #fcfcfc;
+    line-height: 1.3;
 }
 
 
@@ -179,7 +140,6 @@
 .deadline {
     margin-left: 5px;
     margin-bottom: 5px;
-    background-color: #fcfcfc;
 }
 
 
@@ -187,12 +147,13 @@
 |  Deadline input date   | 
 +------------------------*/
 
-.project-deadline {
-    background-color: #fcfcfc;
+.add-project-deadline {
     text-align: center;
     display: block;
-    width: 150px;
-    padding: 0.8em 0.6em;
+    width: fit-content;
+    padding: 0.8em 0;
+    padding-left: 1.5em;
+    padding-right: 0.5em;
     border-radius: 10px;
     appearance: none;
     font-weight: 400;
@@ -217,9 +178,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .line {
     border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
-    width: 120%;
-    margin-left: -20px;
+    margin-bottom: 10px;
+    width: 110%;
+    margin-left: -18px;
 }
 
 
@@ -237,8 +198,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #F6CFCA;
 }
 
-.modal-close-button {
-    background-color: #fcfcfc;
+.modal-x-button {
+    background-color: inherit;
 }
 
 .add-button,
@@ -249,4 +210,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: none;
     border-radius: 15px;
     cursor: pointer;
+    box-shadow: var(--defaultShadow);
 }

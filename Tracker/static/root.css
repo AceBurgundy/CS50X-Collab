@@ -3,7 +3,7 @@
     --brown: #442C2E;
     --secondary: #FEEAE6;
     --backdrop: #feefe983;
-    --defaultShadow: rgba(0, 0, 0, 0.1) 0px 7px 18px;
+    --defaultShadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
     --sectionShadow: rgba(0, 0, 0, 0.06) 0px 5px 18px;
 }
 
@@ -14,6 +14,5 @@
     margin: 0px;
     text-decoration: none;
     font-family: "Rubik Regular";
-    overflow: hidden;
     color: #442b2d;
 }

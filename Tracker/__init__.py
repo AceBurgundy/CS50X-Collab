@@ -1,10 +1,9 @@
-import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_session import Session
-from tempfile import mkdtemp
+# from tempfile import mkdtemp
 
 # Configure application
 app = Flask(__name__)
