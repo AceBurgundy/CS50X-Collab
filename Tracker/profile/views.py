@@ -16,7 +16,7 @@ def _profile():
         
         form = profileForm()
         passForm = ChangePassword()
-        image_file = url_for('profile.static', filename='profile_pictures/' + current_user.profile_picture)
+        image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
         if request.method == "POST":
             if form.validate_on_submit():
@@ -37,7 +37,7 @@ def _profile():
             else:
                 return render_template('profile.html', form=form, image_file=image_file, passForm=passForm, error=form.errors)
         else:      
-            image_file = url_for('profile.static', filename='profile_pictures/' + current_user.profile_picture)
+            image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
             form.username.data = current_user.username
             form.first_name.data = current_user.first_name
@@ -62,9 +62,9 @@ def changePassword():
             
             return redirect(url_for('index._index'))
         else:
-            return apology("error in checking user.forms and form.data")
+            return apology("passwords does not match")
     else:
-        return apology(form.form_errors)
+        return render_template("profile.html", form.form_errors)
 
 
  
