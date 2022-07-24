@@ -26,14 +26,22 @@ such as how to load a user from an ID, where to send users when they need to log
 """
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'user.login'
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-from Tracker import routes
+from Tracker.user.views import user
+from Tracker.profile.views import profile
+from Tracker.projects.views import projects
+from Tracker.index.views import index
+
+app.register_blueprint(user)
+app.register_blueprint(profile)
+app.register_blueprint(projects)
+app.register_blueprint(index)
 
 @app.after_request
 def after_request(response):
