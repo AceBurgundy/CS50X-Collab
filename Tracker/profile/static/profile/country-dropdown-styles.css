@@ -1,0 +1,165 @@
+/* Container for both the toggle and the dropdown */
+
+.select-country-custom {
+    width: 15rem;
+    height: 100%;
+}
+
+
+/* Toggle for the dropdown */
+
+.country-select-switch {
+    position: relative;
+    bottom: 0%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #d1cfcf;
+}
+
+
+/* Child element of country select switch */
+
+
+/* Displays the country the was selected from the dropdown */
+
+#selected-country-span {
+    margin-left: 1em;
+    pointer-events: none;
+}
+
+
+/* Actual dropdown */
+
+#country-dropdown {
+    position: absolute;
+    top: -290%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0;
+    transition: 250ms ease;
+    box-shadow: var(--defaultShadow);
+    -webkit-box-shadow: var(--defaultShadow);
+}
+
+#country-dropdown.active {
+    opacity: 1;
+    top: -300%;
+}
+
+
+/* Container for the country list items */
+
+.country-option-container {
+    width: 15rem;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+/* list element */
+
+.country {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: center;
+    justify-content: flex-start;
+    grid-template-columns: 30% 70%;
+    padding: 1.5em 1em;
+    width: 80%;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.country:hover {
+    background-color: rgba(170, 170, 170, 0.129);
+}
+
+
+/* Child element of the .country parent element */
+
+.flag {
+    width: 1.5rem;
+    position: relative;
+    left: 20%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    /* remove scrollbar space */
+    background: transparent;
+    /* optional: just make scrollbar invisible */
+}
+
+
+/* Container for the search bar */
+
+#dropdown-header {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0%;
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 20px 20px 0 0;
+}
+
+
+/* Container for both input and search icon */
+
+#search-container {
+    width: 80%;
+    margin: 1em 0 0.5em 0;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    background-color: rgba(170, 170, 170, 0.129);
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 0.5em 0.5em;
+}
+
+
+/* Container for the search icon */
+
+#dropdown-search-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Actual search icon */
+
+#dropdown-search-icon {
+    width: 1rem;
+}
+
+
+/* Input element to search for a country */
+
+#country-search {
+    outline: none;
+    margin-left: 0.5rem;
+    background-color: none;
+    border: none;
+    font-family: "poppins";
+    background-color: #f4f4f4;
+}
