@@ -1,4 +1,4 @@
-@import "fonts.css";
+@import "/static/fonts.css";
 * {
     font-size: 13px;
     outline: 0px !important;
