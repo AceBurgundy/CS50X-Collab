@@ -21,7 +21,7 @@ def index():
 
     if request.method == "GET":
         projects = Project.query.filter_by(user_id = current_user.id)  
-        return render_template("index.html", projects=projects, image_file=image_file, pageTitle=pageTitle) #, projects=projects)
+        return render_template("index.html", projects=projects, image_file=image_file, pageTitle=pageTitle)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
