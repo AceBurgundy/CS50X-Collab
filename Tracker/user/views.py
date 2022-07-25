@@ -2,10 +2,10 @@ from flask import Blueprint
 
 from Tracker import db
 from werkzeug.security import check_password_hash, generate_password_hash
-from Tracker.helpers import apology
+from Tracker.helpers import Apology
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_user, current_user, logout_user
-from Tracker.helpers import apology
+from Tracker.helpers import Apology
 from Tracker.models import User
 
 invalid = ["where","select","update","delete",".schema","from","drop","query"]
@@ -30,31 +30,31 @@ def login():
 
         # Ensure that the user placed their email
         if not emailInput:
-            return apology("missing email")
+            return Apology(message="missing email")
 
         # Ensure email has no invalid inputs
         if emailInput.lower() in invalid:
-            return apology("email was not accepted")
+            return Apology(message="email was not accepted")
 
         # Ensure input is indeed an email
         if "@" not in emailInput and ".com" not in emailInput:
-            return apology("Not an email")
+            return Apology(message="Not an email")
 
         # Ensure password was submitted
         if not passwordInput:
-            return apology("you must provide a password")
+            return Apology(message="you must provide a password")
 
         # Ensure password has no invalid inputs
         if passwordInput.lower() in invalid:
-            return apology("password was not accepted")
+            return Apology(message="password was not accepted")
 
         user = User.query.filter_by(email=emailInput).first()
 
         if not user:
-            return apology("wrong email or user not registered")
+            return Apology(message="wrong email or user not registered")
         
         if check_password_hash(user.password, passwordInput) == False:
-            return apology("wrong password or user not registered")
+            return Apology(message="wrong password or user not registered")
 
         try:           
             
@@ -64,7 +64,7 @@ def login():
             # Redirect user to home page
             return redirect(url_for('index._index')) if next_page else redirect(url_for('index._index'))
         except:
-            return apology("Login Unsucessful. User have yet to register")
+            return Apology(message="Login Unsucessful. User have yet to register")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -93,38 +93,38 @@ def register():
         usernameInput = request.form.get("username")
          # Ensure that the user placed their email
         if not emailInput:
-            return apology("missing email")
+            return Apology(message="missing email")
 
         # Ensure email has no invalid inputs
         if emailInput.lower() in invalid:
-            return apology("email was not accepted")
+            return Apology(message="email was not accepted")
 
         # Ensure input is indeed an email
         if "@" not in emailInput and ".com" not in emailInput:
-            return apology("Not an email")
+            return Apology(message="Not an email")
 
         # Ensure email has been already used 
         has_similar_email = User.query.filter_by(email=emailInput).first()
 
         if has_similar_email: 
-            return apology("You have already used this email. Try another one")
+            return Apology(message="You have already used this email. Try another one")
 
 
         # Ensure password was submitted
         if not passwordInput:
-            return apology("you must provide a password")
+            return Apology(message="you must provide a password")
 
         # Ensure password has no invalid inputs
         if passwordInput.lower() in invalid:
-            return apology("password was not accepted")
+            return Apology(message="password was not accepted")
 
         # Ensure user inputs username
         if not usernameInput: 
-            return apology("Please provide a username")
+            return Apology(message="Please provide a username")
         
         # Ensure username has no invalid inputs
         if usernameInput.lower() in invalid:
-            return apology("Invalid username, please try again")
+            return Apology(message="Invalid username, please try again")
 
         encryptedPassword = generate_password_hash(passwordInput)
 
@@ -138,7 +138,7 @@ def register():
             # Redirect user to home page
             return redirect(url_for('index._index'))
         except:
-            return apology("Login Unsucessful. Something was wrong on logging in user. line 71")
+            return Apology(message="Login Unsucessful. Something was wrong on logging in user. line 71")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
