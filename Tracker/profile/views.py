@@ -3,7 +3,7 @@ from flask import Blueprint
 from flask import flash, redirect, render_template, request, url_for
 from Tracker import db
 from werkzeug.security import check_password_hash, generate_password_hash
-from Tracker.helpers import apology
+from Tracker.helpers import Apology
 from flask_login import current_user, login_required
 from Tracker.helpers import save_picture
 from Tracker.profile.forms import (profileForm, ChangePassword)
@@ -62,7 +62,7 @@ def changePassword():
             
             return redirect(url_for('index._index'))
         else:
-            return apology("passwords does not match")
+            return Apology(message="passwords does not match")
     else:
         return render_template("profile.html", form.form_errors)
 
