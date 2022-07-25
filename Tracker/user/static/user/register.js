@@ -1,19 +1,7 @@
-import { eyeToggle } from "/static/helper";
-const toRegister = document.querySelector("#to-register");
+import { eyeToggle } from "/static/helper.js";
+
 const toLogin = document.querySelector("#to-login");
-const formsContainer = document.querySelector(".forms-container");
-const cover = document.querySelector(".cover");
-
-toRegister.addEventListener('click', () => {
-    formsContainer.classList.add("to-register");
-    cover.classList.add("to-register");
-})
-
-toLogin.addEventListener('click', () => {
-    formsContainer.classList.remove("to-register");
-    cover.classList.remove("to-register");
-})
-
+const cover = document.querySelector("#register-cover");
 
 eyeToggle(
     document.getElementById("regpassword-icon-container"),
@@ -22,35 +10,50 @@ eyeToggle(
     document.getElementById("reg-eye-off")
 )
 
-eyeToggle(
-    document.getElementById('logpassword-icon-container'),
-    document.getElementById('logpassword'),
-    document.getElementById('logeye'),
-    document.getElementById('log-eye-off')
-)
-
-window.onload = function loading() {
-    var cover = document.querySelector('.cover');
-    var formsContainer = document.querySelector('.forms-container');
+window.addEventListener("load", () => {
+    if (screen.width > 1024) {
+        cover.style.right = "-140%"
+    } else if (screen.width <= 500) {
+        document.querySelector(".form-register").style.marginTop = "0rem";
+        document.querySelector(".form-register").style.opacity = 1;
+    } else if (screen.width > 500 && screen.width < 1025) {
+        cover.style.left = "-50%"
+        cover.style.top = "-50%"
+        document.querySelector(".form-register").style.marginTop = "0rem";
+        document.querySelector(".form-register").style.opacity = 1;
+    }
+    var formContainer = document.querySelector('.register');
     cover.addEventListener('touchmove', preventKeyBoardScroll, { passive: false });
-    formsContainer.addEventListener('touchmove', preventKeyBoardScroll, { passive: false });
+    formContainer.addEventListener('touchmove', preventKeyBoardScroll, { passive: false });
 
     function preventKeyBoardScroll(e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     }
+})
 
-    let form = document.getElementById('form-register');
-    form.reset();
-}
+toLogin.addEventListener("click", () => {
+    if (screen.width > 1025) {
+        cover.style.right = "-60%"
+    } else if (screen.width > 500 && screen.width < 1025) {
+        cover.style.top = "50%"
+        document.querySelector(".form-register").style.opacity = 0;
+    } else if (screen.width <= 500) {
+        document.querySelector(".form-register").style.marginTop = "2rem";
+        document.querySelector(".form-register").style.opacity = 0;
+    }
+    setTimeout(() => {
+        window.location = "/login"
+    }, 500);
+})
 
 document.querySelector("#form-register").addEventListener(("keyup"), () => {
 
     let form = document.getElementById('form-register');
     const userName = document.getElementById('username').value;
     const regPassword = document.getElementById('regpassword');
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('register-email').value;
     const pattern = /(where)|(select)|(update)|(delete)|(.schema)|(from)|(drop)|[0-9]|[!@#$%^&*()_+}{":?></*+[;'./,]|-/gi;
     /* Dot Icons */
     const userNameCircle = document.getElementById('first-name-circle');
