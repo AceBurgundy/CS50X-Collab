@@ -2,19 +2,26 @@
 import os
 import secrets
 from wtforms.validators import ValidationError
-from flask import render_template
-from Tracker import app
+from flask import render_template, current_app
 from PIL import Image
-
-def apology(message, code=400):
-    """Render message as an apology to user."""
-    return render_template("apology.html", top=code, bottom=message), code
+class Apology():
+    
+    def __init__(self, code=None, title=None, message=None):
+        if not code:
+            self.code = ""
+        if not title:
+            self.title = "¯\_(ツ)_/¯"
+        if not message:
+            self.message = "Nothing to see here"
+    
+    def __call__(self):
+        return render_template("apology.html", error_code=self.code, error_title=self.title, error_description=self.message), self.code
 
 def save_picture(form_picture):
     random_value = secrets.token_hex(8)
     file_name, file_extension = os.path.splitext(form_picture.filename)
     new_file_name = random_value + file_extension
-    file_path = os.path.join(app.root_path, 'static/profile_pictures', new_file_name)
+    file_path = os.path.join(current_app.root_path, 'static/profile_pictures', new_file_name)
     
     output_size = (125,125)
     image = Image.open(form_picture)
@@ -38,4 +45,4 @@ class CheckProfanity():
         if len([word for word in profanity if word in ("".join(word for word in field.data.lower() if word.isalpha() or word.isnumeric() or word == " ")).split(" ")]) > 0:
             raise ValidationError(self.message)  
         else:
-            print("validation error in line 24 | forms.py")
+            print("validation error in line 45 | helpers.py")

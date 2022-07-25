@@ -1,4 +1,4 @@
-import { counter } from "./helper.js"
+import { counter } from "/static/helper.js"
 
 // script to show and hide modal to add new project
 const projectModal = document.querySelector(".add-project-modal-container");

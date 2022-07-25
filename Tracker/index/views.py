@@ -11,7 +11,7 @@ index = Blueprint('index',__name__ , template_folder='templates/index', static_f
 def _index():
     """Show all user projects"""
     pageTitle = "DASHBOARD"
-    image_file = url_for('profile.static', filename='profile_pictures/' + current_user.profile_picture)
+    image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
     if request.method == "GET":
         projects = Project.query.filter_by(user_id = current_user.id)  

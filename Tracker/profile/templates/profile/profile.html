@@ -3,7 +3,7 @@
 {% endblock scripts -%} {% extends "head.html" %}{%- block style %}
 <link rel="stylesheet" href="{{ url_for( 'profile.static' , filename='profile.css')  }}"> {% endblock style -%} {%- block profile -%}
 
-<img src="{{ url_for( 'profile.static' , filename='background.png')  }}" class="image-background" alt="">
+<img src="{{ url_for( 'static' , filename='background.png')  }}" class="image-background" alt="">
 
 <div id="background" class="background">
 </div>

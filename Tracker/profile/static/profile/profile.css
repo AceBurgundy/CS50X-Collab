@@ -1,6 +1,6 @@
-@import "./fonts.css";
-@import "./root.css";
-@import "./background.css";
+@import "/static/fonts.css";
+@import "/static/root.css";
+@import "/static/background.css";
 @import "./changePassword.css";
 @import "./country-dropdown-styles.css";
 

@@ -1,4 +1,4 @@
-import { eyeToggle } from "./helper";
+import { eyeToggle } from "/static/helper";
 const toRegister = document.querySelector("#to-register");
 const toLogin = document.querySelector("#to-login");
 const formsContainer = document.querySelector(".forms-container");

@@ -1,5 +1,5 @@
-@import "./fonts.css";
-@import "./root.css";
+@import "/static/fonts.css";
+@import "/static/root.css";
 .projects-container {
     width: 97%;
     position: absolute;

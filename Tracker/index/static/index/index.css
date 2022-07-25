@@ -1,8 +1,8 @@
 @import "./navigation-rail.css";
-@import "./background.css";
-@import "./fonts.css";
+@import "/static/background.css";
+@import "/static/fonts.css";
 @import "./project.css";
-@import "./root.css";
+@import "/static/root.css";
 #grid-container {
     display: grid;
     height: 100vh;
