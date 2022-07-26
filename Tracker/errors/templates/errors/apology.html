@@ -11,14 +11,21 @@
 
 <body>
     <main>
-        <div class="error-code-container">
-            <p class="error-code">{{ code }}</p>
+        <div class="main-container">
+            <div class="main-errors">
+                <div class="error error-title-container">
+                    <p class="error-title">{{ title }}</p>
+                </div>
+                <div class="error error-message-container">
+                    <p class="error-message">{{ message }}</p>
+                    <button id="return-button" onclick="window.history.back();">< Go Back</button>
+                </div>
+            </div>
         </div>
-        <div class="error-title-container">
-            <p class="error-title">{{ title }}</p>
-        </div>
-        <div class="error-message-container">
-            <p class="error-message">{{ message }}</p>
+        <div class="error error-code-container">
+            <div class="error-code">
+                <p class="error-number">{{ code }}</p>
+            </div>
         </div>
     </main>
 </body>
