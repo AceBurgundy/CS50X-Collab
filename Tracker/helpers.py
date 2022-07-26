@@ -4,18 +4,6 @@ import secrets
 from wtforms.validators import ValidationError
 from flask import render_template, current_app
 from PIL import Image
-class Apology():
-    
-    def __init__(self, code=None, title=None, message=None):
-        if not code:
-            self.code = ""
-        if not title:
-            self.title = "¯\_(ツ)_/¯"
-        if not message:
-            self.message = "Nothing to see here"
-    
-    def __call__(self):
-        return render_template("apology.html", error_code=self.code, error_title=self.title, error_description=self.message), self.code
 
 def save_picture(form_picture):
     random_value = secrets.token_hex(8)

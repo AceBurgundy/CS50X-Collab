@@ -6,19 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, width=device-width">
-    <link rel="stylesheet" href="{{ url_for ('static' , filename='errorCode.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('errors.static' , filename='errors.css') }}">
 </head>
 
 <body>
     <main>
         <div class="error-code-container">
-            <p class="error-code">{{ top }}</p>
+            <p class="error-code">{{ code }}</p>
         </div>
         <div class="error-title-container">
             <p class="error-title">{{ title }}</p>
         </div>
         <div class="error-message-container">
-            <p class="error-message">{{ bottom }}</p>
+            <p class="error-message">{{ message }}</p>
         </div>
     </main>
 </body>

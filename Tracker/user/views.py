@@ -27,10 +27,6 @@ def login():
 
         user = User.query.filter_by(email=email_input).first()
 
-        # if check_password_hash(user.password, password_input) == False:
-        #     form.form_errors.append("Password does not match")
-        #     return render_template("login.html", form=form, errors=form.form_errors)
-
         try:           
             if user and check_password_hash(user.password, password_input):
                 login_user(user) #, remember=form.remember.data)
@@ -50,7 +46,7 @@ def logout():
     """Log user out"""
 
     logout_user()
-    return render_template('login.html')
+    return redirect(url_for('user.login'))
 
 
 @user.route("/register", methods=["GET", "POST"])

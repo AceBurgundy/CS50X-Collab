@@ -19,11 +19,13 @@ def create_app(config_class=Config):
     from Tracker.profile.views import profile
     from Tracker.projects.views import projects
     from Tracker.index.views import index
+    from Tracker.errors.handlers import errors
 
     app.register_blueprint(user)
     app.register_blueprint(profile)
     app.register_blueprint(projects)
     app.register_blueprint(index)
+    app.register_blueprint(errors)
 
     @app.after_request
     
