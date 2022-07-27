@@ -16,9 +16,14 @@ Collab
    ├─ config.py
    |
    ├─ errors
-   │  ├─ handlers.py
+   |  ├─ static
+   |  |   └─ errors.css
+   |  ├─ templates
+   |  |   └─ apology.html
+   │  ├─ helpers.py
+   |  ├─ handlers.py   
    │  └─ __init__.py
-   ├─ helpers.py
+   |
    |
    ├─ index
    │  ├─ static
