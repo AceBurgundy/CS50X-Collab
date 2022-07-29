@@ -1,0 +1,76 @@
+<!-- {%- block scripts %}
+<script src="{{ url_for( 'user.static' , filename='login.js')  }}" type="module" defer></script>
+{% endblock scripts -%}  -->
+
+{% extends "index.html" %} {%- block style %}
+<link rel="stylesheet" href="{{ url_for( 'tickets.static' , filename='tickets.css')}}"> {% endblock style -%} {% block tickets -%}
+
+<div id="tickets-content">
+    <div id="ticket-section">
+
+        <div class="ticket-column">
+            <div class="ticket-column-header">
+                <p class="ticket-column-title">Pending</p>
+            </div>
+            <div class="ticket-column-body">
+                <div class="ticket-hover-background">
+                    <div class="ticket" draggable="true">
+                        <div class="ticket-header">
+                            <div class="ticket-tag-container">
+                                <p class="ticket-tag">PRIORITY</p>
+                            </div>
+                        </div>
+                        <div class="ticket-title">
+                            <p>Real time collaboration flowchart</p>
+                        </div>
+                        <div class="ticket-description">
+                            <p>Document describes of external factors influencing the product</p>
+                        </div>
+                        <div class="ticket-deadline">
+                            <div class="ticket-deadline-container">
+                                <div class="deadline-svg-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
+                                </div>
+                                <p>June 30</p>
+                            </div>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="ticket-collaborators">
+                                <div class="collaborators"></div>
+                                <div class="collaborators"></div>
+                            </div>
+                            <div class="ticket-indicators">
+                                <div class="ticket-chat-indicator">
+                                    <div class="chat-icon-container">
+                                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M19.05566,2h-14a3.00328,3.00328,0,0,0-3,3V19a3.00328,3.00328,0,0,0,3,3h14a3.00328,3.00328,0,0,0,3-3V5A3.00328,3.00328,0,0,0,19.05566,2Zm-14,2h14a1.001,1.001,0,0,1,1,1v8H17.59082a1.99687,1.99687,0,0,0-1.66406.89062L14.52051,16H9.59082L8.18457,13.89062A1.99687,1.99687,0,0,0,6.52051,13H4.05566V5A1.001,1.001,0,0,1,5.05566,4Zm14,16h-14a1.001,1.001,0,0,1-1-1V15H6.52051l1.40625,2.10938A1.99687,1.99687,0,0,0,9.59082,18h4.92969a1.99687,1.99687,0,0,0,1.66406-.89062L17.59082,15h2.46484v4A1.001,1.001,0,0,1,19.05566,20Z"/></svg>
+                                    </div>
+                                    <p>2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-column">
+            <div class="ticket-column-header">
+                <p class="ticket-column-title">In Progress</p>
+            </div>
+            <div class="ticket-column-body">
+
+            </div>
+        </div>
+
+        <div class="ticket-column">
+            <div class="ticket-column-header">
+                <p class="ticket-column-title">Completed</p>
+            </div>
+            <div class="ticket-column-body">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{%- endblock tickets %}
