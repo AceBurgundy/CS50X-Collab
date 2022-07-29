@@ -148,3 +148,17 @@
     left: 50%;
     transform: translate(-50%, -51%);
 }
+
+.show-ticket-button {
+    padding: .7em 0.5em;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    display: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--defaultShadow);
+}
+
+.project.active .go-to-ticket>.show-ticket-button {
+    display: block;
+}
