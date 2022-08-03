@@ -1,0 +1,261 @@
+@import "/static/fonts.css";
+#tickets-content {
+    width: 97%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5em;
+}
+
+#ticket-section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.ticket-column {
+    padding-top: 0.5em;
+    /* background-color: aquamarine; */
+    max-width: 100%;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    gap: 0.5em;
+    /* position: absolute; settings for mobile */
+    transition: 500ms ease;
+}
+
+
+/* settings for mobile */
+
+
+/* .ticket-column:nth-of-type(1) {
+    display: none;
+}
+
+.ticket-column:nth-of-type(2) {
+    display: none;
+}
+
+.ticket-column:nth-of-type(3) {
+    display: none;
+} */
+
+.ti .ticket-column-header,
+.ticket-column-body {
+    width: 90%;
+    gap: 0.5rem;
+    border-radius: 10px;
+}
+
+.ticket-column-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1em;
+    height: max-content;
+    border-radius: 10px;
+}
+
+.ticket-column-title {
+    text-transform: uppercase;
+    font-family: "Poppins Medium";
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.452);
+}
+
+.ticket-column-body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(170, 170, 170, 0.219);
+    align-items: center;
+    padding-top: 8px;
+    border-radius: 20px;
+    overflow: visible;
+}
+
+.ticket-hover-background {
+    width: 95%;
+    height: fit-content;
+    position: relative;
+    background-color: rgba(170, 170, 170, 0.322);
+    border-radius: 20px;
+    overflow: visible;
+}
+
+.ticket {
+    padding: 0.8em 0;
+    background-color: #fff;
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.30em;
+    border-radius: 20px;
+    transition: 250ms ease;
+}
+
+.ticket-hover-background:hover .ticket {
+    transform: translate(-3%, -3%);
+}
+
+.ticket-header,
+.ticket-title,
+.ticket-description,
+.ticket-deadline,
+.ticket-footer {
+    width: 90%;
+    height: 2rem;
+}
+
+.ticket-header {
+    display: flex;
+    overflow: visible;
+    height: 1.65rem;
+}
+
+.ticket-tag-container {
+    background-color: rgb(255, 171, 75);
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0em 0.5em;
+    border-radius: 10px;
+}
+
+.ticket-tag {
+    height: max-content;
+    font-size: 0.8em;
+}
+
+.ticket-title {
+    height: max-content;
+    font-family: "Rubik Medium";
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.ticket-description {
+    font-size: 0.8rem;
+}
+
+.ticket-description p {
+    opacity: 37%;
+    font-weight: bold;
+}
+
+.ticket-deadline {
+    height: 1.7rem;
+    margin-top: 0.2rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.ticket-deadline-container {
+    background-color: darkkhaki;
+    border-radius: 7px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deadline-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    /* background-color: azure; */
+}
+
+.ticket-deadline-container svg {
+    width: 1.3rem;
+    margin: 0.4em;
+}
+
+.ticket-deadline-container p {
+    display: flex;
+    height: max-content;
+    font-size: 0.8rem;
+    opacity: 70%;
+}
+
+.ticket-footer {
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-collaborators,
+.ticket-indicators {
+    width: 45%;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.collaborators {
+    width: 2.5rem;
+    height: 2.5em;
+    border-radius: 50px;
+    background-color: #aaa;
+}
+
+.collaborators:nth-of-type(1) {
+    position: absolute;
+    background-color: gold;
+    z-index: 2;
+    left: 10%;
+}
+
+.ticket-indicators {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.ticket-chat-indicator {
+    display: flex;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 0.4em;
+}
+
+.chat-icon-container {
+    display: flex;
+    overflow: visible;
+    height: max-content;
+}
+
+.chat-icon-container svg {
+    height: max-content;
+    width: 1.15rem;
+    opacity: 70%;
+}
+
+.ticket-chat-indicator p {
+    height: max-content;
+    opacity: 40%;
+}

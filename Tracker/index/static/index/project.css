@@ -1,5 +1,3 @@
-@import "/static/fonts.css";
-@import "/static/root.css";
 .projects-container {
     width: 97%;
     position: absolute;
@@ -12,7 +10,7 @@
 }
 
 .project {
-    background-color: #fad8d1a1;
+    background-color: var(--primary);
     box-shadow: var(--defaultShadow);
     max-width: 13rem;
     width: 100%;
@@ -147,4 +145,18 @@
     top: 49%;
     left: 50%;
     transform: translate(-50%, -51%);
+}
+
+.show-ticket-button {
+    padding: .7em 0.5em;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    display: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--defaultShadow);
+}
+
+.project.active .go-to-ticket>.show-ticket-button {
+    display: block;
 }

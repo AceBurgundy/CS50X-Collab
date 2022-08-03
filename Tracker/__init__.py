@@ -20,14 +20,14 @@ def create_app(config_class=Config):
     from Tracker.projects.views import projects
     from Tracker.index.views import index
     from Tracker.errors.handlers import errors
+    from Tracker.tickets.views import tickets
 
     app.register_blueprint(user)
     app.register_blueprint(profile)
     app.register_blueprint(projects)
     app.register_blueprint(index)
     app.register_blueprint(errors)
-
-    @app.after_request
+    app.register_blueprint(tickets)
     
     def after_request(response):
         """Ensure responses aren't cached"""
@@ -35,4 +35,7 @@ def create_app(config_class=Config):
         response.headers["Expires"] = 0
         response.headers["Pragma"] = "no-cache"
         return response
+       
+    app.after_request
+    
     return app
