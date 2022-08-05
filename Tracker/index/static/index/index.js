@@ -25,3 +25,11 @@ extendButton.forEach((button) => {
         button.parentElement.parentElement.parentElement.classList.toggle("active")
     })
 })
+
+const projectMenu = document.querySelectorAll(".three-dot")
+
+projectMenu.forEach((button) => {
+    button.addEventListener("click", () => {
+        button.parentElement.classList.toggle("active")
+    })
+})
