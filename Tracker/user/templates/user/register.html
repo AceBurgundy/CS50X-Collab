@@ -6,9 +6,11 @@
 <!-- displays form errors -->
 {% if form.errors %}
 <ul class="error-list">
-    {% for field_name,field_errors in form.errors|dictsort if field_errors %} {% for error in field_errors %}
-    <div class="error">{{ field_name }} {{ error }}</div>
-    {% endfor %} {% endfor %}
+    {% for field_name,field_errors in form.errors|dictsort if field_errors %} {% for error in field_errors %} {% if field_name %}
+    <div class="error">{{ error }}</div>
+    {% else %}
+    <div class="error">{{ error }}</div>
+    {% endif %} {% endfor %} {% endfor %}
 </ul>
 {% endif %}
 
@@ -17,6 +19,8 @@
 
     <form class="form-register" id="form-register" action="{{ url_for('user.register') }}" method="post">
         <h1 class="register-header">Create Account</h1>
+
+        {{ form.csrf_token }}
 
         <div class="input-field">
             <div class="icon-container">

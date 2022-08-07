@@ -2,11 +2,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from Tracker.config import Config
+from cs50 import SQL
 
 login_manager = LoginManager()
 login_manager.login_view = 'user.login'
 
 db = SQLAlchemy()
+database = SQL("sqlite:///Tracker/collab.db")
 
 def create_app(config_class=Config):
     app = Flask(__name__)

@@ -5,35 +5,44 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0.5em;
+    height: 100%;
 }
 
 #ticket-section {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0%;
+}
+
+.ticket-column-container {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+    justify-content: space-evenly;
 }
 
 .ticket-column {
     padding-top: 0.5em;
-    /* background-color: aquamarine; */
-    max-width: 100%;
-    width: 90%;
+    max-width: 25%;
     height: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
-    border-radius: 20px;
+    align-items: flex-end;
+    border-radius: 12px;
     gap: 0.5em;
     /* position: absolute; settings for mobile */
     transition: 500ms ease;
+}
+
+.ticket-column-body {
+    height: 100%;
 }
 
 
@@ -52,41 +61,61 @@
     display: none;
 } */
 
-.ti .ticket-column-header,
+.ticket-column-header,
 .ticket-column-body {
-    width: 90%;
     gap: 0.5rem;
     border-radius: 10px;
 }
 
 .ticket-column-header {
+    width: 98%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-left: 1em;
+    justify-content: space-between;
     height: max-content;
     border-radius: 10px;
 }
 
+.ticket-column-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-column-form button {
+    width: 2.2rem;
+    border: none;
+    background-color: rgba(170, 170, 170, 0);
+    border-radius: 50px;
+    transition: 300ms ease;
+}
+
+.ticket-column-form button:hover {
+    background-color: var(--primary);
+    box-shadow: var(--defaultShadow);
+    cursor: pointer;
+}
+
 .ticket-column-title {
+    padding: 0.5em 0;
     text-transform: uppercase;
     font-family: "Poppins Medium";
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.452);
+    color: var(--brown);
 }
 
 .ticket-column-body {
     display: flex;
+    width: 100%;
+    height: 100%;
     flex-direction: column;
-    background-color: rgba(170, 170, 170, 0.219);
     align-items: center;
-    padding-top: 8px;
-    border-radius: 20px;
     overflow: visible;
+    gap: 0.5em;
 }
 
 .ticket-hover-background {
-    width: 95%;
+    width: 100%;
     height: fit-content;
     position: relative;
     background-color: rgba(170, 170, 170, 0.322);
@@ -95,21 +124,18 @@
 }
 
 .ticket {
-    padding: 0.8em 0;
+    padding: 0.2em 0;
     background-color: #fff;
     width: 100%;
-    height: max-content;
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.30em;
-    border-radius: 20px;
+    border-radius: 12px;
     transition: 250ms ease;
 }
 
 .ticket-hover-background:hover .ticket {
-    transform: translate(-3%, -3%);
+    transform: translate(-2%, -2%);
 }
 
 .ticket-header,
@@ -117,19 +143,20 @@
 .ticket-description,
 .ticket-deadline,
 .ticket-footer {
-    width: 90%;
+    width: 95%;
     height: 2rem;
 }
 
 .ticket-header {
     display: flex;
+    align-items: center;
     overflow: visible;
-    height: 1.65rem;
 }
 
 .ticket-tag-container {
     background-color: rgb(255, 171, 75);
     width: max-content;
+    height: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,17 +166,24 @@
 
 .ticket-tag {
     height: max-content;
-    font-size: 0.8em;
+    font-size: 0.7em;
+    text-transform: uppercase;
 }
 
 .ticket-title {
-    height: max-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: rem;
     font-family: "Rubik Medium";
-    font-size: 1.6rem;
-    font-weight: 600;
+}
+
+.ticket-title p {
+    font-size: 1.1rem;
 }
 
 .ticket-description {
+    display: none;
     font-size: 0.8rem;
 }
 
@@ -159,21 +193,40 @@
 }
 
 .ticket-deadline {
-    height: 1.7rem;
-    margin-top: 0.2rem;
+    height: 1.8rem;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
     font-weight: bold;
 }
 
 .ticket-deadline-container {
-    background-color: darkkhaki;
+    background-color: #ddd;
+    height: 1.5rem;
+    padding-right: 5px;
     border-radius: 7px;
     width: max-content;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+#project-extend {
+    height: 2.5rem;
+    width: 3.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary);
+    box-shadow: var(--defaultShadow);
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+}
+
+#expand-ticket-icon {
+    width: 1.5rem;
+    opacity: 0.8;
 }
 
 .deadline-svg-container {
@@ -186,27 +239,28 @@
 }
 
 .ticket-deadline-container svg {
-    width: 1.3rem;
+    width: 0.75rem;
     margin: 0.4em;
 }
 
 .ticket-deadline-container p {
     display: flex;
     height: max-content;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     opacity: 70%;
 }
 
 .ticket-footer {
     height: max-content;
+    padding: 0.2rem 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .ticket-collaborators,
 .ticket-indicators {
     width: 45%;
-    height: 3rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -214,8 +268,8 @@
 }
 
 .collaborators {
-    width: 2.5rem;
-    height: 2.5em;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50px;
     background-color: #aaa;
 }

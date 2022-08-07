@@ -1,4 +1,5 @@
 from datetime import datetime
+from email.policy import default
 from Tracker import db, login_manager
 from flask_login import UserMixin
 
@@ -45,16 +46,16 @@ class User(db.Model, UserMixin):
 
 
     def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.profile_picture}') "
+        return f"User('{self.username}') "
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    key = db.Column(db.String(200), unique=True, nullable=False)
     title = db.Column(db.String(50), unique=True, nullable=False)
     status = db.Column(db.String(10), nullable=False, default="Queue")
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     description = db.Column(db.String(200), nullable=False)
     deadline = db.Column(db.Date, nullable=False)
+    bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -63,7 +64,7 @@ class Project(db.Model):
     messages = db.relationship('Conversations', backref='this_project', lazy=True)
     
     def __repr__(self):
-        return f"Project('{self.title}','{self.key}','{self.status}','{self.content}','{self.deadline}')"
+        return f"Project('{self.title}','{self.status}','{self.creation_date}','{self.description}','{self.deadline}','{self.bookmark_state}')"
 
 class Conversations(db.Model):
     id = db.Column(db.Integer, primary_key =True)
@@ -80,17 +81,19 @@ class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(200), nullable=False)
-    status = db.Column(db.String(10), nullable=False, default='pending')
+    status = db.Column(db.String(10), nullable=False, default='Pending')
     creation_date = db.Column(db.DateTime(), default=datetime.now)
     assigned_user = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
-    
+    priority = db.Column(db.String(6), nullable=False, default='Low')
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
-    
+    deadline = db.Column(db.Date, nullable=False)
+    bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
+
     comment = db.relationship('TicketComment', backref='this_ticket', lazy=True)
     
     def __repr__(self):
-        return f"Ticket('{self.name}','{self.content}','{self.comment}','{self.status}','{self.assigned_user}','{self.created_by}')"
+        return f"Ticket('{self.name}','{self.content}','{self.comment}','{self.status}','{self.assigned_user}','{self.priority}','{self.created_by}','{self.deadline}','{self.bookmark_state}')"
 
 class TicketComment(db.Model):
     id = db.Column(db.Integer, primary_key=True)

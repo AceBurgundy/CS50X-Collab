@@ -18,6 +18,8 @@
     <form class="form-login" action="{{ url_for('user.login') }}" method="post">
         <h1 class="login-header">Welcome</h1>
 
+        {{ form.csrf_token }}
+
         <div class="input-field">
             <div class="icon-container">
                 <!-- User icon -->
