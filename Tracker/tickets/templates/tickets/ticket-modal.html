@@ -1,0 +1,74 @@
+{%- block scripts %}
+<script src="{{ url_for( 'static' , filename='form-modal.js')  }}" type="module" defer></script>
+{% endblock scripts -%} {% extends "head.html" %} {%- block style %}
+<link rel="stylesheet" href="{{ url_for( 'static' , filename='form-modal.css')}}"> {% endblock style -%} {%- block new_project %}
+
+<img src="{{ url_for( 'static' , filename='background.png')  }}" class="image-background" alt="">
+
+<div id="background" class="background">
+</div>
+
+<!-- displays form errors -->
+{% if form.errors %}
+<ul class="error-list">
+    {% for field_name,field_errors in form.errors|dictsort if field_errors %} {% for error in field_errors %}
+    <div class="error">{{ error }}</div>
+    {% endfor %} {% endfor %}
+</ul>
+{% endif %}
+
+<div class="form-modal-container">
+    <form class="modal-form" role="form" action="{{ url_for('tickets.add_ticket', current_project_id=project_id) }}" method="post">
+        {% else %}
+        <form class="modal-form" role="form" action="{{ url_for('projects.update_project', current_ticket_id=current_ticket_id) }}" method="post">
+            {% endif %}
+
+            <textarea hidden id="project_id">{{ project_id }}</textarea> {{ form.csrf_token }}
+            <div class="input-field header">
+                <label class="form-label">{{ modal_title }}</label>
+                <button type="button" id='ticket-modal-x-button' class="modal-x-button">&times;</button>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="input-field title">
+                <!--  project title input -->
+                {{ form.name(class="form-title", placeholder="Web App") }}
+                <p class="counter-container" id="counter-for-title"><span>0</span>/50</p>
+            </div>
+
+            <div class="input-field description">
+                <!-- project description input -->
+                {{ form.description(class="form-description", rows="5", placeholder="This ticket....") }}
+                <p class="counter-container" id="counter-for-description"><span>0</span>/200</p>
+            </div>
+
+            <div class="input-field priority">
+                <label class="form-label">Priority</label>
+                <!-- ticket priority input -->
+                {{ form.priority(class="form-priority") }}
+            </div>
+
+            <div class="input-field status">
+                <label class="form-label">Status:</label>
+                <textarea class="ticket-status" name="ticket-status">{{ status }}</textarea>
+            </div>
+
+            <div class="input-field deadline">
+                <label class="form-label">Deadline</label>
+                <!-- project deadline input -->
+                {{ form.deadline(class="form-deadline") }}
+            </div>
+
+            <div class="line"></div>
+
+            <div class="footer">
+                <!-- Cancel Button -->
+                <div id='ticket-modal-cancel-button' class="modal-close-button">CANCEL</div>
+                <!-- Add Button -->
+                {{ form.proceed(class="proceed-button") }}
+            </div>
+        </form>
+</div>
+<!-- end of new_project -->
+{%- endblock new_project %}

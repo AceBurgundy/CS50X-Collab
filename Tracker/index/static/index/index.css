@@ -1,7 +1,6 @@
 @import "./navigation-rail.css";
 @import "/static/background.css";
 @import "/static/fonts.css";
-@import "./project.css";
 @import "/static/root.css";
 #grid-container {
     display: grid;
@@ -38,6 +37,8 @@
     grid-area: main-content;
     transition: 500ms ease-out;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 

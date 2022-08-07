@@ -6,6 +6,7 @@ from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_user, current_user, logout_user
 from Tracker.models import User
 from Tracker.user.forms import RegisterForm, LoginForm
+from sqlalchemy import insert
 
 user = Blueprint('user', __name__, template_folder='templates/user', static_folder='static/user')
 
@@ -22,7 +23,7 @@ def login():
         if current_user.is_authenticated:
             return redirect(url_for('index._index'))
 
-        email_input = form.login_email.data
+        email_input = form.login_email.data.strip()
         password_input = form.login_password.data
 
         user = User.query.filter_by(email=email_input).first()
@@ -56,9 +57,9 @@ def register():
     form = RegisterForm()
     
     if request.method == "POST":
-
-        if current_user.is_authenticated:
-            return redirect(url_for('index._index'))
+        # print("cross")
+        # if current_user.is_authenticated:
+        #     return redirect(url_for('index._index'))
 
         if form.validate_on_submit():
             username_input = form.register_username.data
@@ -68,15 +69,20 @@ def register():
             encryptedPassword = generate_password_hash(password_input)
 
             try:
-                user = User(username=username_input, email=email_input, password=encryptedPassword)
+                db.session.execute(insert(User).values(
+                    username=username_input, 
+                    email=email_input, 
+                    password=encryptedPassword))
                 
-                db.session.add(user)
                 db.session.commit()
                 flash(f"Successfully created account.")
-                return render_template("login.html")
+                return redirect(url_for('user.login'))
             except:
                 form.form_errors.append("Login Unsucessful. Something was wrong on logging in user")
                 return render_template("register.html", form=form, errors=form.form_errors)
+        else:
+            # if not form.validate_on_submit()
+            return render_template("register.html", form=form, errors=form.form_errors)
     else:
         return render_template("register.html", form=form)
 

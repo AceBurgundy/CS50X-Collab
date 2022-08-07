@@ -19,10 +19,11 @@
     padding: 1em;
     border-radius: 12px;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     height: fit-content;
     flex-direction: column;
     transition: 300ms ease-in-out;
+    position: relative;
 }
 
 .project.active {
@@ -33,12 +34,70 @@
 .project-header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .project-header-left {
+    position: relative;
     display: flex;
     transition: 300ms ease;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.project-header-right {
+    position: absolute;
+    top: 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 0%;
+    margin: 1.3em 1em;
+}
+
+.project-options {
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.project-header-right.active .project-options {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.project-option {
+    padding: 0.7rem;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    box-shadow: var(--defaultShadow);
+    cursor: pointer;
+    border: none;
+}
+
+.project-option svg {
+    opacity: 0.7;
+}
+
+.project-option:hover svg {
+    opacity: 1;
+}
+
+.three-dot {
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.three-dot,
+.edit-icon,
+.trash-icon {
+    width: 1.1em;
+    transition: 300ms ease-in-out;
 }
 
 .project-title {
@@ -48,14 +107,10 @@
 .favorites-icon {
     fill: rgb(0, 0, 0);
     width: 1rem;
-    position: absolute;
-    top: 49%;
-    left: 50%;
-    transform: translate(-50%, -51%);
 }
 
 #starred-icon {
-    display: none;
+    transition: 100ms ease-in-out;
 }
 
 .star-container {
@@ -68,7 +123,22 @@
 }
 
 .project-author {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2em;
     font-size: 0.7rem;
+}
+
+.author-bookmark-state {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    color: rgb(46, 87, 150);
+    font-size: 0.65rem;
+    cursor: pointer;
+    outline: inherit;
 }
 
 .project-bottom {
@@ -102,13 +172,19 @@
     transition: 300ms ease;
     font-size: 1rem;
     opacity: 0.7;
+    width: 80%;
     line-height: 1.5;
 }
 
 .project-footer {
     display: flex;
+    gap: 1em;
     justify-content: space-between;
     align-items: center;
+}
+
+.project.active .project-bottom .project-footer {
+    justify-content: flex-start;
 }
 
 #project-extend {
@@ -154,9 +230,15 @@
     display: none;
     border: none;
     cursor: pointer;
+    width: fit-content;
     box-shadow: var(--defaultShadow);
 }
 
 .project.active .go-to-ticket>.show-ticket-button {
     display: block;
+}
+
+.project.active .project-header-right>.three-dot {
+    opacity: 1;
+    pointer-events: all;
 }

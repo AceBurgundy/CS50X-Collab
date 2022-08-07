@@ -4,7 +4,7 @@ class Config:
 
     SECRET_KEY = 'Adrian2001.'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///collab.db'
-
+    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Configure session to use filesystem (instead of signed cookies)
