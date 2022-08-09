@@ -42,6 +42,18 @@
                 <p class="counter-container" id="counter-for-description"><span>0</span>/200</p>
             </div>
 
+            <div class="input-field collaborate">
+                <!-- {# project description collaborate #} -->
+                <select name="collaborators" id="select-collaborators" class="select-collaborators" title="COLLABORATE" multiple>
+                    {% for user in users -%}
+                    <!-- {# loop through all users #} -->
+                    <option class="user" value="">{{ user }}</option>
+                    {%- endfor %}
+                </select>
+                <!-- {# holds all selected values of select-collaborators #} -->
+                <input type="hidden" name="select-collaborators-data" id="collaborators-data">
+            </div>
+
             <div class="input-field deadline">
                 <label class="form-label">Deadline</label>
                 <!-- project deadline input -->
