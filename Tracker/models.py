@@ -1,5 +1,4 @@
 from datetime import datetime
-from email.policy import default
 from Tracker import db, login_manager
 from flask_login import UserMixin
 
