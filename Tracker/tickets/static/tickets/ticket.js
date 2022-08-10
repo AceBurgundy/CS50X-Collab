@@ -12,24 +12,11 @@
 //     body.addEventListener("drop", console.log("drop"))
 // }
 
-// function dragStart() {
-//     console.log("Start");
-// }
-
-// function dragEnd() {
-//     console.log("End");
-// }
-
-// // function dragOver() {
-
-// // }
-
-// // function dragEnter() {
-
-// // }
-
-// // function dragLeave() {
-
-// // }
-
-// length of last string
+ticket.forEach(thisTicket => {
+    thisTicket.addEventListener("dragstart", function() {
+        draggedTicket = this
+    })
+    thisTicket.addEventListener("dragend", function() {
+        draggedTicket = null
+    })
+})
