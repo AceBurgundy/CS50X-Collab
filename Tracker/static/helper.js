@@ -39,4 +39,24 @@ export function eyeToggle(eyesContainerId, inputId, eyeId, eyeSlashId) {
             eyeSlashId.style.display = "none"
         }
     })
+
+}
+
+export function makeToastNotification(Message) {
+    let block = document.createElement('div');
+    block.className = "error"
+    block.innerHTML = Message
+
+    if ($('.error-list') !== null) {
+        $('.error-list').appendChild(block)
+
+        document.querySelectorAll(".error").forEach((error) => {
+
+            error.classList.toggle("active")
+
+            setTimeout(() => {
+                error.classList.remove("active")
+            }, 3000);
+        })
+    }
 }
