@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
         error.classList.toggle("active")
 
         setTimeout(() => {
-            error.classList.toggle("active")
+            error.classList.remove("active")
         }, 3000);
     })
 })
