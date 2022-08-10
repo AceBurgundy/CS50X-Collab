@@ -9,11 +9,11 @@
                 <div class="project-author">{{ project.author.username }}
                     <span>
                         <form method="post" action="{{ url_for('projects.bookmark_project', current_project_id=project.id) }}">
-                            {% if not project.bookmark_state %}
-                            <!--  -->
+                            {% if project.bookmark_state == False %}
+                            <!-- {# display nothing if project is not bookmarked #} -->
                             {% else %}
                             <button class="author-bookmark-state" type="submit">Bookmarked</button>
-                            <!-- -->
+                            <!-- {# display 'Bookmarked' if project is bookmarked #}-->
                             {% endif %}
                         </form>
                     </span>
