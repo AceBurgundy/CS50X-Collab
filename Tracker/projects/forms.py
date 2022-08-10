@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from Tracker import db, database
 import operator
-from wtforms import StringField, SubmitField, TextAreaField, DateField, SelectMultipleField
+from wtforms import StringField, SubmitField, TextAreaField, DateField, HiddenField
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.validators import DataRequired, Length
 from Tracker.helpers import CheckProfanity
@@ -13,11 +13,7 @@ class ProjectForm(FlaskForm):
     
     description = TextAreaField(u'Description', id="form-description", validators=[DataRequired(message="Your project needs a description"), CheckProfanity(), Length(min=5,max=200)])
                                          
-    # collaborate = QuerySelectMultipleField('Collaborate', query_factory=lambda: db.session.scalars(select(User).from_statement(text("SELECT id,username FROM User"))).all())
-#     #             <!-- <div class="input-field collaborate">
-#                 <label class="form-label">Collaborate</label>
-#             {{ form.collaborate(class="form-collaborate") }}
-# </div> -->
+    collaborate = HiddenField(id="collaborate-data", validators=[CheckProfanity()])
 
     deadline = DateField(validators=[DataRequired()]) 
         
