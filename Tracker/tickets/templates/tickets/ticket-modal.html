@@ -18,6 +18,7 @@
 {% endif %}
 
 <div class="form-modal-container">
+    {% if modal_title == "CREATE NEW TICKET" %}
     <form class="modal-form" role="form" action="{{ url_for('tickets.add_ticket', current_project_id=project_id) }}" method="post">
         {% else %}
         <form class="modal-form" role="form" action="{{ url_for('projects.update_project', current_ticket_id=current_ticket_id) }}" method="post">
