@@ -30,7 +30,14 @@
     display: flex;
     padding: 25px 20px 10px;
     flex-direction: column;
+    gap: 1em;
     border-radius: 15px;
+}
+
+.modal-form-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .input-field {
@@ -167,7 +174,6 @@
     appearance: none;
     font-weight: 400;
     border: 1px solid #dddddd;
-    margin-bottom: 1.5em;
 }
 
 
@@ -251,14 +257,30 @@ option:checked:before {
     width: 1rem;
     height: 1rem;
     display: flex;
+    position: absolute;
+    right: 5%;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
-    border: 1px #ddd;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.user.active>.user-details .check-icon-placeholder>.check-icon {
+    display: block;
 }
 
 .check-icon {
     display: none;
+}
+
+.image-username-container {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.user-img {
+    width: 100%;
+    border-radius: 50px;
 }
 
 .image-username-container {
@@ -271,20 +293,44 @@ option:checked:before {
 
 .user {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    cursor: pointer;
 }
 
-.dropdown-toggle {
+.user-details {
+    width: 80%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(170, 170, 170, 0.129);
+    border-radius: 12px;
+    padding: 0.2em 0.5em;
+    gap: 0.5em;
+}
+
+.user-username {
+    font-family: "Poppins";
+    text-transform: capitalize;
+}
+
+.collaborate {
     position: relative;
     bottom: 0%;
-    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid #d1cfcf;
+    width: 125px;
+    background-color: var(--primary);
+    border: none;
+    font-family: "Rubik Medium";
+    text-transform: uppercase;
+    padding: 0.8em;
+    border-radius: 15px;
 }
 
 
@@ -292,10 +338,10 @@ option:checked:before {
 
 .collaborate-dropdown {
     position: absolute;
-    top: -290%;
-    display: flex;
+    display: grid;
+    left: 0%;
+    top: 120%;
     flex-direction: column;
-    padding-top: 4rem;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
@@ -308,17 +354,27 @@ option:checked:before {
 
 .collaborate-dropdown.active {
     opacity: 1;
-    top: -300%;
+}
+
+.dropdown-list {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    gap: 0.6em;
+    flex-direction: column;
 }
 
 .collaborate-option-container {
     width: 15rem;
     height: 150px;
-    display: flex;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
     justify-content: flex-start;
     overflow: scroll;
+    position: relative;
     overflow-x: hidden;
 }
 
@@ -333,12 +389,11 @@ option:checked:before {
 /* Container for the search bar */
 
 #dropdown-header {
-    background-color: rgb(255, 255, 255);
     display: flex;
-    width: 100%;
+    width: 70%;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: sticky;
     top: 0%;
     z-index: 2;
     cursor: pointer;
@@ -350,7 +405,6 @@ option:checked:before {
 
 #search-container {
     width: 80%;
-    margin: 1em 0 0.5em 0;
     display: grid;
     grid-template-columns: 20% 80%;
     background-color: rgba(170, 170, 170, 0.129);
