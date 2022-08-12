@@ -1,5 +1,13 @@
 {% extends 'layout.html' %} {% block component_style -%}
-<link rel="stylesheet" href="{{ url_for('projects.static', filename='project.css') }}"> {% endblock component_style %} {% block projects -%}
+<link rel="stylesheet" href="{{ url_for('projects.static', filename='project.css') }}"> {% endblock component_style %}
+
+<!-- {# scripts #} -->
+{% block component_script -%}
+<script defer src="{{ url_for('index.static', filename='project.js')}}"></script>
+{%- endblock component_script %}
+
+<!-- {# main #} -->
+{% block projects -%}
 <div class="projects-container">
     {% if current_user.is_authenticated %} {% for project in projects -%}
     <div class="project">
@@ -53,6 +61,56 @@
             </div>
             <div class="go-to-ticket">
                 <a class="show-ticket-button" href="{{ url_for('tickets.show_tickets', current_project_id=project.id) }}">See Tickets</a>
+                <!-- {# show this section if current user is the author of the project #} -->
+                {% if project.author.username == current_user.username %}
+                <section class="show-ticket-button collaborate">
+                    <!-- {# project description collaborate #} -->
+                    Remove Collaborators
+                    <div id="collaborate-dropdown" id="collaborate-dropdown" class="collaborate-dropdown">
+                        <div id="collaborate" name="collaborate" class="collaborate-option-container">
+                            <div id="dropdown-header">
+                                <div id="search-container">
+                                    <div id="dropdown-search-icon-container">
+                                        <svg id="dropdown-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                                    </div>
+                                    <input type="text" placeholder="search" id="collaborate-search">
+                                </div>
+                            </div>
+                            <ul class="dropdown-list">
+                                <!-- {# Show all users #} -->
+                                {% for user in project.collaborators -%}
+                                <!-- {# loop through all users #} -->
+                                {% if user|length > 0 %}
+                                <div class="user">
+                                    <li class="user-details">
+                                        <div class="image-username-container">
+                                            <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + user.profile_picture) }}">
+                                        </div>
+                                        <p class="user-username">{{ user.username }}</p>
+
+                                        <form class="remove-user-form" action="{{ url_for('projects.remove_user')}}" method="post">
+                                            <input type="hidden" class="project_id" name="current_project_id" value="{{project.id}}">
+                                            <input type="hidden" value="{{user.id}}" name="user_id">
+                                            <button type="submit" class="remove-user-button">Remove</button>
+                                        </form>
+                                    </li>
+                                    {% else %}
+                                    <div class="user">None</div>
+                                    {% endif %}
+                                </div>
+                                {%- endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                {% else %}
+                <!-- {# give user the option to leave the project #} -->
+                <form action="{{ url_for('projects.leave_project') }}" class="show-ticket-button" method="post">
+                    <input type="hidden" class="project_id" name="current_project_id" value="{{project.id}}">
+                    <input type="hidden" value="{{current_user.id}}" name="user_id">
+                    <button type="submit" class="remove-user-button">Leave</button>
+                </form>
+                {% endif %}
             </div>
             <div class="project-footer">
                 <button class="deadline-container">until {{ project.deadline }}</button>
