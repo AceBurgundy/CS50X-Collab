@@ -1,4 +1,4 @@
-import { counter } from "/static/helper.js"
+import { counter, makeToastNotification } from "/static/helper.js"
 
 // script to show and hide modal to add new form
 const formModal = document.querySelector(".form-modal-container");
@@ -75,20 +75,68 @@ formDescriptionTextArea.addEventListener("input", e => {
     formDescriptionTextArea.style.height = `${e.target.scrollHeight}px`
 })
 
-$('add-button').bind('submit', function(e) {
+$('proceed-button').bind('submit', function(e) {
     e.preventDefault()
 })
 
 window.addEventListener("DOMContentLoaded", () => {
-    if (document.querySelector(".ticket-status") !== null) {
-        document.querySelector(".ticket-status").value = window.location.search !== null ? window.location.search.substring(1).split('=')[1].replace("+", " ") : 'Pending'
-        document.querySelector(".ticket-status").setAttribute("value", window.location.search !== null ? window.location.search.substring(1).split('=')[1].replace("+", " ") : 'Pending')
-    }
-
-    if (document.querySelector('.form-collaborate') !== null) {
-        let collaboratorSelectOption = document.querySelector('.form-collaborate').childNodes
-        for (let index = 0; index < collaboratorSelectOption.length; index++) {
-            collaboratorSelectOption[index].textContent = collaboratorSelectOption[index].textContent.slice(6, -3);
+        if (document.querySelector(".ticket-status") !== null) {
+            document.querySelector(".ticket-status").value = window.location.search !== null ? window.location.search.substring(1).split('=')[1].replace("+", " ") : 'Pending'
+            document.querySelector(".ticket-status").setAttribute("value", window.location.search !== null ? window.location.search.substring(1).split('=')[1].replace("+", " ") : 'Pending')
         }
-    }
-})
+
+        if (document.querySelector(".collaborate") !== null) {
+
+            document.querySelector(".collaborate").addEventListener("click", () => {
+
+                document.querySelector(".collaborate-dropdown").classList.add("active")
+            })
+        }
+        let collaboratorSelectOption = document.querySelectorAll('.user')
+
+        let user = []
+
+        collaboratorSelectOption.forEach(option => {
+            option.setAttribute("value", option.textContent.trim())
+            option.addEventListener("click", () => {
+                if (user.indexOf(option.outerText) < 0) {
+                    user.push(option.outerText)
+                    option.classList.add("active")
+                    option.children[0].children[2].childNodes[1].style.display = "block"
+                } else {
+                    option.classList.add("remove")
+                    option.children[0].children[2].childNodes[1].style.display = "none"
+                    user.splice(user.indexOf(option.outerText), 1)
+                }
+
+                $('#collaborate-data').attr('value', user);
+            });
+        })
+    })
+    //     if ($('selectpicker') !== null) {
+    //         $('select').selectpicker();
+
+//         $('.filter-option-inner-inner').click(function() {
+//             $('.open').toggleClass("active")
+//             $('.bs-searchbox').toggleClass("active")
+//         })
+
+//         let collaboratorSelectOption = document.querySelectorAll('.user')
+
+//         collaboratorSelectOption.forEach(option => {
+//             option.textContent = option.textContent.slice(6, -3);
+//             option.setAttribute("value", option.textContent)
+//         })
+
+//         $('#select-collaborators').change(function() {
+//             $('#collaborators-data').val($('#select-collaborators').val())
+//         })
+
+//         $('proceed-button').bind('submit', function(e) {
+
+//             if ($('#select-collaborators') == ' ') {
+//                 $('#collaborators-data').val('author')
+//             }
+//         })
+//     }
+// })

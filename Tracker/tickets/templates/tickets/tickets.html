@@ -1,5 +1,7 @@
 {% extends "layout.html" %} {% block component_style -%}
-<link rel="stylesheet" href="{{ url_for('tickets.static', filename='tickets.css') }}"> {% endblock component_style %} {% block tickets -%}
+<link rel="stylesheet" href="{{ url_for('tickets.static', filename='tickets.css') }}"> {% endblock component_style %} {% block component_script -%}
+<script src="{{ url_for('tickets.static', filename='ticket.js') }}" defer></script>
+{%- endblock component_script%} {% block tickets -%}
 
 <div id="tickets-content">
     <div id="ticket-section">
@@ -15,7 +17,7 @@
                 <div class="ticket-column-body">
                     {% for ticket in tickets %} {% if ticket.status == 'Pending' %}
 
-                    <div class="ticket-hover-background">
+                    <div class="ticket-hover-background" draggable="true">
                         <div class="ticket" draggable="true">
                             <div class="ticket-header">
                                 <div class="ticket-tag-container">
@@ -72,7 +74,7 @@
                 <div class="ticket-column-body">
                     {% for ticket in tickets %} {% if ticket.status == 'In Progress' %}
 
-                    <div class="ticket-hover-background">
+                    <div class="ticket-hover-background" draggable="true">
                         <div class="ticket" draggable="true">
                             <div class="ticket-header">
                                 <div class="ticket-tag-container">
@@ -123,7 +125,7 @@
                 <div class="ticket-column-body">
                     {% for ticket in tickets %} {% if ticket.status == 'Completed' %}
 
-                    <div class="ticket-hover-background">
+                    <div class="ticket-hover-background" draggable="true">
                         <div class="ticket" draggable="true">
                             <div class="ticket-header">
                                 <div class="ticket-tag-container">

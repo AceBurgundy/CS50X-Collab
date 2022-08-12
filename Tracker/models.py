@@ -1,5 +1,4 @@
 from datetime import datetime
-from email.policy import default
 from Tracker import db, login_manager
 from flask_login import UserMixin
 
@@ -18,7 +17,7 @@ collaborators = db.Table("collaborators",
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('project_id', db.Integer, db.ForeignKey('project.id'), nullable=False),
     db.Column('joined_datetime', db.DateTime, nullable=False, default=datetime.now),
-    db.Column('left_datetime', db.DateTime)                
+    db.Column('left_datetime', db.DateTime)
 )
 class User(db.Model, UserMixin):
         
@@ -46,7 +45,7 @@ class User(db.Model, UserMixin):
 
 
     def __repr__(self):
-        return f"User('{self.username}') "
+        return f"User('{self.username}','{self.profile_picture}') "
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)

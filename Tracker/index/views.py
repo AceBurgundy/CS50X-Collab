@@ -14,5 +14,5 @@ def _index():
     image_file = url_for('static', filename='profile_pictures/' + current_user.profile_picture)
 
     if request.method == "GET":
-        projects = Project.query.filter_by(user_id = current_user.id)  
+        projects = Project.query.filter_by(user_id = current_user.id)
         return render_template("index.html", projects=projects, image_file=image_file, pageTitle=pageTitle)
