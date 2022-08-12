@@ -85,26 +85,32 @@ window.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".ticket-status").setAttribute("value", window.location.search !== null ? window.location.search.substring(1).split('=')[1].replace("+", " ") : 'Pending')
         }
 
-        if (document.querySelector(".dropdown-toggle") !== null) {
+        if (document.querySelector(".collaborate") !== null) {
 
-            const userDropdownSwitch = document.querySelector(".dropdown-toggle")
+            document.querySelector(".collaborate").addEventListener("click", () => {
 
-            const collaborateDropdown = document.querySelector("#collaborate-dropdown")
-
-            userDropdownSwitch.addEventListener("click", () => {
-
-                collaborateDropdown.classList.toggle("active")
+                document.querySelector(".collaborate-dropdown").classList.add("active")
             })
         }
         let collaboratorSelectOption = document.querySelectorAll('.user')
 
-        collaboratorSelectOption.forEach(option => {
-            option.textContent = option.textContent.slice(6, -3);
-            option.setAttribute("value", option.textContent)
-        })
+        let user = []
 
-        $('#select-collaborators').change(function() {
-            $('#collaborate-data').val($('#collaborate-dropdown').val())
+        collaboratorSelectOption.forEach(option => {
+            option.setAttribute("value", option.textContent.trim())
+            option.addEventListener("click", () => {
+                if (user.indexOf(option.outerText) < 0) {
+                    user.push(option.outerText)
+                    option.classList.add("active")
+                    option.children[0].children[2].childNodes[1].style.display = "block"
+                } else {
+                    option.classList.add("remove")
+                    option.children[0].children[2].childNodes[1].style.display = "none"
+                    user.splice(user.indexOf(option.outerText), 1)
+                }
+
+                $('#collaborate-data').attr('value', user);
+            });
         })
     })
     //     if ($('selectpicker') !== null) {
