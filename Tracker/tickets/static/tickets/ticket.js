@@ -66,4 +66,21 @@ window.onload = () => {
             ticket.children[0]
         }
     })
+
+    const author = document.querySelector('.comment_author')
+
+    author.textContent = author.getAttribute("value")
+
+    document.querySelector('.author-comment-message').addEventListener("click", () => {
+        document.querySelector('.add-comment-options-container').classList.add("active")
+    })
+
+    document.querySelector('#cancel-comment').addEventListener("click", () => {
+        document.querySelector('.add-comment-options-container').classList.remove("active")
+    })
+    const formDescriptionTextArea = document.querySelector(".author-comment-message")
+
+    formDescriptionTextArea.addEventListener("input", e => {
+        formDescriptionTextArea.style.height = `${e.target.scrollHeight}px`
+    })
 }
