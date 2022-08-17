@@ -246,6 +246,7 @@
 
 .ticket-description {
     display: none;
+    height: fit-content;
     font-size: 0.8rem;
 }
 
@@ -272,7 +273,6 @@
 }
 
 .ticket-deadline-container {
-    background-color: #ddd;
     height: 1.5rem;
     padding-right: 5px;
     border-radius: 7px;
@@ -308,7 +308,6 @@
     height: 100%;
     overflow-y: scroll;
     display: none;
-    background-color: aqua;
 }
 
 .ticket.active .comment-section {
@@ -318,7 +317,6 @@
 .comment {
     padding: 1em 0;
     width: 100%;
-    background-color: antiquewhite;
     height: fit-content;
     display: flex;
     flex-direction: column;
