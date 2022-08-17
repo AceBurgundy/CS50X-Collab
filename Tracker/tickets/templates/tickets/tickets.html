@@ -60,10 +60,24 @@
                             </div> -->
                         </div>
                         <div class="comment-section">
-
+                            <form class="comment">
+                                <div class="comment-top">
+                                    <input class="comment_author" value="{{ current_user.username }}" />
+                                </div>
+                                <div class="comment-bottom">
+                                    <div class="comment-message-container">
+                                        <textarea class="author-comment-message" rows="1"></textarea>
+                                        <div class="add-comment-options-container">
+                                            <div class="add-comment-options">
+                                                <button class="author-comment-options" id="cancel-comment">CANCEL</button>
+                                                <button type="submit" class="author-comment-options" id="add-comment">COMMENT</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                             <div class="comment">
                                 <div class="comment-top">
-
                                     <p class="commenter">AceBurgundy</p>
                                 </div>
                                 <div class="comment-bottom">
