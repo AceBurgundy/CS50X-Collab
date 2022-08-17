@@ -89,10 +89,15 @@ class Ticket(db.Model):
     deadline = db.Column(db.Date, nullable=False)
     bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
 
-    comment = db.relationship('TicketComment', backref='this_ticket', lazy=True)
-    
+    project_id = db.Column(db.Integer, db.ForeignKey(
+        'project.id'), nullable=False)
+
+    comments = db.relationship(
+        'TicketComment', backref='this_ticket', lazy=True)
+
     def __repr__(self):
-        return f"Ticket('{self.name}','{self.content}','{self.comment}','{self.status}','{self.assigned_user}','{self.priority}','{self.created_by}','{self.deadline}','{self.bookmark_state}')"
+        return f"Ticket('{self.name}','{self.content}','{self.status}','{self.assigned_user}','{self.priority}','{self.created_by}','{self.deadline}','{self.bookmark_state}')"
+
 
 class TicketComment(db.Model):
     __tablename__ = 'ticketComment'
