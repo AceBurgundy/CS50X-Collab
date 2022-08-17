@@ -56,7 +56,13 @@
     margin: 1.3em 1em;
 }
 
+.project-options-container {
+    display: flex;
+    gap: 0.5em;
+}
+
 .project-options {
+    width: 100%;
     list-style: none;
     opacity: 0;
     pointer-events: none;
@@ -95,7 +101,8 @@
 
 .three-dot,
 .edit-icon,
-.trash-icon {
+.trash-icon,
+.exit-icon {
     width: 1.1em;
     transition: 300ms ease-in-out;
 }
@@ -203,15 +210,14 @@
     height: 1.5rem;
     padding: 0 0.5em;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-radius: 5px;
-    background-color: rgb(219, 214, 207);
     opacity: 1;
     transition: 300ms ease-in-out;
 }
 
-.project.active .project-footer .deadline-container {
-    background-color: rgb(255, 187, 103);
+.deadline-date {
+    font-size: 0.8rem;
 }
 
 #expand-ticket-icon {
@@ -234,6 +240,11 @@
     box-shadow: var(--defaultShadow);
 }
 
+.leave-project-form {
+    height: fit-content;
+    width: fit-content;
+}
+
 .go-to-ticket {
     display: flex;
     flex-direction: column;
@@ -254,10 +265,17 @@
 }
 
 .remove-user-button {
-    padding: 0.2em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0%;
+    padding: 0.4em;
+    margin-right: 5px;
     border: none;
-    border-radius: 7px;
-    background-color: var(--secondary);
+    cursor: pointer;
+    border-radius: 9px;
+    box-shadow: var(--defaultShadow);
+    background-color: var(--primary);
     font-family: "Rubik Medium";
 }
 
@@ -283,12 +301,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: inherit;
     cursor: pointer;
 }
 
 .user-details {
-    width: 80%;
+    width: 85%;
     display: flex;
     position: relative;
     align-items: center;
@@ -308,9 +326,8 @@
 /* collaborate */
 
 .collaborate-dropdown {
+    box-sizing: border-box;
     position: absolute;
-    display: grid;
-    left: 5%;
     top: 75%;
     flex-direction: column;
     align-items: center;
@@ -319,35 +336,29 @@
     background-color: white;
     opacity: 0;
     z-index: 2;
+    height: 200px;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    pointer-events: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
     transition: 250ms ease;
     box-shadow: var(--defaultShadow);
     -webkit-box-shadow: var(--defaultShadow);
+    width: 300px;
 }
 
 .collaborate-dropdown.active {
     opacity: 1;
+    pointer-events: all;
 }
 
 .dropdown-list {
+    width: 300px;
     height: 100%;
-    width: 70%;
     display: flex;
     gap: 0.6em;
     flex-direction: column;
-}
-
-.collaborate-option-container {
-    width: 15rem;
-    height: 150px;
-    display: grid;
-    grid-template-rows: 40% 60%;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    justify-content: flex-start;
-    overflow: scroll;
-    position: relative;
-    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -362,13 +373,14 @@
 
 #dropdown-header {
     display: flex;
-    width: 70%;
     justify-content: center;
+    width: 300px;
     align-items: center;
     position: sticky;
     top: 0%;
     z-index: 2;
     cursor: pointer;
+    background-color: white;
     border-radius: 20px 20px 0 0;
 }
 
@@ -376,7 +388,7 @@
 /* Container for both input and search icon */
 
 #search-container {
-    width: 80%;
+    width: 85%;
     display: grid;
     grid-template-columns: 20% 80%;
     background-color: rgba(170, 170, 170, 0.129);
