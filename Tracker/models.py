@@ -121,7 +121,28 @@ class TicketCommentReplies(db.Model):
     reply = db.Column(db.Text)
     sender = db.Column(db.String(60), nullable=False)
     deletion_date = db.Column(db.DateTime)
-    sent_date = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+    sent_date = db.Column(db.DateTime, nullable=False,
+                          default=datetime.now, onupdate=datetime.now)
+
+    ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
+        'ticketComment.id'), nullable=False)
+
+    likes = db.relationship(
+        'TicketCommentLikes', backref='this_comments_reply', lazy=True)
+
+    def __repr__(self):
+        return f"Replies('{self.reply}','{self.sender}')"
+
+
+class TicketCommentLikes(db.Model):
+    __tablename__ = 'ticketCommentLikes'
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String(60), nullable=False)
+    like_date = db.Column(db.DateTime, nullable=False,
+                          default=datetime.now, onupdate=datetime.now)
+
+    ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
+        'ticketComment.id'))
 
     ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'), nullable=False)
     
