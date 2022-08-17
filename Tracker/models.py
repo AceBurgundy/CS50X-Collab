@@ -51,17 +51,19 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), unique=True, nullable=False)
     status = db.Column(db.String(10), nullable=False, default="Queue")
-    creation_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    creation_date = db.Column(
+        db.DateTime, nullable=False, default=datetime.now)
     description = db.Column(db.String(200), nullable=False)
     deadline = db.Column(db.Date, nullable=False)
     bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
-    
+
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     tickets = db.relationship('Ticket', backref='this_project', lazy=True)
-    
-    messages = db.relationship('Conversations', backref='this_project', lazy=True)
-    
+
+    messages = db.relationship(
+        'Conversations', backref='this_project', lazy=True)
+
     def __repr__(self):
         return f"Project('{self.title}','{self.status}','{self.creation_date}','{self.description}','{self.deadline}','{self.bookmark_state}')"
 
