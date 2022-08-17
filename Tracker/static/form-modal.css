@@ -2,7 +2,7 @@
 @import "/static/root.css";
 @import "/static/background.css";
 .form-modal-container {
-    background-color: rgb(169, 169, 169);
+    background-color: white;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -40%);
