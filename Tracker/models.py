@@ -6,6 +6,8 @@ from flask_login import UserMixin
 The function below is a callback used to reload the user object from the user ID stored in the session. 
 It should take the str ID of a user, and return the corresponding user object. For example:
 """
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -26,7 +28,7 @@ collaborators = db.Table("collaborators",
 
 
 class User(db.Model, UserMixin):
-        
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     first_name = db.Column(db.String(60))
@@ -37,21 +39,24 @@ class User(db.Model, UserMixin):
     country = db.Column(db.String(60))
     address = db.Column(db.String(300))
     phone = db.Column(db.String(15))
-    profile_picture = db.Column(db.String(100), nullable=False, default='default.jpg')
+    profile_picture = db.Column(
+        db.String(100), nullable=False, default='default.jpg')
     password = db.Column(db.String(200), nullable=False)
     creation_date = db.Column(db.DateTime(), default=datetime.now)
-    last_online = db.Column(db.DateTime(), default=datetime.now, onupdate=datetime.now)
+    last_online = db.Column(
+        db.DateTime(), default=datetime.now, onupdate=datetime.now)
 
-    #this is not a column so we wont see a projects column in the User database. Instead,
-    #it runs a additional querry in the backrground to match the projects that the user has created
+    # this is not a column so we wont see a projects column in the User database. Instead,
+    # it runs a additional querry in the backrground to match the projects that the user has created
 
     project = db.relationship('Project', backref='author', lazy=True)
-    
-    collaborated_projects = db.relationship('Project', secondary=collaborators, backref='collaborators')
 
+    collaborated_projects = db.relationship(
+        'Project', secondary=collaborators, backref='collaborators')
 
     def __repr__(self):
-        return f"User('{self.username}','{self.profile_picture}') "
+        return f"User('{self.username}') "
+
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -98,7 +103,6 @@ class Ticket(db.Model):
     assigned_user = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
     priority = db.Column(db.String(6), nullable=False, default='Low')
-    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
     deadline = db.Column(db.Date, nullable=False)
     bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
 
