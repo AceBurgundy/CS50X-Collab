@@ -25,3 +25,25 @@ ticket.forEach(thisTicket => {
         draggedTicket = null
     })
 })
+
+date = new Date()
+
+document.querySelectorAll(".deadline-date").forEach(deadline => {
+    deadlineYear = deadline.textContent.split('-')[0]
+    deadlineMonth = deadline.textContent.split('-')[1]
+    deadlineDay = deadline.textContent.split('-')[2]
+
+    if (deadlineMonth - (date.getMonth() + 1) == 1) {
+        deadline.parentElement.style.backgroundColor = '#de65656f'
+        deadline.parentElement.style.color = '#300e0e'
+        deadline.parentElement.children[0].style.color = '#300e0e'
+    } else if (deadlineMonth - (date.getMonth() + 1) == 2) {
+        deadline.parentElement.style.backgroundColor = 'orange'
+    } else {
+        deadline.parentElement.style.backgroundColor = '#82e5a073'
+        deadline.parentElement.style.color = '#164524'
+        deadline.parentElement.children[0].style.color = '#164524'
+    }
+
+    console.log(deadlineMonth - (date.getMonth() + 1))
+})
