@@ -10,15 +10,21 @@ It should take the str ID of a user, and return the corresponding user object. F
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-#Project Collaborators
+# Project Collaborators
 
-collaborators = db.Table("collaborators", 
-    db.Column('id', db.Integer, primary_key =True),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('project_id', db.Integer, db.ForeignKey('project.id'), nullable=False),
-    db.Column('joined_datetime', db.DateTime, nullable=False, default=datetime.now),
-    db.Column('left_datetime', db.DateTime)
-)
+
+collaborators = db.Table("collaborators",
+                         db.Column('id', db.Integer, primary_key=True),
+                         db.Column('user_id', db.Integer, db.ForeignKey(
+                             'user.id'), nullable=False),
+                         db.Column('project_id', db.Integer, db.ForeignKey(
+                             'project.id'), nullable=False),
+                         db.Column('joined_datetime', db.DateTime,
+                                   nullable=False, default=datetime.now),
+                         db.Column('left_datetime', db.DateTime)
+                         )
+
+
 class User(db.Model, UserMixin):
         
     id = db.Column(db.Integer, primary_key=True)
