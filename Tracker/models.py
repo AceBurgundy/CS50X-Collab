@@ -95,8 +95,30 @@ class Ticket(db.Model):
         return f"Ticket('{self.name}','{self.content}','{self.comment}','{self.status}','{self.assigned_user}','{self.priority}','{self.created_by}','{self.deadline}','{self.bookmark_state}')"
 
 class TicketComment(db.Model):
+    __tablename__ = 'ticketComment'
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text)
+    sender = db.Column(db.String(60), nullable=False)
+    sent_date = db.Column(db.DateTime, nullable=False,
+                          default=datetime.now, onupdate=datetime.now)
+
+    ticket_id = db.Column(db.Integer, db.ForeignKey(
+        'ticket.id'), nullable=False)
+
+    likes = db.relationship(
+        'TicketCommentLikes', backref='this_comment', lazy=True)
+
+    replies = db.relationship(
+        'TicketCommentReplies', backref='this_comment', lazy=True)
+
+    def __repr__(self):
+        return f"TicketComment('{self.comment}','{self.sender}')"
+
+
+class TicketCommentReplies(db.Model):
+    __tablename__ = 'ticketCommentReplies'
+    id = db.Column(db.Integer, primary_key=True)
+    reply = db.Column(db.Text)
     sender = db.Column(db.String(60), nullable=False)
     deletion_date = db.Column(db.DateTime)
     sent_date = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
