@@ -316,18 +316,76 @@
 }
 
 .comment {
-    padding: 0.5em 0;
+    padding: 1em 0;
     width: 100%;
     background-color: antiquewhite;
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 0.3em;
+    overflow: visible;
+}
+
+.comment:first-of-type {
+    padding-bottom: 0%;
+}
+
+.comment_author {
+    font-size: 0.9rem;
+    pointer-events: none;
+    background-color: inherit;
+    border: none;
+    width: fit-content;
+}
+
+.author-comment-message {
+    background-color: inherit;
+    resize: none;
+    border: none;
+    font-size: 0.9rem;
+    padding-bottom: 0.2em;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--brown);
+}
+
+.commenter {
+    font-size: 0.9rem;
 }
 
 .comment-top {
     display: flex;
     gap: 0.5em;
+}
+
+.comment-message-container {
+    position: relative;
+}
+
+.author-comment-options {
+    background-color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--defaultShadow);
+    cursor: pointer;
+}
+
+.add-comment-options {
+    display: flex;
+    gap: 0.5em;
+    margin-right: 0.5rem;
+}
+
+.add-comment-options-container {
+    width: 100%;
+    display: none;
+}
+
+.add-comment-options-container.active {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .comment-message-container {
