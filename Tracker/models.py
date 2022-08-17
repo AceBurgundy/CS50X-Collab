@@ -144,7 +144,8 @@ class TicketCommentLikes(db.Model):
     ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
         'ticketComment.id'))
 
-    ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'), nullable=False)
-    
+    comment_reply_id = db.Column(db.Integer, db.ForeignKey(
+        'ticketCommentReplies.id'))
+
     def __repr__(self):
-        return f"TicketComment('{self.comment}','{self.sender}')"
+        return f"Likedby('{self.user}')"
