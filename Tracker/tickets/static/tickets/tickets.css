@@ -315,13 +315,69 @@
 }
 
 .comment {
-    padding: 1em 0;
+    display: flex;
+    gap: 1em;
+}
+
+.comment-right {
     width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 0.3em;
-    overflow: visible;
+}
+
+.delete-comment-container {
+    display: flex;
+    position: relative;
+}
+
+.delete-comment {
+    position: absolute;
+    right: 150%;
+    background-color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--defaultShadow);
+}
+
+.comment-left,
+.delete-comment-container {
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.menu-icon {
+    width: 1rem;
+    cursor: pointer;
+}
+
+.comment-right,
+.comment-left {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    display: flex;
+}
+
+.image-username-container {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.user-img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.image-username-container {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
 }
 
 .comment:first-of-type {
@@ -368,6 +424,11 @@
     border-radius: 10px;
     box-shadow: var(--defaultShadow);
     cursor: pointer;
+}
+
+#cancel-comment {
+    background-color: inherit;
+    box-shadow: none;
 }
 
 .add-comment-options {
