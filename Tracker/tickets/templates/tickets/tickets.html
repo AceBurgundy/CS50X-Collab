@@ -3,8 +3,12 @@
 <script src="{{ url_for('tickets.static', filename='ticket.js') }}" defer></script>
 {%- endblock component_script%} {% block tickets -%}
 
+<div class="ticket-background">
+</div>
 <div id="tickets-content">
+
     <div id="ticket-section">
+
         <div class="ticket-column-container">
             <div class="ticket-column">
                 <div class="ticket-column-header">
@@ -17,36 +21,36 @@
                 <div class="ticket-column-body">
                     {% for ticket in tickets %} {% if ticket.status == 'Pending' %}
 
-                    <div class="ticket-hover-background" draggable="true">
-                        <div class="ticket" draggable="true">
-                            <div class="ticket-header">
-                                <div class="ticket-tag-container">
-                                    <p class="ticket-tag">{{ ticket.priority }}</p>
+                    <div class="ticket" draggable="true">
+                        <div class="ticket-header">
+                            <div class="ticket-tag-container">
+                                <p class="ticket-tag">{{ ticket.priority }}</p>
+                            </div>
+                        </div>
+                        <div class="ticket-title">
+                            <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-description">
+                            <p>{{ ticket.content }}</p>
+                        </div>
+                        <div class="ticket-deadline">
+                            <div class="ticket-deadline-container">
+                                <div class="deadline-svg-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
+                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
                             </div>
-                            <div class="ticket-title">
-                                <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="ticket-collaborators">
+                                <div class="collaborators"></div>
+                                <div class="collaborators"></div>
                             </div>
-                            <div class="ticket-description">
-                                <p>{{ ticket.content }}</p>
-                            </div>
-                            <div class="ticket-deadline">
-                                <div class="ticket-deadline-container">
-                                    <div class="deadline-svg-container">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
-                                    </div>
-                                    <p>{{ ticket.deadline }}</p>
-                                </div>
-                            </div>
-                            <div class="ticket-footer">
-                                <div class="ticket-collaborators">
-                                    <div class="collaborators"></div>
-                                    <div class="collaborators"></div>
-                                </div>
-                                <button class="project-extend" id="project-extend" type="button">
+                            <button class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
                             </button>
-                                <!-- <div class="ticket-indicators">
+
+                            <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
                                     <div class="chat-icon-container">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M19.05566,2h-14a3.00328,3.00328,0,0,0-3,3V19a3.00328,3.00328,0,0,0,3,3h14a3.00328,3.00328,0,0,0,3-3V5A3.00328,3.00328,0,0,0,19.05566,2Zm-14,2h14a1.001,1.001,0,0,1,1,1v8H17.59082a1.99687,1.99687,0,0,0-1.66406.89062L14.52051,16H9.59082L8.18457,13.89062A1.99687,1.99687,0,0,0,6.52051,13H4.05566V5A1.001,1.001,0,0,1,5.05566,4Zm14,16h-14a1.001,1.001,0,0,1-1-1V15H6.52051l1.40625,2.10938A1.99687,1.99687,0,0,0,9.59082,18h4.92969a1.99687,1.99687,0,0,0,1.66406-.89062L17.59082,15h2.46484v4A1.001,1.001,0,0,1,19.05566,20Z"/></svg>
@@ -54,9 +58,29 @@
                                     <p>2</p>
                                 </div>
                             </div> -->
+                        </div>
+                        <div class="comment-section">
+
+                            <div class="comment">
+                                <div class="comment-top">
+
+                                    <p class="commenter">AceBurgundy</p>
+                                </div>
+                                <div class="comment-bottom">
+                                    <div class="comment-message-container">
+                                        <p class="comment-message">Hey about the ticket could you please change it</p>
+                                        <div class="reactions-container">
+                                            <div class="like-container">
+                                                <svg class="like-icon" id="like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z"/></svg>
+                                            </div>
+                                            <span class="like-count">54</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     {% endif %} {% endfor %}
 
                 </div>
@@ -66,44 +90,43 @@
             <div class="ticket-column">
                 <div class="ticket-column-header">
                     <p class="ticket-column-title">In Progress</p>
-                    <form class="ticket-column-form" action="{{ url_for('tickets.add_ticket', current_project_id=project_id, this_tickets_status='In Progress')}}" method="get">
+                    <form class="ticket-column-form" action="{{ url_for('tickets.add_ticket', current_project_id=project_id, this_tickets_status='In Progress ')}}" method="get">
                         <input type="hidden" name="ticket-status" value="In Progress">
                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"/></svg></button>
                     </form>
                 </div>
                 <div class="ticket-column-body">
-                    {% for ticket in tickets %} {% if ticket.status == 'In Progress' %}
+                    {% for ticket in tickets %} {% if ticket.status == 'In Progress ' %}
 
-                    <div class="ticket-hover-background" draggable="true">
-                        <div class="ticket" draggable="true">
-                            <div class="ticket-header">
-                                <div class="ticket-tag-container">
-                                    <p class="ticket-tag">{{ ticket.priority }}</p>
+                    <div class="ticket" draggable="true">
+                        <div class="ticket-header">
+                            <div class="ticket-tag-container">
+                                <p class="ticket-tag">{{ ticket.priority }}</p>
+                            </div>
+                        </div>
+                        <div class="ticket-title">
+                            <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-description">
+                            <p>{{ ticket.content }}</p>
+                        </div>
+                        <div class="ticket-deadline">
+                            <div class="ticket-deadline-container">
+                                <div class="deadline-svg-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
+                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
                             </div>
-                            <div class="ticket-title">
-                                <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="ticket-collaborators">
+                                <div class="collaborators"></div>
+                                <div class="collaborators"></div>
                             </div>
-                            <div class="ticket-description">
-                                <p>{{ ticket.content }}</p>
-                            </div>
-                            <div class="ticket-deadline">
-                                <div class="ticket-deadline-container">
-                                    <div class="deadline-svg-container">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
-                                    </div>
-                                    <p>{{ ticket.deadline }}</p>
-                                </div>
-                            </div>
-                            <div class="ticket-footer">
-                                <div class="ticket-collaborators">
-                                    <div class="collaborators"></div>
-                                    <div class="collaborators"></div>
-                                </div>
-                                <button class="project-extend" id="project-extend" type="button">
+                            <button class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
                             </button>
-                                <!-- <div class="ticket-indicators">
+                            <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
                                     <div class="chat-icon-container">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M19.05566,2h-14a3.00328,3.00328,0,0,0-3,3V19a3.00328,3.00328,0,0,0,3,3h14a3.00328,3.00328,0,0,0,3-3V5A3.00328,3.00328,0,0,0,19.05566,2Zm-14,2h14a1.001,1.001,0,0,1,1,1v8H17.59082a1.99687,1.99687,0,0,0-1.66406.89062L14.52051,16H9.59082L8.18457,13.89062A1.99687,1.99687,0,0,0,6.52051,13H4.05566V5A1.001,1.001,0,0,1,5.05566,4Zm14,16h-14a1.001,1.001,0,0,1-1-1V15H6.52051l1.40625,2.10938A1.99687,1.99687,0,0,0,9.59082,18h4.92969a1.99687,1.99687,0,0,0,1.66406-.89062L17.59082,15h2.46484v4A1.001,1.001,0,0,1,19.05566,20Z"/></svg>
@@ -111,9 +134,9 @@
                                     <p>2</p>
                                 </div>
                             </div> -->
-                            </div>
                         </div>
                     </div>
+
                     {% endif %} {% endfor %}
                 </div>
             </div>
@@ -123,38 +146,37 @@
                     <p class="ticket-column-title">Completed</p>
                 </div>
                 <div class="ticket-column-body">
-                    {% for ticket in tickets %} {% if ticket.status == 'Completed' %}
+                    {% for ticket in tickets %} {% if ticket.status == 'Completed ' %}
 
-                    <div class="ticket-hover-background" draggable="true">
-                        <div class="ticket" draggable="true">
-                            <div class="ticket-header">
-                                <div class="ticket-tag-container">
-                                    <p class="ticket-tag">{{ ticket.priority }}</p>
+                    <div class="ticket" draggable="true">
+                        <div class="ticket-header">
+                            <div class="ticket-tag-container">
+                                <p class="ticket-tag">{{ ticket.priority }}</p>
+                            </div>
+                        </div>
+                        <div class="ticket-title">
+                            <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-description">
+                            <p>{{ ticket.content }}</p>
+                        </div>
+                        <div class="ticket-deadline">
+                            <div class="ticket-deadline-container">
+                                <div class="deadline-svg-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
+                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
                             </div>
-                            <div class="ticket-title">
-                                <p>{{ ticket.name }}</p>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="ticket-collaborators">
+                                <div class="collaborators"></div>
+                                <div class="collaborators"></div>
                             </div>
-                            <div class="ticket-description">
-                                <p>{{ ticket.content }}</p>
-                            </div>
-                            <div class="ticket-deadline">
-                                <div class="ticket-deadline-container">
-                                    <div class="deadline-svg-container">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
-                                    </div>
-                                    <p>{{ ticket.deadline }}</p>
-                                </div>
-                            </div>
-                            <div class="ticket-footer">
-                                <div class="ticket-collaborators">
-                                    <div class="collaborators"></div>
-                                    <div class="collaborators"></div>
-                                </div>
-                                <button class="project-extend" id="project-extend" type="button">
+                            <button class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
                             </button>
-                                <!-- <div class="ticket-indicators">
+                            <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
                                     <div class="chat-icon-container">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M19.05566,2h-14a3.00328,3.00328,0,0,0-3,3V19a3.00328,3.00328,0,0,0,3,3h14a3.00328,3.00328,0,0,0,3-3V5A3.00328,3.00328,0,0,0,19.05566,2Zm-14,2h14a1.001,1.001,0,0,1,1,1v8H17.59082a1.99687,1.99687,0,0,0-1.66406.89062L14.52051,16H9.59082L8.18457,13.89062A1.99687,1.99687,0,0,0,6.52051,13H4.05566V5A1.001,1.001,0,0,1,5.05566,4Zm14,16h-14a1.001,1.001,0,0,1-1-1V15H6.52051l1.40625,2.10938A1.99687,1.99687,0,0,0,9.59082,18h4.92969a1.99687,1.99687,0,0,0,1.66406-.89062L17.59082,15h2.46484v4A1.001,1.001,0,0,1,19.05566,20Z"/></svg>
@@ -162,9 +184,9 @@
                                     <p>2</p>
                                 </div>
                             </div> -->
-                            </div>
                         </div>
                     </div>
+
                     {% endif %} {% endfor %}
                 </div>
             </div>

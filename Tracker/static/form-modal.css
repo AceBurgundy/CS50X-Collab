@@ -2,7 +2,7 @@
 @import "/static/root.css";
 @import "/static/background.css";
 .form-modal-container {
-    background-color: white;
+    background-color: rgb(169, 169, 169);
     position: absolute;
     left: 50%;
     transform: translate(-50%, -40%);
@@ -322,15 +322,14 @@ option:checked:before {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-radius: 5px;
     cursor: pointer;
-    width: 125px;
+    width: fit-content;
     background-color: var(--primary);
     border: none;
     font-family: "Rubik Medium";
     text-transform: uppercase;
     padding: 0.8em;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 
@@ -348,11 +347,13 @@ option:checked:before {
     background-color: white;
     opacity: 0;
     transition: 250ms ease;
+    pointer-events: none;
     box-shadow: var(--defaultShadow);
     -webkit-box-shadow: var(--defaultShadow);
 }
 
 .collaborate-dropdown.active {
+    pointer-events: all;
     opacity: 1;
 }
 
@@ -366,12 +367,9 @@ option:checked:before {
 
 .collaborate-option-container {
     width: 15rem;
-    height: 150px;
+    height: 200px;
     display: grid;
     grid-template-rows: 40% 60%;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     justify-content: flex-start;
     overflow: scroll;
     position: relative;
@@ -396,6 +394,7 @@ option:checked:before {
     position: sticky;
     top: 0%;
     z-index: 2;
+    background-color: white;
     cursor: pointer;
     border-radius: 20px 20px 0 0;
 }

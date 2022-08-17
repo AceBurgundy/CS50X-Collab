@@ -42,7 +42,7 @@ class CheckProfanity():
 
     def __call__(self, form, field):
     
-        result = [word for word in profanity if word in ("".join(word for word in field.data.lower() if word.isalpha() or word.isnumeric() or word == " ")).split(" ")]
+        result = [word for word in profanity if word in ("".join(word for word in str(field.data) if word.isalpha() or word.isnumeric() or word == " ")).split(" ")]
         
         if len(result) > 0:
             if self.message:
