@@ -65,17 +65,22 @@ class Project(db.Model):
     def __repr__(self):
         return f"Project('{self.title}','{self.status}','{self.creation_date}','{self.description}','{self.deadline}','{self.bookmark_state}')"
 
+
 class Conversations(db.Model):
-    id = db.Column(db.Integer, primary_key =True)
+    id = db.Column(db.Integer, primary_key=True)
     sender = db.Column(db.String(60), nullable=False)
     message = db.Column(db.Text)
     deletion_date = db.Column(db.DateTime)
-    sent_date = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
-    
-    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
+    sent_date = db.Column(db.DateTime, nullable=False,
+                          default=datetime.now, onupdate=datetime.now)
+
+    project_id = db.Column(db.Integer, db.ForeignKey(
+        'project.id'), nullable=False)
 
     def __repr__(self):
         return f"Conversations('{self.sender}','{self.message}')"
+
+
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
