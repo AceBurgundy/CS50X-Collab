@@ -322,7 +322,6 @@
 .comment-right {
     width: 100%;
     height: fit-content;
-    display: flex;
     flex-direction: column;
     gap: 0.3em;
 }
@@ -421,8 +420,6 @@
     font-weight: 500;
     padding: 0.9em 1.2em;
     border: none;
-    border-radius: 10px;
-    box-shadow: var(--defaultShadow);
     cursor: pointer;
 }
 
@@ -434,7 +431,6 @@
 .add-comment-options {
     display: flex;
     gap: 0.5em;
-    margin-right: 0.5rem;
 }
 
 .add-comment-options-container {
