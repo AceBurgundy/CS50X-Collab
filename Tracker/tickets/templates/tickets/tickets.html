@@ -61,16 +61,23 @@
                         </div>
                         <div class="comment-section">
                             <form class="comment">
-                                <div class="comment-top">
-                                    <input class="comment_author" value="{{ current_user.username }}" />
+                                <div class="comment-left">
+                                    <div class="image-username-container">
+                                        <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + current_user.profile_picture) }}">
+                                    </div>
                                 </div>
-                                <div class="comment-bottom">
-                                    <div class="comment-message-container">
-                                        <textarea class="author-comment-message" rows="1"></textarea>
-                                        <div class="add-comment-options-container">
-                                            <div class="add-comment-options">
-                                                <button class="author-comment-options" id="cancel-comment">CANCEL</button>
-                                                <button type="submit" class="author-comment-options" id="add-comment">COMMENT</button>
+                                <div class="comment-right">
+                                    <div class="comment-top">
+                                        <input class="comment_author" value="{{ current_user.username }}" />
+                                    </div>
+                                    <div class="comment-bottom">
+                                        <div class="comment-message-container">
+                                            <textarea class="author-comment-message" rows="1"></textarea>
+                                            <div class="add-comment-options-container">
+                                                <div class="add-comment-options">
+                                                    <button class="author-comment-options" id="cancel-comment">CANCEL</button>
+                                                    <button type="submit" class="author-comment-options" id="add-comment">COMMENT</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -96,6 +103,13 @@
                                                 <span class="like-count">54</span>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="delete-comment-container">
+                                    <svg class="menu-icon" id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
+                                    <button class="delete-comment">
+                                        DELETE
+                                    </button>
                                 </div>
                             </div>
                         </div>
