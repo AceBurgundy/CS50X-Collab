@@ -52,3 +52,18 @@ document.querySelectorAll(".deadline-date").forEach(deadline => {
         deadline.parentElement.parentElement.children[0].style.color = '#164524'
     }
 })
+
+window.onload = () => {
+    document.querySelectorAll('.ticket-tag-container').forEach(ticket => {
+        if (ticket.children[0].textContent == 'Pending') {
+            ticket.style.backgroundColor = '#de65656f'
+            ticket.children[0].color = '#300e0e'
+        } else if (ticket.children[0].textContent == 'Medium') {
+            ticket.style.backgroundColor = 'orange'
+                // ticket.children[0]
+        } else {
+            ticket.style.backgroundColor = '#82e5a073'
+            ticket.children[0]
+        }
+    })
+}
