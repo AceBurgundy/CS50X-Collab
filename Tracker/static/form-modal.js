@@ -69,10 +69,10 @@ counter(
     200
 )
 
-const authorComment = document.querySelector(".author-comment-message")
+const formDescriptionTextArea = document.querySelector(".form-description")
 
-authorComment.addEventListener("input", e => {
-    authorComment.style.height = `${e.target.scrollHeight}px`
+formDescriptionTextArea.addEventListener("input", e => {
+    formDescriptionTextArea.style.height = `${e.target.scrollHeight}px`
 })
 
 $('proceed-button').bind('submit', function(e) {
