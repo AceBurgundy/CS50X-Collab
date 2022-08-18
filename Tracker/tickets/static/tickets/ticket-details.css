@@ -1,0 +1,417 @@
+@import "/static/fonts.css";
+@import "static/root.css";
+#grid-container {
+    grid-template-areas: "navigation-rail main-content top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
+}
+
+#top-bar {
+    display: none;
+}
+
+
+/* 
++--------------+
+|    Ticket    |
++--------------+
+*/
+
+.ticket {
+    height: fit-content;
+    border-radius: 20px;
+    position: absolute;
+    padding: 0.5em 0;
+    box-shadow: var(--defaultShadow);
+    background-color: var(--primary);
+    width: 280px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    gap: 0.2em;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 900px) {
+    .ticket {
+        transform: translate(-50%, -35%);
+        width: 90%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .ticket {
+        transform: translate(-50%, -40%);
+        height: 90%;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .ticket {
+        transform: translate(-50%, -35%);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ticket {
+        transform: translate(-50%, -35%);
+        height: 100%;
+    }
+}
+
+.ticket-header,
+.ticket-title,
+.ticket-description,
+.ticket-deadline,
+.ticket-footer {
+    width: 95%;
+    height: 2rem;
+}
+
+.ticket-header {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+}
+
+.ticket-tag-container {
+    background-color: rgb(255, 171, 75);
+    width: max-content;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0em 0.5em;
+    border-radius: 10px;
+}
+
+.ticket-tag {
+    height: max-content;
+    font-size: 0.7em;
+    text-transform: uppercase;
+}
+
+.ticket-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: "Rubik Medium";
+}
+
+.ticket-title p {
+    font-size: 1.1rem;
+}
+
+.ticket-description {
+    display: block;
+    height: fit-content;
+    font-size: 0.8rem;
+    transition: 300ms ease;
+}
+
+.ticket-description p {
+    opacity: 37%;
+    font-size: 1rem;
+    opacity: 0.7;
+    width: 80%;
+    line-height: 1.5;
+}
+
+.ticket-deadline {
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.ticket-deadline-container {
+    height: 1.5rem;
+    padding-right: 5px;
+    border-radius: 7px;
+    width: max-content;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.deadline-date {
+    font-size: 0.7rem;
+}
+
+#project-extend {
+    height: 2.5rem;
+    width: 3.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--secondary);
+    box-shadow: var(--defaultShadow);
+    cursor: pointer;
+    font-size: 1rem;
+    position: absolute;
+    margin: 0.5em;
+    top: 0%;
+    right: 0%;
+}
+
+#expand-ticket-icon {
+    width: 1.5rem;
+    opacity: 0.8;
+}
+
+.comment-section {
+    width: 95%;
+    height: 100%;
+    overflow-y: scroll;
+    display: block;
+}
+
+.comment {
+    height: 110px;
+    display: flex;
+    gap: 1em;
+}
+
+.comment-right {
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.delete-comment-container {
+    display: flex;
+    position: relative;
+}
+
+.delete-comment {
+    position: absolute;
+    right: 150%;
+    background-color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: var(--defaultShadow);
+    transition: 150ms;
+}
+
+.delete-comment.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.comment-left,
+.delete-comment-container {
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.menu-icon {
+    width: 1rem;
+    cursor: pointer;
+}
+
+.comment-right,
+.comment-left {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    display: flex;
+}
+
+.image-username-container {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.user-img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.image-username-container {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment:first-of-type {
+    padding-bottom: 0%;
+}
+
+.comment_author {
+    font-size: 0.9rem;
+    pointer-events: none;
+    background-color: inherit;
+    border: none;
+    width: fit-content;
+}
+
+.author-comment-message {
+    background-color: inherit;
+    resize: none;
+    border: none;
+    font-size: 0.9rem;
+    padding-bottom: 0.2em;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--brown);
+}
+
+.commenter {
+    font-size: 0.9rem;
+}
+
+.comment-top {
+    display: flex;
+    gap: 0.5em;
+}
+
+.comment-message-container {
+    position: relative;
+}
+
+.author-comment-options {
+    background-color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.9em 1.2em;
+    border: none;
+    cursor: pointer;
+}
+
+#cancel-comment {
+    background-color: inherit;
+    box-shadow: none;
+}
+
+.add-comment-options {
+    display: flex;
+    gap: 0.5em;
+}
+
+.add-comment-options-container {
+    width: 100%;
+    display: none;
+    justify-content: flex-end;
+}
+
+.comment-message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.comment-message {
+    font-size: 0.9rem;
+}
+
+.reactions-container {
+    width: fit-content;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.like-icon {
+    width: 1rem;
+}
+
+.like-count {
+    font-size: 0.8rem;
+}
+
+.deadline-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    /* background-color: azure; */
+}
+
+.ticket-deadline-container svg {
+    width: 0.75rem;
+    margin: 0.4em;
+}
+
+.ticket-deadline-container p {
+    display: flex;
+    height: max-content;
+    font-size: 0.6rem;
+    opacity: 70%;
+}
+
+.ticket-footer {
+    height: max-content;
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ticket-collaborators,
+.ticket-indicators {
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.collaborators {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50px;
+    background-color: #aaa;
+}
+
+.collaborators:nth-of-type(1) {
+    position: absolute;
+    background-color: gold;
+    z-index: 2;
+    left: 10%;
+}
+
+.ticket-indicators {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.ticket-chat-indicator {
+    display: flex;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 0.4em;
+}
+
+.chat-icon-container {
+    display: flex;
+    overflow: visible;
+    height: max-content;
+}
+
+.chat-icon-container svg {
+    height: max-content;
+    width: 1.15rem;
+    opacity: 70%;
+}
+
+.ticket-chat-indicator p {
+    height: max-content;
+    opacity: 40%;
+}
