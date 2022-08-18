@@ -1,9 +1,9 @@
 import { counter } from "/static/helper.js"
 
 // script to show and hide modal to add new form
-const formModal = document.querySelector(".form-modal-container");
-const modalXButton = document.querySelector(".modal-x-button");
-const modalCancelButton = document.querySelector(".modal-close-button");
+const formModal = document.querySelector(".form-modal-container")
+const modalXButton = document.querySelector(".modal-x-button")
+const modalCancelButton = document.querySelector(".modal-close-button")
 const background = document.getElementById('background')
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -23,8 +23,8 @@ modalXButton.addEventListener("click", () => {
     formModal.style.opacity = "0"
     formModal.style.transform = "translate(-50%, -40%)"
     setTimeout(() => {
-        window.location = "/";
-    }, 300);
+        window.history.back()
+    }, 300)
 })
 
 modalCancelButton.addEventListener("click", () => {
@@ -32,8 +32,8 @@ modalCancelButton.addEventListener("click", () => {
     formModal.style.opacity = "0"
     formModal.style.transform = "translate(-50%, -40%)"
     setTimeout(() => {
-        window.location = "/";
-    }, 300);
+        window.history.back()
+    }, 300)
 })
 
 if (document.getElementById('ticket-modal-cancel-button') !== null) {
@@ -42,8 +42,8 @@ if (document.getElementById('ticket-modal-cancel-button') !== null) {
         formModal.style.opacity = "0"
         formModal.style.transform = "translate(-50%, -40%)"
         setTimeout(() => {
-            window.location = "/show-tickets/" + document.getElementById('project_id').value;
-        }, 300);
+            window.location = "/show-tickets/" + document.getElementById('project_id').value
+        }, 300)
     })
 }
 
@@ -53,8 +53,8 @@ if (document.getElementById('ticket-modal-x-button') !== null) {
         formModal.style.opacity = "0"
         formModal.style.transform = "translate(-50%, -40%)"
         setTimeout(() => {
-            window.location = "/show-tickets/" + document.getElementById('project_id').value;
-        }, 300);
+            window.location = "/show-tickets/" + document.getElementById('project_id').value
+        }, 300)
     })
 }
 counter(
@@ -69,7 +69,7 @@ counter(
     200
 )
 
-const formDescriptionTextArea = document.querySelector(".form-description");
+const formDescriptionTextArea = document.querySelector(".form-description")
 
 formDescriptionTextArea.addEventListener("input", e => {
     formDescriptionTextArea.style.height = `${e.target.scrollHeight}px`
@@ -108,8 +108,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 user.splice(user.indexOf(option.outerText), 1)
             }
 
-            $('#collaborate-data').attr('value', user);
-        });
+            $('#collaborate-data').attr('value', user)
+        })
     })
 
     document.querySelectorAll('.user-username').forEach(name => {

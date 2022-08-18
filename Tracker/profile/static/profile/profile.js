@@ -4,7 +4,6 @@ const profileSection = document.getElementById('profile-section')
 const profileCancelButton = document.querySelector(".profile-close-button");
 const profileXButton = document.querySelector(".profile-x-button");
 let background = document.querySelector(".background")
-let profile = document.getElementById("profile-picture-main")
 
 window.addEventListener("load", () => {
     if ((document.querySelector(".error")) === null) {
@@ -29,14 +28,14 @@ profileXButton.addEventListener('click', () => {
     if (profileSection.classList.contains("active")) {
         profileSection.classList.remove("active")
         setTimeout(() => {
-            window.location = "/"
+            window.history.back();
         }, 300);
     } else {
         profileSection.style.transition = "500ms"
         profileSection.style.transform = "translate(-50%, -40%)"
         profileSection.style.opacity = "0"
         setTimeout(() => {
-            window.location = "/"
+            window.history.back();
         }, 300);
     }
 })
@@ -47,14 +46,14 @@ profileCancelButton.addEventListener('click', () => {
     if (profileSection.classList.contains("active")) {
         profileSection.classList.remove("active")
         setTimeout(() => {
-            window.location = "/"
+            window.history.back();
         }, 300);
     } else {
         profileSection.style.transition = "500ms"
         profileSection.style.transform = "translate(-50%, -40%)"
         profileSection.style.opacity = "0"
         setTimeout(() => {
-            window.location = "/"
+            window.history.back();
         }, 300);
     }
 })

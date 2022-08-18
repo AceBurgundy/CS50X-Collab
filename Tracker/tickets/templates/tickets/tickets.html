@@ -3,8 +3,6 @@
 <script src="{{ url_for('tickets.static', filename='ticket.js') }}" defer></script>
 {%- endblock component_script%} {% block tickets -%}
 
-<div class="ticket-background">
-</div>
 <div id="tickets-content">
 
     <div id="ticket-section">
@@ -46,9 +44,9 @@
                                 <div class="collaborators"></div>
                                 <div class="collaborators"></div>
                             </div>
-                            <button class="project-extend" id="project-extend" type="button">
+                            <a href="{{ url_for('tickets.open_ticket', current_ticket_id=ticket.id) }}" class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
-                            </button>
+                            </a>
 
                             <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
@@ -59,32 +57,9 @@
                                 </div>
                             </div> -->
                         </div>
-                        <div class="comment-section">
-
-                            <div class="comment">
-                                <div class="comment-top">
-
-                                    <p class="commenter">AceBurgundy</p>
-                                </div>
-                                <div class="comment-bottom">
-                                    <div class="comment-message-container">
-                                        <p class="comment-message">Hey about the ticket could you please change it</p>
-                                        <div class="reactions-container">
-                                            <div class="like-container">
-                                                <svg class="like-icon" id="like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z"/></svg>
-                                            </div>
-                                            <span class="like-count">54</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
                     {% endif %} {% endfor %}
-
                 </div>
-
             </div>
 
             <div class="ticket-column">
@@ -123,9 +98,9 @@
                                 <div class="collaborators"></div>
                                 <div class="collaborators"></div>
                             </div>
-                            <button class="project-extend" id="project-extend" type="button">
+                            <a href="{{ url_for('tickets.open_ticket', current_ticket_id=ticket.id) }}" class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
-                            </button>
+                            </a>
                             <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
                                     <div class="chat-icon-container">
@@ -173,9 +148,9 @@
                                 <div class="collaborators"></div>
                                 <div class="collaborators"></div>
                             </div>
-                            <button class="project-extend" id="project-extend" type="button">
+                            <a href="{{ url_for('tickets.open_ticket', current_ticket_id=ticket.id) }}" class="project-extend" id="project-extend" type="button">
                                 <svg id="expand-ticket-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="expand"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"/><path d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1zM10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"/></g></g></svg>
-                            </button>
+                            </a>
                             <!-- <div class="ticket-indicators">
                                 <div class="ticket-chat-indicator">
                                     <div class="chat-icon-container">
