@@ -102,18 +102,19 @@ export const checkDate = function(classNames) {
 
     // deadline must be formated in a YYYY-MM-DD format and each of them are inside an element with className = 'deadline-date'
     document.querySelectorAll(classNames).forEach(deadline => {
-        let deadlineMonth = deadline.textContent.split('-')[1]
+            let deadlineMonth = deadline.textContent.split('-')[1]
 
-        if (deadlineMonth - (date.getMonth() + 1) == 1) {
-            deadline.parentElement.parentElement.style.backgroundColor = '#de65656f'
-            deadline.parentElement.parentElement.style.color = '#300e0e'
-            deadline.parentElement.parentElement.children[0].style.color = '#300e0e'
-        } else if (deadlineMonth - (date.getMonth() + 1) == 2) {
-            deadline.parentElement.parentElement.style.backgroundColor = 'orange'
-        } else {
-            deadline.parentElement.parentElement.style.backgroundColor = '#82e5a073'
-            deadline.parentElement.parentElement.style.color = '#164524'
-            deadline.parentElement.parentElement.children[0].style.color = '#164524'
-        }
-    })
+            if (deadlineMonth - (date.getMonth() + 1) == 1) {
+                deadline.parentElement.parentElement.style.backgroundColor = '#de65656f'
+                deadline.parentElement.parentElement.style.color = '#300e0e'
+                deadline.parentElement.parentElement.children[0].style.color = '#300e0e'
+            } else if (deadlineMonth - (date.getMonth() + 1) == 2) {
+                deadline.parentElement.parentElement.style.backgroundColor = 'orange'
+            } else {
+                deadline.parentElement.parentElement.style.backgroundColor = '#82e5a073'
+                deadline.parentElement.parentElement.style.color = '#164524'
+                deadline.parentElement.parentElement.children[0].style.color = '#164524'
+            }
+        })
+        // not working yet
 }
