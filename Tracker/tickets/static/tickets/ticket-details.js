@@ -57,3 +57,14 @@ document.querySelectorAll('.menu-icon').forEach(commentOption => {
         commentOption.nextElementSibling.classList.toggle("active")
     })
 })
+
+$(document).ready(function() {
+
+    $('.comment-section').on('scroll', function() {
+        if ($(this).scrollTop() + $(this).innerHeight() > $(this).innerHeight() + 50) {
+            $('.scroll-top').addClass("active")
+        } else {
+            $('.scroll-top').removeClass("active")
+        }
+    })
+})
