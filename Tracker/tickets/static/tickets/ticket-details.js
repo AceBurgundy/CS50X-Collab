@@ -67,4 +67,20 @@ $(document).ready(function() {
             $('.scroll-top').removeClass("active")
         }
     })
+
+    $(document).on("click", ".delete-comment", function(e) {
+        e.preventDefault()
+        let comment_id = $(this).attr('comment-id');
+        let request = $.post("/delete-comment", {
+            comment_id: comment_id
+        });
+
+        request.done(function(data) {
+            makeToastNotification(data.success)
+            $(`#comment${comment_id}`).remove()
+        })
+        request.fail(function(data) {
+            makeToastNotification(data.failed)
+        })
+    })
 })
