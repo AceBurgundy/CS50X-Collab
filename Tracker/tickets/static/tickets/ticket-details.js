@@ -101,4 +101,29 @@ $(document).ready(function() {
             makeToastNotification("Failed to add comment")
         })
     })
+
+
+    $(document).on('click', '.save-comment', function(e) {
+        e.preventDefault()
+        let new_comment = $(this).parent().parent().prev().val()
+        let comment_id = $(this).attr('comment-id')
+        let request = $.post(
+            $(this).attr('data-url'), {
+                new_comment: new_comment,
+                comment_id: comment_id
+            })
+        request.done(function(data) {
+            if (data.success) {
+                makeToastNotification(data.success)
+            } else {
+                makeToastNotification(data.failed)
+            }
+        })
+        request.fail(function() {
+            makeToastNotification("Failed to add comment")
+        })
+        $(this).parent().parent().prev().removeClass("active")
+        $(this).parent().css('display', 'none')
+        $(this).parent().parent().parent().parent().parent().parent().addClass('hoverable')
+    })
 })
