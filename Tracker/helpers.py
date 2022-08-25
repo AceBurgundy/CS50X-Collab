@@ -85,5 +85,6 @@ def check_profanity(text_to_check, message=None, enumerate_words=False):
             jsonify(failed=(word for word in result.split(
                 ",") + (" are " if len(result) > 1 else " is ") + message))
             return False
+        # needs fixing
     else:
         return True
