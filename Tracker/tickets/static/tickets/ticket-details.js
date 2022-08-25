@@ -83,4 +83,22 @@ $(document).ready(function() {
             makeToastNotification(data.failed)
         })
     })
+
+    $(".add-comment").on('click', function(e) {
+        e.preventDefault()
+        let comment = $('.author-comment-message').val()
+        let ticket_id = $('.ticket_id').val()
+        let request = $.post(
+            "/add-comment", {
+                comment: comment,
+                ticket_id: ticket_id
+            }, "html")
+        request.done(function(data) {
+            $(data).insertAfter($('#add-comment-container'));
+            $('.author-comment-message').val("")
+        })
+        request.fail(function() {
+            makeToastNotification("Failed to add comment")
+        })
+    })
 })
