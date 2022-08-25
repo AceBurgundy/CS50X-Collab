@@ -1,7 +1,8 @@
 import json
 from flask import jsonify, render_template, request, url_for, flash, redirect, Blueprint
+from Tracker.models import TicketCommentLikes
 from Tracker.models import Ticket, Project, TicketComment, TicketCommentReplies, User
-from Tracker import db, database
+from Tracker import db
 from Tracker.tickets.forms import TicketForm
 from Tracker.helpers import check_profanity
 from sqlalchemy import insert, update, delete, select
@@ -14,7 +15,7 @@ tickets = Blueprint('tickets', __name__,
 # Show tickets
 
 
-@tickets.route("/show-tickets/<int:current_project_id>")
+@tickets.get("/show-tickets/<int:current_project_id>")
 @login_required
 def show_tickets(current_project_id):
 
@@ -24,6 +25,9 @@ def show_tickets(current_project_id):
     if request.method == "GET":
         tickets = db.session.execute(select(Ticket).filter_by(
             project_id=current_project_id)).scalars().all()
+
+        for ticket in tickets:
+            print(ticket)
 
         return render_template("tickets.html", image_file=image_file, project_id=current_project_id, tickets=tickets, pageTitle="TICKETS")
 
@@ -108,8 +112,8 @@ def update_ticket(current_ticket_id):
 # open ticket
 
 
-@ tickets.route("/details/<int:current_ticket_id>", methods=["GET", "POST"])
-@ login_required
+@tickets.route("/details/<int:current_ticket_id>", methods=["GET", "POST"])
+@login_required
 def open_ticket(current_ticket_id):
 
     image_file = url_for(
@@ -118,24 +122,11 @@ def open_ticket(current_ticket_id):
     ticket = db.session.get(Ticket, current_ticket_id)
 
     # used to query comments
-    ticket_comments = db.session.execute(select(TicketComment).filter_by(
-        ticket_id=current_ticket_id)).scalars().all()
+    ticket_comments = TicketComment.query.filter_by(
+        ticket_id=current_ticket_id)
 
-    print(ticket_comments.comment) if ticket_comments else print(
-        "no comments")
-
-    print(ticket_comments.likes) if ticket_comments else print("no likes")
-
-    # used to query replies
-    print(ticket_comments.replies) if ticket_comments else print(
-        "no comment replies")
-
-    for reply in ticket_comments:
-        ticket_comment_replies = db.session.execute(select(TicketCommentReplies).filter_by(
-            ticket_comment_id=reply.id)).scalars().all()
-
-        print(ticket_comment_replies.likes) if ticket_comment_replies else print(
-            "no likes for replies")
+    for comments in ticket_comments:
+        print(comments.liked_state)
 
     if request.method == "GET":
         return render_template('ticket-details.html', pageTitle="TICKET #", image_file=image_file, ticket=ticket, ticket_comments=ticket_comments)
@@ -143,8 +134,7 @@ def open_ticket(current_ticket_id):
 
 # Delete ticket
 
-
-@ tickets.route("/delete/<int:current_ticket_id>", methods=["POST"])
+@ tickets.post("/delete/<int:current_ticket_id>")
 @ login_required
 def delete_ticket(current_ticket_id):
     """ Delete ticket """
@@ -164,35 +154,137 @@ def delete_ticket(current_ticket_id):
                 Project.tickets == current_ticket_id)
             return redirect(url_for('tickets.show_tickets', current_project_id=current_project_id))
 
+# update ticket status
 
-@tickets.route("/add-comment", methods=["POST"])
+
+@tickets.post('/status')
+@login_required
+def update_status():
+    """ Update ticket status """
+
+    if request.method == "POST":
+        try:
+            new_status = request.form['new_status']
+            ticket_id = request.form['ticket_id']
+
+            if new_status is None:
+                return jsonify(failed='Cannot find new ticket status')
+
+            if ticket_id is None:
+                return jsonify(failed='Cannot find ticket id')
+
+            ticket = db.session.get(Ticket, ticket_id)
+            ticket.status = new_status
+            db.session.commit()
+            return jsonify(success='Ticket status updated')
+        except:
+            return jsonify(failed='Failed to update ticket')
+
+
+@tickets.post("/add-comment")
 def add_comment():
 
-    if check_profanity(request.form['comment_message']) == True:
-        comment_message = request.form['comment_message']
-        print(request.form['comment_message'])
+    message = request.form['comment']
+    ticket_id = request.form['ticket_id']
+
+    if check_profanity(message) == True:
         init(autoreset=True)
-        print(f"CheckProfanity for comment_message", "\033[1;32mpassed")
+        print(f"Checking profanity for message", "\033[1;32mpassed")
 
-    if request.method == 'POST':
-        # try:
-        db.session.add(TicketComment(
-            sender=current_user,
-            comment=comment_message
-        ))
-        db.session.commit()
-        return jsonify(success='Comment Added'), 200
-        # except:
-        #     return jsonify(failed='Failed to add comment'), 200
+    if not message:
+        return jsonify(failed='Comment cannot be empty'), 200
 
-
-@tickets.route("/delete-comment", methods=["POST"])
-def delete_comment():
+    if not ticket_id:
+        return jsonify(failed='Missing ticket number'), 200
 
     try:
-        db.session.execute(delete(TicketComment).where(
-            TicketComment.c.id == request.form['comment_id']))
+        db.session.add(TicketComment(
+            sender=current_user,
+            comment=message,
+            ticket_id=ticket_id
+        ))
         db.session.commit()
-        return jsonify(success='deleted'), 200
+        comment = TicketComment.query.filter_by(comment=message).first()
+        return render_template('comment.html', comment=comment)
+
     except:
-        return jsonify(failed='failed to delete comment'), 200
+        flash("Failed to add comment")
+        return render_template('comment.html', comment=comment)
+
+
+@tickets.post('/udpate-comment')
+@login_required
+def update_comment():
+    """ Update ticket status """
+
+    if request.method == "POST":
+        try:
+            new_comment = request.form['new_comment']
+            comment_id = request.form['comment_id']
+
+            if new_comment is None:
+                return jsonify(failed='Cannot find new ticket status')
+
+            if comment_id is None:
+                return jsonify(failed='Cannot find ticket id')
+
+            comment = db.session.get(TicketComment, comment_id)
+            comment.comment = new_comment
+            db.session.commit()
+            print('comment updated')
+            return jsonify(success='Comment updated')
+        except:
+            return jsonify(failed='Failed to update comment')
+
+
+@tickets.post("/like-comment")
+def like_comment():
+    if request.method == 'POST':
+        try:
+            comment_id = request.form['comment_id']
+            comment = TicketComment.query.filter_by(
+                id=comment_id).first()
+            if comment.liked_state == False:
+                comment.liked_state = True
+                new_like = TicketCommentLikes(
+                    ticket_comment_id=comment_id
+                )
+                db.session.add(new_like)
+                db.session.commit()
+                db.session.flush()
+                db.session.refresh(new_like)
+            return jsonify(success=new_like.id)
+        except:
+            return jsonify(failed='Failed to like comment')
+
+
+@ tickets.post("/unlike-comment")
+def unlike_comment():
+    comment_id = request.form['comment_id']
+    comment_likes_id = request.form['comment_likes_id']
+    comment = db.session.get(TicketComment, comment_id)
+    try:
+        if comment.liked_state == True:
+            comment.liked_state = False
+            like = db.session.get(
+                TicketCommentLikes, comment_likes_id)
+            print(comment_id, comment_likes_id, comment, like)
+            db.session.delete(like)
+            print("crossed")
+            db.session.commit()
+            print("crossed")
+            return jsonify(success='Unliked')
+    except:
+        return jsonify(failed="Failed to unlike comment")
+    # error found on comment_likes_id are sometimes null
+
+
+@ tickets.post("/delete-comment")
+def delete_comment():
+    try:
+        comment = db.session.get(TicketComment, request.form['comment_id'])
+        db.session.delete(comment)
+        db.session.commit()
+        return jsonify(success='Deleted'), 200
+    except:
+        return jsonify(failed='Failed to delete comment'), 200
