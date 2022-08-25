@@ -126,4 +126,40 @@ $(document).ready(function() {
         $(this).parent().css('display', 'none')
         $(this).parent().parent().parent().parent().parent().parent().addClass('hoverable')
     })
+
+    $(document).on('click', ".like-icon", function(e) {
+        $(this).css('display', 'none')
+        $(this).next().css('display', 'block')
+        $(this).parent().next('.like-count').text(Number($(this).parent().next('.like-count').text()) - 1)
+
+        let comment_id = $(this).attr('data-comment-id')
+        let comment_likes_id = $(this).attr('data-comment-likes-id')
+        let request = $.post(
+            "/unlike-comment", {
+                comment_id: comment_id,
+                comment_likes_id: comment_likes_id
+            })
+        request.done(function(data) {
+            makeToastNotification(data.success)
+        })
+    })
+
+    $(document).on('click', ".unlike-icon", function(e) {
+        $(this).css('display', 'none')
+        $(this).prev().css('display', 'block')
+        $(this).parent().next('.like-count').text(Number($(this).parent().next('.like-count').text()) + 1)
+
+        let likeId = $(this).prev()
+        let comment_id = $(this).attr('data-comment-id')
+        let request = $.post(
+            "/like-comment", {
+                comment_id: comment_id,
+            }, 'json')
+
+        request.done(function(data) {
+            makeToastNotification('Liked')
+            likeId.attr('data-comment-likes-id', data.success)
+        })
+        e.preventDefault()
+    })
 })
