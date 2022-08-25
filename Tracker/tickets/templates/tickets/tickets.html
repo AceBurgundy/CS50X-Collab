@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block component_style -%}
 <link rel="stylesheet" href="{{ url_for('tickets.static', filename='tickets.css') }}"> {% endblock component_style %} {% block component_script -%}
-<script src="{{ url_for('tickets.static', filename='ticket.js') }}" defer></script>
+<script type="module" src="{{ url_for('tickets.static', filename='ticket.js') }}" defer></script>
 {%- endblock component_script%} {% block tickets -%}
 
 <div id="tickets-content">
@@ -16,10 +16,10 @@
                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"/></svg></button>
                     </form>
                 </div>
-                <div class="ticket-column-body">
+                <div class="ticket-column-body" data-ticket-status="Pending">
                     {% for ticket in tickets %} {% if ticket.status == 'Pending' %}
 
-                    <div class="ticket" draggable="true">
+                    <div class="ticket" draggable="true" data-ticket-id="{{ ticket.id }}">
                         <div class="ticket-header">
                             <div class="ticket-tag-container">
                                 <p class="ticket-tag">{{ ticket.priority }}</p>
@@ -36,7 +36,11 @@
                                 <div class="deadline-svg-container">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
-                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
+                                <div>
+                                    <span class="deadline-date deadline-month">{{ ticket.deadline.strftime('%m') }}</span>
+                                    <span class="deadline-date deadline-day">{{ ticket.deadline.strftime('%d') }}</span>
+                                    <span class="deadline-date deadline-year">{{ ticket.deadline.strftime('%y') }}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="ticket-footer">
@@ -70,10 +74,10 @@
                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"/></svg></button>
                     </form>
                 </div>
-                <div class="ticket-column-body">
-                    {% for ticket in tickets %} {% if ticket.status == 'In Progress ' %}
+                <div class="ticket-column-body" data-ticket-status="In Progress">
+                    {% for ticket in tickets %} {% if ticket.status == 'In Progress' %}
 
-                    <div class="ticket" draggable="true">
+                    <div class="ticket" draggable="true" data-ticket-id="{{ ticket.id }}">
                         <div class="ticket-header">
                             <div class="ticket-tag-container">
                                 <p class="ticket-tag">{{ ticket.priority }}</p>
@@ -90,7 +94,11 @@
                                 <div class="deadline-svg-container">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
-                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
+                                <div>
+                                    <span class="deadline-date deadline-month">{{ ticket.deadline.strftime('%m') }}</span>
+                                    <span class="deadline-date deadline-day">{{ ticket.deadline.strftime('%d') }}</span>
+                                    <span class="deadline-date deadline-year">{{ ticket.deadline.strftime('%y') }}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="ticket-footer">
@@ -120,10 +128,10 @@
                 <div class="ticket-column-header">
                     <p class="ticket-column-title">Completed</p>
                 </div>
-                <div class="ticket-column-body">
-                    {% for ticket in tickets %} {% if ticket.status == 'Completed ' %}
+                <div class="ticket-column-body" data-ticket-status="Completed">
+                    {% for ticket in tickets %} {% if ticket.status == 'Completed' %}
 
-                    <div class="ticket" draggable="true">
+                    <div class="ticket" draggable="true" data-ticket-id="{{ ticket.id }}">
                         <div class="ticket-header">
                             <div class="ticket-tag-container">
                                 <p class="ticket-tag">{{ ticket.priority }}</p>
@@ -140,7 +148,11 @@
                                 <div class="deadline-svg-container">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
                                 </div>
-                                <p><span class="deadline-date">{{ ticket.deadline }}</span></p>
+                                <div>
+                                    <span class="deadline-date deadline-month">{{ ticket.deadline.strftime('%m') }}</span>
+                                    <span class="deadline-date deadline-day">{{ ticket.deadline.strftime('%d') }}</span>
+                                    <span class="deadline-date deadline-year">{{ ticket.deadline.strftime('%y') }}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="ticket-footer">

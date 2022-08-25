@@ -15,7 +15,7 @@ def load_user(user_id):
 # Project Collaborators
 
 
-collaborators = db.Table("collaborators",
+collaborators = db.Table("project_collaborators",
                          db.Column('id', db.Integer, primary_key=True),
                          db.Column('user_id', db.Integer, db.ForeignKey(
                              'user.id'), nullable=False),
@@ -28,7 +28,6 @@ collaborators = db.Table("collaborators",
 
 
 class User(db.Model, UserMixin):
-
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     first_name = db.Column(db.String(60))
@@ -50,6 +49,11 @@ class User(db.Model, UserMixin):
     # it runs a additional querry in the backrground to match the projects that the user has created
 
     project = db.relationship('Project', backref='author', lazy=True)
+
+    comment = db.relationship('TicketComment', backref='sender', lazy=True)
+
+    replies = db.relationship('TicketCommentReplies',
+                              backref='sender', lazy=True)
 
     collaborated_projects = db.relationship(
         'Project', secondary=collaborators, backref='collaborators')
@@ -117,57 +121,58 @@ class Ticket(db.Model):
 
 
 class TicketComment(db.Model):
-    __tablename__ = 'ticketComment'
+    __tablename__ = 'ticket_comment'
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text)
-    sender = db.Column(db.String(60), nullable=False)
     sent_date = db.Column(db.DateTime, nullable=False,
                           default=datetime.now, onupdate=datetime.now)
+    liked_state = db.Column(db.Boolean, nullable=False, default=False)
+
+    likes = db.relationship(
+        'TicketCommentLikes', backref='originated_comment', lazy=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     ticket_id = db.Column(db.Integer, db.ForeignKey(
         'ticket.id'), nullable=False)
 
-    likes = db.relationship(
-        'TicketCommentLikes', backref='this_comment', lazy=True)
-
     replies = db.relationship(
-        'TicketCommentReplies', backref='this_comment', lazy=True)
+        'TicketCommentReplies', backref='originated_comment', lazy=True)
 
     def __repr__(self):
-        return f"TicketComment('{self.comment}','{self.sender}')"
+        return f"TicketComment('{self.comment}','{self.liked_state}','{self.replies}')"
 
 
 class TicketCommentReplies(db.Model):
-    __tablename__ = 'ticketCommentReplies'
+    __tablename__ = 'ticket_comment_replies'
     id = db.Column(db.Integer, primary_key=True)
     reply = db.Column(db.Text)
-    sender = db.Column(db.String(60), nullable=False)
     deletion_date = db.Column(db.DateTime)
     sent_date = db.Column(db.DateTime, nullable=False,
                           default=datetime.now, onupdate=datetime.now)
-
-    ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
-        'ticketComment.id'), nullable=False)
+    liked_state = db.Column(db.Boolean, nullable=False, default=False)
 
     likes = db.relationship(
-        'TicketCommentLikes', backref='this_comments_reply', lazy=True)
+        'TicketCommentLikes', backref='originated_reply', lazy=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
+        'ticket_comment.id'), nullable=False)
 
     def __repr__(self):
-        return f"Replies('{self.reply}','{self.sender}')"
+        return f"Replies('{self.reply}','{self.ticket_comment_id}','{self.liked_state}')"
 
 
 class TicketCommentLikes(db.Model):
-    __tablename__ = 'ticketCommentLikes'
+    __tablename__ = 'ticket_comment_likes'
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(60), nullable=False)
-    like_date = db.Column(db.DateTime, nullable=False,
-                          default=datetime.now, onupdate=datetime.now)
 
     ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
-        'ticketComment.id'))
+        'ticket_comment.id'))
 
-    comment_reply_id = db.Column(db.Integer, db.ForeignKey(
-        'ticketCommentReplies.id'))
+    ticket_replies_id = db.Column(db.Integer, db.ForeignKey(
+        'ticket_comment_replies.id'))
 
     def __repr__(self):
-        return f"Likedby('{self.user}')"
+        return f"Likes('{self.id}','{self.ticket_comment_id}','{self.ticket_replies_id}')"

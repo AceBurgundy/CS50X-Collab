@@ -16,3 +16,7 @@
     font-family: "Rubik Regular";
     color: #442b2d;
 }
+
+path {
+    pointer-events: none;
+}

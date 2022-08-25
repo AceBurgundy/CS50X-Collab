@@ -135,6 +135,7 @@
     align-items: center;
     border-radius: 12px;
     gap: 0.2em;
+    cursor: pointer;
 }
 
 .ticket-header,
@@ -202,10 +203,7 @@
 .ticket-deadline {
     height: 1.8rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 0.5rem;
-    font-weight: bold;
 }
 
 .ticket-deadline-container {
@@ -214,8 +212,14 @@
     border-radius: 7px;
     width: max-content;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
+}
+
+.ticket-deadline-container div {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 0.2em;
 }
 
 .deadline-date {

@@ -1,24 +1,29 @@
-document.querySelector("#collaborate").addEventListener("click", () => {
-    document.querySelector(".collaborate-dropdown").classList.toggle("active")
-})
-date = new Date()
+import { checkDate, togglePopper } from "/static/helper.js"
 
-// deadline must be formated in a YYYY-MM-DD format and each of them are inside an element with className = 'deadline-date'
-document.querySelectorAll(".deadline-date").forEach(deadline => {
-    deadlineYear = deadline.textContent.split('-')[0]
-    deadlineMonth = deadline.textContent.split('-')[1]
-    deadlineDay = deadline.textContent.split('-')[2]
+if (document.querySelector(".collaborate") !== null) {
+    let collaborateButton = document.querySelectorAll(".collaborate")
 
-    if (deadlineMonth - (date.getMonth() + 1) == 1) {
-        deadline.parentElement.style.backgroundColor = '#de65656f'
-        deadline.parentElement.style.color = '#300e0e'
-        deadline.parentElement.children[0].style.color = '#300e0e'
-    } else if (deadlineMonth - (date.getMonth() + 1) == 2) {
-        deadline.parentElement.style.backgroundColor = 'orange'
-    } else {
-        deadline.parentElement.style.backgroundColor = '#82e5a073'
-        deadline.parentElement.style.color = '#164524'
-        deadline.parentElement.children[0].style.color = '#164524'
-    }
+    collaborateButton.forEach(button => {
+        button.addEventListener("click", () => {
+            button.nextElementSibling.classList.toggle("active")
+        })
+    })
+}
 
-})
+if (document.querySelector('#leave-project-button') !== null) {
+    const leaveProjectButton = document.querySelector('#leave-project-button')
+    const leaveProjectButtonTooltip = leaveProjectButton.nextElementSibling
+
+    const popperInstance = Popper.createPopper(leaveProjectButton, leaveProjectButtonTooltip, {
+        placement: 'left',
+        modifiers: [{
+            name: 'offset',
+            options: {
+                offset: [0, 8],
+            },
+        }, ],
+    })
+    togglePopper(popperInstance, leaveProjectButton)
+}
+
+checkDate('.deadline-date')

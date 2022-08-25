@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
     document.querySelectorAll(".message").forEach((message) => {
 
-        message.classList.toggle("active")
+        message.textContent == '' ? message.remove() : message.classList.toggle("active")
 
         setTimeout(() => {
             message.classList.toggle("active")

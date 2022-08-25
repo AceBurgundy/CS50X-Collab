@@ -2,25 +2,44 @@
 <html>
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for( 'index.static' , filename='head.css')  }}"> {% block script -%}{%- endblock script%} {% block style -%}{%- endblock style %}{% block component_style -%}{% endblock component_style %} {% block component_script -%}{%- endblock component_script %}
-    <script src="{{ url_for( 'index.static' , filename='head.js')  }}"></script>
 
-    <!-- messages -->
-    {% with messages=get_flashed_messages() %} {% if messages %}
+    <title>{% block title %}{% endblock %}</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="{{ url_for( 'index.static' , filename='head.js')  }}"></script>
+    <!--  -->
+    {% block script -%}{%- endblock script %}
+    <!--  -->
+    {% block component_script -%}{%- endblock component_script %}
+
+    <link rel="stylesheet" href="{{ url_for( 'index.static' , filename='head.css') }}">
+    <!--  -->
+    {% block style -%}{%- endblock style %}
+    <!--  -->
+    {% block component_style -%}{% endblock component_style %}
+
+    <!-- {# messages #} -->
+    {% with messages=get_flashed_messages() -%}
     <ul class=flashes>
-        {% for message in messages %}
+        {% if messages -%} {% for message in messages -%}
         <li class="message">{{ message }}</li>
-        {% endfor %}
+        {%- endfor %} {%- else -%}
+        <li class="message">{{ message }}</li>
+        {%- endif %}
     </ul>
-    {% endif %} {% endwith %}
+    {%- endwith %}
 
 </head>
 
 <body>
-    {% block login -%}{%- endblock login %} {% block register -%}{%- endblock register %} {%block main -%}{%- endblock %} {% block profile -%}{%- endblock profile %} {% block new_project -%}{%- endblock new_project %}
+    <!--  -->{% block login -%}{%- endblock login %}
+    <!--  -->{% block register -%}{%- endblock register %}
+    <!--  -->{% block main -%}{%- endblock %}
+    <!--  -->{% block profile -%}{%- endblock profile %}
+    <!--  -->{% block new_project -%}{%- endblock new_project %}
 </body>

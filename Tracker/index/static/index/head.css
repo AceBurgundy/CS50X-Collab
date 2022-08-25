@@ -4,7 +4,7 @@
     left: 0%;
     bottom: 0%;
     max-width: max-content;
-    z-index: 3;
+    z-index: 10;
     margin: 1em;
 }
 
@@ -19,6 +19,8 @@
     border-radius: 15px;
     list-style: none;
     opacity: 0;
+    position: relative;
+    z-index: 10;
     color: white;
     transition: 500ms;
     background-color: rgb(131, 104, 104);

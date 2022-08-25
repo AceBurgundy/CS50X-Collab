@@ -3,7 +3,7 @@ import os
 from colorama import init
 import secrets
 from wtforms.validators import ValidationError
-from flask import current_app, flash
+from flask import current_app, jsonify
 from PIL import Image
 
 
@@ -73,17 +73,18 @@ def check_profanity(text_to_check, message=None, enumerate_words=False):
 
     if len(result) > 0:
         if message:
-            flash(message)
+            jsonify(failed=message)
             return False
 
         if not message and enumerate_words:
-            flash(word for word in result.split(
-                ",") + (" are " if len(result) > 1 else " is ") + "not accepted")
+            jsonify(failed=(word for word in result.split(
+                ",") + (" are " if len(result) > 1 else " is ") + "not accepted"))
             return False
 
         if message and enumerate_words:
-            flash(word for word in result.split(
-                ",") + (" are " if len(result) > 1 else " is ") + message)
+            jsonify(failed=(word for word in result.split(
+                ",") + (" are " if len(result) > 1 else " is ") + message))
             return False
+        # needs fixing
     else:
         return True
