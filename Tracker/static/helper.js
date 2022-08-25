@@ -42,44 +42,78 @@ export function eyeToggle(eyesContainerId, inputId, eyeId, eyeSlashId) {
 
 }
 
-export function makeToastNotification(Message) {
-    let block = document.createElement('div');
-    block.className = "error"
-    block.innerHTML = Message
+export const makeToastNotification = function(Message) {
+    let list = document.createElement('li');
+    list.className = "message"
+    list.innerHTML = Message
 
-    if ($('.error-list') !== null) {
-        $('.error-list').appendChild(block)
+    if ($('.flashes') !== null) {
+        $('.flashes').append(list)
 
-        document.querySelectorAll(".error").forEach((error) => {
+        document.querySelectorAll(".message").forEach(toast => {
 
-            error.classList.toggle("active")
+            toast.classList.toggle("active")
 
             setTimeout(() => {
-                error.classList.remove("active")
-            }, 3000);
+                toast.classList.remove("active")
+                setTimeout(() => {
+                    document.querySelector('.flashes').removeChild(toast)
+                }, 500)
+            }, 2000);
+
         })
     }
 }
 
+export const togglePopper = function(popperInstance, button) {
+
+    function show() {
+        tooltip.setAttribute('data-show', '');
+
+        // We need to tell Popper to update the tooltip position
+        // after we show the tooltip, otherwise it will be incorrect
+        popperInstance.update();
+    }
+
+    function hide() {
+        tooltip.removeAttribute('data-show');
+    }
+
+    const showEvents = ['mouseenter', 'focus'];
+    const hideEvents = ['mouseleave', 'blur'];
+
+    showEvents.forEach((event) => {
+        button.addEventListener(event, show);
+    });
+
+    hideEvents.forEach((event) => {
+        button.addEventListener(event, hide);
+    });
+}
+
+export const autoResize = function() {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+}
+
 export const checkDate = function(classNames) {
+    const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let date = new Date()
 
     // deadline must be formated in a YYYY-MM-DD format and each of them are inside an element with className = 'deadline-date'
     document.querySelectorAll(classNames).forEach(deadline => {
-        const deadlineYear = deadline.textContent.split('-')[0]
-        const deadlineMonth = deadline.textContent.split('-')[1]
-        const deadlineDay = deadline.textContent.split('-')[2]
+        let deadlineMonth = deadline.textContent.split('-')[1]
 
         if (deadlineMonth - (date.getMonth() + 1) == 1) {
-            deadline.parentElement.style.backgroundColor = '#de65656f'
-            deadline.parentElement.style.color = '#300e0e'
-            deadline.parentElement.children[0].style.color = '#300e0e'
+            deadline.parentElement.parentElement.style.backgroundColor = '#de65656f'
+            deadline.parentElement.parentElement.style.color = '#300e0e'
+            deadline.parentElement.parentElement.children[0].style.color = '#300e0e'
         } else if (deadlineMonth - (date.getMonth() + 1) == 2) {
-            deadline.parentElement.style.backgroundColor = 'orange'
+            deadline.parentElement.parentElement.style.backgroundColor = 'orange'
         } else {
-            deadline.parentElement.style.backgroundColor = '#82e5a073'
-            deadline.parentElement.style.color = '#164524'
-            deadline.parentElement.children[0].style.color = '#164524'
+            deadline.parentElement.parentElement.style.backgroundColor = '#82e5a073'
+            deadline.parentElement.parentElement.style.color = '#164524'
+            deadline.parentElement.parentElement.children[0].style.color = '#164524'
         }
     })
 }
