@@ -1,0 +1,32 @@
+<div class="comment" id="comment{{comment.id}}">
+    <div class="comment-left">
+        <div class="image-username-container">
+            <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + comment.sender.profile_picture) }}">
+        </div>
+    </div>
+    <div class="comment-right">
+        <div class="comment-top">
+            <p class="commenter">{{ comment.sender.username }}</p>
+        </div>
+        <div class="comment-middle">
+            <div class="comment-message-container">
+                <textarea rows="1" class="comment-message">{{ comment.comment }}</textarea>
+                <!--  -->
+                <div class="comment-bottom">
+                    {% include 'like.html' %}
+                    <form class="comment-options-extra">
+                        <div class="edit-comment-option cancel-comment-edit" id="cancel-comment">CANCEL</div>
+                        <button class="edit-comment-option save-comment" comment-id="{{ comment.id }}" data-url="{{ url_for('tickets.update_comment') }}" type="submit">SAVE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comment-options-container">
+        <svg class="menu-icon" id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
+        <form class="comment-options-form">
+            <button class="comment-option delete-comment" comment-id="{{ comment.id }}" type="submit">DELETE</button>
+            <div class="comment-option edit-comment">EDIT</div>
+        </form>
+    </div>
+</div>
