@@ -25,7 +25,7 @@
     {% endfor %} {% endfor %}
 </ul>
 {% endif %}
-
+<input type="hidden" value="project-modal" class="current-page-title">
 <div class="form-modal-container">
     {% if modal_title == 'CREATE NEW PROJECT'%}
     <form class="modal-form" role="form" action="{{ url_for('projects.add_project') }}" method="post">
@@ -58,9 +58,9 @@
             <div class="modal-form-bottom">
                 <!-- {# show all list of users and collaborators only if title is "UDPATE THIS PROJECT" #} -->
                 {% if modal_title == 'UPDATE THIS PROJECT'-%}
+                <label for="collaborate" class="button-basic collaborate-toggle">ADD COLLABORATORS</label>
                 <section class="input-field collaborate">
                     <!-- {# project description collaborate #} -->
-                    Add Collaborators
                     <div id="collaborate-dropdown" id="collaborate-dropdown" class="collaborate-dropdown">
                         <div id="collaborate" name="collaborate" class="collaborate-option-container">
                             <div id="dropdown-header">

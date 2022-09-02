@@ -36,6 +36,9 @@ def show_tickets(current_project_id):
 @ login_required
 def add_ticket(current_project_id):
 
+    image_file = url_for(
+        'static', filename='profile_pictures/' + current_user.profile_picture)
+
     modal_title = "CREATE NEW TICKET"
     form = TicketForm()
     if request.method == "POST":
@@ -65,10 +68,12 @@ def add_ticket(current_project_id):
             return render_template('ticket-modal.html', ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form, error=form.form_errors)
     else:
 
-        ticket_status = request.form.get('ticket-status')
-        print(request.form.get('ticket-status'))
+        project = db.session.get(Project, current_project_id)
+        print(project.collaborators)
 
-        return render_template('ticket-modal.html', ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form)
+        ticket_status = request.form.get('ticket-status')
+
+        return render_template('ticket-modal.html', project=project, ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form)
 
 
 @ tickets.route("/update-ticket/<int:current_ticket_id>", methods=["POST", "GET"])
@@ -197,19 +202,17 @@ def add_comment():
     if not ticket_id:
         return jsonify(failed='Missing ticket number'), 200
 
-    try:
-        db.session.add(TicketComment(
-            sender=current_user,
-            comment=message,
-            ticket_id=ticket_id
-        ))
-        db.session.commit()
-        comment = TicketComment.query.filter_by(comment=message).first()
-        return render_template('comment.html', comment=comment)
-
-    except:
-        flash("Failed to add comment")
-        return render_template('comment.html', comment=comment)
+    new_comment = TicketComment(
+        sender=current_user,
+        comment=message,
+        ticket_id=ticket_id
+    )
+    db.session.add(new_comment)
+    db.session.commit()
+    db.session.flush()
+    db.session.refresh(new_comment)
+    print(new_comment)
+    return render_template('comment.html', comment=new_comment)
 
 
 @tickets.post('/udpate-comment')

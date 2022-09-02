@@ -318,18 +318,6 @@ option:checked:before {
 
 .collaborate {
     position: relative;
-    bottom: 0%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    width: fit-content;
-    background-color: var(--primary);
-    border: none;
-    font-family: "Rubik Medium";
-    text-transform: uppercase;
-    padding: 0.8em;
-    border-radius: 10px;
 }
 
 
@@ -350,6 +338,10 @@ option:checked:before {
     pointer-events: none;
     box-shadow: var(--defaultShadow);
     -webkit-box-shadow: var(--defaultShadow);
+}
+
+.add-user {
+    top: 57%;
 }
 
 .collaborate-dropdown.active {
