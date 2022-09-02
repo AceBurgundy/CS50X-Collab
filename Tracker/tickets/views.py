@@ -43,17 +43,17 @@ def add_ticket(current_project_id):
     form = TicketForm()
     if request.method == "POST":
 
-        ticket_status = request.form.get('ticket-status')
-        print(ticket_status)
         if form.validate_on_submit():
-
+            ticket_status = request.form.get('ticket-status')
+            new_assigned_user = current_user if form.assign.data == 'author' else User.query.filter_by(
+                username=form.assign.data).first()
             try:
                 db.session.add(Ticket(
                     name=form.name.data,
                     content=form.description.data,
                     deadline=form.deadline.data,
                     status=ticket_status,
-                    assigned_user='author',
+                    assigned_user=str(new_assigned_user),
                     created_by=current_user.username,
                     priority=form.priority.data,
                     project_id=current_project_id))
@@ -129,9 +129,6 @@ def open_ticket(current_ticket_id):
     # used to query comments
     ticket_comments = TicketComment.query.filter_by(
         ticket_id=current_ticket_id)
-
-    for comments in ticket_comments:
-        print(comments.liked_state)
 
     if request.method == "GET":
         return render_template('ticket-details.html', pageTitle="TICKET #", image_file=image_file, ticket=ticket, ticket_comments=ticket_comments)
