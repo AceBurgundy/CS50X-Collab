@@ -392,6 +392,20 @@
     cursor: pointer;
 }
 
+.reply-comment {
+    background-color: inherit;
+    font-size: 0.7rem;
+    width: 100%;
+    color: var(--brown);
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    transition: 150ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #cancel-comment {
     background-color: inherit;
     box-shadow: none;
