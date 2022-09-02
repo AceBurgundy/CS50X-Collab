@@ -45,7 +45,7 @@
             </div>
         </div> -->
     </div>
-    <div class="comment-section">
+    <div class="add-comment-section">
         <form class="comment" id="add-comment-container">
             <div class="comment-left">
                 <div class="image-username-container">
@@ -69,10 +69,11 @@
                 </div>
             </div>
         </form>
-        {% for comment in ticket_comments %} {% include 'comment.html' %} {% endfor %}
     </div>
-    <div class="scroll-top">
-        -
+    <div class="comment-section">
+        {% for comment in ticket_comments|reverse %} {% include 'comment.html' %} {% endfor %}
     </div>
+    <div id="scroll-top">
+        <svg class="arrow-up-icon" id="arrow-up-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M17 10c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l5 5c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z"/><path d="M7 10c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z"/><path d="M12 21c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1s1 .4 1 1v16c0 .6-.4 1-1 1z"/></svg>        </div>
 </div>
 {%- endblock ticketDetails %}
