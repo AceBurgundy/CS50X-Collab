@@ -101,17 +101,19 @@ window.addEventListener("DOMContentLoaded", () => {
         collaboratorSelectOption.forEach(option => {
 
             option.addEventListener("click", () => {
-                if ($('#assign').attr('value') == "") {
-                    chose = option.children[0].getAttribute('value').trim()
+                let clickedUser = option.children[0].getAttribute('value').trim()
+
+                if ($('#assign').attr('value') == "author") {
+                    chose = clickedUser
                     $('#assign').attr('value', chose)
                     option.classList.add("active")
-                } else if (option.children[0].getAttribute('value').trim() != chose) {
+                } else if (clickedUser != chose) {
                     document.getElementById(chose).parentElement.parentElement.classList.remove("active")
-                    chose = option.children[0].getAttribute('value').trim()
+                    chose = clickedUser
                     $('#assign').attr('value', chose)
                     option.classList.add("active")
                 } else {
-                    $('#assign').attr('value', "")
+                    $('#assign').attr('value', "author")
                     option.classList.remove("active")
                 }
             })
