@@ -66,6 +66,25 @@ document.querySelectorAll('.menu-icon').forEach(commentOption => {
     })
 })
 
+document.querySelectorAll(".reply-comment").forEach(replyButton => {
+    replyButton.addEventListener("click", () => {
+        replyButton.parentElement.parentElement.parentElement.nextElementSibling.classList.add("active")
+    })
+})
+
+document.querySelectorAll(".author-comment-reply").forEach(replyInput => {
+    replyInput.addEventListener("click", () => {
+        replyInput.nextElementSibling.style.display = "flex"
+    })
+})
+
+document.querySelectorAll(".cancel-reply").forEach(replyCancelButton => {
+    replyCancelButton.addEventListener("click", (e) => {
+        replyCancelButton.parentElement.parentElement.style.display = "none"
+        e.preventDefault()
+    })
+})
+
 const scrollTop = document.getElementById('scroll-top')
 const commentSection = document.querySelector('.comment-section')
 
