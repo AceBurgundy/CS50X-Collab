@@ -1,10 +1,11 @@
 :root {
-    --primary: #FEDBD0;
+    --primary: #eae3f1;
     --brown: #442C2E;
-    --secondary: #FEEAE6;
+    --secondary: #e8def8;
     --backdrop: #feefe983;
     --defaultShadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
     --sectionShadow: rgba(0, 0, 0, 0.06) 0px 5px 18px;
+    --card: #fffbfe;
 }
 
 .button-basic {
