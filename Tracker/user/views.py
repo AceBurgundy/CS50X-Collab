@@ -8,7 +8,9 @@ from Tracker.models import User
 from Tracker.user.forms import RegisterForm, LoginForm
 from sqlalchemy import insert
 
-user = Blueprint('user', __name__, template_folder='templates/user', static_folder='static/user')
+user = Blueprint('user', __name__,
+                 template_folder='templates/user', static_folder='static/user')
+
 
 @user.route("/login", methods=["GET", "POST"])
 def login():
@@ -17,7 +19,7 @@ def login():
     logout_user()
 
     form = LoginForm()
-    
+
     if request.method == "POST":
 
         if current_user.is_authenticated:
@@ -28,9 +30,9 @@ def login():
 
         user = User.query.filter_by(email=email_input).first()
 
-        try:           
+        try:
             if user and check_password_hash(user.password, password_input):
-                login_user(user) #, remember=form.remember.data)
+                login_user(user)  # , remember=form.remember.data)
                 next_page = request.args.get('next')
             return redirect(url_for('index._index')) if next_page else redirect(url_for('index._index'))
         except:
@@ -39,6 +41,7 @@ def login():
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
+
         return render_template("login.html", form=form)
 
 
@@ -52,10 +55,10 @@ def logout():
 
 @user.route("/register", methods=["GET", "POST"])
 def register():
-    """Register User in""" 
-    
+    """Register User in"""
+
     form = RegisterForm()
-    
+
     if request.method == "POST":
         # print("cross")
         # if current_user.is_authenticated:
@@ -70,19 +73,19 @@ def register():
 
             try:
                 db.session.execute(insert(User).values(
-                    username=username_input, 
-                    email=email_input, 
+                    username=username_input,
+                    email=email_input,
                     password=encryptedPassword))
-                
+
                 db.session.commit()
                 flash(f"Successfully created account.")
                 return redirect(url_for('user.login'))
             except:
-                form.form_errors.append("Login Unsucessful. Something was wrong on logging in user")
+                form.form_errors.append(
+                    "Login Unsucessful. Something was wrong on logging in user")
                 return render_template("register.html", form=form, errors=form.form_errors)
         else:
             # if not form.validate_on_submit()
             return render_template("register.html", form=form, errors=form.form_errors)
     else:
         return render_template("register.html", form=form)
-
