@@ -136,14 +136,4 @@ window.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
-
-    document.querySelectorAll('.user-username').forEach(name => {
-        name.textContent = name.textContent.slice(6, -3)
-
-        if (document.querySelector('.author') !== null) {
-            if (document.querySelector('.author').getAttribute('value').trim() == name.textContent.trim()) {
-                name.parentElement.style.display = 'none'
-            }
-        }
-    })
 })
