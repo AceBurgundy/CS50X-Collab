@@ -4,11 +4,6 @@ from flask import current_app
 from Tracker import db, login_manager
 from flask_login import UserMixin, current_user
 
-"""
-The function below is a callback used to reload the user object from the user ID stored in the session.
-It should take the str ID of a user, and return the corresponding user object. For example:
-"""
-
 
 @login_manager.user_loader
 def load_user(user_id):
