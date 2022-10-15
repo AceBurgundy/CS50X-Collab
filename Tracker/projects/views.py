@@ -1,10 +1,9 @@
-from email import message
 from Tracker import db
-from Tracker.models import Project, User
+from Tracker.models import Project, Ticket, User
 from flask import redirect, render_template, jsonify, request, url_for, flash, Blueprint
 from flask_login import current_user, login_required
 from Tracker.projects.forms import ProjectForm
-from sqlalchemy import update, select
+from sqlalchemy import delete, update, select
 
 projects = Blueprint('projects', __name__,
                      template_folder='templates/projects', static_folder='static/projects')
@@ -137,17 +136,22 @@ def bookmark_project(current_project_id):
 # Delete project
 
 
-@projects.route("/delete/<int:current_project_id>", methods=["POST"])
+@projects.post("/delete/<int:current_project_id>")
 @login_required
 def delete_project(current_project_id):
     """ Delete project """
 
-    if request.method == "POST":
-        try:
-            db.session.delete(Project.query.get(current_project_id))
-            db.session.commit()
-            flash('Project deleted')
-            return redirect(url_for('index._index'))
-        except:
-            flash('Project not found')
-            return redirect(url_for('index._index'))
+    current_project = Project.query.get(current_project_id)
+
+    tickets = (
+        delete(Ticket).
+        where(Ticket.project_id == current_project_id)
+    )
+
+    current_project.collaborators = []
+
+    db.session.execute(tickets)
+    db.session.delete(current_project)
+    db.session.commit()
+    flash('Project deleted')
+    return redirect(url_for('index._index'))
