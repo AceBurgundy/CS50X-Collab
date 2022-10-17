@@ -45,7 +45,7 @@ document.querySelectorAll('.comment').forEach(comment => {
 document.querySelectorAll('.edit-comment').forEach(editButton => {
     editButton.addEventListener("click", () => {
         editButton.parentElement.parentElement.parentElement.classList.remove("hoverable")
-        editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.children[1].children[1].style.display = 'flex'
+        editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.children[1].children[2].style.display = 'flex'
         editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.firstElementChild.classList.add("active")
     })
 })
@@ -62,7 +62,9 @@ commentBox.addEventListener('input', autoResize, false);
 
 document.querySelectorAll('.menu-icon').forEach(commentOption => {
     commentOption.addEventListener("mouseover", () => {
-        commentOption.nextElementSibling.classList.toggle("active")
+        if (commentOption.nextElementSibling != null) {
+            commentOption.nextElementSibling.classList.toggle("active")
+        }
     })
 })
 

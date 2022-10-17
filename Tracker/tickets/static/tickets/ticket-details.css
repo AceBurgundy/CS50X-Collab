@@ -1,10 +1,5 @@
-@import "/static/fonts.css";
 #grid-container {
-    grid-template-areas: "navigation-rail main-content top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
-}
-
-#top-bar {
-    display: none;
+    grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content main-content" "navigation-rail main-content main-content";
 }
 
 
@@ -18,7 +13,6 @@
     height: fit-content;
     border-radius: 20px;
     position: absolute;
-    padding: 0.5em 0;
     box-shadow: var(--defaultShadow);
     background-color: var(--primary);
     width: 280px;
@@ -29,11 +23,11 @@
     border-radius: 12px;
     gap: 0.2em;
     left: 50%;
-    top: 50%;
+    top: 0%;
     width: 90%;
-    height: 90%;
+    height: 95%;
     overflow-y: scroll;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width: 900px) {
@@ -125,11 +119,14 @@
 .ticket-deadline {
     height: 1.8rem;
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0;
 }
 
 .ticket-deadline-container {
-    padding-right: 5px;
+    height: fit-content;
+    padding: 0.2em;
     border-radius: 7px;
     width: max-content;
     display: flex;
@@ -429,10 +426,13 @@
     height: fit-content;
     border: none;
     transition: 150ms;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
+
+
+/* current display: none */
 
 #cancel-comment {
     background-color: inherit;
@@ -512,64 +512,4 @@
 
 .ticket-footer {
     height: max-content;
-    padding: 0.2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.ticket-collaborators,
-.ticket-indicators {
-    width: 45%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-}
-
-.collaborators {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50px;
-    background-color: #aaa;
-}
-
-.collaborators:nth-of-type(1) {
-    position: absolute;
-    background-color: gold;
-    z-index: 2;
-    left: 10%;
-}
-
-.ticket-indicators {
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.ticket-chat-indicator {
-    display: flex;
-    height: max-content;
-    justify-content: center;
-    align-items: center;
-    gap: 0.2rem;
-    margin-bottom: 0.4em;
-}
-
-.chat-icon-container {
-    display: flex;
-    overflow: visible;
-    height: max-content;
-}
-
-.chat-icon-container svg {
-    height: max-content;
-    width: 1.15rem;
-    opacity: 70%;
-}
-
-.ticket-chat-indicator p {
-    height: max-content;
-    opacity: 40%;
 }
