@@ -10,7 +10,7 @@
 }
 
 .project {
-    background-color: var(--primary);
+    background-color: var(--card);
     box-shadow: var(--defaultShadow);
     max-width: 13rem;
     width: 100%;

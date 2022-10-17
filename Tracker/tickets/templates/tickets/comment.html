@@ -1,32 +1,108 @@
-<div class="comment" id="comment{{comment.id}}">
-    <div class="comment-left">
-        <div class="image-username-container">
-            <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + comment.sender.profile_picture) }}">
-        </div>
-    </div>
-    <div class="comment-right">
-        <div class="comment-top">
-            <p class="commenter">{{ comment.sender.username }}</p>
-        </div>
-        <div class="comment-middle">
-            <div class="comment-message-container">
-                <textarea rows="1" class="comment-message">{{ comment.comment }}</textarea>
-                <!--  -->
-                <div class="comment-bottom">
-                    {% include 'like.html' %}
-                    <form class="comment-options-extra">
-                        <div class="edit-comment-option cancel-comment-edit" id="cancel-comment">CANCEL</div>
-                        <button class="edit-comment-option save-comment" comment-id="{{ comment.id }}" data-url="{{ url_for('tickets.update_comment') }}" type="submit">SAVE</button>
-                    </form>
-                </div>
+<div class="comment-container">
+    <div class="comment" id="comment{{comment.id}}">
+        <div class="comment-left">
+            <div class="image-username-container">
+                <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + comment.sender.profile_picture) }}">
             </div>
         </div>
+        <div class="comment-right">
+            <div class="comment-top">
+                <p class="commenter">{{ comment.sender.username }}</p>
+            </div>
+            <div class="comment-middle">
+                <div class="comment-message-container">
+                    <textarea rows="1" class="comment-message">{{ comment.comment }}</textarea>
+                    <!--  -->
+                    <div class="comment-bottom">
+                        {% include 'like.html' %}
+                        <p class="reply-comment">REPLY</p>
+                        <form class="comment-options-extra">
+                            <div class="edit-comment-option cancel-comment-edit" id="cancel-comment">CANCEL</div>
+                            <button class="edit-comment-option save-comment" comment-id="{{ comment.id }}" data-url="{{ url_for('tickets.update_comment') }}" type="submit">SAVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="reply-comment-section">
+                <form class="comment" id="add-comment-container">
+                    <div class="comment-left reply-left">
+                        <div class="reply-image-container">
+                            <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + current_user.profile_picture) }}">
+                        </div>
+                    </div>
+                    <div class="comment-right reply-right">
+                        <div class="comment-bottom">
+                            <div class="comment-message-container">
+                                <textarea name='comment_message' class="author-comment-reply" rows="1">Add a reply..</textarea>
+                                <div class="add-comment-options-container">
+                                    <div class="add-comment-options">
+                                        <button class="author-comment-options cancel-reply" id="cancel-comment">CANCEL</button>
+                                        <input type="submit" class="author-comment-options add-reply" data-comment-id="{{comment.id}}" value="REPLY">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="comment-options-container">
+            <svg class="menu-icon" id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
+            <!-- -->{% if comment.sender == current_user -%}
+            <form class="comment-options-form">
+                <button class="comment-option delete-comment" comment-id="{{ comment.id }}" type="submit">DELETE</button>
+                <div class="comment-option edit-comment">EDIT</div>
+            </form>
+            {%- endif %}
+        </div>
     </div>
-    <div class="comment-options-container">
-        <svg class="menu-icon" id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
-        <form class="comment-options-form">
-            <button class="comment-option delete-comment" comment-id="{{ comment.id }}" type="submit">DELETE</button>
-            <div class="comment-option edit-comment">EDIT</div>
-        </form>
+    <div class="comment-replies">
+        {% for replies in comment.replies -%} {% if replies|length > 0 -%}
+        <div class="reply" id="reply{{reply.id}}">
+            <div class="comment-left">
+                <div class="image-username-container">
+                    <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + comment.sender.profile_picture) }}">
+                </div>
+            </div>
+            <div class="comment-right">
+                <div class="comment-top">
+                    <p class="commenter">{{ reply.sender.username }}</p>
+                </div>
+                <div class="comment-middle">
+                    <div class="comment-message-container">
+                        <textarea rows="1" class="comment-message">{{ reply.reply }}</textarea>
+                        <!--  -->
+                        <div class="comment-bottom">
+                            <div class="reactions-container">
+                                <form class="like-container">
+                                    <!--  -->{% if reply.liked_state == True -%}
+                                    <svg class="like-icon for-like-unlike" data-comment-likes-id="{% for comment_likes in reply.likes -%}{{comment_likes.id}} {%- endfor %}" data-comment-id="{{ reply.id }}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        x="0px" y="0px" width="200px" height="200px" viewBox="710.081 796 200 200" enable-background="new 710.081 796 200 200" xml:space="preserve"><g><path d="M757.859,883.623h-31.521c-3.31,0-5.995,2.685-5.995,5.996v100.385c0,3.312,2.685,5.996,5.995,5.996h25.424c3.259,0,5.921-2.604,5.995-5.863l0.102-4.605V883.623L757.859,883.623z"/><path d="M874.249,868.261c-15.132,0-40.775,0-40.775,0s1.458-7.302,5.521-39.328C842.448,801.717,823.446,796,811.168,796l-41.794,99.999v87.216l21.422,5.784c9.838,2.656,19.988,4.004,30.179,4.004h29.067c11.352,0,21.403-7.374,24.826-18.197c9.536-30.143,19.473-61.532,23.368-73.899C904.884,879.802,889.386,868.261,874.249,868.261z"/></g></svg>
+                                    <svg class="unlike-icon for-like-unlike" style="display:none" data-comment-id="{{ reply.id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z"/></svg>
+                                    <!--  -->{%- else %}
+                                    <svg style="display: none" class="like-icon for-like-unlike" style="display:none" data-comment-likes-id="{% for comment_likes in reply.likes -%}{{comment_likes.id}} {%- endfor %}" data-comment-id="{{ reply.id }}" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="710.081 796 200 200" enable-background="new 710.081 796 200 200" xml:space="preserve"><g><path d="M757.859,883.623h-31.521c-3.31,0-5.995,2.685-5.995,5.996v100.385c0,3.312,2.685,5.996,5.995,5.996h25.424c3.259,0,5.921-2.604,5.995-5.863l0.102-4.605V883.623L757.859,883.623z"/><path d="M874.249,868.261c-15.132,0-40.775,0-40.775,0s1.458-7.302,5.521-39.328C842.448,801.717,823.446,796,811.168,796l-41.794,99.999v87.216l21.422,5.784c9.838,2.656,19.988,4.004,30.179,4.004h29.067c11.352,0,21.403-7.374,24.826-18.197c9.536-30.143,19.473-61.532,23.368-73.899C904.884,879.802,889.386,868.261,874.249,868.261z"/></g></svg>
+                                    <svg class="unlike-icon for-like-unlike" data-comment-id="{{ reply.id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z"/></svg>
+                                    <!--  -->{%- endif %}
+                                </form>
+                                <span class="like-count">{{ reply.likes|length }}</span>
+                            </div>
+                            <form class="comment-options-extra">
+                                <div class="edit-comment-option cancel-comment-edit" id="cancel-comment">CANCEL</div>
+                                <button class="edit-comment-option save-comment" comment-id="{{ reply.id }}" data-url="{{ url_for('tickets.update_comment') }}" type="submit">SAVE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-options-container">
+                <svg class="menu-icon" id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"/></svg>
+                <form class="comment-options-form">
+                    <button class="comment-option delete-comment" comment-id="{{ reply.id }}" type="submit">DELETE</button>
+                    <div class="comment-option edit-comment">EDIT</div>
+                </form>
+            </div>
+        </div>
+        {%- else -%} {%- endif %} {%- endfor %}
     </div>
 </div>

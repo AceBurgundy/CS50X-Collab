@@ -87,36 +87,53 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (document.querySelector(".collaborate") !== null) {
 
-        document.querySelector(".collaborate").addEventListener("click", () => {
+        document.querySelector(".collaborate-toggle").addEventListener("click", () => {
 
-            document.querySelector(".collaborate-dropdown").classList.add("active")
+            document.querySelector(".collaborate-dropdown").classList.toggle("active")
         })
     }
     let collaboratorSelectOption = document.querySelectorAll('.user')
 
-    let user = []
+    if (document.querySelector(".current-page-title").value == 'ticket-modal') {
 
-    collaboratorSelectOption.forEach(option => {
+        let chose = ""
 
+        collaboratorSelectOption.forEach(option => {
 
-        option.addEventListener("click", () => {
-            if (user.indexOf(option.outerText) < 0) {
-                user.push(option.children[0].getAttribute('value').trim())
-                option.classList.add("active")
-            } else {
-                option.classList.remove("active")
-                user.splice(user.indexOf(option.outerText), 1)
-            }
+            option.addEventListener("click", () => {
+                let clickedUser = option.children[0].getAttribute('value').trim()
 
-            $('#collaborate-data').attr('value', user)
+                if ($('#assign').attr('value') == "author") {
+                    chose = clickedUser
+                    $('#assign').attr('value', chose)
+                    option.classList.add("active")
+                } else if (clickedUser != chose) {
+                    document.getElementById(chose).parentElement.parentElement.classList.remove("active")
+                    chose = clickedUser
+                    $('#assign').attr('value', chose)
+                    option.classList.add("active")
+                } else {
+                    $('#assign').attr('value', "author")
+                    option.classList.remove("active")
+                }
+            })
         })
-    })
+    } else {
+        let user = []
 
-    document.querySelectorAll('.user-username').forEach(name => {
-        name.textContent = name.textContent.slice(6, -3)
+        collaboratorSelectOption.forEach(option => {
 
-        if (document.querySelector('.author').getAttribute('value').trim() == name.textContent.trim()) {
-            name.parentElement.style.display = 'none'
-        }
-    })
+            option.addEventListener("click", () => {
+                if (user.indexOf(option.outerText) < 0) {
+                    user.push(option.children[0].getAttribute('value').trim())
+                    option.classList.add("active")
+                } else {
+                    option.classList.remove("active")
+                    user.splice(user.indexOf(option.outerText), 1)
+                }
+
+                $('#collaborate-data').attr('value', user)
+            })
+        })
+    }
 })

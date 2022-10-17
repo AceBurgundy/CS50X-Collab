@@ -14,8 +14,7 @@
 
 #navigation-rail {
     grid-area: navigation-rail;
-    background-color: var(--primary);
-    box-shadow: var(--defaultShadow);
+    background-color: var(--tertiary);
     display: flex;
     flex-direction: column;
     transition: 500ms ease;
@@ -84,8 +83,8 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    top: 13%;
-    height: 40%;
+    top: 7%;
+    height: 20%;
     width: 100%;
     transition: 500ms ease;
 }
@@ -148,6 +147,7 @@
     visibility: hidden;
     font-size: 0.7rem;
     transition: 100ms ease;
+    font-family: "Poppins Medium";
 }
 
 
@@ -166,12 +166,9 @@
 +---------------+---------------*/
 
 @media screen and (min-width: 1600px) {
-    #navigation-rail {
-        box-shadow: var(--defaultShadow);
-    }
     .aside {
-        height: 25%;
-        top: 10%;
+        height: 15%;
+        top: 5.3%;
     }
     .nav-header {
         justify-content: space-between;
@@ -207,6 +204,7 @@
     }
     .nav-button:hover,
     .nav-button:focus {
+        cursor: pointer;
         box-shadow: var(--defaultShadow);
         background-color: var(--secondary);
     }

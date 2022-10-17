@@ -2,13 +2,13 @@
 #tickets-content {
     width: 97%;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0.5em;
+    padding-top: 0%;
     height: 100%;
 }
 
@@ -19,10 +19,23 @@
     bottom: 0%;
 }
 
+#project-title-section {
+    height: 10%;
+}
+
+#project-title {
+    font-family: "Salin Medium";
+    margin: 1rem;
+    margin-left: 0;
+    margin-top: 0;
+    font-size: 4rem;
+}
+
 .ticket-column-container {
     width: 100%;
     height: 100%;
     display: flex;
+    gap: 5em;
     justify-content: space-evenly;
 }
 
@@ -45,22 +58,6 @@
     height: 100%;
 }
 
-
-/* settings for mobile */
-
-
-/* .ticket-column:nth-of-type(1) {
-    display: none;
-}
-
-.ticket-column:nth-of-type(2) {
-    display: none;
-}
-
-.ticket-column:nth-of-type(3) {
-    display: none;
-} */
-
 .ticket-column-header,
 .ticket-column-body {
     gap: 0.5rem;
@@ -70,7 +67,7 @@
 .ticket-column-header {
     width: 98%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     height: max-content;
     border-radius: 10px;
@@ -78,21 +75,20 @@
 
 .ticket-column-form {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
-.ticket-column-form button {
-    width: 2.2rem;
+.form-submit {
+    width: 2rem;
     border: none;
     background-color: rgba(170, 170, 170, 0);
     border-radius: 50px;
-    transition: 300ms ease;
+    transition: 1000ms ease;
 }
 
-.ticket-column-form button:hover {
-    background-color: var(--primary);
-    box-shadow: var(--defaultShadow);
+.form-submit:hover {
+    transform: rotate(360deg);
     cursor: pointer;
 }
 
@@ -109,7 +105,7 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     overflow: visible;
     gap: 0.5em;
 }
@@ -125,9 +121,10 @@
     height: fit-content;
     border-radius: 20px;
     position: relative;
-    padding: 0.5em 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.2rem;
     box-shadow: var(--defaultShadow);
-    background-color: var(--primary);
+    background-color: var(--card);
     width: 280px;
     z-index: 2;
     display: flex;
@@ -144,7 +141,6 @@
 .ticket-deadline,
 .ticket-footer {
     width: 95%;
-    height: 2rem;
 }
 
 .ticket-header {
@@ -167,18 +163,12 @@
 .ticket-tag {
     height: max-content;
     font-size: 0.7em;
-    text-transform: uppercase;
+    font-family: "Poppins Medium";
 }
 
 .ticket-title {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-family: "Rubik Medium";
-}
-
-.ticket-title p {
-    font-size: 1.1rem;
+    text-align: left;
+    padding: 0.5em 0;
 }
 
 .ticket-description {
@@ -201,14 +191,12 @@
 }
 
 .ticket-deadline {
-    height: 1.8rem;
     display: flex;
     gap: 0.5rem;
 }
 
 .ticket-deadline-container {
-    height: 1.5rem;
-    padding-right: 5px;
+    padding: 0.3em;
     border-radius: 7px;
     width: max-content;
     display: flex;
@@ -226,7 +214,8 @@
     font-size: 0.7rem;
 }
 
-#project-extend {
+.project-extend,
+#delete-ticket button {
     height: 2.5rem;
     width: 3.5rem;
     border-radius: 10px;
@@ -243,6 +232,11 @@
 
 #expand-ticket-icon {
     width: 1.5rem;
+    opacity: 0.8;
+}
+
+#trash-icon {
+    width: 1.2rem;
     opacity: 0.8;
 }
 
@@ -271,62 +265,11 @@
     height: max-content;
     padding: 0.2rem 0;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
-.ticket-collaborators,
-.ticket-indicators {
-    width: 45%;
+.footer-options {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-}
-
-.collaborators {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50px;
-    background-color: #aaa;
-}
-
-.collaborators:nth-of-type(1) {
-    position: absolute;
-    background-color: gold;
-    z-index: 2;
-    left: 10%;
-}
-
-.ticket-indicators {
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.ticket-chat-indicator {
-    display: flex;
-    height: max-content;
-    justify-content: center;
-    align-items: center;
-    gap: 0.2rem;
-    margin-bottom: 0.4em;
-}
-
-.chat-icon-container {
-    display: flex;
-    overflow: visible;
-    height: max-content;
-}
-
-.chat-icon-container svg {
-    height: max-content;
-    width: 1.15rem;
-    opacity: 70%;
-}
-
-.ticket-chat-indicator p {
-    height: max-content;
-    opacity: 40%;
+    gap: 0.5em;
 }

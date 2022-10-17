@@ -1,11 +1,8 @@
 from datetime import datetime
-from Tracker import db, login_manager
-from flask_login import UserMixin
 
-"""
-The function below is a callback used to reload the user object from the user ID stored in the session. 
-It should take the str ID of a user, and return the corresponding user object. For example:
-"""
+from flask import current_app
+from Tracker import db, login_manager
+from flask_login import UserMixin, current_user
 
 
 @login_manager.user_loader
@@ -18,9 +15,9 @@ def load_user(user_id):
 collaborators = db.Table("project_collaborators",
                          db.Column('id', db.Integer, primary_key=True),
                          db.Column('user_id', db.Integer, db.ForeignKey(
-                             'user.id'), nullable=False),
+                             'user.id', ondelete="CASCADE"), nullable=False),
                          db.Column('project_id', db.Integer, db.ForeignKey(
-                             'project.id'), nullable=False),
+                             'project.id', ondelete="CASCADE"), nullable=False),
                          db.Column('joined_datetime', db.DateTime,
                                    nullable=False, default=datetime.now),
                          db.Column('left_datetime', db.DateTime)
@@ -48,18 +45,23 @@ class User(db.Model, UserMixin):
     # this is not a column so we wont see a projects column in the User database. Instead,
     # it runs a additional querry in the backrground to match the projects that the user has created
 
-    project = db.relationship('Project', backref='author', lazy=True)
+    project = db.relationship(
+        'Project', backref='author', lazy=True, passive_deletes=True)
 
-    comment = db.relationship('TicketComment', backref='sender', lazy=True)
+    comment = db.relationship(
+        'TicketComment', backref='sender', lazy=True)
 
     replies = db.relationship('TicketCommentReplies',
                               backref='sender', lazy=True)
 
+    assigned_tickets = db.relationship('Ticket',
+                                       backref='assigned_to', lazy=True, passive_deletes=True)
+
     collaborated_projects = db.relationship(
-        'Project', secondary=collaborators, backref='collaborators')
+        'Project', secondary=collaborators, backref='collaborators', passive_deletes=True)
 
     def __repr__(self):
-        return f"User('{self.username}') "
+        return f"User('{self.username}', '{self.profile_picture}') "
 
 
 class Project(db.Model):
@@ -72,30 +74,14 @@ class Project(db.Model):
     deadline = db.Column(db.Date, nullable=False)
     bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id', ondelete="CASCADE"), nullable=False)
 
-    tickets = db.relationship('Ticket', backref='this_project', lazy=True)
-
-    messages = db.relationship(
-        'Conversations', backref='this_project', lazy=True)
+    tickets = db.relationship(
+        'Ticket', backref='this_project', lazy=True, passive_deletes=True)
 
     def __repr__(self):
         return f"Project('{self.title}','{self.status}','{self.creation_date}','{self.description}','{self.deadline}','{self.bookmark_state}')"
-
-
-class Conversations(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    sender = db.Column(db.String(60), nullable=False)
-    message = db.Column(db.Text)
-    deletion_date = db.Column(db.DateTime)
-    sent_date = db.Column(db.DateTime, nullable=False,
-                          default=datetime.now, onupdate=datetime.now)
-
-    project_id = db.Column(db.Integer, db.ForeignKey(
-        'project.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Conversations('{self.sender}','{self.message}')"
 
 
 class Ticket(db.Model):
@@ -104,17 +90,19 @@ class Ticket(db.Model):
     content = db.Column(db.String(200), nullable=False)
     status = db.Column(db.String(10), nullable=False, default='Pending')
     creation_date = db.Column(db.DateTime(), default=datetime.now)
-    assigned_user = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
     priority = db.Column(db.String(6), nullable=False, default='Low')
     deadline = db.Column(db.Date, nullable=False)
     bookmark_state = db.Column(db.Boolean, nullable=False, default=False)
 
+    assigned_user = db.Column(db.Integer, db.ForeignKey(
+        'user.id', ondelete="CASCADE"), nullable=False, default=current_user)
+
     project_id = db.Column(db.Integer, db.ForeignKey(
-        'project.id'), nullable=False)
+        'project.id', ondelete="CASCADE"), nullable=False)
 
     comments = db.relationship(
-        'TicketComment', backref='this_ticket', lazy=True)
+        'TicketComment', backref='this_ticket', lazy=True, passive_deletes=True)
 
     def __repr__(self):
         return f"Ticket('{self.name}','{self.content}','{self.status}','{self.assigned_user}','{self.priority}','{self.created_by}','{self.deadline}','{self.bookmark_state}')"
@@ -129,15 +117,16 @@ class TicketComment(db.Model):
     liked_state = db.Column(db.Boolean, nullable=False, default=False)
 
     likes = db.relationship(
-        'TicketCommentLikes', backref='originated_comment', lazy=True)
+        'TicketCommentLikes', backref='originated_comment', lazy=True, passive_deletes=True)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id'), nullable=False)
 
     ticket_id = db.Column(db.Integer, db.ForeignKey(
-        'ticket.id'), nullable=False)
+        'ticket.id', ondelete="CASCADE"), nullable=False)
 
     replies = db.relationship(
-        'TicketCommentReplies', backref='originated_comment', lazy=True)
+        'TicketCommentReplies', backref='originated_comment', lazy=True, passive_deletes=True)
 
     def __repr__(self):
         return f"TicketComment('{self.comment}','{self.liked_state}','{self.replies}')"
@@ -153,12 +142,13 @@ class TicketCommentReplies(db.Model):
     liked_state = db.Column(db.Boolean, nullable=False, default=False)
 
     likes = db.relationship(
-        'TicketCommentLikes', backref='originated_reply', lazy=True)
+        'TicketCommentLikes', backref='originated_reply', lazy=True, passive_deletes=True)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id'), nullable=False)
 
     ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
-        'ticket_comment.id'), nullable=False)
+        'ticket_comment.id', ondelete="CASCADE"), nullable=False)
 
     def __repr__(self):
         return f"Replies('{self.reply}','{self.ticket_comment_id}','{self.liked_state}')"
@@ -169,10 +159,10 @@ class TicketCommentLikes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     ticket_comment_id = db.Column(db.Integer, db.ForeignKey(
-        'ticket_comment.id'))
+        'ticket_comment.id', ondelete="CASCADE"))
 
     ticket_replies_id = db.Column(db.Integer, db.ForeignKey(
-        'ticket_comment_replies.id'))
+        'ticket_comment_replies.id', ondelete="CASCADE"))
 
     def __repr__(self):
         return f"Likes('{self.id}','{self.ticket_comment_id}','{self.ticket_replies_id}')"

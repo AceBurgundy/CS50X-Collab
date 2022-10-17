@@ -3,6 +3,10 @@ import { checkDate, makeToastNotification, autoResize } from "/static/helper.js"
 checkDate(".deadline-date")
 
 document.addEventListener("DOMContentLoaded", () => {
+    commentSection.scrollTop = 0;
+})
+
+document.addEventListener("DOMContentLoaded", () => {
     if ($('.title').text() == 'TICKET #') {
         $('.title').text('TICKET # ' + $('.ticket_id').val())
 
@@ -41,7 +45,7 @@ document.querySelectorAll('.comment').forEach(comment => {
 document.querySelectorAll('.edit-comment').forEach(editButton => {
     editButton.addEventListener("click", () => {
         editButton.parentElement.parentElement.parentElement.classList.remove("hoverable")
-        editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.children[1].children[1].style.display = 'flex'
+        editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.children[1].children[2].style.display = 'flex'
         editButton.parentElement.parentElement.previousElementSibling.children[1].firstElementChild.firstElementChild.classList.add("active")
     })
 })
@@ -58,19 +62,47 @@ commentBox.addEventListener('input', autoResize, false);
 
 document.querySelectorAll('.menu-icon').forEach(commentOption => {
     commentOption.addEventListener("mouseover", () => {
-        commentOption.nextElementSibling.classList.toggle("active")
+        if (commentOption.nextElementSibling != null) {
+            commentOption.nextElementSibling.classList.toggle("active")
+        }
     })
 })
 
-$(document).ready(function() {
-
-    $('.comment-section').on('scroll', function() {
-        if ($(this).scrollTop() + $(this).innerHeight() > $(this).innerHeight() + 50) {
-            $('.scroll-top').addClass("active")
-        } else {
-            $('.scroll-top').removeClass("active")
-        }
+document.querySelectorAll(".reply-comment").forEach(replyButton => {
+    replyButton.addEventListener("click", () => {
+        replyButton.parentElement.parentElement.parentElement.nextElementSibling.classList.add("active")
     })
+})
+
+document.querySelectorAll(".author-comment-reply").forEach(replyInput => {
+    replyInput.addEventListener("click", () => {
+        replyInput.nextElementSibling.style.display = "flex"
+    })
+})
+
+document.querySelectorAll(".cancel-reply").forEach(replyCancelButton => {
+    replyCancelButton.addEventListener("click", (e) => {
+        replyCancelButton.parentElement.parentElement.style.display = "none"
+        e.preventDefault()
+    })
+})
+
+const scrollTop = document.getElementById('scroll-top')
+const commentSection = document.querySelector('.comment-section')
+
+commentSection.onscroll = function() {
+    if (document.querySelector('.comment-section').scrollTop > 200) {
+        scrollTop.classList.add('active')
+    } else {
+        scrollTop.classList.remove('active')
+    }
+}
+
+scrollTop.addEventListener("click", () => {
+    commentSection.scrollTo({ top: 0, behavior: 'smooth' });
+})
+
+$(document).ready(function() {
 
     $(document).on("click", ".delete-comment", function(e) {
         e.preventDefault()
@@ -88,8 +120,8 @@ $(document).ready(function() {
         })
     })
 
-    $(".add-comment").on('click', function(e) {
-        e.preventDefault()
+    $(".add-comment").on('click', function(event) {
+        event.preventDefault()
         let comment = $('.author-comment-message').val()
         let ticket_id = $('.ticket_id').val()
         let request = $.post(
@@ -98,8 +130,10 @@ $(document).ready(function() {
                 ticket_id: ticket_id
             }, "html")
         request.done(function(data) {
+            makeToastNotification('Added')
             $(data).insertAfter($('#add-comment-container'));
             $('.author-comment-message').val("")
+            $('.add-comment-options-container').css('display', 'none')
         })
         request.fail(function() {
             makeToastNotification("Failed to add comment")

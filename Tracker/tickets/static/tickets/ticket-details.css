@@ -1,10 +1,5 @@
-@import "/static/fonts.css";
 #grid-container {
-    grid-template-areas: "navigation-rail main-content top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
-}
-
-#top-bar {
-    display: none;
+    grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content main-content" "navigation-rail main-content main-content";
 }
 
 
@@ -18,7 +13,6 @@
     height: fit-content;
     border-radius: 20px;
     position: absolute;
-    padding: 0.5em 0;
     box-shadow: var(--defaultShadow);
     background-color: var(--primary);
     width: 280px;
@@ -29,11 +23,11 @@
     border-radius: 12px;
     gap: 0.2em;
     left: 50%;
-    top: 50%;
+    top: 0%;
     width: 90%;
-    height: 90%;
+    height: 95%;
     overflow-y: scroll;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width: 900px) {
@@ -125,11 +119,14 @@
 .ticket-deadline {
     height: 1.8rem;
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0;
 }
 
 .ticket-deadline-container {
-    padding-right: 5px;
+    height: fit-content;
+    padding: 0.2em;
     border-radius: 7px;
     width: max-content;
     display: flex;
@@ -168,7 +165,7 @@
 }
 
 .comment-section {
-    width: 95%;
+    width: 97%;
     height: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -176,10 +173,18 @@
     scrollbar-width: none;
     /* Firefox */
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    transition: 300ms;
 }
 
-.scroll-top {
+.add-comment-section {
+    width: 97%;
+    height: fit-content !important;
+}
+
+#scroll-top {
     position: absolute;
     bottom: 0%;
     right: 0%;
@@ -187,20 +192,30 @@
     box-shadow: var(--defaultShadow);
     background-color: var(--secondary);
     opacity: 0;
-    display: flex;
     z-index: 2;
     margin: 1em;
-    width: 3rem;
-    height: 3rem;
-    font-size: 2rem;
-    justify-content: center;
-    align-items: center;
+    width: 4rem;
+    height: 4rem;
     pointer-events: none;
+    cursor: pointer;
+    transition: 300ms;
 }
 
-.scroll-top.active {
+#scroll-top.active {
     opacity: 1;
     pointer-events: all;
+}
+
+.arrow-up-icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.6rem;
+    pointer-events: none;
 }
 
 .comment-section::-webkit-scrollbar {
@@ -208,10 +223,17 @@
 }
 
 .comment {
+    width: 100%;
+    border-radius: 10px;
     position: relative;
     z-index: 1;
     display: flex;
     gap: 1em;
+    /* background-color: rgba(255, 255, 255, 0.786); */
+}
+
+#add-comment-container {
+    background-color: inherit;
 }
 
 .comment.hoverable:hover .comment-options-container {
@@ -277,6 +299,10 @@
     width: fit-content;
 }
 
+.reply-left {
+    margin-left: 0%
+}
+
 .menu-icon {
     width: 1rem;
     cursor: pointer;
@@ -284,14 +310,36 @@
 
 .comment-right,
 .comment-left {
-    padding-top: 1em;
+    padding-top: 0.5em;
     padding-bottom: 0.5em;
     display: flex;
+}
+
+.reply-comment-section {
+    display: none;
+}
+
+.reply-comment-section.active {
+    display: flex;
+}
+
+.reply-left,
+.reply-right {
+    padding: 0%;
+}
+
+.reply-right {
+    padding-top: 0.2em;
 }
 
 .image-username-container {
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.reply-image-container {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .user-img {
@@ -306,7 +354,7 @@
     justify-content: center;
 }
 
-.comment:first-of-type {
+.add-comment-section {
     padding-bottom: 0%;
 }
 
@@ -318,7 +366,8 @@
     width: fit-content;
 }
 
-.author-comment-message {
+.author-comment-message,
+.author-comment-reply {
     background-color: inherit;
     resize: none;
     border: none;
@@ -358,7 +407,8 @@
 }
 
 .author-comment-options,
-.edit-comment-option {
+.edit-comment-option,
+.reply-comment {
     background-color: var(--secondary);
     font-size: 0.8rem;
     font-weight: 500;
@@ -366,6 +416,23 @@
     border: none;
     cursor: pointer;
 }
+
+.reply-comment {
+    background-color: inherit;
+    font-size: 0.7rem;
+    width: 100%;
+    color: var(--brown);
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    transition: 150ms;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* current display: none */
 
 #cancel-comment {
     background-color: inherit;
@@ -386,7 +453,6 @@
 .comment-bottom {
     width: 100%;
     display: flex;
-    justify-content: space-between;
 }
 
 .reactions-container,
@@ -394,6 +460,7 @@
     width: fit-content;
     display: flex;
     gap: 0.5em;
+    margin-right: 1rem;
     align-items: center;
 }
 
@@ -405,17 +472,17 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 0.4em;
 }
 
 .comment-message {
     font-size: 0.9rem;
 }
 
-.for-like-unlike,
-#liked-icon {
-    width: 1rem;
+.for-like-unlike {
     cursor: pointer;
+    width: 1rem;
+    height: fit-content;
 }
 
 .like-count {
@@ -445,64 +512,4 @@
 
 .ticket-footer {
     height: max-content;
-    padding: 0.2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.ticket-collaborators,
-.ticket-indicators {
-    width: 45%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-}
-
-.collaborators {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50px;
-    background-color: #aaa;
-}
-
-.collaborators:nth-of-type(1) {
-    position: absolute;
-    background-color: gold;
-    z-index: 2;
-    left: 10%;
-}
-
-.ticket-indicators {
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.ticket-chat-indicator {
-    display: flex;
-    height: max-content;
-    justify-content: center;
-    align-items: center;
-    gap: 0.2rem;
-    margin-bottom: 0.4em;
-}
-
-.chat-icon-container {
-    display: flex;
-    overflow: visible;
-    height: max-content;
-}
-
-.chat-icon-container svg {
-    height: max-content;
-    width: 1.15rem;
-    opacity: 70%;
-}
-
-.ticket-chat-indicator p {
-    height: max-content;
-    opacity: 40%;
 }

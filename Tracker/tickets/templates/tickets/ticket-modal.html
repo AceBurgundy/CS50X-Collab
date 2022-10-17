@@ -3,8 +3,6 @@
 {% endblock scripts -%} {% extends "head.html" %} {%- block style %}
 <link rel="stylesheet" href="{{ url_for( 'static' , filename='form-modal.css')}}"> {% endblock style -%} {%- block new_project %}
 
-<img src="{{ url_for( 'static' , filename='background.png')  }}" class="image-background" alt="">
-
 <div id="background" class="background">
 </div>
 
@@ -16,7 +14,7 @@
     {% endfor %} {% endfor %}
 </ul>
 {% endif %}
-
+<input type="hidden" value="ticket-modal" class="current-page-title">
 <div class="form-modal-container">
     {% if modal_title == "CREATE NEW TICKET" %}
     <form class="modal-form" role="form" action="{{ url_for('tickets.add_ticket', current_project_id=project_id) }}" method="post">
@@ -43,11 +41,51 @@
                 {{ form.description(class="form-description", rows="5", placeholder="This ticket....") }}
                 <p class="counter-container" id="counter-for-description"><span>0</span>/200</p>
             </div>
+            <div class="input-filed assign">
+                <label for="assign" class="form-label">Assign</label>
+                <div id="assign-toggle" class="button-basic collaborate-toggle">Choose</div>
+            </div>
+            <section class="input-field collaborate">
+                <!-- {# project description collaborate #} -->
+                <div id="collaborate-dropdown" id="collaborate-dropdown" class="collaborate-dropdown">
+                    <div id="collaborate" name="collaborate" class="collaborate-option-container">
+                        <div id="dropdown-header">
+                            <div id="search-container">
+                                <div id="dropdown-search-icon-container">
+                                    <svg id="dropdown-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                                </div>
+                                <input type="text" placeholder="search" id="collaborate-search">
+                            </div>
+                        </div>
+                        <ul class="dropdown-list">
+                            <!-- {# Show all users #} -->
+                            {% for user in project.collaborators -%}
+                            <!-- {# loop through all users #} -->
+                            {% if user %}
+                            <div class="user">
+                                <li class="user-details" value="{{ user.id }}">
+                                    <div class="image-username-container">
+                                        <img class="user-img" src="{{ url_for('static', filename='profile_pictures/' + user.profile_picture) }}">
+                                    </div>
+                                    <p class="user-username" id="{{user.username}}">{{ user.username }}</p>
+
+                                    <div class="check-icon-placeholder">
+                                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"/></svg>
+                                    </div>
+                                </li>
+                            </div>
+                            {% endif %} {%- endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- {# holds all selected values of select-collaborate #} -->
+                {{ form.assign(class="assigned-user", value="author") }}
+            </section>
 
             <div class="input-field priority">
                 <label class="form-label">Priority</label>
                 <!-- ticket priority input -->
-                {{ form.priority(class="form-priority") }}
+                {{ form.priority(class="button-basic") }}
             </div>
 
             <div class="input-field status">

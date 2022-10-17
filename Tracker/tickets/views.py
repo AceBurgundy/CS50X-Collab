@@ -1,4 +1,3 @@
-import json
 from flask import jsonify, render_template, request, url_for, flash, redirect, Blueprint
 from Tracker.models import TicketCommentLikes
 from Tracker.models import Ticket, Project, TicketComment, TicketCommentReplies, User
@@ -22,14 +21,24 @@ def show_tickets(current_project_id):
     image_file = url_for(
         'static', filename='profile_pictures/' + current_user.profile_picture)
 
-    if request.method == "GET":
-        tickets = db.session.execute(select(Ticket).filter_by(
-            project_id=current_project_id)).scalars().all()
+    tickets = db.session.execute(select(Ticket).filter_by(
+        project_id=current_project_id)).scalars().all()
 
-        for ticket in tickets:
-            print(ticket)
+    project_author = Project.query.get(current_project_id).author
 
-        return render_template("tickets.html", image_file=image_file, project_id=current_project_id, tickets=tickets, pageTitle="TICKETS")
+    assigned_user = []
+
+    for ticket in tickets:
+        assigned_user.append({
+            "ticket_id": ticket.id,
+            "assigned_user": User.query.get(ticket.assigned_user).id,
+            "author_profile_picture": url_for(
+                'static', filename='profile_pictures/' + User.query.get(ticket.assigned_user).profile_picture)
+        })
+
+    project_details = Project.query.get(current_project_id)
+
+    return render_template("tickets.html", project_details=project_details, assigned_user=assigned_user, project_author=project_author, image_file=image_file, project_id=current_project_id, tickets=tickets, pageTitle="TICKETS")
 
 
 @ tickets.route("/add-ticket/<int:current_project_id>", methods=["POST", "GET"])
@@ -38,82 +47,45 @@ def add_ticket(current_project_id):
 
     modal_title = "CREATE NEW TICKET"
     form = TicketForm()
+    project = db.session.get(Project, current_project_id)
+
     if request.method == "POST":
 
-        ticket_status = request.form.get('ticket-status')
-        print(ticket_status)
         if form.validate_on_submit():
+            ticket_status = request.form.get('ticket-status')
 
             try:
-                db.session.add(Ticket(
-                    name=form.name.data,
-                    content=form.description.data,
-                    deadline=form.deadline.data,
-                    status=ticket_status,
-                    assigned_user='author',
-                    created_by=current_user.username,
-                    priority=form.priority.data,
-                    project_id=current_project_id))
-
+                ticket = (
+                    insert(Ticket).values(
+                        name=form.name.data,
+                        content=form.description.data,
+                        deadline=form.deadline.data,
+                        status=ticket_status,
+                        assigned_user=form.assign.data,
+                        created_by=current_user.username,
+                        priority=form.priority.data,
+                        project_id=current_project_id)
+                )
+                db.session.execute(ticket)
                 db.session.commit()
                 flash('Ticket added')
                 return redirect(url_for('tickets.show_tickets', current_project_id=current_project_id))
             except:
                 form.form_errors.append('Failed to add ticket')
-                return render_template('ticket-modal.html', ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form, error=form.errors)
+                return render_template('ticket-modal.html', project=project, ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form, error=form.errors)
         else:
             return render_template('ticket-modal.html', ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form, error=form.form_errors)
     else:
 
         ticket_status = request.form.get('ticket-status')
-        print(request.form.get('ticket-status'))
 
-        return render_template('ticket-modal.html', ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form)
-
-
-@ tickets.route("/update-ticket/<int:current_ticket_id>", methods=["POST", "GET"])
-@ login_required
-def update_ticket(current_ticket_id):
-    """ Update ticket """
-
-    modal_title = "UPDATE THIS TICKET"
-    form = TicketForm()
-    if request.method == "POST":
-        if form.validate_on_submit():
-
-            try:
-                db.session.execute(
-                    update(Ticket).
-                    where(Ticket.id == current_ticket_id).
-                    values(title=form.title.data,
-                           description=form.description.data,
-                           deadline=form.deadline.data))
-
-                db.session.commit()
-                flash('Ticket updated')
-                current_project_id = Project.query.filter_by(
-                    Project.tickets == current_ticket_id)
-                return redirect(url_for('tickets.show_tickets', current_project_id=current_project_id))
-            except:
-                form.form_errors.append('Ticket update failed')
-                return render_template('ticket-modal.html', modal_title=modal_title, form=form, error=form.errors)
-        else:
-            return render_template('ticket-modal.html', modal_title=modal_title, form=form, error=form.errors)
-    else:
-        ticket = Ticket.query.filter_by(id=current_ticket_id).first()
-        form.name.data = ticket.name
-        form.description.data = ticket.content
-        form.deadline.data = ticket.deadline
-        status = ticket.status
-        form.priority.data = ticket.priority
-
-        return render_template('ticket-modal.html', status=status, current_ticket_id=current_ticket_id, modal_title=modal_title, form=form)
+        return render_template('ticket-modal.html', project=project, ticket_status=ticket_status, project_id=current_project_id, modal_title=modal_title, form=form)
 
 # open ticket
 
 
-@tickets.route("/details/<int:current_ticket_id>", methods=["GET", "POST"])
-@login_required
+@ tickets.route("/details/<int:current_ticket_id>", methods=["GET", "POST"])
+@ login_required
 def open_ticket(current_ticket_id):
 
     image_file = url_for(
@@ -125,40 +97,38 @@ def open_ticket(current_ticket_id):
     ticket_comments = TicketComment.query.filter_by(
         ticket_id=current_ticket_id)
 
-    for comments in ticket_comments:
-        print(comments.liked_state)
-
     if request.method == "GET":
         return render_template('ticket-details.html', pageTitle="TICKET #", image_file=image_file, ticket=ticket, ticket_comments=ticket_comments)
 
 
 # Delete ticket
 
-@ tickets.post("/delete/<int:current_ticket_id>")
+@ tickets.post("/delete-ticket/<int:current_ticket_id>")
 @ login_required
 def delete_ticket(current_ticket_id):
     """ Delete ticket """
 
     if request.method == "POST":
         try:
+            print("called")
             ticket = (delete(Ticket).where(Ticket.id == current_ticket_id))
+            ticket_comments = (delete(TicketComment).where(
+                TicketComment.ticket_id == current_ticket_id))
             db.session.execute(ticket)
+            db.session.execute(ticket_comments)
+
             db.session.commit()
             flash('Ticket deleted')
-            current_project_id = Project.query.filter_by(
-                Project.tickets == current_ticket_id)
-            return redirect(url_for('tickets.show_tickets', current_project_id=current_project_id))
+            return redirect(url_for('tickets.show_tickets', current_project_id=request.form["project_id"]))
         except:
             flash('Ticket not found')
-            current_project_id = Project.query.filter_by(
-                Project.tickets == current_ticket_id)
-            return redirect(url_for('tickets.show_tickets', current_project_id=current_project_id))
+            return redirect(url_for('tickets.show_tickets', current_project_id=request.form["project_id"]))
 
 # update ticket status
 
 
-@tickets.post('/status')
-@login_required
+@ tickets.post('/status')
+@ login_required
 def update_status():
     """ Update ticket status """
 
@@ -181,7 +151,7 @@ def update_status():
             return jsonify(failed='Failed to update ticket')
 
 
-@tickets.post("/add-comment")
+@ tickets.post("/add-comment")
 def add_comment():
 
     message = request.form['comment']
@@ -197,23 +167,20 @@ def add_comment():
     if not ticket_id:
         return jsonify(failed='Missing ticket number'), 200
 
-    try:
-        db.session.add(TicketComment(
-            sender=current_user,
-            comment=message,
-            ticket_id=ticket_id
-        ))
-        db.session.commit()
-        comment = TicketComment.query.filter_by(comment=message).first()
-        return render_template('comment.html', comment=comment)
-
-    except:
-        flash("Failed to add comment")
-        return render_template('comment.html', comment=comment)
+    new_comment = TicketComment(
+        sender=current_user,
+        comment=message,
+        ticket_id=ticket_id
+    )
+    db.session.add(new_comment)
+    db.session.commit()
+    db.session.flush()
+    db.session.refresh(new_comment)
+    return render_template('comment.html', comment=new_comment)
 
 
-@tickets.post('/udpate-comment')
-@login_required
+@ tickets.post('/udpate-comment')
+@ login_required
 def update_comment():
     """ Update ticket status """
 
@@ -231,13 +198,12 @@ def update_comment():
             comment = db.session.get(TicketComment, comment_id)
             comment.comment = new_comment
             db.session.commit()
-            print('comment updated')
             return jsonify(success='Comment updated')
         except:
             return jsonify(failed='Failed to update comment')
 
 
-@tickets.post("/like-comment")
+@ tickets.post("/like-comment")
 def like_comment():
     if request.method == 'POST':
         try:
@@ -268,11 +234,8 @@ def unlike_comment():
             comment.liked_state = False
             like = db.session.get(
                 TicketCommentLikes, comment_likes_id)
-            print(comment_id, comment_likes_id, comment, like)
             db.session.delete(like)
-            print("crossed")
             db.session.commit()
-            print("crossed")
             return jsonify(success='Unliked')
     except:
         return jsonify(failed="Failed to unlike comment")

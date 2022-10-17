@@ -76,9 +76,3 @@ document.querySelector("#form-register").addEventListener(("keyup"), () => {
         }
     })
 })
-
-window.onload = function() {
-    document.querySelector(".username").value = "AceBurgundy"
-    document.querySelector(".email").value = "Samadriansabalo99@gmail.com"
-    document.querySelector("#regpassword").value = "Adrian2001."
-}

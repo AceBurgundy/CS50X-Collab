@@ -7,11 +7,15 @@
     height: 100vh;
     grid-template-columns: 14% 61% 25%;
     grid-template-rows: 10% 90%;
-    grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content side-content" "navigation-rail main-content side-content";
+    grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content main-content" "navigation-rail main-content main-content";
+}
+
+.icon-label {
+    cursor: pointer;
 }
 
 .filebackground {
-    background-color: #f1e1ddc5;
+    background-color: var(--primary);
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -157,7 +161,7 @@
 #top-side-content {
     background-color: var(--primary);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     overflow: visible;
 }
@@ -180,6 +184,11 @@
     width: 3rem;
     cursor: pointer;
     clip-path: circle();
+}
+
+.dashboard-profile-picture.reduced {
+    height: 2rem;
+    width: 2rem;
 }
 
 #profile-arrow-icon {

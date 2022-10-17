@@ -17,3 +17,8 @@
     font-family: "Poppins Medium";
     src: url(./fonts/Poppins-Medium.ttf);
 }
+
+@font-face {
+    font-family: "Salin Medium";
+    src: url(./fonts/Salin-medium.otf);
+}

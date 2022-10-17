@@ -1,3 +1,4 @@
+@import "/static/root.css";
 @import "/static/fonts.css";
 * {
     font-size: 13px;
@@ -34,11 +35,16 @@
 |      Div for Transition     |
 +-----------------------------*/
 
+svg {
+    height: fit-content;
+}
+
 .cover {
-    background-color: #FEDBD0;
+    background-color: var(--tertiary);
     width: 200vw;
     height: 300vh;
     position: fixed;
+    box-shadow: var(--roughShadow);
     border-radius: 50%;
     transition: 1000ms ease-out;
 }
@@ -209,7 +215,7 @@ i {
     display: none;
     width: 1.2rem;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: inherit;
     overflow: visible;
 }
 

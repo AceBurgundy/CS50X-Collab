@@ -183,7 +183,6 @@
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
-    -webkit-appearance: none;
 }
 
 
@@ -220,7 +219,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .proceed-button {
     margin-left: 15px;
-    background-color: #F6CFCA;
+    background-color: var(--primary);
 }
 
 .modal-x-button {
@@ -318,18 +317,10 @@ option:checked:before {
 
 .collaborate {
     position: relative;
-    bottom: 0%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    width: fit-content;
-    background-color: var(--primary);
-    border: none;
-    font-family: "Rubik Medium";
-    text-transform: uppercase;
-    padding: 0.8em;
-    border-radius: 10px;
+}
+
+.collaborate-toggle {
+    margin-top: 5px;
 }
 
 
@@ -352,6 +343,10 @@ option:checked:before {
     -webkit-box-shadow: var(--defaultShadow);
 }
 
+.add-user {
+    top: 57%;
+}
+
 .collaborate-dropdown.active {
     pointer-events: all;
     opacity: 1;
@@ -369,18 +364,17 @@ option:checked:before {
     width: 15rem;
     height: 200px;
     display: grid;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 30% 70%;
     justify-content: flex-start;
     overflow: scroll;
     position: relative;
+    box-shadow: var(--defaultShadow);
     overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
     width: 0px;
-    /* remove scrollbar space */
     background: transparent;
-    /* optional: just make scrollbar invisible */
 }
 
 
