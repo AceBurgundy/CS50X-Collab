@@ -24,18 +24,21 @@ def show_tickets(current_project_id):
     tickets = db.session.execute(select(Ticket).filter_by(
         project_id=current_project_id)).scalars().all()
 
-    project_author = Project.query.get(current_project_id).author.username
+    project_author = Project.query.get(current_project_id).author
 
     assigned_user = []
 
     for ticket in tickets:
         assigned_user.append({
             "ticket_id": ticket.id,
+            "assigned_user": User.query.get(ticket.assigned_user).id,
             "author_profile_picture": url_for(
                 'static', filename='profile_pictures/' + User.query.get(ticket.assigned_user).profile_picture)
         })
 
-    return render_template("tickets.html", assigned_user=assigned_user, project_author=project_author, image_file=image_file, project_id=current_project_id, tickets=tickets, pageTitle="TICKETS")
+    project_details = Project.query.get(current_project_id)
+
+    return render_template("tickets.html", project_details=project_details, assigned_user=assigned_user, project_author=project_author, image_file=image_file, project_id=current_project_id, tickets=tickets, pageTitle="TICKETS")
 
 
 @ tickets.route("/add-ticket/<int:current_project_id>", methods=["POST", "GET"])
