@@ -35,3 +35,7 @@
 path {
     pointer-events: none;
 }
+
+.small {
+    font-size: 12px;
+}
