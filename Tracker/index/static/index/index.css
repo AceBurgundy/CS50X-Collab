@@ -10,6 +10,10 @@
     grid-template-areas: "navigation-rail top-bar top-side-content" "navigation-rail main-content main-content" "navigation-rail main-content main-content";
 }
 
+.icon-label {
+    cursor: pointer;
+}
+
 .filebackground {
     background-color: var(--primary);
     position: fixed;
@@ -157,7 +161,7 @@
 #top-side-content {
     background-color: var(--primary);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     overflow: visible;
 }
