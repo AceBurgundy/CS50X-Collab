@@ -18,17 +18,23 @@ def add_project():
     users = db.session.scalars(select(User)).all()
     if request.method == "POST":
         if form.validate_on_submit():
-
             try:
-                db.session.add(Project(
-                    title=form.title.data,
-                    description=form.description.data,
-                    deadline=form.deadline.data,
-                    author=current_user))
+                project = Project.query.filter_by(
+                    title=form.title.data).first()
 
-                db.session.commit()
+                if not project:
+                    db.session.add(Project(
+                        title=form.title.data,
+                        description=form.description.data,
+                        deadline=form.deadline.data,
+                        author=current_user))
 
-                flash('Project added')
+                    db.session.commit()
+
+                    flash('Project added')
+                else:
+                    flash('New project should be unique')
+
                 return redirect(url_for('index._index'))
             except:
                 flash('Failed to add project')
