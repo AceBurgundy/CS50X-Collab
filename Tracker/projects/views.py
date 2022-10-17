@@ -20,7 +20,7 @@ def add_project():
         if form.validate_on_submit():
             try:
                 project = Project.query.filter_by(
-                    title=form.title.data).first()
+                    title=form.title.data, author=current_user).first()
 
                 if not project:
                     db.session.add(Project(
