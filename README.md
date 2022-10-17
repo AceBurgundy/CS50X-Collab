@@ -1,91 +1,139 @@
+
 # Collab
-Our little project, a simple development monitoring app that documents and lets a team keep track of bugs on their software. A work in progress. c. 2022
+
+A simple project collaboration web app/bug tracker that documents and lets a team keep track of bugs on their software. A work in progress. c. 2022
+
+Also my final project for CS50 Intro to Computer Science.
+
+
+
+## Tree
 
 ```
-Collab
-|
-├─ app.py
-├─ License
-├─ README.md
-├─ __init__.py
-|
-└─ Tracker
-   |
-   ├─ models.py
-   ├─ collab.db
-   ├─ config.py
-   |
-   ├─ errors
-   |  ├─ static
-   |  |   └─ errors.css
-   |  ├─ templates
-   |  |   └─ apology.html
-   │  ├─ helpers.py
-   |  ├─ handlers.py   
-   │  └─ __init__.py
-   |
-   |
-   ├─ index
-   │  ├─ static
-   │  │  └─ index
-   │  │     ├─ head.css
-   │  │     ├─ head.js
-   │  │     ├─ index.css
-   │  │     ├─ index.js
-   │  │     ├─ navigation-rail.css
-   │  │     └─ project.css
-   │  ├─ templates
-   │  │  └─ index
-   │  │     ├─ apology.html
-   │  │     ├─ head.html
-   │  │     ├─ index.html
-   │  │     └─ projects.html
-   │  ├─ views.py
-   │  └─ __init__.py
-   |
-   ├─ profile
-   │  ├─ forms.py
-   │  ├─ static
-   │  │  └─ profile
-   │  │     ├─ changePassword.css
-   │  │     ├─ country-dropdown-styles.css
-   │  │     ├─ profile.css
-   │  │     └─ profile.js
-   │  ├─ templates
-   │  │  └─ profile
-   │  │     ├─ newPassword.html
-   │  │     ├─ new_project.html
-   │  │     └─ profile.html
-   │  ├─ views.py
-   │  └─ __init__.py
-   |
-   ├─ projects
-   │  ├─ forms.py
-   │  ├─ static
-   │  │  └─ projects
-   │  │     ├─ new-project-modal.css
-   │  │     └─ new-project-modal.js
-   │  ├─ views.py
-   │  └─ __init__.py
-   ├─ static
-   │  ├─ background.css
-   │  ├─ background.png
-   │  ├─ errorCode.css
-   │  ├─ flags
-   │  ├─ fonts
-   │  ├─ fonts.css
-   │  ├─ helper.js
-   │  └─ root.css
-   |
-   └─ user
-      ├─ static
-      │  └─ user
-      │     ├─ user-styles.css
-      │     └─ user.js
-      ├─ templates
-      │  └─ user
-      │     └─ users.html
-      ├─ views.py
-      └─ __init__.py
+Collab                                                 
+├─ app.py                                              
+├─ collab.db                                           
+├─ License                                             
+├─ README.md                                           
+└─ Tracker                                             
+   ├─ collab.db                                        
+   ├─ config.py                                        
+   ├─ errors                                           
+   │  ├─ handlers.py                                   
+   │  ├─ static                                        
+   │  │  └─ errors                                     
+   │  │     └─ errors.css                              
+   │  ├─ templates                                     
+   │  │  └─ errors                                     
+   │  │     └─ apology.html                            
+   │  └─ __init__.py                                   
+   ├─ helpers.py                                       
+   ├─ index                                            
+   │  ├─ static                                        
+   │  │  └─ index                                      
+   │  │     ├─ head.css                                
+   │  │     ├─ head.js                                 
+   │  │     ├─ index.css                               
+   │  │     ├─ index.js                                
+   │  │     ├─ navigation-rail.css                     
+   │  │     └─ project.js                              
+   │  ├─ templates                                     
+   │  │  └─ index                                      
+   │  │     ├─ head.html                               
+   │  │     ├─ index.html                              
+   │  │     └─ layout.html                             
+   │  ├─ views.py                                      
+   │  └─ __init__.py                                   
+   ├─ models.py                                        
+   ├─ profile                                          
+   │  ├─ forms.py                                      
+   │  ├─ static                                        
+   │  │  └─ profile                                    
+   │  │     ├─ changePassword.css                      
+   │  │     ├─ country-dropdown-styles.css             
+   │  │     ├─ profile.css                             
+   │  │     └─ profile.js                              
+   │  ├─ templates                                     
+   │  │  └─ profile                                    
+   │  │     ├─ newPassword.html                        
+   │  │     └─ profile.html                            
+   │  ├─ views.py                                      
+   │  └─ __init__.py                                   
+   ├─ projects                                         
+   │  ├─ forms.py                                      
+   │  ├─ static                                        
+   │  │  └─ projects                                   
+   │  │     └─ project.css                             
+   │  ├─ templates                                     
+   │  │  └─ projects                                   
+   │  │     └─ project-modal.html                      
+   │  ├─ views.py                                      
+   │  └─ __init__.py                                   
+   ├─ static                                           
+   │  ├─ background.css                                
+   │  ├─ flags                                         
+   │  ├─ fonts                                         
+   │  │  ├─ Poppins-Medium.ttf                         
+   │  │  ├─ Rubik-Light.ttf                            
+   │  │  ├─ Rubik-Medium.ttf                           
+   │  │  ├─ Rubik-Regular.ttf                          
+   │  │  └─ Salin-medium.otf                           
+   │  ├─ fonts.css                                     
+   │  ├─ form-modal.css                                
+   │  ├─ form-modal.js                                 
+   │  ├─ helper.js                                     
+   │  └─ root.css                                      
+   ├─ tickets                                          
+   │  ├─ forms.py                                      
+   │  ├─ static                                        
+   │  │  └─ tickets                                    
+   │  │     ├─ ticket-details.css                      
+   │  │     ├─ ticket-details.js                       
+   │  │     ├─ ticket.js                               
+   │  │     └─ tickets.css                             
+   │  ├─ templates                                     
+   │  │  └─ tickets                                    
+   │  │     ├─ comment.html                            
+   │  │     ├─ like.html                               
+   │  │     ├─ ticket-details.html                     
+   │  │     ├─ ticket-modal.html                       
+   │  │     └─ tickets.html                            
+   │  ├─ views.py                                      
+   │  └─ __init__.py                                   
+   ├─ user                                             
+   │  ├─ forms.py                                      
+   │  ├─ static                                        
+   │  │  └─ user                                       
+   │  │     ├─ login.js                                
+   │  │     ├─ register.js                             
+   │  │     └─ user-styles.css                         
+   │  ├─ templates                                     
+   │  │  └─ user                                       
+   │  │     ├─ login.html                              
+   │  │     └─ register.html                           
+   │  ├─ views.py                                      
+   │  └─ __init__.py                                   
+   └─ __init__.py                                      
 
 ```
+## Features
+
+### App
+- simple but beautiful UI
+
+### Projects
+- Create Projects
+- Collaborate with other creators
+- Edit project
+
+### Tickets
+- Kanban project management
+- Cross platform (incomplete)
+- Comment on tickets
+
+
+## Authors
+
+- [@AceBurgundy](https://github.com/AceBurgundy)
+
+- [@AACaps](https://github.com/AACaps) (Contributors)
