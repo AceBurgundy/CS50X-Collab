@@ -3,8 +3,6 @@
 {% endblock scripts -%} {% extends "head.html" %} {%- block style %}
 <link rel="stylesheet" href="{{ url_for( 'static' , filename='form-modal.css')}}"> {% endblock style -%} {%- block new_project %}
 
-<img src="{{ url_for( 'static' , filename='background.png')  }}" class="image-background" alt="">
-
 <div id="background" class="background">
 </div>
 
@@ -43,8 +41,10 @@
                 {{ form.description(class="form-description", rows="5", placeholder="This ticket....") }}
                 <p class="counter-container" id="counter-for-description"><span>0</span>/200</p>
             </div>
-
-            <div class="button-basic collaborate-toggle">ASSIGN TO:</div>
+            <div class="input-filed assign">
+                <label for="assign" class="form-label">Assign</label>
+                <div id="assign-toggle" class="button-basic collaborate-toggle">Choose</div>
+            </div>
             <section class="input-field collaborate">
                 <!-- {# project description collaborate #} -->
                 <div id="collaborate-dropdown" id="collaborate-dropdown" class="collaborate-dropdown">
@@ -85,7 +85,7 @@
             <div class="input-field priority">
                 <label class="form-label">Priority</label>
                 <!-- ticket priority input -->
-                {{ form.priority(class="form-priority") }}
+                {{ form.priority(class="button-basic") }}
             </div>
 
             <div class="input-field status">

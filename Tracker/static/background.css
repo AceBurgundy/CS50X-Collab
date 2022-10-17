@@ -2,16 +2,6 @@ html {
     overflow-x: hidden;
 }
 
-.image-background {
-    position: relative;
-    z-index: 1;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: contain;
-    height: 100vh;
-    background-position: center;
-}
-
 .background {
     position: fixed;
     width: 100vw;
@@ -21,10 +11,7 @@ html {
     visibility: visible;
     opacity: 1;
     transition: 500ms ease;
-    backdrop-filter: blur(25px) saturate(50%);
-    -webkit-backdrop-filter: blur(23px) saturate(112%);
-    background-color: #f8b49b1a;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    background-color: var(--primary);
 }
 
 .background.active {

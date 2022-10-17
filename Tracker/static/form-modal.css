@@ -183,7 +183,6 @@
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
-    -webkit-appearance: none;
 }
 
 
@@ -220,7 +219,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .proceed-button {
     margin-left: 15px;
-    background-color: #F6CFCA;
+    background-color: var(--primary);
 }
 
 .modal-x-button {
@@ -320,6 +319,10 @@ option:checked:before {
     position: relative;
 }
 
+.collaborate-toggle {
+    margin-top: 5px;
+}
+
 
 /* collaborate */
 
@@ -361,18 +364,17 @@ option:checked:before {
     width: 15rem;
     height: 200px;
     display: grid;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 30% 70%;
     justify-content: flex-start;
     overflow: scroll;
     position: relative;
+    box-shadow: var(--defaultShadow);
     overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
     width: 0px;
-    /* remove scrollbar space */
     background: transparent;
-    /* optional: just make scrollbar invisible */
 }
 
 
