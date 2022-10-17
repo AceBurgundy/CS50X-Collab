@@ -9,3 +9,5 @@ if __name__ == '__main__':
     # Error: Could not locate a Flask application. You did not provide the "FLASK_APP" environment variable, and a "wsgi.py" or "app.py" module was not found in the current directory.
 
     # run this and try again:    $env:FLASK_APP="run.py"
+    
+    # do not use venv when running python app.py
