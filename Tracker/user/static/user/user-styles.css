@@ -47,6 +47,15 @@ svg {
     box-shadow: var(--roughShadow);
     border-radius: 50%;
     transition: 1000ms ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#hifi {
+    margin-left: 1rem;
+    float: left;
+    width: 10%;
 }
 
 #login-cover {

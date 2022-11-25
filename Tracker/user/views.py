@@ -29,7 +29,7 @@ def login():
         password_input = form.login_password.data
 
         user = User.query.filter_by(email=email_input).first()
-
+        
         try:
             if user and check_password_hash(user.password, password_input):
                 login_user(user)  # , remember=form.remember.data)

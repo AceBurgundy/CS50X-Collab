@@ -175,7 +175,8 @@
 .profile {
     display: flex;
     justify-content: space-evenly;
-    width: 6rem;
+    width: fit-content;
+    gap: 0.5em;
     margin-right: 1em;
 }
 
