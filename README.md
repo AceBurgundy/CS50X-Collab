@@ -5,7 +5,7 @@ A simple project collaboration web app/bug tracker that documents and lets a tea
 
 Also my final project for CS50 Intro to Computer Science.
 
-
+#### Video Demo: [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YnjgDPM061I/0.jpg)](https://www.youtube.com/watch?v=YnjgDPM061I)
 
 ## Tree
 
